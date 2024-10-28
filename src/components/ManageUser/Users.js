@@ -7,14 +7,38 @@ import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import ModalDelete from "./ModalDelete";
 import ModalUser from "./ModalUser";
+import 'font-awesome/css/font-awesome.min.css';
 const Users = (props) => {
     const [listUser, setListUser] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(5);
     const [totalPages, setTotalPages] = useState(0);
+    //modal delete  
+    const [isShowModalDelete, setIsShowModalDelete] = useState(false);
+    const [dataMoldal, setDataModal] = useState({});
+
+    // modal update
+    const [isShowModalUser, setIsShowModalUser] = useState(false)
+    const [actionModalUser, setActionModalUser] = useState("CREATE");
+    const [dataModalUser, setDataModalUser] = useState({})
     useEffect(() => {
-        fetchUsser()
+        fetchUsser();
+
+
     }, [currentPage])
+    //LẤY CÁC BIẾN SESSION ĐÃ LƯU 
+    useEffect(() => {
+
+
+        let jsonStringObj = sessionStorage.getItem('account'); // This is the json string we stored
+        // JSON.parse chuyển chuổi Json thành Obj
+        let obj = JSON.parse(jsonStringObj); // this is your object
+        console.log("Get session  jsonStringObj",jsonStringObj); // access properties as usual
+        console.log("Get session obj",obj.email); // access properties as usual
+        
+
+
+    }, [])
     const fetchUsser = async () => {
         let reponse = await fetchAllUsser(currentPage, currentLimit);
         if (reponse && reponse.data && reponse.data.EC === 0) {
@@ -26,8 +50,7 @@ const Users = (props) => {
     const handlePageClick = async (event) => {
         setCurrentPage(+event.selected + 1);
     };
-    const [isShowModalDelete, setIsShowModalDelete] = useState(false);
-    const [dataMoldal, setDataModal] = useState({});
+
 
     const handleDeleteUser = async (user) => {
         setDataModal(user)
@@ -48,18 +71,39 @@ const Users = (props) => {
         }
     }
 
+    const onHideModalUser = async () => {
+        setIsShowModalUser(false)
+        setDataModalUser({})
+        await fetchUsser()
+
+    }
+
+    const handleEditUser = (user) => {
+        console.log("Check user", user)
+        setActionModalUser("UPDATE")
+        setDataModalUser(user)
+        setIsShowModalUser(true)
+
+    }
+    const handlRefresh = () => {
+        window.location.reload();
+    }
     return (
         <>
 
             <div className="container">
                 <div className="manage-users-container">
                     <div className="user-header">
-                        <div className="title">
+                        <div className="title mt-3">
                             <h3>Table Users</h3>
                         </div>
-                        <div className="actions">
-                            <button className="btn btn-success">Refresh</button>
-                            <button className="btn btn-primary">Add new user</button>
+                        <div className="actions my-3">
+                            <button className="btn btn-success" onClick={() => handlRefresh()}> <i class="fa fa-refresh bd "></i>Refresh</button>
+                            <button className="btn btn-primary"
+                                onClick={() => {
+                                    setIsShowModalUser(true);
+                                    setActionModalUser("CREATE");
+                                }}><i class="fa fa-plus-square bd"></i>Add new user</button>
                         </div>
                     </div>
                     <div className="user-body">
@@ -83,18 +127,14 @@ const Users = (props) => {
                                             {listUser.map((item, index) => {
                                                 return (
                                                     <tr key={`row-${index}`}>
-                                                        <td>{index + 1}</td>
+                                                        <td>{(currentPage - 1) * currentLimit + index + 1}</td>
                                                         <td>{item.id}</td>
                                                         <td>{item.email}</td>
                                                         <td>{item.username}</td>
                                                         <td>{item.Group ? item.Group.name : ''}</td>
                                                         <td>
-                                                            <button className="btn btn-warning mx-3">Edit</button>
-                                                            <button className="btn btn-danger " onClick={() => handleDeleteUser(item)}
-
-                                                            >Delete
-
-                                                            </button>
+                                                            <button className="btn btn-warning mx-3" onClick={() => handleEditUser(item)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                            <button className="btn btn-danger " onClick={() => handleDeleteUser(item)}><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                         </td>
                                                     </tr>
                                                 )
@@ -147,10 +187,13 @@ const Users = (props) => {
                 handleClose={handleClose}
                 conformDeleteUser={conformDeleteUser}
                 dataMoldal={dataMoldal}
-            /> 
-            <ModalUser 
-            title={"Create New User"}/>
-            
+            />
+            <ModalUser
+                onHide={onHideModalUser}
+                dataModalUser={dataModalUser}
+                show={isShowModalUser}
+                action={actionModalUser} />
+
         </>
     )
 }

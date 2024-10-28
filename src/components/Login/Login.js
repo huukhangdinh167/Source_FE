@@ -30,18 +30,22 @@ const Login = (props) => {
             return;
         }
         let reponse = await loginNewUser(valueLogin, password)
+        // console.log("Check respone", reponse)
         if (reponse && reponse.data && +reponse.data.EC === 0) {
 
 
             let data = {
                 isAuthenticate: true,
-                token: 'fake token'
+                email: reponse.data.DT.email, 
+                id: reponse.data.DT.id
+
             }
             sessionStorage.setItem("account", JSON.stringify(data));
+            console.log(reponse.data)
             history.push("/users");
-            window.location.reload();
+            // window.location.reload();
 
-            // toast.success("Login successful");
+            toast.success("Login successful");
         }
         if (reponse && reponse.data && +reponse.data.EC !== 0) {
             toast.error(reponse.data.EM);
