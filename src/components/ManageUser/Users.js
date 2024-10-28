@@ -33,17 +33,18 @@ const Users = (props) => {
         let jsonStringObj = sessionStorage.getItem('account'); // This is the json string we stored
         // JSON.parse chuyển chuổi Json thành Obj
         let obj = JSON.parse(jsonStringObj); // this is your object
-        console.log("Get session  jsonStringObj",jsonStringObj); // access properties as usual
-        console.log("Get session obj",obj.email); // access properties as usual
+        // console.log("Get session  jsonStringObj",jsonStringObj); // access properties as usual
+        // console.log("Get session obj",obj.email); // access properties as usual
         
 
 
     }, [])
     const fetchUsser = async () => {
-        let reponse = await fetchAllUsser(currentPage, currentLimit);
-        if (reponse && reponse.data && reponse.data.EC === 0) {
-            setTotalPages(reponse.data.DT.totalPages)
-            setListUser(reponse.data.DT.users)
+        let response = await fetchAllUsser(currentPage, currentLimit);
+        console.log("Check respone", response)
+        if (response && response.EC === 0) {
+            setTotalPages(response.DT.totalPages)
+            setListUser(response.DT.users)
 
         }
     }
@@ -62,12 +63,12 @@ const Users = (props) => {
     }
     const conformDeleteUser = async () => {
         let response = await deletuser(dataMoldal);
-        if (response && response.data.EC === 0) {
-            toast.success(response.data.EM)
+        if (response && response.EC === 0) {
+            toast.success(response.EM)
             setIsShowModalDelete(false)
             await fetchUsser()
         } else {
-            toast.error(response.data.EM)
+            toast.error(response.EM)
         }
     }
 

@@ -67,16 +67,16 @@ const ModalUser = (props) => {
                 : await updateNewUser({ ...userData, groupId: userData['group'] })
                 ;
             console.log("Check respone", res)
-            if (res.data && res.data.EC === 0) {
+            if (res && res.EC === 0) {
                 props.onHide()
                 setUserData({ ...deFaultUserData, group: userGroup[0].id })
                 // nếu muốn không cho edit group 
                 // setUserData({ ...deFaultUserData, group: userGroup && userGroup.length > 0 ? userGroup[0].id : '' }) và // getGroup() ở dòng 93 
                 // window.location.reload();
-            } if (res.data && res.data.EC !== 0) {
-                toast.error(res.data.EM);
+            } if (res && res.EC !== 0) {
+                toast.error(res.EM);
                 let _validInputs = _.cloneDeep(validInputsDefault);
-                _validInputs[res.data.DT] = false
+                _validInputs[res.DT] = false
                 setValidInputs(_validInputs)
             }
         }
@@ -116,13 +116,13 @@ const ModalUser = (props) => {
 
     const getGroup = async () => {
         let res = await fetchGroup();
-        if (res && res.data && res.data.EC === 0) {
-            setUserGroup(res.data.DT)
-            if (res.data.DT && res.data.DT.length > 0) {
-                setUserData({ ...userData, group: res.data.DT[0].id })
+        if (res && res && res.EC === 0) {
+            setUserGroup(res.DT)
+            if (res.DT && res.DT.length > 0) {
+                setUserData({ ...userData, group: res.DT[0].id })
             }
         } else {
-            toast.error(res.data.EM)
+            toast.error(res.EM)
         }
     }
     const handleCloseModalUser = () => {

@@ -29,26 +29,26 @@ const Login = (props) => {
             setObjValidInput({ ...defautObjValidInput, isvalidValuePassword: false })
             return;
         }
-        let reponse = await loginNewUser(valueLogin, password)
-        // console.log("Check respone", reponse)
-        if (reponse && reponse.data && +reponse.data.EC === 0) {
+        let response = await loginNewUser(valueLogin, password)
+        // console.log("Check respone", response)
+        if (response  && +response.EC === 0) {
 
 
             let data = {
                 isAuthenticate: true,
-                email: reponse.data.DT.email, 
-                id: reponse.data.DT.id
+                email: response.DT.email, 
+                id: response.DT.id
 
             }
             sessionStorage.setItem("account", JSON.stringify(data));
-            console.log(reponse.data)
+            console.log(response)
             history.push("/users");
             // window.location.reload();
 
             toast.success("Login successful");
         }
-        if (reponse && reponse.data && +reponse.data.EC !== 0) {
-            toast.error(reponse.data.EM);
+        if (response && +response.EC !== 0) {
+            toast.error(response.EM);
 
         }
 
