@@ -45,7 +45,7 @@ const Login = (props) => {
             history.push("/users");
             // window.location.reload();
 
-            toast.success("Login successful");
+            // toast.success("Login successful");
         }
         if (response && +response.EC !== 0) {
             toast.error(response.EM);
