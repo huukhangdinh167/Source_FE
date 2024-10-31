@@ -25,7 +25,7 @@ instance.interceptors.response.use(function (response) {
   }, function (error) {
     // Any status codes that falls outside the range of 2xx cause this function to trigger
     // Do something with response error
-    const status = error && error.response && error.response.status || 500;
+    const status = error.response.status ;
     console.log(status)
     switch (status) {
       // authentication (token related issues)
@@ -36,7 +36,7 @@ instance.interceptors.response.use(function (response) {
 
       // forbidden (permission related issues)
       case 403: {
-        toast.error("You don't have permission to access")
+        toast.error("You don't haveee permission to000 access")
         return Promise.reject(error);      }
 
       // bad request
@@ -44,7 +44,7 @@ instance.interceptors.response.use(function (response) {
         return Promise.reject(error);      }
 
       // not found
-      case 404: {
+      case 406: {
         return Promise.reject(error);      }
 
       // conflict

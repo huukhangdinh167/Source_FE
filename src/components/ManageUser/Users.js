@@ -1,7 +1,6 @@
-
-// import { useEffect } from "react";
 import "./Users.scss"
-import { useEffect, useState } from "react";
+import { UserContext } from "../../context/userContext";
+import React, { useEffect, useState } from "react";
 import { fetchAllUsser, deletuser } from "../../services/userServer";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
@@ -24,24 +23,22 @@ const Users = (props) => {
     useEffect(() => {
         fetchUsser();
 
-
     }, [currentPage])
     //LẤY CÁC BIẾN SESSION ĐÃ LƯU 
     useEffect(() => {
-
-
         let jsonStringObj = sessionStorage.getItem('account'); // This is the json string we stored
         // JSON.parse chuyển chuổi Json thành Obj
         let obj = JSON.parse(jsonStringObj); // this is your object
         // console.log("Get session  jsonStringObj",jsonStringObj); // access properties as usual
         // console.log("Get session obj",obj.email); // access properties as usual
-        
-
-
     }, [])
+
+    const { user } = React.useContext(UserContext);
+    console.log("Checkkk user login", user)
+    console.log("hello")
     const fetchUsser = async () => {
         let response = await fetchAllUsser(currentPage, currentLimit);
-        console.log("Check respone", response)
+        // console.log("Check respone", response)
         if (response && response.EC === 0) {
             setTotalPages(response.DT.totalPages)
             setListUser(response.DT.users)
