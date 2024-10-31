@@ -22,6 +22,7 @@ const AppRoutes = () => {
 
                 <PrivateRoutes path="/users" component={Users} />
                 <PrivateRoutes path="/projects" component={projects} />
+                
                 <Route path="/login">
                     <Login />
                 </Route>

@@ -1,5 +1,5 @@
 import "./Users.scss"
-import { UserContext } from "../../context/userContext";
+
 import React, { useEffect, useState } from "react";
 import { fetchAllUsser, deletuser } from "../../services/userServer";
 import ReactPaginate from "react-paginate";
@@ -24,18 +24,10 @@ const Users = (props) => {
         fetchUsser();
 
     }, [currentPage])
-    //LẤY CÁC BIẾN SESSION ĐÃ LƯU 
-    useEffect(() => {
-        let jsonStringObj = sessionStorage.getItem('account'); // This is the json string we stored
-        // JSON.parse chuyển chuổi Json thành Obj
-        let obj = JSON.parse(jsonStringObj); // this is your object
-        // console.log("Get session  jsonStringObj",jsonStringObj); // access properties as usual
-        // console.log("Get session obj",obj.email); // access properties as usual
-    }, [])
-
-    const { user } = React.useContext(UserContext);
-    console.log("Checkkk user login", user)
-    console.log("hello")
+   
+   
+    
+   
     const fetchUsser = async () => {
         let response = await fetchAllUsser(currentPage, currentLimit);
         // console.log("Check respone", response)

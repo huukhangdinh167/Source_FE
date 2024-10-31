@@ -1,10 +1,12 @@
 import './Login.scss'
 import { useHistory } from "react-router-dom";
 // import { Link } from 'react-router-dom/cjs/react-router-dom.min';
-import { useEffect, useState } from 'react';
+import React,{ useEffect, useState,useContext} from 'react';
 import { toast } from 'react-toastify';
 import { loginNewUser } from '../../services/userServer';
+import { UserContext } from '../../context/userContext';
 const Login = (props) => {
+    const { loginContext } = useContext(UserContext);
     let history = useHistory();
     const handleCreatAccount = () => {
 
@@ -33,14 +35,18 @@ const Login = (props) => {
         // console.log("Check respone", response)
         if (response  && +response.EC === 0) {
 
-
+             let groubWithRole = response.DT.groupWithRole
+             let email = response.DT.email
+             let username = response.DT.username  
+             let token = response.DT.accesstoken 
             let data = {
                 isAuthenticate: true,
-                email: response.DT.email, 
-                id: response.DT.id
+                token: token,
+                account: {groubWithRole,email,username}
 
             }
-            sessionStorage.setItem("account", JSON.stringify(data));
+         
+            loginContext(data)
             console.log(response)
             history.push("/users");
             // window.location.reload();
@@ -59,13 +65,7 @@ const Login = (props) => {
             handleLogin()
         }
     }
-    useEffect(() => {
-        let session = sessionStorage.getItem("account");
-        if (session) {
-            history.push("/")
-            window.location.reload();
-        }
-    }, []);
+    
     return (
 
         <div className="login-container ">

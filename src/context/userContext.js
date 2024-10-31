@@ -2,14 +2,17 @@ import React, { useState } from "react";
 const UserContext = React.createContext({ name: 'Eric', auth: false });
 const UserProvider  = ({ children }) => {
     // User is the name of the "data" that gets stored in context
-    const [user, setUser] = useState({ name: 'Hukhen', auth: true });
+    const [user, setUser] = useState(
+        {isAuthenticate: false,
+         token:"",
+         account:{}
+         
+        }
+        );
 
     // Login updates the user data with a name parameter
-    const login = (name) => {
-        setUser((user) => ({
-            name: name,
-            auth: true,
-        }));
+    const loginContext = (userDate) => {
+        setUser(userDate);
     };
 
     // Logout updates the user data to default
@@ -21,7 +24,7 @@ const UserProvider  = ({ children }) => {
     };
 
     return (
-        <UserContext.Provider value={{ user, login, logout }}>
+        <UserContext.Provider value={{ user, loginContext, logout }}>
             {children}
         </UserContext.Provider>
     );
