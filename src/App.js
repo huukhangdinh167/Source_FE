@@ -1,5 +1,5 @@
 import './App.scss';
-import Nav from './components/Nagivation/Nav';
+import NavHeader from './components/Nagivation/NavHeader';
 import { UserContext } from './context/userContext';
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from 'react-toastify';
@@ -24,7 +24,7 @@ function App() {
           :
           <>
             <div className='app-header'>
-              <Nav />
+              <NavHeader />
             </div>
             <div className='app-container'>
               <AppRoutes />

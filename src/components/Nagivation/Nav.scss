@@ -25,4 +25,29 @@ body {
       }
   }
   
+  .nav-header{ 
+    .bg-header{
+      background-color: #20232a;
+    }
+    .band{
+      color: #de5956!important;
+    }
+    a, .nav-link{
+      color: #f2f2f2 !important;
+      &:hover{
+          color: #04AA6D!important;
+      }
+    }
+    .nav-link{
+      &.active{
+        color: #04AA6D!important;
+      }
+    }
+    .dropdown-menu{
+      a{
+        color: #212529 !important
+      }
+    }
+    
+  }
   
