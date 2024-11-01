@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Nav.scss';
-import { NavLink, useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { NavLink, useLocation } from 'react-router-dom';
 import { UserContext } from '../../context/userContext';
 //
 const Nav = (props) => {

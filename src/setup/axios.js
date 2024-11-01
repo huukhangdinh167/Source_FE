@@ -5,7 +5,7 @@ const  instance = axios.create({
 })
 
 // // Alter defaults after instance has been created
-// instance.defaults.headers.common['Authorization'] = "AUTH_TOKEN 1212";
+ instance.defaults.headers.common['Authorization'] = `Bearer ${localStorage.getItem("jwt")}`;
 // Add a request interceptor
 instance.interceptors.request.use(function (config) {
     // Do something before request is sent
@@ -30,8 +30,9 @@ instance.interceptors.response.use(function (response) {
     switch (status) {
       // authentication (token related issues)
       case 401: {
-        toast.error("Unauthorized.. PLs login")
-        return Promise.reject(error);
+        toast.error("Unauthorized.. PLs login") 
+      //  window.location.href='/login'
+        return error.response.data;;
       }
 
       // forbidden (permission related issues)

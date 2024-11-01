@@ -45,7 +45,7 @@ const Login = (props) => {
                 account: {groubWithRole,email,username}
 
             }
-         
+         localStorage.setItem('jwt', token)
             loginContext(data)
             console.log(response)
             history.push("/users");
