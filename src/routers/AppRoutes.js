@@ -7,7 +7,7 @@ import Login from '../components/Login/Login';
 import Register from '../components/Register/Register';
 import Users from '../components/ManageUser/Users';
 import PrivateRoutes from "./PrivateRoutes";
-
+import Role from "../components/Role/Role";
 const AppRoutes = () => {
     const projects =()=>{
         return(
@@ -22,7 +22,7 @@ const AppRoutes = () => {
 
                 <PrivateRoutes path="/users" component={Users} />
                 <PrivateRoutes path="/projects" component={projects} />
-                
+                <PrivateRoutes path="/roles" component={Role} />
                 <Route path="/login">
                     <Login />
                 </Route>

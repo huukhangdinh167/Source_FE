@@ -7,18 +7,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter as Router, } from "react-router-dom";
 import { NavLink, useLocation } from 'react-router-dom';
 import AppRoutes from './routers/AppRoutes';
-import { Rings } from  'react-loader-spinner'
+import { Rings } from 'react-loader-spinner'
 
 
 function App() {
   const { user } = React.useContext(UserContext);
-
+ 
   return (
     <>
+
       <Router>
         {user && user.isLoading ?
           <div className='loading-container'>
-           <div> <Rings color="#0866ff" height={80} width={80}/></div>
+            <div> <Rings color="#0866ff" height={80} width={80} /></div>
             <div>Loading data....</div>
           </div>
           :

@@ -39,7 +39,9 @@ const updateNewUser = (userData) => {
 const getUserAccount =()=>{
     return axios.get("/api/v1/account")
 }
-
+const logoutUser =()=>{
+    return axios.post("/api/v1/logout")
+}
 export {
-    registerNewUser, loginNewUser, fetchAllUsser, deletuser, fetchGroup,createNewUser, updateNewUser, getUserAccount
+    registerNewUser, loginNewUser, fetchAllUsser, deletuser, fetchGroup,createNewUser, updateNewUser, getUserAccount, logoutUser
 }
