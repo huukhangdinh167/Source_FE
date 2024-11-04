@@ -1,12 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
 import { fetchAllRole, deletRole } from '../../services/roleService'
 import { toast } from "react-toastify";
-const TableRole = (props) => {
+
+
+const TableRole = forwardRef((props, ref) => {
 
     const [listRole, setListRole] = useState()
     useEffect(() => {
         getALLRole()
     }, [])
+
+    useImperativeHandle(ref, () => ({
+
+         fetchListRoleAgain() {
+            getALLRole()
+        }
+
+    }));
 
     const getALLRole = async () => {
         let data = await fetchAllRole()
@@ -74,5 +84,5 @@ const TableRole = (props) => {
 
 
 
-}
+})
 export default TableRole;

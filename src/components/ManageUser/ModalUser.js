@@ -92,8 +92,6 @@ const ModalUser = (props) => {
     const [userGroup, setUserGroup] = useState([]);
     useEffect(() => {
         getGroup()
-
-
     }, [])
     useEffect(() => {
         if (action === "UPDATE") {

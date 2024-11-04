@@ -1,5 +1,5 @@
 import './Role.scss'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import _ from 'lodash'
 import { v4 as uuidv4 } from 'uuid';
 import { toast } from "react-toastify";
@@ -8,6 +8,7 @@ import TableRole from './TableRole';
 
 
 const Role = (props) => {
+    const childRef = useRef();
     const dataChildefault = { url: '', description: '', invalidurl: true }
 
     const [listchild, setListchild] = useState({
@@ -45,6 +46,8 @@ const Role = (props) => {
             let res = await createNewRole(data)
             if (res && res.EC === 0) {
                 toast.success(res.EM)
+                // console.log(childRef)
+                  childRef.current.fetchListRoleAgain()
             } else {
                 toast.error(res.EM)
             }
@@ -72,58 +75,58 @@ const Role = (props) => {
         return results;
     }
     return (
-        
-            <div className='role-container'>
-                <div className='container'>
-                    <div className='adding-role mt-4'>
-                        <div className='title-role'><h4>Add new role...</h4></div>
-                        <div className=' role-parent'>
-                            {Object.entries(listchild).map(([key, value], index) => {
-                                return (
 
-                                    <div className='row role-child' key={`child-${key}`}>
-                                        <div className={`col-5 form-group ${key}`}>
-                                            URL <input type='text' className={value.invalidurl ? ' form-control' : ' form-control is-invalid'}
-                                                value={value.url}
-                                                onChange={(event) => { handleOnChange('url', event.target.value, key) }} />
-                                        </div>
-                                        <div className='col-5 form-group'>
-                                            DESCRIPTION <input type='text' className=' form-control'
-                                                value={value.description}
-                                                onChange={(event) => { handleOnChange('description', event.target.value, key) }} />
+        <div className='role-container'>
+            <div className='container'>
+                <div className='adding-role mt-4'>
+                    <div className='title-role'><h4>Add new role...</h4></div>
+                    <div className=' role-parent'>
+                        {Object.entries(listchild).map(([key, value], index) => {
+                            return (
 
-                                        </div>
-                                        <div className='col-2 mt-4 action'>
-                                            <i class="fa fa-plus-square bd add" onClick={() => handleAddNewInput()}></i>
-                                            {index >= 1 && <i class="fa fa-trash delete" onClick={() => handleDelete(key)} ></i>}
-                                        </div>
+                                <div className='row role-child' key={`child-${key}`}>
+                                    <div className={`col-5 form-group ${key}`}>
+                                        URL <input type='text' className={value.invalidurl ? ' form-control' : ' form-control is-invalid'}
+                                            value={value.url}
+                                            onChange={(event) => { handleOnChange('url', event.target.value, key) }} />
                                     </div>
+                                    <div className='col-5 form-group'>
+                                        DESCRIPTION <input type='text' className=' form-control'
+                                            value={value.description}
+                                            onChange={(event) => { handleOnChange('description', event.target.value, key) }} />
 
-                                )
-                            })
-                            }
-                        </div>
-                        <div className='row'>
-                            <div className='col-10'></div>
-                            <div className='col-2'>
-                                <button onClick={() => handlSave()} className='btn btn-warning mt-5 '>Save</button>
-                            </div>
+                                    </div>
+                                    <div className='col-2 mt-4 action'>
+                                        <i class="fa fa-plus-square bd add" onClick={() => handleAddNewInput()}></i>
+                                        {index >= 1 && <i class="fa fa-trash delete" onClick={() => handleDelete(key)} ></i>}
+                                    </div>
+                                </div>
 
+                            )
+                        })
+                        }
+                    </div>
+                    <div className='row'>
+                        <div className='col-10'></div>
+                        <div className='col-2'>
+                            <button onClick={() => handlSave()} className='btn btn-warning mt-5 '>Save</button>
                         </div>
 
                     </div>
-                    <hr/>
-                    <div className='mt-3'>
-                        <h4>
-                            List Role
-                        </h4>
-                   <TableRole />
-                    </div>
-                    
+
                 </div>
-               
+                <hr />
+                <div className='mt-3'>
+                    <h4>
+                        List Role
+                    </h4>
+                    <TableRole ref={childRef} />
+                </div>
+
             </div>
-        
+
+        </div>
+
     )
 
 }
