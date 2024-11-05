@@ -2,11 +2,12 @@ import './Register.scss'
 import { useHistory } from "react-router-dom";
 // import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 // import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { toast } from 'react-toastify';
 import { registerNewUser } from '../../services/userServer';
+import { UserContext } from '../../context/userContext';
 const Register = (props) => {
-
+    const { user } = useContext(UserContext);
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [username, setUsername] = useState("");
@@ -21,7 +22,7 @@ const Register = (props) => {
     const [objCheckInput, setObjCheckInput] = useState(defaultValidInput)
     let history = useHistory();
     const handleLogin = () => {
-        history.push("/register");
+        history.push("/login");
         // alert("aaaaaaaa")
     }
 
@@ -29,7 +30,9 @@ const Register = (props) => {
         // axios.get("http://localhost:8888/api/v1/test-api").then(data => {
         //     console.log("Check data axiosssssss:", data)
         // })
-
+        if (user && user.isAuthenticate) {
+            history.push('/')
+        }
     }, []);
 
     const isValidinput = () => {
