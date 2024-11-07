@@ -53,21 +53,53 @@ const NavHeader = (props) => {
                         </Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
-                            <Nav className="me-auto">
-                                <NavLink className="nav-link" to="/" exact>Home</NavLink>
-                                <NavLink className="nav-link" to="/users">users</NavLink>
-                                <NavLink className="nav-link" to="/roles">Roles</NavLink>
-                                <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
-                                <NavLink className="nav-link" to="/about">About</NavLink>
-                            </Nav>
+                            {
+                                user && user.groupId === 1 ?
+                                    <Nav className="me-auto">
+                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
+                                        <NavLink className="nav-link" to="/users">users</NavLink>
+                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
+                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
+                                        <NavLink className="nav-link" to="/about">-----</NavLink>
+                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
+                                        <NavLink className="nav-link" to="/project" >Project</NavLink>
+                                        <NavLink className="nav-link" to="/results">Results</NavLink>
+                                        <NavLink className="nav-link" to="/history">History</NavLink>
+
+
+                                    </Nav>
+                                    : (user && user.groupId === 2 ? <Nav className="me-auto">
+                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
+                                        <NavLink className="nav-link" to="/users">Teach</NavLink>
+                                        <NavLink className="nav-link" to="/roles">Teacher</NavLink>
+                                        <NavLink className="nav-link" to="/grouprole">Teach</NavLink>
+                                        <NavLink className="nav-link" to="/about">Teach</NavLink>
+                                    </Nav> : (user && user.groupId === 2 ? <Nav className="me-auto">
+                                        <NavLink className="nav-link" to="/" exact>Adimin</NavLink>
+                                        <NavLink className="nav-link" to="/users">Adimin</NavLink>
+                                        <NavLink className="nav-link" to="/roles">Adimin</NavLink>
+                                        <NavLink className="nav-link" to="/grouprole">Adimin</NavLink>
+                                        <NavLink className="nav-link" to="/about">Adimin</NavLink>
+                                    </Nav> : (<Nav className="me-auto">
+                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
+                                        <NavLink className="nav-link" to="/users">users</NavLink>
+                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
+                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
+                                        <NavLink className="nav-link" to="/about">About</NavLink>
+                                    </Nav>)))
+
+                            }
+
+                           
+
                             <Nav>
                                 {
 
                                     user && user.isAuthenticate === true
                                         ?
                                         <>
-                                            <Nav.Item className='nav-link' href="#deets">Well come {user.account.username} !</Nav.Item>
-                                            <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                                            <Nav.Item className='nav-link' href="#deets"><b className=''> {user.name}</b> !</Nav.Item>
+                                            <NavDropdown title="Account" id="basic-nav-dropdown">
                                                 <NavDropdown.Item >Change password</NavDropdown.Item>
                                                 <NavDropdown.Item > <span onClick={() => handleLogout()}>Log-out</span></NavDropdown.Item>
 

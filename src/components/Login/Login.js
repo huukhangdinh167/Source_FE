@@ -8,10 +8,7 @@ import { UserContext } from '../../context/userContext';
 const Login = (props) => {
     const { loginContext } = useContext(UserContext);
     let history = useHistory();
-    const handleCreatAccount = () => {
-
-        history.push("/register");
-    }
+    
     const [valueLogin, setValueLogin] = useState("");
     const [password, setPassword] = useState("");
     const defautObjValidInput = {
@@ -39,10 +36,16 @@ const Login = (props) => {
              let email = response.DT.email
              let username = response.DT.username  
              let token = response.DT.accesstoken 
+             let groupId = response.DT.groupId
+            let name = response.DT.name
+
             let data = {
                 isAuthenticate: true,
                 token: token,
-                account: {groubWithRole,email,username}
+                maSo: username,
+                account: {groubWithRole,email,username},
+                name: name,
+                groupId: groupId,
 
             }
          localStorage.setItem('jwt', token)
@@ -98,11 +101,11 @@ const Login = (props) => {
                             <a className='forgot-password' href='#' >Forgot your password</a>
                         </span>
                         <hr />
-                        <div className='text-center'>
+                        {/* <div className='text-center'>
                             <button className='btn btn-success' onClick={() => handleCreatAccount()}>
                                 Creat new account
                             </button>
-                        </div>
+                        </div> */}
 
                     </div>
 

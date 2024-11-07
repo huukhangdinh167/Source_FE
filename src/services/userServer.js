@@ -2,11 +2,7 @@
 import axios from "../setup/axios"
 
 
-const registerNewUser = (email, username, password, phone) => {
-    return axios.post("/api/v1/register", {
-        email, username, password, phone
-    })
-}
+
 
 const loginNewUser = (valueLogin, password) => {
     return axios.post("/api/v1/login", {
@@ -43,5 +39,5 @@ const logoutUser =()=>{
     return axios.post("/api/v1/logout")
 }
 export {
-    registerNewUser, loginNewUser, fetchAllUsser, deletuser, fetchGroup,createNewUser, updateNewUser, getUserAccount, logoutUser
+    loginNewUser, fetchAllUsser, deletuser, fetchGroup,createNewUser, updateNewUser, getUserAccount, logoutUser
 }

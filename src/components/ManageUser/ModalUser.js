@@ -16,21 +16,20 @@ const ModalUser = (props) => {
     const { action, dataModalUser } = props
     const deFaultUserData = {
         email: '',
-        phone: '',
-        username: '',
+        phoneNumber: '',
+        maSo: '',
         password: '',
-        address: '',
-        sex: '',
+        name: '',
         group: ''
 
     }
     const validInputsDefault = {
         email: true,
-        phone: true,
-        username: true,
+        phoneNumber: true,
+        maSo: true,
         password: true,
         address: true,
-        sex: true,
+        name: true,
         group: true
 
     }
@@ -41,7 +40,7 @@ const ModalUser = (props) => {
             return true;
         setValidInputs(validInputsDefault);
         // console.log("check user data", userData)
-        let arr = ['email', 'phone', 'password', 'group']
+        let arr = ['email', 'phoneNumber', 'password', 'group']
         let check = true;
         for (let i = 0; i < arr.length; i++) {
             if (!userData[arr[i]]) {
@@ -72,7 +71,9 @@ const ModalUser = (props) => {
                 setUserData({ ...deFaultUserData, group: userGroup[0].id })
                 // nếu muốn không cho edit group 
                 // setUserData({ ...deFaultUserData, group: userGroup && userGroup.length > 0 ? userGroup[0].id : '' }) và // getGroup() ở dòng 93 
-                // window.location.reload();
+                toast.success(res.EM);
+               // window.location.reload();
+
             } if (res && res.EC !== 0) {
                 toast.error(res.EM);
                 let _validInputs = _.cloneDeep(validInputsDefault);
@@ -84,11 +85,14 @@ const ModalUser = (props) => {
 
     const [validInputs, setValidInputs] = useState(validInputsDefault)
     const [userData, setUserData] = useState(deFaultUserData)
+
+
     const handleOnchangeInput = (value, name) => {
         let _userdata = _.cloneDeep(userData)
         _userdata[name] = value
         setUserData(_userdata)
     }
+
     const [userGroup, setUserGroup] = useState([]);
     useEffect(() => {
         getGroup()
@@ -149,15 +153,15 @@ const ModalUser = (props) => {
 
                         <div className="col-12 col-sm-6 form-group">
                             <label>Phone number(<span className="text-danger">*</span>):</label>
-                            <input disabled={action === "CREATE" ? false : true} className={validInputs.phone ? "form-control" : "form-control is-invalid"} type="text" value={userData.phone}
-                                onChange={(event) => handleOnchangeInput(event.target.value, "phone")}
+                            <input disabled={action === "CREATE" ? false : true} className={validInputs.phoneNumber ? "form-control" : "form-control is-invalid"} type="text" value={userData.phoneNumber}
+                                onChange={(event) => handleOnchangeInput(event.target.value, "phoneNumber")}
                             />
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>UserName</label>
-                            <input className="form-control" type="email" value={userData.username}
-                                onChange={(event) => handleOnchangeInput(event.target.value, "username")}
+                            <label>Student code</label>
+                            <input className={validInputs.maSo ? "form-control" : "form-control is-invalid"} type="email" value={userData.maSo}
+                                onChange={(event) => handleOnchangeInput(event.target.value, "maSo")}
                             />
                         </div>
 
@@ -174,12 +178,12 @@ const ModalUser = (props) => {
 
 
                         <div className="col-12 col-sm-12 form-group">
-                            <label>Adress</label>
-                            <textarea className="form-control" value={userData.address}
-                                onChange={(event) => handleOnchangeInput(event.target.value, "address")}
-                            >
+                            <label>Name</label>
+                            <input className="form-control" value={userData.name}
+                                onChange={(event) => handleOnchangeInput(event.target.value, "name")}
+                            />
 
-                            </textarea>
+
                             {/* <input className="form-control" type="text" /> */}
                         </div>
 

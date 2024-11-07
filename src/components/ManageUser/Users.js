@@ -1,13 +1,14 @@
 import "./Users.scss"
-
 import React, { useEffect, useState } from "react";
 import { fetchAllUsser, deletuser } from "../../services/userServer";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import ModalDelete from "./ModalDelete";
 import ModalUser from "./ModalUser";
+import { UserContext } from '../../context/userContext';
 import 'font-awesome/css/font-awesome.min.css';
 const Users = (props) => {
+    const { user } = React.useContext(UserContext);
     const [listUser, setListUser] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [currentLimit, setCurrentLimit] = useState(5);
@@ -24,10 +25,17 @@ const Users = (props) => {
         fetchUsser();
 
     }, [currentPage])
-   
-   
-    
-   
+
+
+    useEffect(() => {
+        console.log("Check accounttttt", user)
+
+    }, [])
+
+
+
+
+
     const fetchUsser = async () => {
         let response = await fetchAllUsser(currentPage, currentLimit);
         // console.log("Check respone", response)
@@ -69,7 +77,7 @@ const Users = (props) => {
     }
 
     const handleEditUser = (user) => {
-        console.log("Check user", user)
+      //  console.log("Check user", user)
         setActionModalUser("UPDATE")
         setDataModalUser(user)
         setIsShowModalUser(true)
@@ -120,7 +128,7 @@ const Users = (props) => {
                                                         <td>{(currentPage - 1) * currentLimit + index + 1}</td>
                                                         <td>{item.id}</td>
                                                         <td>{item.email}</td>
-                                                        <td>{item.username}</td>
+                                                        <td>{item.maSo}</td>
                                                         <td>{item.Group ? item.Group.name : ''}</td>
                                                         <td>
                                                             <button className="btn btn-warning mx-3" onClick={() => handleEditUser(item)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>

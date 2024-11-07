@@ -11,6 +11,8 @@ const UserProvider = ({ children }) => {
         isLoading: true,
         isAuthenticate: false,
         token: "",
+        name: "",
+        groupId: "",
         account: {}
 
     }
@@ -33,10 +35,16 @@ const UserProvider = ({ children }) => {
             let email = response.DT.email
             let username = response.DT.username
             let token = response.DT.accesstoken
+            let groupId = response.DT.groupId
+            let name = response.DT.name
+           
             let data = {
 
                 isAuthenticate: true,
                 token: token,
+                maSo: username,
+                name: name,
+                groupId: groupId,
                 account: { groubWithRole, email, username },
                 isLoading: false,
             }
