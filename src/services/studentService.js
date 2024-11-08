@@ -4,10 +4,16 @@ import axios from "../setup/axios"
 const fetchAllProject = (user) => {
     return axios.put("/api/v1/student/project/read", { data: { id: user.maSo } })
 } 
+ 
+
 
 const fetchAllProjectRegister = (user) => {
     return axios.put("/api/v1/student/project/dadangki",{ data: { id: user.maSo } })
 }
+// lấy danh sách các sinh viên đã đăng kí 
+const fetchAllUserRegiterProject = (user) => {
+    return axios.put("/api/v1/student/project/useregistproject",{ data: { id: user.id } })
+} 
 
 const dangKiProject =(item, user)=>{ 
    
@@ -20,5 +26,5 @@ const huyDangKiProject =(user, lisProjectRegister)=>{
 }
 
 export {
-    fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject
+    fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,fetchAllUserRegiterProject
 }

@@ -1,7 +1,7 @@
 import swal from 'sweetalert';
 import './Project.scss'
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
-import { fetchAllProject, fetchAllProjectRegister, dangKiProject, huyDangKiProject } from '../../services/studentService'
+import { fetchAllProject, fetchAllProjectRegister, dangKiProject, huyDangKiProject,fetchAllUserRegiterProject } from '../../services/studentService'
 import { toast } from "react-toastify";
 import React from 'react';
 import { UserContext } from '../../context/userContext';
@@ -9,7 +9,7 @@ import { UserContext } from '../../context/userContext';
 
 const Project = () => {
     const [listProject, setListRole] = useState()
-
+    const [listUserRegisterProject, setListUserRegisterProject] = useState()
     const defautlisProjectRegister = {
         dangki: true,
         id: '',
@@ -29,7 +29,11 @@ const Project = () => {
         let data = await fetchAllProjectRegister(user)
         if (data && +data.EC === 0) {
             let dataDT = data.DT
-            setListProjectRegister({ ...dataDT, dangki: false })
+           await setListProjectRegister({ ...dataDT, dangki: false })
+           let dataaa = await fetchAllUserRegiterProject(data.DT)
+           if(data && +dataaa.EC === 0){
+            setListUserRegisterProject(dataaa.DT)
+           }
         }
     }
     const getALLProject = async (user) => {
@@ -45,23 +49,24 @@ const Project = () => {
     const hanldeDangki = async (item, user) => {
         swal("Are you sure you want to do this?", {
             buttons: ["No!", "Yes!"],
-        }) 
-        .then(async (willUnregister) =>{
-            if (willUnregister){
-                let data = await dangKiProject(item, user)
-                if (data && +data.EC === 0) {
-                    getALLProjectRegister(user)
-                    toast.success(data.EM)
-        
-                } else {
-                    toast.error(data.EM)
-                }
-        
-            }else{
+        })
+            .then(async (willUnregister) => {
+                if (willUnregister) {
+                    let data = await dangKiProject(item, user)
+                    if (data && +data.EC === 0) {
+                        getALLProjectRegister(user)
+                      
+                        toast.success(data.EM)
 
-            }
-        });
-        
+                    } else {
+                        toast.error(data.EM)
+                    }
+
+                } else {
+
+                }
+            });
+
     }
 
     const hanldeHuyDangki = async (user, lisProjectRegister) => {
@@ -84,6 +89,14 @@ const Project = () => {
             });
 
     }
+    // const getAllUserRegiterProject = async (lisProjectRegister) => {
+    //     let data = await fetchAllUserRegiterProject(lisProjectRegister)
+    //     if (data){
+    //         setListUserRegisterProject(data)
+    //     }
+    // }
+
+    // }
 
     // const handleDeleteRole = async (role) => {
     //     let data = await deletRole(role)
@@ -140,26 +153,36 @@ const Project = () => {
                                             <th scope="col" style={{ width: "15%" }}>NAME</th>
                                             <th scope="col" style={{ width: "25%" }}>MSSV</th>
                                             <th scope="col" style={{ width: "15%" }}>Class</th>
-                                            <th scope="col" style={{ width: "20%" }}> GVHD</th>
+                                            <th scope="col" style={{ width: "20%" }}> ID Project</th>
                                             <th scope="col" style={{ width: "10%" }}>Nhom</th>
                                             <th scope="col" style={{ width: "10%" }}>Action</th>
 
                                         </tr>
 
                                     </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>Dinh Huu Khang</td>
-                                            <td>2004</td>
-                                            <td>DHhttt16C</td>
-                                            <td>NguyenHuuQuang</td>
-                                            <td>--</td>
-                                            <td className="center-button "><div className="btn btn-info dang-ki-nhom">Chọn</div>
-                                            </td>
-
-
-                                        </tr>
+                                    <tbody> 
+                                        {
+                                            listUserRegisterProject && 
+                                            <>
+                                            {listUserRegisterProject.map((item, index) =>{
+                                                return(
+                                                    <tr  key={`row-${index}`}>
+                                                    <td>{index}</td>
+                                                    <td>{item.name}</td>
+                                                    <td>{item.maSo}</td>
+                                                    <td>{item.class}</td>
+                                                    <td>{item.projectId}</td>
+                                                    <td>--</td>
+                                                    <td className="center-button "><div className="btn btn-info dang-ki-nhom">Chọn</div>
+                                                    </td>
+        
+        
+                                                </tr>
+                                                )
+                                            })}
+                                            </>
+                                        }
+                                      
                                     </tbody>
                                 </table>
                             </>
