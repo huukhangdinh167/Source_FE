@@ -4,8 +4,15 @@ import axios from "../setup/axios"
 const fetchAllProject = (user) => {
     return axios.put("/api/v1/student/project/read", { data: { id: user.maSo } })
 } 
- 
 
+//đăng kí nhóm 
+const chooseGroup = (ortherST, mystudent, groupST) => {
+    return axios.put("/api/v1/student/project/choosegroup",{ data: { ortherST: ortherST,mystudent : mystudent, groupST: groupST  }})
+} 
+// hủy đăng kí nhóm 
+const cancelchooseGroup = (groupStudent) => {
+    return axios.put("/api/v1/student/project/cancelchoosegroup",{ data: { groupStudent: groupStudent }})
+} 
 
 const fetchAllProjectRegister = (user) => {
     return axios.put("/api/v1/student/project/dadangki",{ data: { id: user.maSo } })
@@ -26,5 +33,5 @@ const huyDangKiProject =(user, lisProjectRegister)=>{
 }
 
 export {
-    fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,fetchAllUserRegiterProject
+    fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup
 }

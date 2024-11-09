@@ -1,7 +1,7 @@
 import swal from 'sweetalert';
 import './Project.scss'
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
-import { fetchAllProject, fetchAllProjectRegister, dangKiProject, huyDangKiProject,fetchAllUserRegiterProject } from '../../services/studentService'
+import { fetchAllProject, cancelchooseGroup, fetchAllProjectRegister, dangKiProject, huyDangKiProject, fetchAllUserRegiterProject, chooseGroup } from '../../services/studentService'
 import { toast } from "react-toastify";
 import React from 'react';
 import { UserContext } from '../../context/userContext';
@@ -18,24 +18,71 @@ const Project = () => {
         require: '',
         knowledgeSkills: '',
         instuctor: '',
-
     }
+
+    const [choosegroup, setChooseGroup] = useState()
+
     const [lisProjectRegister, setListProjectRegister] = useState(defautlisProjectRegister)
     const { user } = React.useContext(UserContext);
     useEffect(() => {
         getALLProject(user)
+
     }, [])
+
+    useEffect(() => {
+        if (listUserRegisterProject && user) {
+            // Kiểm tra điều kiện để cập nhật choosegroup
+            const foundItem = listUserRegisterProject.find(
+                item => item.maSo === user.maSo && item.groupStudent !== "null"
+            );
+
+            setChooseGroup(foundItem === undefined);
+        }
+        console.log("check", listUserRegisterProject)
+    }, [listUserRegisterProject, user]);
+
+    // hàm random mã group 
+    let previousNumber = null;
+    const getUniqueRandom = (min, max) => {
+        let randomNumber;
+        do {
+            randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+        } while (randomNumber === previousNumber);
+
+        previousNumber = randomNumber;
+        return randomNumber;
+    }
+
     const getALLProjectRegister = async (user) => {
         let data = await fetchAllProjectRegister(user)
         if (data && +data.EC === 0) {
             let dataDT = data.DT
-           await setListProjectRegister({ ...dataDT, dangki: false })
-           let dataaa = await fetchAllUserRegiterProject(data.DT)
-           if(data && +dataaa.EC === 0){
-            setListUserRegisterProject(dataaa.DT)
-           }
+            setListProjectRegister({ ...dataDT, dangki: false })
+            let dataaa = await fetchAllUserRegiterProject(data.DT)
+            if (dataaa && +dataaa.EC === 0) {
+                setListUserRegisterProject(dataaa.DT)
+            }
+
+
+
         }
     }
+    // const found = async()=>{
+    //   let  foundItem =   await listUserRegisterProject.find(item => (item.maSo === user.maSo) && (item.groupStudent !== null));
+    // // console.log("Checkkk",foundItem)
+    //   if(foundItem === undefined){
+    //        setChooseGroup(true)
+    //     //    console.log("check falsw")
+    //      //  return true
+
+    //     }else{
+    //          setChooseGroup(false)
+    //         // console.log("check true")
+    //       // return false
+
+    //     }
+    // }
+
     const getALLProject = async (user) => {
         let data = await fetchAllProject(user)
         if (data && +data.EC === 0) {
@@ -43,6 +90,7 @@ const Project = () => {
         }
         if (+data.EC === 2) {
             getALLProjectRegister(user)
+
         }
     }
 
@@ -55,7 +103,6 @@ const Project = () => {
                     let data = await dangKiProject(item, user)
                     if (data && +data.EC === 0) {
                         getALLProjectRegister(user)
-                      
                         toast.success(data.EM)
 
                     } else {
@@ -75,12 +122,60 @@ const Project = () => {
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
-                    // Người dùng chọn "Có"
+                  
                     let data = await huyDangKiProject(user, lisProjectRegister);
-                    if (data && +data.EC === 0) {
+                    if (data && +data.EC === 0) { 
+                       await handleHuyNhom2(foundGroupStudent())
                         toast.success(data.EM);
-                        setListProjectRegister({ ...defautlisProjectRegister, dangki: true });
-                        getALLProject(user);
+                         setListProjectRegister({ ...defautlisProjectRegister, dangki: true });
+                        await getALLProject(user);
+                    }
+                } else {
+                    // Người dùng chọn "Không"
+
+                }
+            });
+    }
+
+    const handleChonNhom = async (ortherST, mystudent, groupST) => {
+        swal("Are you sure choose group?", {
+            buttons: ["No!", "Yes!"],
+        })
+            .then(async (willUnregister) => {
+                if (willUnregister) {
+                    // Người dùng chọn "Có"
+                    let data = await chooseGroup(ortherST, mystudent, groupST)
+                    if (+data.EC == 0) {
+                        toast.success(data.EM)
+
+                        await getALLProjectRegister(user)
+                        //  await  setChooseGroup(false)
+                        // 
+
+                    } else {
+                        toast.error(data.EM)
+                    }
+                } else {
+                    // Người dùng chọn "Không"
+                }
+            });
+
+    }
+
+
+    const handleHuyNhom = async (groupStudent) => {
+        swal("Are you sure you want Cancel choose group ?", {
+            buttons: ["No!", "Yes!"],
+        })
+            .then(async (willUnregister) => {
+                if (willUnregister) {
+                    // Người dùng chọn "Có"
+                    let data = await cancelchooseGroup(groupStudent)
+                    if (+data.EC === 0) {
+                        toast.success(data.EM)
+                        await getALLProjectRegister(user)
+                    } else {
+                        toast.error(data.EM)
                     }
                 } else {
                     // Người dùng chọn "Không"
@@ -89,22 +184,35 @@ const Project = () => {
             });
 
     }
-    // const getAllUserRegiterProject = async (lisProjectRegister) => {
-    //     let data = await fetchAllUserRegiterProject(lisProjectRegister)
-    //     if (data){
-    //         setListUserRegisterProject(data)
-    //     }
-    // }
 
-    // }
+    const handleHuyNhom2 = async (groupStudent) => {
+        let data = await cancelchooseGroup(groupStudent)
+        if (+data.EC === 0) {
+           // toast.success(data.EM)
+          //  await getALLProjectRegister(user)
+        }
+    }
 
-    // const handleDeleteRole = async (role) => {
-    //     let data = await deletRole(role)
-    //     if (data && +data.EC === 0) {
-    //         await getALLRole()
-    //         toast.success("Delete role success")
-    //     }
-    // }
+
+    const foundGroupStudent = () => {
+        let foundItem = listUserRegisterProject.find(
+            item => item.maSo === user.maSo
+        );
+        return foundItem.groupStudent
+    }
+
+    // swal("Are you sure you want to do this?", {
+    //     buttons: ["No!", "Yes!"],
+    // })
+    //     .then(async (willUnregister) => {
+    //         if (willUnregister) {
+    //             // Người dùng chọn "Có"
+
+    //         } else {
+    //             // Người dùng chọn "Không"
+
+    //         }
+    //     });
     return (
         <>
             <div className="container">
@@ -155,36 +263,54 @@ const Project = () => {
                                             <th scope="col" style={{ width: "15%" }}>Class</th>
                                             <th scope="col" style={{ width: "20%" }}> ID Project</th>
                                             <th scope="col" style={{ width: "10%" }}>Nhom</th>
-                                            <th scope="col" style={{ width: "10%" }}>Action</th>
+                                            <th scope="col" style={{ width: "10%" }}>Chọn nhóm</th>
 
                                         </tr>
 
                                     </thead>
-                                    <tbody> 
+                                    <tbody>
                                         {
-                                            listUserRegisterProject && 
+                                            listUserRegisterProject &&
                                             <>
-                                            {listUserRegisterProject.map((item, index) =>{
-                                                return(
-                                                    <tr  key={`row-${index}`}>
-                                                    <td>{index}</td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.maSo}</td>
-                                                    <td>{item.class}</td>
-                                                    <td>{item.projectId}</td>
-                                                    <td>--</td>
-                                                    <td className="center-button "><div className="btn btn-info dang-ki-nhom">Chọn</div>
-                                                    </td>
-        
-        
-                                                </tr>
-                                                )
-                                            })}
+                                                {listUserRegisterProject.map((item, index) => {
+                                                    return (
+                                                        <tr key={`row-${index}`}>
+                                                            <td>{index}</td>
+                                                            <td>{item.name}</td>
+                                                            <td>{item.maSo}</td>
+                                                            <td>{item.class}</td>
+                                                            <td>{item.projectId}</td>
+                                                            <td>{item.groupStudent !== "null" ? `${item.groupStudent}` : 'Làm một mình'}</td>
+                                                            <td className="center-button ">
+                                                                {item.maSo == user.maSo ? '---' : (item.groupStudent !== "null" ? <i>Đã có nhóm</i>
+                                                                    : (choosegroup == true ? <div onClick={() => handleChonNhom(item.maSo, user.maSo, getUniqueRandom(20, 999))}
+                                                                        className="btn btn-info dang-ki-nhom">Chọn</div> : ''))}
+                                                            </td>
+
+
+                                                        </tr>
+                                                    )
+                                                })}
                                             </>
                                         }
-                                      
+
                                     </tbody>
+
                                 </table>
+                                {
+                                    choosegroup === false &&
+
+                                    <div className='row'>
+                                        <div className='col-sm-11'>
+
+                                        </div>
+                                        <div onClick={() => handleHuyNhom(foundGroupStudent())} className="btn btn-warning huynhom  col-sm-1 ">
+                                            Hủy nhóm
+
+                                        </div>
+                                    </div>
+                                }
+
                             </>
                         }
                     </div>

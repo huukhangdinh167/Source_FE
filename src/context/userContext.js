@@ -17,7 +17,7 @@ const UserProvider = ({ children }) => {
 
     }
     const [user, setUser] = useState(userDefault);
-
+   // const [chooseGroup, setChooseGroup] = useState
     // Login updates the user data with a name parameter
     const loginContext = (userDate) => {
         setUser({ ...userDate, isLoading: false });
