@@ -1,7 +1,8 @@
 import swal from 'sweetalert';
 import './Project.scss'
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
-import { fetchAllProject, cancelchooseGroup, fetchAllProjectRegister, dangKiProject, huyDangKiProject, fetchAllUserRegiterProject, chooseGroup } from '../../services/studentService'
+import { fetchAllProject, cancelchooseGroup, fetchAllProjectRegister, dangKiProject,
+     huyDangKiProject, fetchAllUserRegiterProject, chooseGroup } from '../../services/studentService'
 import { toast } from "react-toastify";
 import React from 'react';
 import { UserContext } from '../../context/userContext';
@@ -67,21 +68,7 @@ const Project = () => {
 
         }
     }
-    // const found = async()=>{
-    //   let  foundItem =   await listUserRegisterProject.find(item => (item.maSo === user.maSo) && (item.groupStudent !== null));
-    // // console.log("Checkkk",foundItem)
-    //   if(foundItem === undefined){
-    //        setChooseGroup(true)
-    //     //    console.log("check falsw")
-    //      //  return true
-
-    //     }else{
-    //          setChooseGroup(false)
-    //         // console.log("check true")
-    //       // return false
-
-    //     }
-    // }
+ 
 
     const getALLProject = async (user) => {
         let data = await fetchAllProject(user)

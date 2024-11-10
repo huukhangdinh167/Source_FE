@@ -38,7 +38,8 @@ const Login = (props) => {
              let token = response.DT.accesstoken 
              let groupId = response.DT.groupId
             let name = response.DT.name
-
+            let phoneNumber = response.DT.phoneNumber
+            
             let data = {
                 isAuthenticate: true,
                 token: token,
@@ -46,6 +47,8 @@ const Login = (props) => {
                 account: {groubWithRole,email,username},
                 name: name,
                 groupId: groupId,
+                phoneNumber: phoneNumber, 
+                email: email
 
             }
          localStorage.setItem('jwt', token)

@@ -18,7 +18,7 @@ const UserProvider = ({ children }) => {
     }
     const [user, setUser] = useState(userDefault);
    // const [chooseGroup, setChooseGroup] = useState
-    // Login updates the user data with a name parameter
+    // Login updates the user data with a name parameter 
     const loginContext = (userDate) => {
         setUser({ ...userDate, isLoading: false });
     };
@@ -37,7 +37,7 @@ const UserProvider = ({ children }) => {
             let token = response.DT.accesstoken
             let groupId = response.DT.groupId
             let name = response.DT.name
-           
+            let phoneNumber = response.DT.phoneNumber
             let data = {
 
                 isAuthenticate: true,
@@ -47,6 +47,9 @@ const UserProvider = ({ children }) => {
                 groupId: groupId,
                 account: { groubWithRole, email, username },
                 isLoading: false,
+                email: email,
+                phoneNumber: phoneNumber
+
             }
             setUser(data)
         } else {

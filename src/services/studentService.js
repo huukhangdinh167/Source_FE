@@ -22,6 +22,14 @@ const fetchAllUserRegiterProject = (user) => {
     return axios.put("/api/v1/student/project/useregistproject",{ data: { id: user.id } })
 } 
 
+// đổi mật khẩu 
+const changePassWord = (user,password, rePassword) => {
+    return axios.put("/api/v1/changepassword",{ data: { maSo: user, password: password, rePassword: rePassword } })
+} 
+// cập nhật thông tin 
+const updateInFor = (user,phone, email) => {
+    return axios.put("/api/v1/updateinfor",{ data: { maSo: user, phone: phone, email: email } })
+} 
 const dangKiProject =(item, user)=>{ 
    
     return axios.put("/api/v1/student/dangki", { data: { projectId: item.id, id: user.maSo }  })
@@ -33,5 +41,6 @@ const huyDangKiProject =(user, lisProjectRegister)=>{
 }
 
 export {
-    fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup
+    fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,
+    fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup,changePassWord,updateInFor
 }

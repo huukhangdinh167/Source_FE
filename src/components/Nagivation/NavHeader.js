@@ -61,6 +61,7 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/roles">Roles</NavLink>
                                         <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
                                         <NavLink className="nav-link" to="/about">-----</NavLink>
+                                        
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
                                         <NavLink className="nav-link" to="/project" >Project</NavLink>
                                         <NavLink className="nav-link" to="/results">Results</NavLink>
@@ -100,8 +101,9 @@ const NavHeader = (props) => {
                                         <>
                                             <Nav.Item className='nav-link' href="#deets"><b className=''> {user.name}</b> !</Nav.Item>
                                             <NavDropdown title="Account" id="basic-nav-dropdown">
-                                                <NavDropdown.Item >Change password</NavDropdown.Item>
-                                                <NavDropdown.Item > <span onClick={() => handleLogout()}>Log-out</span></NavDropdown.Item>
+                                                <NavDropdown.Item > <NavLink className="nav-link" to="/changepassword">Change password</NavLink></NavDropdown.Item>
+                                                <NavDropdown.Item > <NavLink className="nav-link" to="/updateInfor">Update infor</NavLink></NavDropdown.Item>
+                                                <NavDropdown.Item className='dropdown' > <span onClick={() => handleLogout()}>Log-out</span></NavDropdown.Item>
 
                                             </NavDropdown>
                                         </>
