@@ -53,11 +53,16 @@ const Login = (props) => {
             }
          localStorage.setItem('jwt', token)
             loginContext(data)
-            console.log(response)
-            history.push("/users");
-            // window.location.reload();
-
-            // toast.success("Login successful");
+         if(groupId === 3){
+            history.push("/admin/users");
+         }else if(groupId === 1){
+            history.push("/project");  
+         }
+         else{
+            history.push("/");
+         }
+           
+            
         }
         if (response && +response.EC !== 0) {
             toast.error(response.EM);
@@ -80,8 +85,8 @@ const Login = (props) => {
                 <div className="row px-3 px-sm-0">
 
                     <div className="content-left col-12 d-none col-sm-7 d-sm-block">
-                        <div className='brand' > Hỏi dân IT</div>
-                        <div className='detail'>Learning everything from youtube channel Hoi Dan It</div>
+                        <div className='brand' > Trường Đại học Công nghiệp TP.HCM</div>
+                        <div className='detail'>Trường Đại học Công nghiệp Thành phố Hồ Chí Minh là một trường đại học định hướng ứng dụng và thực hành, trực thuộc Bộ Công Thương, chuyên đào tạo nhóm ngành kinh tế công nghiệp và kỹ thuật công nghiệp, được thành lập từ ngày 24 tháng 12 năm 2004.</div>
                     </div>
 
                     <div className="content-right col-sm-5 col-12 d-flex flex-column grap-3 py-3 ">

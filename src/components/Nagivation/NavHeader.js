@@ -75,12 +75,17 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/roles">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/grouprole">Teach</NavLink>
                                         <NavLink className="nav-link" to="/about">Teach</NavLink>
-                                    </Nav> : (user && user.groupId === 2 ? <Nav className="me-auto">
-                                        <NavLink className="nav-link" to="/" exact>Adimin</NavLink>
-                                        <NavLink className="nav-link" to="/users">Adimin</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Adimin</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Adimin</NavLink>
-                                        <NavLink className="nav-link" to="/about">Adimin</NavLink>
+                                    </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
+                                        
+                                        
+                                        <NavLink className="nav-link" to="/users">users</NavLink>
+                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
+                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
+                                        <NavLink className="nav-link" to="/about">-----</NavLink>
+
+                                        <NavLink className="nav-link" to="/admin/users" exact>Management User</NavLink>
+                                        <NavLink className="nav-link" to="/admin/add-role">Add-Role</NavLink>
+                                       
                                     </Nav> : (<Nav className="me-auto">
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
                                         <NavLink className="nav-link" to="/users">users</NavLink>

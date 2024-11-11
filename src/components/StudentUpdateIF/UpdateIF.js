@@ -74,7 +74,7 @@ const UpdateIF = () => {
 
                             </tr>
                             <tr>
-                                <td colSpan={2}><i><b>Lưu ý</b>: bạn phải cập nhật thông tin trước khi đăng ký đề tài, thông tin cập nhật phải chính xác để ban chủ nhiệm khoa hoặc giảng viên sẽ liên hệ với bạn.</i></td>
+                                <td colSpan={2}><i><b>Lưu ý</b>: Bạn phải cập nhật thông tin cập nhật phải chính xác để ban chủ nhiệm khoa hoặc giảng viên sẽ liên hệ với bạn.</i></td>
                                 
 
                             </tr>

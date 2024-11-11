@@ -7,7 +7,7 @@ import ModalDelete from "./ModalDelete";
 import ModalUser from "./ModalUser";
 import { UserContext } from '../../context/userContext';
 import 'font-awesome/css/font-awesome.min.css';
-const Users = (props) => {
+const AdminUsers = (props) => {
     const { user } = React.useContext(UserContext);
     const [listUser, setListUser] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -195,4 +195,4 @@ const Users = (props) => {
         </>
     )
 }
-export default Users;
+export default AdminUsers;

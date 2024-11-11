@@ -10,6 +10,7 @@ import GroupRole from "../components/GroupRole/GroupRole";
 import ChangePW from "../components/StudentChangePW/ChangePW";
 import UpdateIF from "../components/StudentUpdateIF/UpdateIF";
 import Results from "../components/StudentRS/Results";
+import AdminUsers from '../components/AdminMangementUser/User';
 const AppRoutes = () => {
     
     return (
@@ -23,7 +24,7 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/changepassword" component={ChangePW} /> 
                 <PrivateRoutes path="/updateInfor" component={UpdateIF} /> 
                 <PrivateRoutes path="/results" component={Results} />
-
+                <PrivateRoutes path="/admin/users" component={AdminUsers} />
                 <Route path="/login">
                     <Login />
                 </Route>

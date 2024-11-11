@@ -45,7 +45,7 @@ const Results = () => {
                             <th scope="col" style={{ width: "15%" }}>REQUIRED</th>
                             <th scope="col" style={{ width: "20%" }}>KNOWLEDGE SKILLS</th>
                             <th scope="col" style={{ width: "10%" }}>INTRUSTOR</th>
-                            <th scope="col" style={{ width: "10%" }}>Action</th>
+                           {/* // <th scope="col" style={{ width: "10%" }}>Status</th> */}
 
                         </tr>
 
@@ -60,7 +60,7 @@ const Results = () => {
                                 <td>{lisProjectRegister.require}</td>
                                 <td>{lisProjectRegister.knowledgeSkills}</td>
                                 <td>{lisProjectRegister.instuctor}</td>
-                                <td>Đã đăng kí</td>
+                               
                               
 
                             </tr>
@@ -82,7 +82,6 @@ const Results = () => {
                                 <th scope="col" style={{ width: "10%" }}>UY</th>
                                 <th scope="col" style={{ width: "10%" }}>Poster1</th>
                                 <th scope="col" style={{ width: "10%" }}>Poster2</th>
-
                             </tr>
 
                         </thead>
@@ -96,7 +95,8 @@ const Results = () => {
                                 <td></td>
                                 <td >
                                 </td>
-
+                                <td></td>
+                                <td></td>
 
                             </tr>
                         </tbody>

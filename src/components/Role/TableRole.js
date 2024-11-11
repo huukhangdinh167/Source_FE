@@ -1,7 +1,7 @@
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
 import { fetchAllRole, deletRole } from '../../services/roleService'
 import { toast } from "react-toastify";
-
+import swal from 'sweetalert';
 
 const TableRole = forwardRef((props, ref) => {
 
@@ -12,7 +12,7 @@ const TableRole = forwardRef((props, ref) => {
 
     useImperativeHandle(ref, () => ({
 
-         fetchListRoleAgain() {
+        fetchListRoleAgain() {
             getALLRole()
         }
 
@@ -26,12 +26,36 @@ const TableRole = forwardRef((props, ref) => {
     }
 
     const handleDeleteRole = async (role) => {
-        let data = await deletRole(role)
-        if (data && +data.EC === 0) {
-            await getALLRole()
-            toast.success("Delete role success")
-        }
+        swal("Are you sure you want to do this?", {
+            buttons: ["No!", "Yes!"],
+        })
+            .then(async (willUnregister) => {
+                if (willUnregister) {
+                    let data = await deletRole(role)
+                    if (data && +data.EC === 0) {
+                        await getALLRole()
+                        toast.success("Delete role success")
+                    }
+
+                } else {
+                    // Người dùng chọn "Không"
+
+                }
+            });
+
     }
+    // swal("Are you sure you want to do this?", {
+    //     buttons: ["No!", "Yes!"],
+    // })
+    //     .then(async (willUnregister) => {
+    //         if (willUnregister) {
+    //             // Người dùng chọn "Có"
+
+    //         } else {
+    //             // Người dùng chọn "Không"
+
+    //         }
+    //     });
 
     return (
         <>
