@@ -9,7 +9,7 @@ function ModalDelete(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>Confirm Delete User </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Are you sureee delete {props.dataMoldal.email} ??</Modal.Body>
+                <Modal.Body>Are you sureee delete <b>{props.dataMoldal.name} </b>??</Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={props.handleClose}>
                         Close

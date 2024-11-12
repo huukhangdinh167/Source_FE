@@ -2,12 +2,13 @@ import { act, useEffect, useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetchGroup, createNewUser, updateNewUser } from "../../services/userServer";
+import { adminupdateNewUser, admincreateNewTeacher } from '../../services/AdminService'
 import { toast } from "react-toastify";
 import _, { values } from "lodash";
 
 import bcrypt from 'bcryptjs';
 const ModalUser = (props) => {
-    
+
     const salt = bcrypt.genSaltSync(10);
     const { action, dataModalUser } = props
     const deFaultUserData = {
@@ -37,7 +38,7 @@ const ModalUser = (props) => {
             return true;
         setValidInputs(validInputsDefault);
         // console.log("check user data", userData)
-        let arr = ['email', 'phoneNumber', 'password', 'group']
+        let arr = ['maSo','password','name', 'group']
         let check = true;
         for (let i = 0; i < arr.length; i++) {
             if (!userData[arr[i]]) {
@@ -56,30 +57,30 @@ const ModalUser = (props) => {
         let check = checkValidateInputs();
         if (check === true) {
             let res = action === "CREATE" ?
-                await createNewUser({ ...userData, groupId: userData['group'] })
-                : await updateNewUser({ ...userData, groupId: userData['group'] })
+                await admincreateNewTeacher({ ...userData, groupId: userData['group'] })
+               
+                : await adminupdateNewUser({ ...userData, groupId: userData['group'] })
                 ;
-            console.log("Check respone", res)
+          
+           
             if (res && res.EC === 0) {
                 props.onHide()
                 setUserData({ ...deFaultUserData, group: userGroup[0].id })
                 // nếu muốn không cho edit group 
                 // setUserData({ ...deFaultUserData, group: userGroup && userGroup.length > 0 ? userGroup[0].id : '' }) và // getGroup() ở dòng 93 
                 toast.success(res.EM);
-               // window.location.reload();
+                // window.location.reload();
 
             } if (res && res.EC !== 0) {
                 toast.error(res.EM);
                 let _validInputs = _.cloneDeep(validInputsDefault);
                 _validInputs[res.DT] = false
-                setValidInputs(_validInputs)
+               setValidInputs(_validInputs)
             }
-        }else{
-            toast.error("Valid is null")
         }
     }
 
-    
+
 
 
     const handleOnchangeInput = (value, name) => {
@@ -96,20 +97,15 @@ const ModalUser = (props) => {
     useEffect(() => {
         if (action === "UPDATE") {
             // console.log("Check data modal user", dataModalUser)
-              console.log("Check data modal user", dataModalUser)
+            console.log("Check data modal user", dataModalUser)
             setUserData({ ...dataModalUser, group: dataModalUser.Group ? dataModalUser.Group.id : '', password: ' ' })
         }
     }, [dataModalUser])
-   
-
     useEffect(() => {
         if (action === "CREATE") {
             if (userGroup && userGroup.length > 0) {
                 setUserData({ ...userData, group: userGroup[0].id })
             }
-            // console.log("Check data modal user", dataModalUser)
-
-
         }
     }, [dataModalUser])
 
@@ -129,54 +125,52 @@ const ModalUser = (props) => {
         setUserData(deFaultUserData)
         setValidInputs(validInputsDefault)
     }
-
     return (
         <>
             <Modal size="lg" show={props.show} className="modal-user">
                 <Modal.Header closeButton onClick={() => { handleCloseModalUser() }}>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        {action === "CREATE" ? "Create User" : "Edit user"}
-
+                        {action === "CREATE" ? "Create Teacher" : "Edit user"}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="content-body row">
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Email address(<span className="text-danger">*</span>):</label>
-                            <input  className={validInputs.email ? "form-control" : "form-control is-invalid"} type="email" value={userData.email}
+                            <label>Email address:</label>
+                            <input className={validInputs.email ? "form-control" : "form-control is-invalid"} type="email" value={userData.email}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "email")}
                             />
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Phone number(<span className="text-danger">*</span>):</label>
-                            <input  className={validInputs.phoneNumber ? "form-control" : "form-control is-invalid"} type="text" value={userData.phoneNumber}
+                            <label>Phone number:</label>
+                            <input className={validInputs.phoneNumber ? "form-control" : "form-control is-invalid"} type="text" value={userData.phoneNumber}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "phoneNumber")}
                             />
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Student code</label>
-                            <input className={validInputs.maSo ? "form-control" : "form-control is-invalid"} type="email" value={userData.maSo}
+                            <label>Ma So(<span className="text-danger">*</span>)</label>
+                            <input disabled={action === "CREATE" ? false : true} className={validInputs.maSo ? "form-control" : "form-control is-invalid"} type="email" value={userData.maSo}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "maSo")}
                             />
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                           
-                                
-                                    <label>Password (<span className="text-danger">*</span>)</label>
-                                    <input className={validInputs.password ? "form-control" : "form-control is-invalid"} type="email" value={userData.password}
-                                        onChange={(event) => handleOnchangeInput(event.target.value, "password")}
-                                    />
-                                
-                            
+
+
+                            <label> Password(<span className="text-danger">*</span>) </label>
+                            <input className={validInputs.password ? "form-control" : "form-control is-invalid"} type="email" value={userData.password}
+                                onChange={(event) => handleOnchangeInput(event.target.value, "password")}
+                            />
+
+
                         </div>
 
 
-                        <div className="col-12 col-sm-12 form-group">
-                            <label>Name</label>
-                            <input className="form-control" value={userData.name}
+                        <div className="col-12 col-sm-6 form-group">
+                            <label> Name (<span className="text-danger">*</span>)</label>
+                            <input className={validInputs.name ? "form-control" : "form-control is-invalid"} value={userData.name}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "name")}
                             />
 
@@ -184,31 +178,32 @@ const ModalUser = (props) => {
                             {/* <input className="form-control" type="text" /> */}
                         </div>
 
+                     
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Gender</label>
-                            <select className="form-select"
-                                onChange={(event) => handleOnchangeInput(event.target.value, "sex")}
-                                value={userData.sex}
-                            >
-                                <option defaultValue="Male">Male</option>
-
-                                <option value="Female">Female</option>
-
-                            </select>
-                        </div>
-                        <div className="col-12 col-sm-6 form-group">
-                            <label>Group(<span className="text-danger">*</span>)</label>
-                            <select className={validInputs.group ? "form-select" : "form-select is-invalid"}
+                            <label>Group</label>
+                            <select disabled={action === "CREATE" ? false : true} className={validInputs.group ? "form-select" : "form-select is-invalid"}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "group")}
                                 value={userData.group}
                             >
-                                {userGroup.length > 0 &&
-                                    userGroup.map((item, index) => {
-                                        return (
-                                            <option key={`group-${index}`} value={item.id} >{item.name}</option>
-                                        )
-                                    })
+                                {action === 'CREATE' && userGroup.length > 0 ?
+                                    userGroup
+                                        .filter(item => item.name !== 'Student') // Lọc ra tất cả các group ngoại trừ group có name là 'student'
+                                        .map((item, index) => {
+                                            return (
+                                                <option key={`group-${index}`} value={item.id}>{item.name}</option>
+                                            );
+                                        })
+                                        :
+                                      
+                                            userGroup.map((item, index) => {
+                                                return (
+                                                    <option key={`group-${index}`} value={item.id} >{item.name}</option>
+                                                )
+                                            }) 
+                                        
+                                        
                                 }
+                               
 
 
                             </select>

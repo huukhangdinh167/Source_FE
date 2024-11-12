@@ -1,7 +1,7 @@
 import "./User.scss"
 import React, { useEffect, useState, useRef } from "react";
 import { deletuser } from "../../services/userServer";
-import { AdminFetchAllUsser, adminCreateNewUser } from "../../services/AdminService";
+import { AdminFetchAllUsser, adminCreateNewUser, admindeletuser } from "../../services/AdminService";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import ModalDelete from "./ModalDelete";
@@ -43,11 +43,13 @@ const Users = (props) => {
 
     }, [])
     const fetchUsser = async () => {
-        let response = await AdminFetchAllUsser(currentPage, currentLimit);
-        // console.log("Check respone", response.DT.users)
+        let response = await AdminFetchAllUsser();
+        //  console.log("Check respone", response.DT) 
+        //  let res = await AdminFetchAllUsser()
+         //console.log("Check res", res.DT) 
         if (response && response.EC === 0) {
-            setTotalPages(response.DT.totalPages)
-            setListUser(response.DT.users)
+            setTotalPages(response.DT)
+            setListUser(response.DT)
 
         }
     }
@@ -58,14 +60,15 @@ const Users = (props) => {
 
     const handleDeleteUser = async (user) => {
         setDataModal(user)
-        setIsShowModalDelete(true)
+        setIsShowModalDelete(true) 
+        console.log(user)
     }
     const handleClose = () => {
         setDataModal({})
         setIsShowModalDelete(false)
     }
     const conformDeleteUser = async () => {
-        let response = await deletuser(dataMoldal);
+        let response = await admindeletuser(dataMoldal);
         if (response && response.EC === 0) {
             toast.success(response.EM)
             setIsShowModalDelete(false)
@@ -200,13 +203,13 @@ const Users = (props) => {
                                 onClick={() => {
                                     setIsShowModalUser(true);
                                     setActionModalUser("CREATE");
-                                }}><i class="fa fa-plus-square bd"></i>Add new user</button>
+                                }}><i class="fa fa-plus-square bd"></i>Add new Teacher</button>
                         </div>
                     </div>
 
                     <div className="addnew-user">
-                        <h4>ADD USERS</h4>
-                        <div className='adding-role mt-4'>
+                        <h4 className="mt-3">Add New Student....</h4>
+                        <div className='adding-role mt-2'>
                             <div className='title-role'></div>
                             <div className=' role-parent'>
                                 {Object.entries(listchild).map(([key, value], index) => {
@@ -243,7 +246,7 @@ const Users = (props) => {
                             <div className='row'>
                                 <div className='col-10'></div>
                                 <div className='col-2'>
-                                    <button onClick={() => handlSave()} className='btn btn-warning mt-5 '>Save</button>
+                                    <button onClick={() => handlSave()} className='btn btn-success mt-2 '>Save</button>
                                 </div>
 
                             </div>

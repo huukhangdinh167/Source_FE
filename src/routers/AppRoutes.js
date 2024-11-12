@@ -2,7 +2,7 @@ import {
     Switch, Route,
 } from "react-router-dom";
 import Login from '../components/Login/Login';
-import Project from '../components/Project/Project'
+import Project from '../components/StudentProject/Project'
 import Users from '../components/ManageUser/Users';
 import PrivateRoutes from "./PrivateRoutes";
 import Role from "../components/Role/Role";
@@ -11,6 +11,8 @@ import ChangePW from "../components/StudentChangePW/ChangePW";
 import UpdateIF from "../components/StudentUpdateIF/UpdateIF";
 import Results from "../components/StudentRS/Results";
 import AdminUsers from '../components/AdminMangementUser/User';
+import AdminRole from "../components/AdminRole/AdminRole";
+import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole";
 const AppRoutes = () => {
     
     return (
@@ -25,6 +27,8 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/updateInfor" component={UpdateIF} /> 
                 <PrivateRoutes path="/results" component={Results} />
                 <PrivateRoutes path="/admin/users" component={AdminUsers} />
+                <PrivateRoutes path="/admin/add-role" component={AdminRole} />
+                <PrivateRoutes path="/admin/assign-role" component={AdminAssignRole} />
                 <Route path="/login">
                     <Login />
                 </Route>
