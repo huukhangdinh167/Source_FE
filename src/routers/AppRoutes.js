@@ -12,7 +12,9 @@ import UpdateIF from "../components/StudentUpdateIF/UpdateIF";
 import Results from "../components/StudentRS/Results";
 import AdminUsers from '../components/AdminMangementUser/User';
 import AdminRole from "../components/AdminRole/AdminRole";
-import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole";
+import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole"; 
+import HeadProject from '../components/Head/HeadProject/Project'
+import HeadAssignRole from '../components/Head/HeadAssginMentRole/HeadAssginmentRole'
 const AppRoutes = () => {
     
     return (
@@ -29,6 +31,9 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/admin/users" component={AdminUsers} />
                 <PrivateRoutes path="/admin/add-role" component={AdminRole} />
                 <PrivateRoutes path="/admin/assign-role" component={AdminAssignRole} />
+                <PrivateRoutes path="/head-project" component={HeadProject} />
+                <PrivateRoutes path="/head/assginmentrol" component={HeadAssignRole} />
+
                 <Route path="/login">
                     <Login />
                 </Route>

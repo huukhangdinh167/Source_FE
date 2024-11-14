@@ -99,7 +99,7 @@ const Users = (props) => {
     /// Role 
     const childRef = useRef();
     const dataChildefault = {
-        name: '', maSo: '', password: '', invalidpassword: true,
+        name: '', maSo: '', password: '', groupStudetn: 'null', projectId: 0, invalidpassword: true,
         invalidname: true,
         invalidmaSo: true
     }

@@ -34,7 +34,8 @@ const dangKiProject =(item, user)=>{
    
     return axios.put("/api/v1/student/dangki", { data: { projectId: item.id, id: user.maSo }  })
 }
-
+ 
+//hủy đăng kí đề tài 
 const huyDangKiProject =(user, lisProjectRegister)=>{ 
    
     return axios.put("/api/v1/student/huydangki", { data: {id: user.maSo,  projectId: lisProjectRegister.id }  })

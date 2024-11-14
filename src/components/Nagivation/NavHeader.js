@@ -95,10 +95,10 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/about">-----</NavLink>
 
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
-                                        <NavLink className="nav-link" to="/a" >Project</NavLink>
+                                        <NavLink className="nav-link" to="/head-project" >Project</NavLink>
                                         <NavLink className="nav-link" to="/s">Statistical</NavLink>
-                                        <NavLink className="nav-link" to="/c">AssginMent-GV</NavLink>
-                                        <NavLink className="nav-link" to="/c">AssginMent-Role</NavLink>
+                                        <NavLink className="nav-link" to="/l">AssginMent-GV</NavLink>
+                                        <NavLink className="nav-link" to="/head/assginmentrol">AssginMent-Role</NavLink>
                                        
 
                                     </Nav>
