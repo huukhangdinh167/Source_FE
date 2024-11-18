@@ -54,7 +54,7 @@ const ModalUser = (props) => {
 
     }
     const handleConfirmUser = async () => {
-        let check = checkValidateInputs();
+       let check = checkValidateInputs();
         if (check === true) {
             let res = action === "CREATE" ?
                 await admincreateNewTeacher({ ...userData, groupId: userData['group'] })
@@ -62,7 +62,7 @@ const ModalUser = (props) => {
                 : await adminupdateNewUser({ ...userData, groupId: userData['group'] })
                 ;
           
-           
+          
             if (res && res.EC === 0) {
                 props.onHide()
                 setUserData({ ...deFaultUserData, group: userGroup[0].id })
@@ -80,9 +80,6 @@ const ModalUser = (props) => {
         }
     }
 
-
-
-
     const handleOnchangeInput = (value, name) => {
         let _userdata = _.cloneDeep(userData)
         _userdata[name] = value
@@ -93,21 +90,22 @@ const ModalUser = (props) => {
     useEffect(() => {
         getGroup()
     }, [])
-
+   
     useEffect(() => {
         if (action === "UPDATE") {
             // console.log("Check data modal user", dataModalUser)
             console.log("Check data modal user", dataModalUser)
-            setUserData({ ...dataModalUser, group: dataModalUser.Group ? dataModalUser.Group.id : '', password: ' ' })
+            setUserData({ ...dataModalUser, group: dataModalUser.Group ? dataModalUser.Group.id : '', password: '' })
         }
     }, [dataModalUser])
+
     useEffect(() => {
         if (action === "CREATE") {
             if (userGroup && userGroup.length > 0) {
                 setUserData({ ...userData, group: userGroup[0].id })
             }
         }
-    }, [dataModalUser])
+    }, [action])
 
     const getGroup = async () => {
         let res = await fetchGroup();

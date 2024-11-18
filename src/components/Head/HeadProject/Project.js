@@ -13,6 +13,7 @@ const HeadProject = () => {
     useEffect(() => {
         getALLProject();
         GetAllProjectApprove()
+        console.log(user)
     }, []);
 
     const getALLProject = async () => {
@@ -30,26 +31,26 @@ const HeadProject = () => {
     }
 
     const handleApproveProject = async (item) => {
-         swal("Are you sure want approve?", {
-        buttons: ["No!", "Yes!"],
-    })
-        .then(async (willUnregister) => {
-            if (willUnregister) {
-                // Người dùng chọn "Có"
-                let data = await headApproveFroject(item)
-                if(+data.EC === 0){
-                    toast.success(data.EM)
-                    getALLProject()
-                    GetAllProjectApprove()
-                }else{
-                    toast.error(data.EM)
-                }
-            } else {
-                // Người dùng chọn "Không"
+        swal("Are you sure want approve?", {
+            buttons: ["No!", "Yes!"],
+        })
+            .then(async (willUnregister) => {
+                if (willUnregister) {
+                    // Người dùng chọn "Có"
+                    let data = await headApproveFroject(item)
+                    if (+data.EC === 0) {
+                        toast.success(data.EM)
+                        getALLProject()
+                        GetAllProjectApprove()
+                    } else {
+                        toast.error(data.EM)
+                    }
+                } else {
+                    // Người dùng chọn "Không"
 
-            }
-        });
-       
+                }
+            });
+
     }
 
     const handleDeletProject = async (item) => {
@@ -120,21 +121,18 @@ const HeadProject = () => {
                                 <table className="table table-bordered table-hover mt-5">
                                     <thead>
                                         <tr>
-                                            <th style={{ width: "5%" }} >ID</th>
-                                            <th style={{ width: "20%" }}>NAME PROJECT</th>
-                                            <th style={{ width: "13%" }}>INSTRUCTOR</th>
-                                            <th style={{ width: "30%" }}>KNOWLEDGE SKILLS</th>
-                                            <th style={{ width: "25%" }}>REQUIRED</th>
-                                            <th style={{ width: "25%" }}>DESCRIPTION</th>
-                                            {/* <th>STUDENT NAME</th> */}
-                                            <th style={{ width: "7%" }}>Action</th>
+                                            <th>ID</th>
+                                            <th>NAME PROJECT</th>
+                                            <th>INSTRUCTOR</th>
+                                            <th>KNOWLEDGE SKILLS</th>
+                                            <th>REQUIRED</th>
+                                            <th>DESCRIPTION</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {listProjectApprove.length > 0 && listProjectApprove.map((item, index) => (
                                             <>
-
-
                                                 <tr key={`project-${index}`}>
                                                     <td>{item.id}</td>
                                                     <td>{item.name}</td>
@@ -143,23 +141,14 @@ const HeadProject = () => {
                                                     <td>{item.knowledgeSkills}</td>
                                                     <td>{item.description}</td>
                                                     <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success'>Duyệt</div></td>
-                                                    {/* <td colSpan="2" className="text-center">
-                                                        {item.Userstudents.length === 0 && <em>Chưa có sinh viên đăng ký</em>}
-                                                    </td> */}
+                                                
                                                 </tr>
                                                 <tr>
-
                                                 </tr>
-
-
-
-
                                             </>
                                         ))}
                                     </tbody>
                                 </table >
-
-
                             </div>
                         </>
                     ) : <i>Danh sách trống</i>}
@@ -180,7 +169,7 @@ const HeadProject = () => {
                                     <>
                                         <table className="table table-bordered table-hover mt-3">
                                             <thead>
-                                                <tr>
+                                            <tr>
                                                     <th style={{ width: "5%" }} >ID</th>
                                                     <th style={{ width: "20%" }}>NAME PROJECT</th>
                                                     <th style={{ width: "13%" }}>INSTRUCTOR</th>
@@ -195,8 +184,9 @@ const HeadProject = () => {
                                                     <td>{item.id}</td>
                                                     <td>{item.name}</td>
                                                     <td>{item.instuctor}</td>
-                                                    <td>{item.require}</td>
                                                     <td>{item.knowledgeSkills}</td>
+                                                    <td>{item.require}</td>
+
                                                     <td className='center-button'><div onClick={() => handleDeletProject(item)} className='  btn btn-danger'>Xóa</div></td>
                                                     {/* <td colSpan="2" className="text-center">
                                                         {item.Userstudents.length === 0 && <em>Chưa có sinh viên đăng ký</em>}

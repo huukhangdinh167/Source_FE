@@ -15,6 +15,8 @@ import AdminRole from "../components/AdminRole/AdminRole";
 import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole"; 
 import HeadProject from '../components/Head/HeadProject/Project'
 import HeadAssignRole from '../components/Head/HeadAssginMentRole/HeadAssginmentRole'
+import HeadAssignGV from '../components/Head/HeadAssginMentGV/HeadProject'
+import TeacherChamPB from '../components/Teacher/TeacherChamPB/TeacherChamPB'
 const AppRoutes = () => {
     
     return (
@@ -33,7 +35,8 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/admin/assign-role" component={AdminAssignRole} />
                 <PrivateRoutes path="/head-project" component={HeadProject} />
                 <PrivateRoutes path="/head/assginmentrol" component={HeadAssignRole} />
-
+                <PrivateRoutes path="/head/assginmentGV" component={HeadAssignGV} />
+                <PrivateRoutes path="/teacher-chamPB" component={TeacherChamPB} />
                 <Route path="/login">
                     <Login />
                 </Route>

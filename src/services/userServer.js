@@ -18,7 +18,7 @@ const deletuser = (user) => {
     return axios.delete("/api/v1/user/delete", { data: { id: user.id } })
 }
 
-const fetchGroup = (data) => {
+const fetchGroup = () => {
     return axios.get("/api/v1/group/read")
 }
 

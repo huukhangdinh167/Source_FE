@@ -18,10 +18,22 @@ const headGetProjectApprove = () => {
 
 // duyệt đề tài 
 const headApproveFroject =(item)=>{ 
-   
     return axios.put("/api/v1/head/project-approve", { data: {id: item.id}  })
+}  
+
+const headFetchListTeacher =()=>{ 
+    return axios.get("/api/v1/head/project-get-list-teacher")
 } 
+const test =()=>{
+    return axios.get("/api/v1/head/project-test")
+} 
+const AssignPB1and2 =(data)=>{
+    return axios.put("/api/v1/head/assignPB1and2",
+     { data: {pb1: data.PB.pb1, pb2: data.PB.pb2, groupStudent: data.selectedStudent.groupStudent,
+         id: data.selectedStudent.id, idProject: data.selectedStudent.Project.id, instuctor: data.selectedStudent.Project.instuctor}  })
+}
 
 export {
-    headGetProjectandUser,headDeleteProjct,headHuyDangKi,headGetProjectApprove,headApproveFroject
+    headGetProjectandUser,headDeleteProjct,headHuyDangKi,headGetProjectApprove,
+    headApproveFroject,headFetchListTeacher,test,AssignPB1and2
 }
