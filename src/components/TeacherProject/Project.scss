@@ -1,7 +1,64 @@
-.modal-user {
-    .content-body {
-        .red {
-            color: red;
-        }
-    }
+.table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.table th,
+.table td {
+    overflow: visible;
+    /* Hiển thị đầy đủ nội dung */
+    white-space: normal;
+    /* Cho phép xuống dòng */
+    word-wrap: break-word;
+    /* Tự động ngắt từ nếu quá dài */
+    text-overflow: unset;
+    /* Loại bỏ dấu "..." */
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+    width: 50px;
+    /* ID */
+}
+
+.table th:nth-child(2),
+.table td:nth-child(2) {
+    width: 150px;
+    /* Name */
+}
+
+.table th:nth-child(3),
+.table td:nth-child(3) {
+    width: 250px;
+    /* Description */
+}
+
+.table th:nth-child(4),
+.table td:nth-child(4) {
+    width: 200px;
+    /* Require */
+}
+
+.table th:nth-child(5),
+.table td:nth-child(5) {
+    width: 200px;
+    /* Knowledge Skills */
+}
+
+.table th:nth-child(6),
+.table td:nth-child(6) {
+    width: 150px;
+    /* Instructor */
+}
+
+.table th:nth-child(7),
+.table td:nth-child(7) {
+    width: 150px;
+    /* Status */
+}
+
+.table th:nth-child(8),
+.table td:nth-child(8) {
+    width: 120px;
+    /* Actions */
 }

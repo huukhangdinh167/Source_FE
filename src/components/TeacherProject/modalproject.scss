@@ -1,0 +1,28 @@
+.modal-user .form-group {
+    margin-bottom: 20px;
+    /* Khoảng cách giữa các trường */
+}
+
+.modal-user label {
+    display: block;
+    /* Đưa nhãn xuống một dòng */
+    margin-bottom: 5px;
+    /* Khoảng cách giữa nhãn và input */
+    font-weight: bold;
+    /* Làm nổi bật nhãn */
+}
+
+.modal-user input,
+.modal-user textarea {
+    width: 100%;
+    /* Đảm bảo input/textarea chiếm toàn bộ chiều ngang */
+    height: 40px;
+    /* Độ cao cho input */
+}
+
+.modal-user textarea {
+    height: 80px;
+    /* Độ cao lớn hơn cho textarea */
+    resize: none;
+    /* Không cho phép chỉnh kích thước textarea */
+}

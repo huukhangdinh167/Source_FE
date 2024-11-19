@@ -119,14 +119,14 @@ const Projects = (props) => {
                         <table className="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">ID</th>
-                                    <th scope="col">name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Require</th>
-                                    <th scope="col">Knowledge Skills</th>
-                                    <th scope="col">Instructor</th>
-                                    <th scope="col">Status</th>
-                                    <th>Actions</th>
+                                    <th style={{ width: '50px' }}>ID</th>
+                                    <th style={{ width: '150px' }}>Name</th>
+                                    <th style={{ width: '250px' }}>Description</th>
+                                    <th style={{ width: '200px' }}>Require</th>
+                                    <th style={{ width: '200px' }}>Knowledge Skills</th>
+                                    <th style={{ width: '150px' }}>Instructor</th>
+                                    <th style={{ width: '150px' }}>Status</th>
+                                    <th style={{ width: '120px' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -139,18 +139,22 @@ const Projects = (props) => {
 
                                                         <td>{item.id}</td>
                                                         <td>{item.name}</td>
-                                                        <td>{item.description}</td>
-                                                        <td>{item.require}</td>
-                                                        <td>{item.knowledgeSkills}</td>
-                                                        <td>{item.instuctor}</td>
-                                                        <td>{+item.status === 0 ? "Đang chờ phê duyệt" : "Đã xét duyệt"}</td>
-                                                        <td>
-                                                            <button className="btn btn-warning mx-3"
+                                                        <td style={{ width: '300px' }}>{item.description}</td>
+                                                        <td style={{ width: '300px' }}>{item.require}</td>
+                                                        <td style={{ width: '300px' }}>{item.knowledgeSkills}</td>
+                                                        <td style={{ width: '300px' }}>{item.instuctor}</td>
+                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? "Đang chờ phê duyệt" : "Đã xét duyệt"}</td>
+                                                        <td style={{ width: '150px', textAlign: 'center', whiteSpace: 'nowrap' }}>
+                                                            <button className="btn btn-warning btn-sm mx-1"
                                                                 onClick={() => handleEditProject(item)}
-                                                            ><i className="fa fa-pencil"></i></button>
-                                                            <button className="btn btn-danger"
+                                                            >
+                                                                <i className="fa fa-pencil"></i>
+                                                            </button>
+                                                            <button className="btn btn-danger btn-sm mx-1"
                                                                 onClick={() => handleDeleteProject(item)}
-                                                            ><i className="fa fa-trash"></i></button>
+                                                            >
+                                                                <i className="fa fa-trash"></i>
+                                                            </button>
                                                         </td>
                                                     </tr>
                                                 )
