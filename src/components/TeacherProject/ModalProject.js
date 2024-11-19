@@ -79,6 +79,8 @@ const ModalProject = (props) => {
     }
 
 
+
+
     const handleConfirmProject = async (user) => {
         let check = checkValidateInputs()
         if (check === true) {
@@ -119,8 +121,7 @@ const ModalProject = (props) => {
                 <Modal.Body>
                     <div className="col-12 form-group">
                         <label>Name : <span className="text-danger">*</span></label>
-                        <input
-                            disabled={action === 'CREATE' ? false : true}
+                        <textarea
                             className={validInputs.name ? 'form-control' : 'form-control is-invalid'}
                             type="text"
                             value={projectData.name}
@@ -151,15 +152,6 @@ const ModalProject = (props) => {
                             onChange={(event) => handleOnChangeInput(event.target.value, "knowledgeSkills")}
                         />
                     </div>
-                    {/* <div className="col-12 form-group">
-                        <label>Instructor: <span className="text-danger">*</span></label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            value={projectData.instuctor}
-                            disabled
-                        />
-                    </div> */}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={() => handleCloseProject()}>Đóng</Button>
