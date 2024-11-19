@@ -43,7 +43,7 @@ const HeadAssignGV = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-
+        setPB({ defaultPB })
 
     };
 
