@@ -46,7 +46,7 @@ const Users = (props) => {
         let response = await AdminFetchAllUsser();
         //  console.log("Check respone", response.DT) 
         //  let res = await AdminFetchAllUsser()
-         //console.log("Check res", res.DT) 
+        //console.log("Check res", res.DT) 
         if (response && response.EC === 0) {
             setTotalPages(response.DT)
             setListUser(response.DT)
@@ -60,7 +60,7 @@ const Users = (props) => {
 
     const handleDeleteUser = async (user) => {
         setDataModal(user)
-        setIsShowModalDelete(true) 
+        setIsShowModalDelete(true)
         console.log(user)
     }
     const handleClose = () => {
@@ -167,19 +167,19 @@ const Users = (props) => {
     const hashUserPassword = (userPassword) => {
         let hashPassword = bcrypt.hashSync(userPassword, salt);
         return hashPassword;
-    
+
     }
     const builDataToPersist = () => {
         let _listchild = _.cloneDeep(listchild)
         let results = [];
         Object.entries(_listchild).map(([key, child], index) => {
-           
+
             results.push({
                 name: child.name,
                 maSo: child.maSo,
                 password: hashUserPassword(child.password),
                 groupStudent: "null",
-                projectId: "0", 
+                projectId: "0",
                 groupId: 1
             })
 

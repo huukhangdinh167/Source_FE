@@ -61,7 +61,7 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/roles">Roles</NavLink>
                                         <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
                                         <NavLink className="nav-link" to="/about">-----</NavLink>
-                                        
+
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
                                         <NavLink className="nav-link" to="/project" >Project</NavLink>
                                         <NavLink className="nav-link" to="/results">Results</NavLink>
@@ -71,13 +71,12 @@ const NavHeader = (props) => {
                                     </Nav>
                                     : (user && user.groupId === 2 ? <Nav className="me-auto">
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
-                                        <NavLink className="nav-link" to="/users">Teach</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Teacher</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Teach</NavLink>
-                                        <NavLink className="nav-link" to="/about">Teach</NavLink>
+                                        <NavLink className="nav-link" to="/teacher/projects">Manage Project</NavLink>
+                                        <NavLink className="nav-link" to="/roles">Manage Project Student</NavLink>
+                                        <NavLink className="nav-link" to="/grouprole">Manage Instrutor Team</NavLink>
                                     </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
-                                        
-                                        
+
+
                                         <NavLink className="nav-link" to="/users">users</NavLink>
                                         <NavLink className="nav-link" to="/roles">Roles</NavLink>
                                         <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
@@ -86,8 +85,8 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/admin/users" exact>Management User</NavLink>
                                         <NavLink className="nav-link" to="/admin/add-role">Add-Role</NavLink>
                                         <NavLink className="nav-link" to="/admin/assign-role">Assign-role</NavLink>
-                                       
-                                    </Nav> : ( user && user.groupId === 5 ? <Nav className="me-auto">
+
+                                    </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
                                         <NavLink className="nav-link" to="/users">users</NavLink>
                                         <NavLink className="nav-link" to="/roles">Roles</NavLink>
@@ -99,22 +98,22 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/s">Statistical</NavLink>
                                         <NavLink className="nav-link" to="/c">AssginMent-GV</NavLink>
                                         <NavLink className="nav-link" to="/c">AssginMent-Role</NavLink>
-                                       
+
 
                                     </Nav>
-                                        
-                                        
-                                        :(<Nav className="me-auto">
-                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
-                                        <NavLink className="nav-link" to="/users">users</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
-                                        <NavLink className="nav-link" to="/about">About</NavLink>
-                                    </Nav>))))
+
+
+                                        : (<Nav className="me-auto">
+                                            <NavLink className="nav-link" to="/" exact>Home</NavLink>
+                                            <NavLink className="nav-link" to="/users">users</NavLink>
+                                            <NavLink className="nav-link" to="/roles">Roles</NavLink>
+                                            <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
+                                            <NavLink className="nav-link" to="/about">About</NavLink>
+                                        </Nav>))))
 
                             }
 
-                           
+
 
                             <Nav>
                                 {
@@ -123,7 +122,7 @@ const NavHeader = (props) => {
                                         ?
                                         <>
                                             {/* <Nav.Item className='nav-link' href="#deets"><b> {user.name}</b> !</Nav.Item> */}
-                                            <NavDropdown title={<b>{user.name} </b>}  id="basic-nav-dropdown">
+                                            <NavDropdown title={<b>{user.name} </b>} id="basic-nav-dropdown">
                                                 <NavDropdown.Item > <NavLink className="nav-link" to="/changepassword">Change password</NavLink></NavDropdown.Item>
                                                 <NavDropdown.Item > <NavLink className="nav-link" to="/updateInfor">Update infor</NavLink></NavDropdown.Item>
                                                 <NavDropdown.Item className='dropdown' > <span onClick={() => handleLogout()}>Log-out</span></NavDropdown.Item>

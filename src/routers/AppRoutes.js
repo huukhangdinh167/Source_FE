@@ -13,27 +13,30 @@ import Results from "../components/StudentRS/Results";
 import AdminUsers from '../components/AdminMangementUser/User';
 import AdminRole from "../components/AdminRole/AdminRole";
 import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole";
+import Projects from "../components/TeacherProject/Projects";
+
 const AppRoutes = () => {
-    
+
     return (
         <>
             <Switch>
 
                 <PrivateRoutes path="/users" component={Users} />
                 <PrivateRoutes path="/roles" component={Role} />
-                <PrivateRoutes path="/grouprole" component={GroupRole} /> 
-                <PrivateRoutes path="/project" component={Project} /> 
-                <PrivateRoutes path="/changepassword" component={ChangePW} /> 
-                <PrivateRoutes path="/updateInfor" component={UpdateIF} /> 
+                <PrivateRoutes path="/grouprole" component={GroupRole} />
+                <PrivateRoutes path="/project" component={Project} />
+                <PrivateRoutes path="/changepassword" component={ChangePW} />
+                <PrivateRoutes path="/updateInfor" component={UpdateIF} />
                 <PrivateRoutes path="/results" component={Results} />
                 <PrivateRoutes path="/admin/users" component={AdminUsers} />
                 <PrivateRoutes path="/admin/add-role" component={AdminRole} />
                 <PrivateRoutes path="/admin/assign-role" component={AdminAssignRole} />
+                <PrivateRoutes path="/teacher/projects" component={Projects} />
                 <Route path="/login">
                     <Login />
                 </Route>
-                
-               
+
+
                 <Route path="/" exact>
                     Homemmmm
                 </Route>
