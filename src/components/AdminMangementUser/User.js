@@ -284,9 +284,9 @@ const Users = (props) => {
                                                         <td>{item.maSo}</td>
 
                                                         <td>{item.Group ? item.Group.name : ''}</td>
-                                                        <td>
-                                                            <button className="btn btn-warning mx-3" onClick={() => handleEditUser(item)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                                            <button className="btn btn-danger " onClick={() => handleDeleteUser(item)}><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                         <td>
+                                                            <button className="btn but btn-warning mx-3" onClick={() => handleEditUser(item)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                                                            <button className="btn but btn-danger " onClick={() => handleDeleteUser(item)}><i class="fa fa-trash" aria-hidden="true"></i></button>
                                                         </td>
                                                     </tr>
                                                 )

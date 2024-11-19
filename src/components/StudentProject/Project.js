@@ -84,7 +84,7 @@ const Project = () => {
     }
 
     const hanldeDangki = async (item, user) => {
-        swal("Are you sure you want to do this?", {
+        swal("Bạn có chắc muốn đăng kí đề tài này ?", {
             buttons: ["No!", "Yes!"],
         })
             .then(async (willUnregister) => {
@@ -214,12 +214,12 @@ const Project = () => {
                                         <tr>
 
                                             <th scope="col" style={{ width: "5%" }}>ID</th>
-                                            <th scope="col" style={{ width: "15%" }}>NAME PROJECT</th>
-                                            <th scope="col" style={{ width: "25%" }}>DESCRIPTION</th>
-                                            <th scope="col" style={{ width: "15%" }}>REQUIRED</th>
-                                            <th scope="col" style={{ width: "20%" }}>KNOWLEDGE SKILLS</th>
-                                            <th scope="col" style={{ width: "10%" }}>INTRUSTOR</th>
-                                            <th scope="col" style={{ width: "10%" }}>Action</th>
+                                            <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
+                                            <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
+                                            <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
+                                            <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
+                                            <th scope="col" style={{ width: "10%" }}>GVHD</th>
+                                            <th scope="col" style={{ width: "10%" }}></th>
 
                                         </tr>
 
@@ -247,11 +247,11 @@ const Project = () => {
                                         <tr>
 
                                             <th scope="col" style={{ width: "5%" }}>STT</th>
-                                            <th scope="col" style={{ width: "15%" }}>NAME</th>
+                                            <th scope="col" style={{ width: "15%" }}>TÊN</th>
                                             <th scope="col" style={{ width: "25%" }}>MSSV</th>
-                                            <th scope="col" style={{ width: "15%" }}>Class</th>
-                                            <th scope="col" style={{ width: "20%" }}> ID Project</th>
-                                            <th scope="col" style={{ width: "10%" }}>Nhom</th>
+                                            <th scope="col" style={{ width: "15%" }}>LỚP</th>
+                                            <th scope="col" style={{ width: "20%" }}>MÃ ĐỀ TÀI</th>
+                                            <th scope="col" style={{ width: "10%" }}>NHÓM</th>
                                             <th scope="col" style={{ width: "10%" }}>Chọn nhóm</th>
 
                                         </tr>
@@ -313,12 +313,12 @@ const Project = () => {
                                         <thead>
                                             <tr>
                                                 <th scope="col" style={{ width: "5%" }}>ID</th>
-                                                <th scope="col" style={{ width: "15%" }}>NAME PROJECT</th>
-                                                <th scope="col" style={{ width: "25%" }}>DESCRIPTION</th>
-                                                <th scope="col" style={{ width: "15%" }}>REQUIRED</th>
-                                                <th scope="col" style={{ width: "20%" }}>KNOWLEDGE SKILLS</th>
-                                                <th scope="col" style={{ width: "10%" }}>INTRUSTOR</th>
-                                                <th scope="col" style={{ width: "10%" }}>Action</th>
+                                                <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
+                                                <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
+                                                <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
+                                                <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
+                                                <th scope="col" style={{ width: "10%" }}>GVHD</th>
+                                                <th scope="col" style={{ width: "10%" }}></th>
 
                                             </tr>
                                         </thead>

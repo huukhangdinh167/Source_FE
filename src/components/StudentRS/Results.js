@@ -40,18 +40,18 @@ const Results = () => {
                     <thead>
                         <tr>
                             <th scope="col" style={{ width: "5%" }}>ID</th>
-                            <th scope="col" style={{ width: "15%" }}>NAME PROJECT</th>
-                            <th scope="col" style={{ width: "25%" }}>DESCRIPTION</th>
-                            <th scope="col" style={{ width: "15%" }}>REQUIRED</th>
-                            <th scope="col" style={{ width: "20%" }}>KNOWLEDGE SKILLS</th>
-                            <th scope="col" style={{ width: "10%" }}>INTRUSTOR</th>
+                            <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
+                            <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
+                            <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
+                            <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
+                            <th scope="col" style={{ width: "10%" }}>GVHD</th>
                            {/* // <th scope="col" style={{ width: "10%" }}>Status</th> */}
 
                         </tr>
 
                     </thead>
                     <tbody>
-                        {lisProjectRegister && lisProjectRegister.Project === false &&
+                        {lisProjectRegister && lisProjectRegister.Project === false ?
                             <>
                             <tr>
                                 <td>{lisProjectRegister.id}</td>
@@ -64,7 +64,9 @@ const Results = () => {
                               
 
                             </tr>
-                            </>
+                            </> : <tr>
+                            <td colSpan={6}> <i>Bạn chưa đăng kí đề tài</i></td>
+                            </tr>
                         }
                     </tbody>
                 </table>

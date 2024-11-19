@@ -85,12 +85,12 @@ const HeadAssignGV = (props) => {
                     <thead>
                         <tr>
                             <th>Ma So</th>
-                            <th>Name Student</th>
-                            <th>Name Project</th>
-                            <th>Instructor</th>
-                            <th>GroupStudent</th>
+                            <th>Tên</th>
+                            <th>Tên Đề Tài</th>
+                            <th>GVHD</th>
+                            <th>Nhó</th>
                             <th>GV Phản Biện</th>
-                            <th>Assign</th>
+                            <th>Phân công</th>
                             <th>Bộ môn</th>
                         </tr>
                     </thead>
@@ -137,7 +137,7 @@ const HeadAssignGV = (props) => {
                                     <td>IS</td>
                                 </tr>
                             );
-                        })}
+                        } )} 
                     </tbody>
                 </table>
             </div>

@@ -56,33 +56,33 @@ const NavHeader = (props) => {
                             {
                                 user && user.groupId === 1 ?
                                     <Nav className="me-auto">
-                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
-                                        <NavLink className="nav-link" to="/project" >Project</NavLink>
-                                        <NavLink className="nav-link" to="/results">Results</NavLink>
-                                        <NavLink className="nav-link" to="/history">History</NavLink>
+
+                                        <NavLink className="nav-link" to="/project" >Đăng kí đề tài</NavLink>
+                                        <NavLink className="nav-link" to="/results">Kết quả chấm</NavLink>
+                                        <NavLink className="nav-link" to="/history">Lịch sử làm khóa luận</NavLink>
 
 
                                     </Nav>
                                     : (user && user.groupId === 2 ? <Nav className="me-auto">
-                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
+
 
                                         <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Teacher</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Teach</NavLink>
-                                        <NavLink className="nav-link" to="/about">Teach</NavLink>
+                                        <NavLink className="nav-link" to="/">Teacher</NavLink>
+                                        <NavLink className="nav-link" to="/">Teach</NavLink>
+                                        <NavLink className="nav-link" to="/">Teach</NavLink>
 
                                         <NavLink className="nav-link" to="/teacher/projects">Manage Project</NavLink>
 
                                     </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
-                                        <NavLink className="nav-link" to="/admin/users" >Management User</NavLink>
+                                        <NavLink className="nav-link" to="/admin/users" >Quản lý người dùng</NavLink>
                                         <NavLink className="nav-link" to="/admin/add-role" exact>Add-Role</NavLink>
-                                        <NavLink className="nav-link" to="/admin/assign-role">Assign-role</NavLink>
+                                        <NavLink className="nav-link" to="/admin/assign-role">Phân quyền người dùng</NavLink>
 
                                     </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
-                                        <NavLink className="nav-link" to="/head-project" exact >Project</NavLink>
-                                        <NavLink className="nav-link" to="/s">Statistical</NavLink>
-                                        <NavLink className="nav-link" to="/head/assginmentGV">AssginMent-GV</NavLink>
-                                        <NavLink className="nav-link" to="/head/assginmentrol">AssginMent-Role</NavLink>
+                                        <NavLink className="nav-link" to="/head-project" exact >Đề tài</NavLink>
+                                        <NavLink className="nav-link" to="/s">Thống kê </NavLink>
+                                        <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
+                                        <NavLink className="nav-link" to="/head/assginmentrol">Phân quyền</NavLink>
                                     </Nav>
 
                                         : (<Nav className="me-auto">

@@ -100,15 +100,15 @@ const TeacherChamPB = (props) => {
                 <table className="table text-center table-bordered table-hover mt-5">
                     <thead>
                         <tr>
-                            <th style={{ width: "5%" }} >Ma So</th>
-                            <th style={{ width: "10%" }}>Name Student</th>
-                            <th style={{ width: "15%" }}>Name Project</th>
-                            <th style={{ width: "15%" }}>Description</th>
-                            <th style={{ width: "20%" }}>Required</th>
-                            <th style={{ width: "10%" }}>Instructor</th>
-                            <th style={{ width: "5%" }}>GroupStudent</th>
+                            <th style={{ width: "5%" }} >MSSV</th>
+                            <th style={{ width: "10%" }}>Tên</th>
+                            <th style={{ width: "15%" }}>Tên Đề Tài</th>
+                            <th style={{ width: "15%" }}>Mô Tả</th>
+                            <th style={{ width: "20%" }}>Yêu cầu</th>
+                            <th style={{ width: "10%" }}>GVHD</th>
+                            <th style={{ width: "5%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
-                            <th style={{ width: "5%" }}>Assign</th>
+                            <th style={{ width: "5%" }}>Phân Công</th>
                             <th style={{ width: "5%" }}>Bộ môn</th>
                         </tr>
                     </thead>

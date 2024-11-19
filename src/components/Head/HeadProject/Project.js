@@ -31,7 +31,7 @@ const HeadProject = () => {
     }
 
     const handleApproveProject = async (item) => {
-        swal("Are you sure want approve?", {
+        swal(`Bạn có chắc muốn duyệt đề tài ${item.id} ?`, {
             buttons: ["No!", "Yes!"],
         })
             .then(async (willUnregister) => {
@@ -54,7 +54,7 @@ const HeadProject = () => {
     }
 
     const handleDeletProject = async (item) => {
-        swal("Are you sure you want to delete?", {
+        swal(`Bạn có chắc muốn xóa đề tài ${item.id} ?`, {
             buttons: ["No!", "Yes!"],
         })
             .then(async (willUnregister) => {
@@ -75,7 +75,7 @@ const HeadProject = () => {
     }
 
     const handleDelete = async (student) => {
-        swal(`Are you sure delete student ${student.maSo} from project ${student.projectId}  ?`, {
+        swal(`Bạn có chắc muốn xóa sinh viên ${student.maSo} khỏi đề tài ${student.projectId}  ?`, {
             buttons: ["No!", "Yes!"],
         })
             .then(async (willUnregister) => {
@@ -121,13 +121,13 @@ const HeadProject = () => {
                                 <table className="table table-bordered table-hover mt-5">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>NAME PROJECT</th>
-                                            <th>INSTRUCTOR</th>
-                                            <th>KNOWLEDGE SKILLS</th>
-                                            <th>REQUIRED</th>
-                                            <th>DESCRIPTION</th>
-                                            <th>Action</th>
+                                            <th style={{ width: "5%" }}>ID</th>
+                                            <th style={{ width: "15%" }}>TÊN</th>
+                                            <th style={{ width: "10%" }}>GVHD</th>
+                                            <th style={{ width: "15%" }}>KIẾN THỨC</th>
+                                            <th style={{ width: "15%" }}>YÊU CẦU</th>
+                                            <th style={{ width: "25%" }}>MÔ TẢ</th>
+                                            <th style={{ width: "6%" }}>DUYỆT</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -171,12 +171,12 @@ const HeadProject = () => {
                                             <thead>
                                             <tr>
                                                     <th style={{ width: "5%" }} >ID</th>
-                                                    <th style={{ width: "20%" }}>NAME PROJECT</th>
-                                                    <th style={{ width: "13%" }}>INSTRUCTOR</th>
-                                                    <th style={{ width: "30%" }}>KNOWLEDGE SKILLS</th>
-                                                    <th style={{ width: "25%" }}>REQUIRED</th>
+                                                    <th style={{ width: "20%" }}>TÊN ĐỀ TÀI</th>
+                                                    <th style={{ width: "13%" }}>GVHD</th>
+                                                    <th style={{ width: "30%" }}>KIẾN THỨC</th>
+                                                    <th style={{ width: "25%" }}>YÊU CẦU</th>
                                                     {/* <th>STUDENT NAME</th> */}
-                                                    <th style={{ width: "7%" }}>Action</th>
+                                                    <th style={{ width: "7%" }}>XÓA</th>
                                                 </tr>
                                             </thead>
                                             <tbody>

@@ -152,7 +152,6 @@ const ModalProject = (props) => {
                             value={projectData.knowledgeSkills}
                             onChange={(event) => handleOnChangeInput(event.target.value, "knowledgeSkills")}
                         />
-
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
