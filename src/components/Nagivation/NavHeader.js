@@ -57,12 +57,6 @@ const NavHeader = (props) => {
                                 user && user.groupId === 1 ?
                                     <Nav className="me-auto">
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
-                                        <NavLink className="nav-link" to="/users">users</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
-                                        <NavLink className="nav-link" to="/about">-----</NavLink>
-
-                                        <NavLink className="nav-link" to="/" exact>Home</NavLink>
                                         <NavLink className="nav-link" to="/project" >Project</NavLink>
                                         <NavLink className="nav-link" to="/results">Results</NavLink>
                                         <NavLink className="nav-link" to="/history">History</NavLink>
@@ -80,35 +74,16 @@ const NavHeader = (props) => {
                                         <NavLink className="nav-link" to="/teacher/projects">Manage Project</NavLink>
 
                                     </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
-
-
-                                        <NavLink className="nav-link" to="/users">users</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
-                                        <NavLink className="nav-link" to="/about">-----</NavLink>
-
                                         <NavLink className="nav-link" to="/admin/users" >Management User</NavLink>
                                         <NavLink className="nav-link" to="/admin/add-role" exact>Add-Role</NavLink>
                                         <NavLink className="nav-link" to="/admin/assign-role">Assign-role</NavLink>
 
                                     </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
-
-                                        <NavLink className="nav-link" to="/users">users</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
-                                        <NavLink className="nav-link" to="/about">-----</NavLink>
-
-
                                         <NavLink className="nav-link" to="/head-project" exact >Project</NavLink>
                                         <NavLink className="nav-link" to="/s">Statistical</NavLink>
-
                                         <NavLink className="nav-link" to="/head/assginmentGV">AssginMent-GV</NavLink>
                                         <NavLink className="nav-link" to="/head/assginmentrol">AssginMent-Role</NavLink>
-
-
-
                                     </Nav>
-
 
                                         : (<Nav className="me-auto">
 

@@ -83,7 +83,7 @@ const ModalProject = (props) => {
         if (check === true) {
             let res = action === 'CREATE' ?
                 await createNewProject({ ...projectData })
-                : await updateCurrentProject({ ...projectData });
+                : await updateCurrentProject({ ...projectData, status: 0 });
             if (res && res.EC == 0) {
                 props.onHide();
                 toast.success("Thành công!");
@@ -119,11 +119,11 @@ const ModalProject = (props) => {
                     <div className='content-body row'>
                         <div className='col-12 col-sm-6 form-group'>
                             <label>Name : <span className="text-danger">*</span>  </label>
-                            <input disabled={action === 'CREATE' ? false : true}
+                            <textarea disabled={action === 'CREATE' ? false : true}
                                 className={validInputs.name ? 'form-control' : 'form-control is-invalid'}
                                 type="text" value={projectData.name}
                                 onChange={(event) => handleOnChangeInput(event.target.value, "name")}
-                            />
+                            > </textarea>
                         </div>
                         <div className='col-12 col-sm-6 form-group'>
                             <label>Description : </label>

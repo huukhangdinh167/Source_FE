@@ -100,16 +100,16 @@ const TeacherChamPB = (props) => {
                 <table className="table text-center table-bordered table-hover mt-5">
                     <thead>
                         <tr>
-                            <th>Ma So</th>
-                            <th>Name Student</th>
-                            <th>Name Project</th>
-                            <th>Description</th>
-                            <th>Required</th>
-                            <th>Instructor</th>
-                            <th>GroupStudent</th>
-                            <th>GV Phản Biện</th>
-                            <th>Assign</th>
-                            <th>Bộ môn</th>
+                            <th style={{ width: "5%" }} >Ma So</th>
+                            <th style={{ width: "10%" }}>Name Student</th>
+                            <th style={{ width: "15%" }}>Name Project</th>
+                            <th style={{ width: "15%" }}>Description</th>
+                            <th style={{ width: "20%" }}>Required</th>
+                            <th style={{ width: "10%" }}>Instructor</th>
+                            <th style={{ width: "5%" }}>GroupStudent</th>
+                            <th style={{ width: "10%" }}>GV Phản Biện</th>
+                            <th style={{ width: "5%" }}>Assign</th>
+                            <th style={{ width: "5%" }}>Bộ môn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -158,7 +158,7 @@ const TeacherChamPB = (props) => {
                                 </tr>
                             );
                         }) : <tr>
-                           
+
                             <td colSpan={11}><i>Chưa được phân chấm phản biện</i></td>
                         </tr>}
                     </tbody>
@@ -191,7 +191,8 @@ const TeacherChamPB = (props) => {
                                         </option>
                                         {
                                             listtecher
-                                                .filter(item => item.name != selectedStudent.Project.instuctor.trim()) // Lọc ra tất cả các group ngoại trừ group có name là 'student'
+                                                .filter(item => item.name != selectedStudent.Project.instuctor.trim())
+                                                // .filter(item => item.name != selectedStudent.Project.instuctor.trim())
                                                 .map((item, index) => {
                                                     return (
                                                         <option key={`group-${index}`} value={item.id}>{item.name}</option>
