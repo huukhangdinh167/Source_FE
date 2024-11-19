@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getUserAccount } from '../services/userServer'
 
 
-const UserContext = React.createContext({ name: 'Eric', auth: false });
+const UserContext = React.createContext(null);
 
 const UserProvider = ({ children }) => {
 
@@ -17,7 +17,7 @@ const UserProvider = ({ children }) => {
 
     }
     const [user, setUser] = useState(userDefault);
-   // const [chooseGroup, setChooseGroup] = useState
+    // const [chooseGroup, setChooseGroup] = useState
     // Login updates the user data with a name parameter 
     const loginContext = (userDate) => {
         setUser({ ...userDate, isLoading: false });
@@ -48,7 +48,7 @@ const UserProvider = ({ children }) => {
                 account: { groubWithRole, email, username },
                 isLoading: false,
                 email: email,
-                phoneNumber: phoneNumber
+                phoneNumber: phoneNumber,
 
             }
             setUser(data)
@@ -58,12 +58,12 @@ const UserProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        // if (window.location.pathname !== '/' &&  window.location.pathname !== '/login') {
-        //     fetchUser()
+        if (window.location.pathname !== '/' && window.location.pathname !== '/login') {
+            fetchUser()
 
-        // } else {
-        //     setUser({ ...user, isLoading: false })
-        // }
+        } else {
+            setUser({ ...user, isLoading: false })
+        }
         fetchUser()
     }, [])
 

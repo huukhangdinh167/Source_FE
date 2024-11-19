@@ -1,8 +1,10 @@
 import swal from 'sweetalert';
 import './Project.scss'
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
-import { fetchAllProject, cancelchooseGroup, fetchAllProjectRegister, dangKiProject,
-     huyDangKiProject, fetchAllUserRegiterProject, chooseGroup } from '../../services/studentService'
+import {
+    fetchAllProject, cancelchooseGroup, fetchAllProjectRegister, dangKiProject,
+    huyDangKiProject, fetchAllUserRegiterProject, chooseGroup
+} from '../../services/studentService'
 import { toast } from "react-toastify";
 import React from 'react';
 import { UserContext } from '../../context/userContext';
@@ -68,7 +70,7 @@ const Project = () => {
 
         }
     }
- 
+
 
     const getALLProject = async (user) => {
         let data = await fetchAllProject(user)
@@ -109,12 +111,12 @@ const Project = () => {
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
-                  
+
                     let data = await huyDangKiProject(user, lisProjectRegister);
-                    if (data && +data.EC === 0) { 
-                       await handleHuyNhom2(foundGroupStudent())
+                    if (data && +data.EC === 0) {
+                        await handleHuyNhom2(foundGroupStudent())
                         toast.success(data.EM);
-                         setListProjectRegister({ ...defautlisProjectRegister, dangki: true });
+                        setListProjectRegister({ ...defautlisProjectRegister, dangki: true });
                         await getALLProject(user);
                     }
                 } else {
@@ -175,8 +177,8 @@ const Project = () => {
     const handleHuyNhom2 = async (groupStudent) => {
         let data = await cancelchooseGroup(groupStudent)
         if (+data.EC === 0) {
-           // toast.success(data.EM)
-          //  await getALLProjectRegister(user)
+            // toast.success(data.EM)
+            //  await getALLProjectRegister(user)
         }
     }
 

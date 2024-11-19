@@ -71,10 +71,14 @@ const NavHeader = (props) => {
                                     </Nav>
                                     : (user && user.groupId === 2 ? <Nav className="me-auto">
                                         <NavLink className="nav-link" to="/" exact>Home</NavLink>
+
                                         <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
                                         <NavLink className="nav-link" to="/roles">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/grouprole">Teach</NavLink>
                                         <NavLink className="nav-link" to="/about">Teach</NavLink>
+
+                                        <NavLink className="nav-link" to="/teacher/projects">Manage Project</NavLink>
+
                                     </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
 
 
@@ -97,15 +101,17 @@ const NavHeader = (props) => {
 
                                         <NavLink className="nav-link" to="/head-project" exact >Project</NavLink>
                                         <NavLink className="nav-link" to="/s">Statistical</NavLink>
+
                                         <NavLink className="nav-link" to="/head/assginmentGV">AssginMent-GV</NavLink>
                                         <NavLink className="nav-link" to="/head/assginmentrol">AssginMent-Role</NavLink>
+
 
 
                                     </Nav>
 
 
                                         : (<Nav className="me-auto">
-                                          
+
                                             <NavLink className="nav-link" to="/users">users</NavLink>
                                             <NavLink className="nav-link" to="/roles">Roles</NavLink>
                                             <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
