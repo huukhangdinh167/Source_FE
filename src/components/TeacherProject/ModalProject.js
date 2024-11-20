@@ -85,15 +85,15 @@ const ModalProject = (props) => {
         let check = checkValidateInputs()
         if (check === true) {
             let res = action === 'CREATE' ?
-                await createNewProject({ ...projectData })
+                await createNewProject({ ...projectData, name: projectData.name.trim(), nameprojectapprove: 'null', nameprojectrefuse: 'null' })
                 : await updateCurrentProject({ ...projectData, status: 0 });
             if (res && res.EC == 0) {
                 props.onHide();
-                toast.success("Thành công!");
+              //  toast.success("Thành công!");
                 props.onProjectAdded(user);
                 setProjectData({ ...defaultProjectData })
             } if (res && res.EC !== 0) {//hiện ô input đỏ khi mà nhập sai hoặc nhập thông tin đã có sẵn
-                toast.error(res.EM);
+               // toast.error(res.EM);
                 let _validInputs = _.cloneDeep(validInputsDefault);
                 _validInputs[res.DT] = false;
                 setvalidInputs(_validInputs);

@@ -18,7 +18,11 @@ const headGetProjectApprove = () => {
 
 // duyệt đề tài 
 const headApproveFroject =(item)=>{ 
-    return axios.put("/api/v1/head/project-approve", { data: {id: item.id}  })
+    return axios.put("/api/v1/head/project-approve", { data: {id: item.id, name: item.name}  })
+}  
+// từ chối duyệt đề tài 
+const headRefuseFroject =(item, reasonrefuse)=>{ 
+    return axios.put("/api/v1/head/project-refuse", { data: {id: item.id, name: item.name, reasonrefuse: reasonrefuse}  })
 }  
 
 const headFetchListTeacher =()=>{ 
@@ -35,5 +39,5 @@ const AssignPB1and2 =(data)=>{
 
 export {
     headGetProjectandUser,headDeleteProjct,headHuyDangKi,headGetProjectApprove,
-    headApproveFroject,headFetchListTeacher,test,AssignPB1and2
+    headApproveFroject,headFetchListTeacher,test,AssignPB1and2,headRefuseFroject
 }

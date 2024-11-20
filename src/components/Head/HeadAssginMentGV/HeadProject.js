@@ -43,17 +43,17 @@ const HeadAssignGV = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-        setPB({ defaultPB })
+        setPB({...defaultPB })
 
     };
 
     const handleConfirmAssign = async () => {
         if (!PB.pb1) {
-            toast.error("Value PB1 null")
+            toast.error("Bạn chưa chọn GVPB1")
             return
         }
         if (!PB.pb2) {
-            toast.error("Value PB2 null")
+            toast.error("Bạn chưa chọn GVPB2")
             return
         }
         if (PB.pb1 === PB.pb2) {
@@ -84,14 +84,14 @@ const HeadAssignGV = (props) => {
                 <table className="table text-center table-bordered table-hover mt-5">
                     <thead>
                         <tr>
-                            <th>Ma So</th>
+                            <th style={{ width: "5%" }}>Ma So</th>
                             <th>Tên</th>
                             <th>Tên Đề Tài</th>
                             <th>GVHD</th>
                             <th>Nhó</th>
                             <th>GV Phản Biện</th>
                             <th>Phân công</th>
-                            <th>Bộ môn</th>
+                            <th style={{ width: "7%" }}>Bộ môn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,19 +113,21 @@ const HeadAssignGV = (props) => {
                                     <td>{item.Project.instuctor}</td>
                                     <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
                                     <td>
-                                        <td>
-                                            {/* Hiển thị giáo viên PB1 */}
-                                            {listtecher && (
-                                                listtecher
-                                                    .filter(itemm => itemm.id == item.pb1 || itemm.id == item.pb2)
-                                                    .map((itemmm, index) => (
-                                                        <p key={`pb1-${index}`}>{itemmm.name}</p>
-                                                    ))
-                                            )}
-
-
-                                        </td>
-
+                                        {/* Hiển thị giáo viên PB1 */}
+                                        {listtecher && (
+                                            listtecher
+                                                .filter(itemm => itemm.id == item.pb1 )
+                                                .map((itemmm, index) => (
+                                                    <p key={`pb1-${index}`}>{itemmm.name}</p>
+                                                ))
+                                        )}
+                                         {listtecher && (
+                                            listtecher
+                                                .filter(itemm =>itemm.id == item.pb2)
+                                                .map((itemmm, index) => (
+                                                    <p key={`pb1-${index}`}>{itemmm.name}</p>
+                                                ))
+                                        )}
                                     </td>
                                     <td>
                                         {showButton && (
@@ -137,13 +139,13 @@ const HeadAssignGV = (props) => {
                                     <td>IS</td>
                                 </tr>
                             );
-                        } )} 
+                        })}
                     </tbody>
                 </table>
             </div>
 
             {/* Modal */}
-            <Modal show={showModal} onHide={handleCloseModal}>
+            <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Assign Student
                     </Modal.Title>
@@ -163,12 +165,13 @@ const HeadAssignGV = (props) => {
                                 <div className="col-sm-6">
                                     Pb1:
                                     <select value={PB.pb1} onChange={(event) => handleOnchange(event.target.value, 'pb1')}>
-                                        <option value={''}>
+                                        <option value=''>
                                             ----
                                         </option>
                                         {
                                             listtecher
-                                                .filter(item => item.name != selectedStudent.Project.instuctor.trim()) // Lọc ra tất cả các group ngoại trừ group có name là 'student'
+                                                .filter(item => item.name != selectedStudent.Project.instuctor.trim())
+                                                .filter(item => item.id != PB.pb2) // Lọc ra tất cả các group ngoại trừ group có name là 'student'
                                                 .map((item, index) => {
                                                     return (
                                                         <option key={`group-${index}`} value={item.id}>{item.name}</option>
@@ -178,21 +181,35 @@ const HeadAssignGV = (props) => {
                                     </select>
                                 </div>
                                 <div className="col-sm-6">
-                                    Pb2:
-                                    <select value={PB.pb2} onChange={(event) => handleOnchange(event.target.value, 'pb2')}>
-                                        <option value={''}>
-                                            ----
-                                        </option>
-                                        {
-                                            listtecher
-                                                .filter(item => item.name != selectedStudent.Project.instuctor.trim()) // Lọc ra tất cả các group ngoại trừ group có name là 'student'
-                                                .map((item, index) => {
-                                                    return (
-                                                        <option key={`group-${index}`} value={item.id}>{item.name}</option>
-                                                    );
-                                                })
-                                        }
-                                    </select>
+
+                                    {
+                                      PB.pb1 && PB.pb1 !== '' &&
+                                        <>
+                                            Pb2:
+                                            <select value={PB.pb2} onChange={(event) => handleOnchange(event.target.value, 'pb2')}>
+                                                <option value={''}>
+                                                    ----
+                                                </option>
+                                                {
+                                                    listtecher
+                                                        .filter(item =>
+                                                            item.name !== selectedStudent.Project.instuctor.trim()
+
+                                                        )
+                                                        .filter(item =>
+                                                            item.id != PB.pb1
+
+                                                        )
+                                                        .map((item, index) => {
+                                                            return (
+                                                                <option key={`group-${index}`} value={item.id}>{item.name}</option>
+                                                            );
+                                                        })
+                                                }
+                                            </select>
+                                        </> 
+                                    }
+
                                 </div>
                             </div>
 

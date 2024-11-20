@@ -97,18 +97,19 @@ const TeacherChamPB = (props) => {
     return (
         <>
             <div className='container'>
-                <table className="table text-center table-bordered table-hover mt-5">
+                <p className="mt-3 "><i>Số lượng sinh viên cần chấm phản biện:</i> <b className="text-danger"> {students ? students.length : ''}</b></p>
+                <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
                             <th style={{ width: "5%" }} >MSSV</th>
                             <th style={{ width: "10%" }}>Tên</th>
                             <th style={{ width: "15%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
-                            <th style={{ width: "20%" }}>Yêu cầu</th>
+                            <th style={{ width: "15%" }}>Yêu cầu</th>
                             <th style={{ width: "10%" }}>GVHD</th>
-                            <th style={{ width: "5%" }}>Nhóm</th>
+                            <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
-                            <th style={{ width: "5%" }}>Phân Công</th>
+                            <th style={{ width: "8%" }}>Phân Công</th>
                             <th style={{ width: "5%" }}>Bộ môn</th>
                         </tr>
                     </thead>
@@ -133,19 +134,22 @@ const TeacherChamPB = (props) => {
                                     <td>{item.Project.instuctor}</td>
                                     <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
                                     <td>
-                                        <td>
+                                        
                                             {/* Hiển thị giáo viên PB1 */}
                                             {listtecher && (
                                                 listtecher
-                                                    .filter(itemm => itemm.id == item.pb1 || itemm.id == item.pb2)
+                                                    .filter(itemm => itemm.id == item.pb1 )
                                                     .map((itemmm, index) => (
-                                                        <p key={`pb1-${index}`}>{itemmm.name}</p>
+                                                        <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
                                                     ))
                                             )}
-
-
-                                        </td>
-
+                                              {listtecher && (
+                                                listtecher
+                                                    .filter(itemm => itemm.id == item.pb2)
+                                                    .map((itemmm, index) => (
+                                                        <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
+                                                    ))
+                                            )}
                                     </td>
                                     <td>
                                         {showButton && (

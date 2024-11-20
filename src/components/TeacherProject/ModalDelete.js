@@ -8,7 +8,7 @@ const ModalDelete = (props) => {
                 <Modal.Header closeButton>
                     <Modal.Title>Xác nhận xoá?</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Bạn có chắc muốn xoá đề tài này: {props.dataModel.name}</Modal.Body>
+                <Modal.Body>Bạn có chắc muốn xoá đề tài này: <b>{props.dataModel.name}</b></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={props.handleClose}>
                         Đóng

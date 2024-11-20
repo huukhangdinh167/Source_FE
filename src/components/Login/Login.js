@@ -59,6 +59,8 @@ const Login = (props) => {
             history.push("/project");  
          }else if(groupId === 5){
             history.push("/head-project");  
+         }else if(groupId === 2){
+            history.push("/teacher/projects");  
          }
          else{
             history.push("/");

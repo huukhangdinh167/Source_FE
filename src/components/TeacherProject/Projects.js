@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import ModalDelete from "./ModalDelete";
 import ModalProject from "./ModalProject"
 import { UserContext } from "../../context/userContext";
-
+import swal from 'sweetalert';
 
 //--------------------------Xem Project của mình--------------------------
 const Projects = (props) => {
@@ -90,6 +90,10 @@ const Projects = (props) => {
         setIsShowModalDelete(true);
 
     }
+    const handleXemLyDo = (reasonrefuse)=>{
+        swal ( " Lý do ! " ,  reasonrefuse )  ;
+       // alert(reasonrefuse)
+    }
 
 
 
@@ -116,7 +120,7 @@ const Projects = (props) => {
                         </div>
                     </div>
                     <div className="project-body">
-                        <table className="table table-bordered table-hover">
+                        <table className="table table-bordered table-hover text-center">
                             <thead>
                                 <tr>
                                     <th style={{ width: '50px' }}>ID</th>
@@ -143,7 +147,7 @@ const Projects = (props) => {
                                                         <td style={{ width: '300px' }}>{item.require}</td>
                                                         <td style={{ width: '300px' }}>{item.knowledgeSkills}</td>
                                                         <td style={{ width: '300px' }}>{item.instuctor}</td>
-                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? "Đang chờ phê duyệt" : "Đã xét duyệt"}</td>
+                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? <p className="text-danger">Chờ duyệt</p> : (+item.status === 2 ? <><b> <p className="text-danger ">Từ Chối duyệt</p></b>  <div onClick={()=> handleXemLyDo(item.reasonrefuse)} className="text-danger reasonrefuse">(Xem lý do)</div> </>  :  <p className="text-primary">Đã duyệt (ok)</p>)}</td>
                                                         <td style={{ width: '150px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                                                             <button className="btn btn-warning btn-sm mx-1"
                                                                 onClick={() => handleEditProject(item)}
@@ -178,8 +182,6 @@ const Projects = (props) => {
                 confirmDeleteProject={confirmDeleteProject}
                 dataModel={dataModel}
             />
-
-
 
             <ModalProject
                 // title={" Create New User "}

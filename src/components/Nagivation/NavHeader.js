@@ -67,9 +67,11 @@ const NavHeader = (props) => {
 
 
                                         <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
-                                        <NavLink className="nav-link" to="/">Teacher</NavLink>
+                                        <NavLink className="nav-link" to="/teacher-chamHD">Chấm HD</NavLink>
+                                        <NavLink className="nav-link" to="/teacher-DSDK">Danh sách đăng kí</NavLink>
+                                        {/* <NavLink className="nav-link" to="/">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/">Teach</NavLink>
-                                        <NavLink className="nav-link" to="/">Teach</NavLink>
+                                        <NavLink className="nav-link" to="/">Teach</NavLink> */}
 
                                         <NavLink className="nav-link" to="/teacher/projects">Manage Project</NavLink>
 

@@ -1,7 +1,8 @@
 import swal from 'sweetalert';
 import './Project.scss'
 import { useEffect, useState, useContext } from "react";
-import { headGetProjectandUser, headDeleteProjct, headHuyDangKi, headGetProjectApprove, headApproveFroject } from '../../../services/HeadService'
+import { headGetProjectandUser, headDeleteProjct, headHuyDangKi,
+    headRefuseFroject, headGetProjectApprove, headApproveFroject } from '../../../services/HeadService'
 import React from 'react';
 import { UserContext } from '../../../context/userContext';
 import { toast } from "react-toastify";
@@ -53,6 +54,44 @@ const HeadProject = () => {
 
     }
 
+    const handleRefuseProject = async (item) => {
+
+        let textarea = document.createElement("textarea");
+        textarea.style.width = "100%";
+        textarea.style.height = "70px";
+
+        swal({
+            title: `Bạn vui lòng nhập lý do từ chối duyệt cho đề tài:`,
+            text: `${item.name}`,  // Đưa phần text vào một phần riêng biệt
+           
+            buttons: ["No!", "Yes!"],
+            content: textarea,
+            dangerMode: true, // Cho phép HTML trong nội dung
+            html: true, // Cho phép HTML trong phần text
+            className: "custom-swal-title",
+        })
+        
+        
+            .then(async (willUnregister) => {
+                if (willUnregister) {
+                   console.log(textarea.value)
+                  let reason = textarea.value.trim()
+                  let data = await headRefuseFroject(item, reason) 
+                  getALLProject()
+                  GetAllProjectApprove()
+                  if(data && +data.EC === 0){
+                    toast.success(data.EM)
+                  }else{
+                    toast.error(data.EM)
+                  }
+                } else {
+                    // Người dùng chọn "Không"
+                    console.log("item", item)
+                }
+            })
+
+    }
+
     const handleDeletProject = async (item) => {
         swal(`Bạn có chắc muốn xóa đề tài ${item.id} ?`, {
             buttons: ["No!", "Yes!"],
@@ -96,6 +135,7 @@ const HeadProject = () => {
 
     }
 
+
     // swal("Are you sure you want to do this?", {
     //     buttons: ["No!", "Yes!"],
     // })
@@ -112,7 +152,7 @@ const HeadProject = () => {
         <>
             <div className="container">
                 <div className="mt-3 text-center">
-                    <h4>Danh sách đề tài cần duyệt:</h4>
+                    <h4>Chờ duyệt:</h4>
                 </div>
                 <div className='mt-3 text-center'>
                     {listProjectApprove.length > 0 ? (
@@ -127,7 +167,7 @@ const HeadProject = () => {
                                             <th style={{ width: "15%" }}>KIẾN THỨC</th>
                                             <th style={{ width: "15%" }}>YÊU CẦU</th>
                                             <th style={{ width: "25%" }}>MÔ TẢ</th>
-                                            <th style={{ width: "6%" }}>DUYỆT</th>
+                                            <th style={{ width: "13%" }}>DUYỆT</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -140,8 +180,10 @@ const HeadProject = () => {
                                                     <td>{item.require}</td>
                                                     <td>{item.knowledgeSkills}</td>
                                                     <td>{item.description}</td>
-                                                    <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success'>Duyệt</div></td>
-                                                
+                                                    <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success'>Duyệt</div>
+                                                        <div onClick={() => handleRefuseProject(item)} className='  btn btn-danger'>Từ chối</div>
+                                                    </td>
+
                                                 </tr>
                                                 <tr>
                                                 </tr>
@@ -155,28 +197,26 @@ const HeadProject = () => {
                 </div>
 
 
-                <div className="mt-3">
-                    <h4>Danh sách đề tài đã duyệt:</h4>
+                <div className="mt-3 text-center">
+                    <h4>Đã duyệt:</h4>
                 </div>
-                <div className="">
+                <div className="mt-3">
                     {listProject && (
                         <>
-
-
                             <div className="mt-1 text-center">
 
                                 {listProject.length > 0 && listProject.map((item, index) => (
                                     <>
                                         <table className="table table-bordered table-hover mt-3">
                                             <thead>
-                                            <tr>
+                                                <tr>
                                                     <th style={{ width: "5%" }} >ID</th>
                                                     <th style={{ width: "20%" }}>TÊN ĐỀ TÀI</th>
                                                     <th style={{ width: "13%" }}>GVHD</th>
                                                     <th style={{ width: "30%" }}>KIẾN THỨC</th>
                                                     <th style={{ width: "25%" }}>YÊU CẦU</th>
                                                     {/* <th>STUDENT NAME</th> */}
-                                                    <th style={{ width: "7%" }}>XÓA</th>
+                                                    {/* <th style={{ width: "7%" }}>XÓA</th> */}
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -187,7 +227,7 @@ const HeadProject = () => {
                                                     <td>{item.knowledgeSkills}</td>
                                                     <td>{item.require}</td>
 
-                                                    <td className='center-button'><div onClick={() => handleDeletProject(item)} className='  btn btn-danger'>Xóa</div></td>
+                                                    {/* <td className='center-button'><div onClick={() => handleDeletProject(item)} className='  btn btn-danger'>Xóa</div></td> */}
                                                     {/* <td colSpan="2" className="text-center">
                                                         {item.Userstudents.length === 0 && <em>Chưa có sinh viên đăng ký</em>}
                                                     </td> */}
@@ -198,7 +238,7 @@ const HeadProject = () => {
                                             </tbody>
 
                                         </table >
-                                        <div className='row'>
+                                        {/* <div className='row'>
                                             <div className='col-sm-2'>
 
                                             </div>
@@ -247,7 +287,7 @@ const HeadProject = () => {
                                                     </tbody>
                                                 </table>
                                             </div>
-                                        </div>
+                                        </div> */}
                                     </>
                                 ))}
 

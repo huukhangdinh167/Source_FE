@@ -21,10 +21,22 @@
         width: 70px;
         height: 35px;
     }
+    .btn{
+        margin-left: 5px;
+    }
     
 }
 .huynhom{
     width: 120px;
     height: 38px;
    // margin-right: 250px;
+}
+.swal-title {
+    font-size: 18px; /* Chỉnh kích thước */
+    font-weight: bold; /* Nếu cần in đậm */
+    line-height: 1.5; /* Khoảng cách dòng */
+}
+.swal-text {
+    font-style: italic;
+    font-weight: 500; /* Nếu cần in đậm */
 }
