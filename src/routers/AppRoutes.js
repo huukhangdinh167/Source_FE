@@ -18,9 +18,8 @@ import HeadProject from '../components/Head/HeadProject/Project'
 import HeadAssignRole from '../components/Head/HeadAssginMentRole/HeadAssginmentRole'
 import HeadAssignGV from '../components/Head/HeadAssginMentGV/HeadProject'
 import TeacherChamPB from '../components/Teacher/TeacherChamPB/TeacherChamPB'
-
 import Projects from "../components/TeacherProject/Projects";
-
+import TeacherChamHD from '../components/Teacher/TeacherChamHD/TeacherChamHD'
 
 const AppRoutes = () => {
 
@@ -43,9 +42,8 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/head/assginmentrol" component={HeadAssignRole} />
                 <PrivateRoutes path="/head/assginmentGV" component={HeadAssignGV} />
                 <PrivateRoutes path="/teacher-chamPB" component={TeacherChamPB} />
-
                 <PrivateRoutes path="/teacher/projects" component={Projects} />
-
+                <PrivateRoutes path="/teacher-chamHD" component={TeacherChamHD} />
                 <Route path="/login">
                     <Login />
                 </Route>

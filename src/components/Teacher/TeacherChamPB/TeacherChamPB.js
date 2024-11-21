@@ -59,8 +59,6 @@ const TeacherChamPB = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-
-
     };
 
     const handleConfirmAssign = async () => {
