@@ -81,7 +81,7 @@ const AdminRole = (props) => {
         <div className='role-container'>
             <div className='container'>
                 <div className='adding-role mt-4'>
-                    <div className='title-role'><h4>Add new role...</h4></div>
+                    <div className='title-role'><h4>Thêm quyền mới</h4></div>
                     <div className=' role-parent'>
                         {Object.entries(listchild).map(([key, value], index) => {
                             return (
@@ -93,14 +93,14 @@ const AdminRole = (props) => {
                                             onChange={(event) => { handleOnChange('url', event.target.value, key) }} />
                                     </div>
                                     <div className='col-5 form-group'>
-                                        DESCRIPTION <input type='text' className=' form-control'
+                                        MÔ TẢ <input type='text' className=' form-control'
                                             value={value.description}
                                             onChange={(event) => { handleOnChange('description', event.target.value, key) }} />
 
                                     </div>
-                                    <div className='col-2 mt-4 action'>
+                                    <div className='col-2 mt-4 d-flex justify-content-between align-items-center action'>
                                         <i class="fa fa-plus-square bd add" onClick={() => handleAddNewInput()}></i>
-                                        {index >= 1 && <i class="fa fa-trash delete" onClick={() => handleDelete(key)} ></i>}
+                                        {index >= 1 && <i class="fa fa-trash delete" onClick={() => handleDelete(key)}></i>}
                                     </div>
                                 </div>
 
@@ -111,7 +111,7 @@ const AdminRole = (props) => {
                     <div className='row'>
                         <div className='col-10'></div>
                         <div className='col-2'>
-                            <button onClick={() => handlSave()} className='btn btn-success mt-5 '>Save</button>
+                            <button onClick={() => handlSave()} className='btn btn-success mt-5 '>LƯU</button>
                         </div>
 
                     </div>

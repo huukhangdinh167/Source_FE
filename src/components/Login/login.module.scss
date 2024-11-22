@@ -1,0 +1,118 @@
+// body {
+//     font-family: 'Roboto', sans-serif;
+//     background: linear-gradient(135deg, #457b9d, #1d3557);
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     height: 100vh;
+//     margin: 0;
+// }
+
+.login-container {
+    width: 350px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    padding: 30px 20px;
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+h3 {
+    color: #1d3557;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: calc(100% - 20px);
+    /* Đảm bảo padding không làm tăng kích thước */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+    /* Đảm bảo width không bị tràn */
+}
+
+input:focus {
+    border-color: #457b9d;
+    outline: none;
+    box-shadow: 0 0 5px rgba(69, 123, 157, 0.5);
+}
+
+.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #457b9d;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #1d3557;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-control {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Hiệu ứng chuyển đổi */
+}
+
+.form-control:focus {
+    border-color: #457b9d;
+    /* Màu xanh khi focus */
+    box-shadow: 0 0 5px rgba(69, 123, 157, 0.5);
+    /* Hiệu ứng khi focus */
+}
+
+.is-invalid {
+    border-color: red;
+    /* Viền đỏ khi có lỗi */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    /* Hiệu ứng viền đỏ */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    /* Hiệu ứng chuyển đổi */
+}
+
+
+.is-invalid {
+    border: 1px solid red;
+    /* Viền đỏ cho input lỗi */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    /* Hiệu ứng viền đỏ */
+}

@@ -193,62 +193,72 @@ const Users = (props) => {
 
             <div className="container">
                 <div className="manage-users-container">
+                    <h4 className="mt-3">Tạo mới giảng viên: </h4>
                     <div className="user-header">
-                        <div className="title mt-3">
-                            <h3>Table Users</h3>
-                        </div>
                         <div className="actions my-3">
-                            <button className="btn btn-success" onClick={() => handlRefresh()}> <i class="fa fa-refresh bd "></i>Refresh</button>
+                            <button className="btn btn-success" onClick={() => handlRefresh()}> <i class="fa fa-refresh bd "></i>Tạo mới</button>
                             <button className="btn btn-primary"
                                 onClick={() => {
                                     setIsShowModalUser(true);
                                     setActionModalUser("CREATE");
-                                }}><i class="fa fa-plus-square bd"></i>Add new Teacher</button>
+                                }}><i class="fa fa-plus-square bd"></i>Thêm mới sinh viên</button>
                         </div>
                     </div>
 
                     <div className="addnew-user">
-                        <h4 className="mt-3">Add New Student....</h4>
+                        <h4 className="mt-3">Tạo mới sinh viên</h4>
                         <div className='adding-role mt-2'>
                             <div className='title-role'></div>
                             <div className=' role-parent'>
                                 {Object.entries(listchild).map(([key, value], index) => {
                                     return (
 
-                                        <div className='row role-container role-child' key={`child-${key}`}>
-                                            <div className={`col-4 form-group ${key}`}>
-                                                NAME <input type='text' className={value.invalidname ? ' form-control' : ' form-control is-invalid'}
+                                        <div className="row role-container role-child align-items-center" key={`child-${key}`}>
+                                            <div className="col-12 col-md-3 form-group">
+                                                <label>Tên</label>
+                                                <input
+                                                    type="text"
+                                                    className={`form-control ${value.invalidname ? '' : 'is-invalid'}`}
                                                     value={value.name}
-                                                    onChange={(event) => { handleOnChange('name', event.target.value, key) }} />
+                                                    onChange={(event) => handleOnChange("name", event.target.value, key)}
+                                                />
                                             </div>
-                                            <div className='col-3 form-group'>
-                                                MSSV <input type='text' className={value.invalidmaSo ? ' form-control' : ' form-control is-invalid'}
+                                            <div className="col-12 col-md-3 form-group">
+                                                <label>MSSV</label>
+                                                <input
+                                                    type="text"
+                                                    className={`form-control ${value.invalidmaSo ? '' : 'is-invalid'}`}
                                                     value={value.maSo}
-                                                    onChange={(event) => { handleOnChange('maSo', event.target.value, key) }} />
-
+                                                    onChange={(event) => handleOnChange("maSo", event.target.value, key)}
+                                                />
                                             </div>
-                                            <div className='col-3 form-group'>
-                                                Password <input type='text' className={value.invalidpassword ? ' form-control' : ' form-control is-invalid'}
+                                            <div className="col-12 col-md-3 form-group">
+                                                <label>Mật khẩu</label>
+                                                <input
+                                                    type="text"
+                                                    className={`form-control ${value.invalidpassword ? '' : 'is-invalid'}`}
                                                     value={value.password}
-                                                    onChange={(event) => { handleOnChange('password', event.target.value, key) }} />
-
+                                                    onChange={(event) => handleOnChange("password", event.target.value, key)}
+                                                />
                                             </div>
-                                            <div className='col-2 mt-4 action'>
-                                                <i class=" fa fa-plus-square bd add" onClick={() => handleAddNewInput()}></i>
-                                                {index >= 1 && <i class="fa fa-trash delete" onClick={() => handleDelete(key)} ></i>}
+                                            <div className='col-2 mt-4 d-flex justify-content-between align-items-center action'>
+                                                <i class="fa fa-plus-square bd add" onClick={() => handleAddNewInput()}></i>
+                                                {index >= 1 && <i class="fa fa-trash delete" onClick={() => handleDelete(key)}></i>}
                                             </div>
                                         </div>
-
                                     )
                                 })
                                 }
                             </div>
                             <div className='row'>
                                 <div className='col-10'></div>
-                                <div className='col-2'>
-                                    <button onClick={() => handlSave()} className='btn btn-success mt-2 '>Save</button>
+                                <div className="col-12 col-md-6 d-flex justify-content-end">
+                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Save</button>
                                 </div>
 
+                            </div>
+                            <div className="title mt-3">
+                                <h3>Danh sách người dùng</h3>
                             </div>
 
                         </div>
@@ -260,12 +270,12 @@ const Users = (props) => {
                                 <tr>
                                     <th scope="col">No</th>
                                     <th scope="col">ID</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">PhoneNumber</th>
+                                    <th scope="col">Tên</th>
+                                    <th scope="col">Số điện thoại</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Ma So</th>
-                                    <th scope="col">Password</th>
-                                    <th >Action</th>
+                                    <th scope="col">Mã số</th>
+                                    <th scope="col">Mật khẩu</th>
+                                    <th ></th>
 
                                 </tr>
                             </thead>
@@ -284,9 +294,21 @@ const Users = (props) => {
                                                         <td>{item.maSo}</td>
 
                                                         <td>{item.Group ? item.Group.name : ''}</td>
-                                                         <td>
-                                                            <button className="btn but btn-warning mx-3" onClick={() => handleEditUser(item)}><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                                                            <button className="btn but btn-danger " onClick={() => handleDeleteUser(item)}><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                                        <td>
+                                                            <div className="actions">
+                                                                <button
+                                                                    className="btn btn-warning"
+                                                                    onClick={() => handleEditUser(item)}
+                                                                >
+                                                                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                                </button>
+                                                                <button
+                                                                    className="btn btn-danger"
+                                                                    onClick={() => handleDeleteUser(item)}
+                                                                >
+                                                                    <i className="fa fa-trash" aria-hidden="true"></i>
+                                                                </button>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 )
@@ -297,7 +319,7 @@ const Users = (props) => {
                                         :
                                         <>
                                             <tr>
-                                                <td>Not found user</td>
+                                                <td>Không tìm thấy người dùng nào</td>
                                             </tr>
                                         </>
                                 }

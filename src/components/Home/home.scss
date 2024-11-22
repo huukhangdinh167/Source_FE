@@ -1,0 +1,76 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+
+/* Card Container */
+.card {
+    border-radius: 12px;
+    /* Bo góc mềm mại */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    /* Hiệu ứng mượt */
+    border: 1px solid #e0e0e0;
+    /* Đường viền mặc định */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    /* Bóng đổ mặc định */
+}
+
+h3 {
+    color: #1d3557;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+/* Hiệu ứng Hover cho Card */
+.card:hover {
+    transform: translateY(-10px);
+    /* Nhẹ nhàng nâng lên */
+    border-color: rgba(69, 123, 157, 0.8);
+    /* Viền sáng màu xanh nhạt */
+    box-shadow: 0px 0px 20px 5px rgba(69, 123, 157, 0.5);
+    /* Viền sáng nhạt */
+}
+
+/* Nút Bấm trong Card */
+.card .btn-primary {
+    background-color: #1d3557;
+    /* Màu nền nút */
+    border: none;
+    /* Xóa viền */
+    font-weight: 600;
+    /* Đậm chữ */
+    padding: 10px 16px;
+    /* Khoảng cách trong nút */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    /* Hiệu ứng hover mượt */
+    border-radius: 5px;
+    /* Bo góc cho nút */
+}
+
+/* Hiệu ứng Hover cho Nút */
+.card .btn-primary:hover {
+    background-color: #457b9d;
+    /* Đổi màu nền khi hover */
+    transform: scale(1.05);
+    /* Phóng to nhẹ */
+    box-shadow: 0px 4px 10px rgba(69, 123, 157, 0.3);
+    /* Bóng đổ cho nút */
+}
+
+
+
+/* Tiêu Đề của Card */
+.card-title {
+    color: #1d3557;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+/* Văn Bản trong Card */
+.card-text {
+    color: #6c757d;
+    /* Màu xám nhẹ cho nội dung */
+    line-height: 1.6;
+}
