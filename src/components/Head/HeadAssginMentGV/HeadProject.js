@@ -19,14 +19,18 @@ const HeadAssignGV = (props) => {
     const [PB, setPB] = useState(defaultPB)
     useEffect(() => {
         studentss();
-    }, []);
-    useEffect(() => {
-        studentss();
-    }, [students]);
+    }, []); 
+
+
+    // Nếu có dòng này thì netword sẽ chạy hàm liên tục không ngừng nghĩ > nóng máy
+    // useEffect(() => {
+    //     studentss();
+    // }, [students]);
 
     useEffect(() => {
         setPB({ ...dataModal })
     }, [dataModal]);
+
     const studentss = async () => {
         let data = await test();
         setData(data.DT);
@@ -38,7 +42,7 @@ const HeadAssignGV = (props) => {
         setSelectedStudent(item); // Lưu sinh viên được chọn vào state
         setShowModal(true); // Hiển thị modal
         setDataModal(item)
-        console.log("Checkscscs", item)
+        // console.log("Checkscscs", item)
     };
 
     const handleCloseModal = async () => {
@@ -63,11 +67,11 @@ const HeadAssignGV = (props) => {
         let data = await AssignPB1and2({ PB, selectedStudent })
         if (data.EC === 0) {
             toast.success(data.EM)
-
+           
+            studentss()
         }
-        // console.log("PBBBB:", students);
-        //  swal("Success", "Assigned successfully!", "success"); // Hiển thị thông báo thành công
-        setShowModal(false); // Đóng modal
+        setShowModal(false); 
+        
     };
 
     const handleOnchange = (value, name) => {

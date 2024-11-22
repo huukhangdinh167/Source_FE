@@ -17,6 +17,7 @@ const Projects = (props) => {
 
     useEffect(() => {
         fetchProjects(user);
+      //  console.log("sex",listProjects)
     }, []);
 
 
@@ -123,14 +124,14 @@ const Projects = (props) => {
                         <table className="table table-bordered table-hover text-center">
                             <thead>
                                 <tr>
-                                    <th style={{ width: '50px' }}>ID</th>
-                                    <th style={{ width: '150px' }}>Name</th>
-                                    <th style={{ width: '250px' }}>Description</th>
-                                    <th style={{ width: '200px' }}>Require</th>
-                                    <th style={{ width: '200px' }}>Knowledge Skills</th>
-                                    <th style={{ width: '150px' }}>Instructor</th>
-                                    <th style={{ width: '150px' }}>Status</th>
-                                    <th style={{ width: '120px' }}>Actions</th>
+                                    <th style={{ width: '5%' }}>ID</th>
+                                    <th style={{ width: '10%' }}>Tên đề tài</th>
+                                    <th style={{ width: '20%' }}>Mô tả</th>
+                                    <th style={{ width: '20%' }}>Yêu cầu</th>
+                                    <th style={{ width: '15%' }}>Kiến thức</th>
+                                    <th style={{ width: '15%' }}>GVHD</th>
+                                    <th style={{ width: '10%' }}>Trạng thái</th>
+                                    <th style={{ width: '5%' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -166,7 +167,7 @@ const Projects = (props) => {
                                             })}
                                         </>
                                         :
-                                        <><tr><td>Not found any Projects</td></tr></>
+                                        <><tr><td colSpan={8}>Not found any Projects</td></tr></>
                                 }
                             </tbody>
                         </table>

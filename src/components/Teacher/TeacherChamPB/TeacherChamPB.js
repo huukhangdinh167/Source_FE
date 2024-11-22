@@ -22,13 +22,13 @@ const TeacherChamPB = (props) => {
     const [PB, setPB] = useState(defaultPB)
     useEffect(() => {
         studentss();
-
+       
         TeahcerPB()
     }, []);
 
-    useEffect(() => {
-        studentss();
-    }, [students]);
+    // useEffect(() => {
+    //     studentss();
+    // }, [students]);
 
     useEffect(() => {
         setPB({ ...dataModal })
@@ -39,9 +39,9 @@ const TeacherChamPB = (props) => {
         setData(data.DT);
         let list = await headFetchListTeacher()
         setListTeacher(list.DT)
-        //  console.log("Check test",)
+       //  console.log("Check test",data.DT)
     };
-
+   // console.log("Check test",students)
     const TeahcerPB = async () => {
         let data = await teacherPB(user)
         console.log("Check chấm pb", data)
@@ -59,6 +59,7 @@ const TeacherChamPB = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
+        console.log("Sex", students)
     };
 
     const handleConfirmAssign = async () => {
@@ -132,22 +133,22 @@ const TeacherChamPB = (props) => {
                                     <td>{item.Project.instuctor}</td>
                                     <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
                                     <td>
-                                        
-                                            {/* Hiển thị giáo viên PB1 */}
-                                            {listtecher && (
-                                                listtecher
-                                                    .filter(itemm => itemm.id == item.pb1 )
-                                                    .map((itemmm, index) => (
-                                                        <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
-                                                    ))
-                                            )}
-                                              {listtecher && (
-                                                listtecher
-                                                    .filter(itemm => itemm.id == item.pb2)
-                                                    .map((itemmm, index) => (
-                                                        <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
-                                                    ))
-                                            )}
+
+                                        {/* Hiển thị giáo viên PB1 */}
+                                        {listtecher && (
+                                            listtecher
+                                                .filter(itemm => itemm.id == item.pb1)
+                                                .map((itemmm, index) => (
+                                                    <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
+                                                ))
+                                        )}
+                                        {listtecher && (
+                                            listtecher
+                                                .filter(itemm => itemm.id == item.pb2)
+                                                .map((itemmm, index) => (
+                                                    <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
+                                                ))
+                                        )}
                                     </td>
                                     <td>
                                         {showButton && (
