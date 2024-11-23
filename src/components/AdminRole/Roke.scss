@@ -1,14 +1,81 @@
-.role-container{
-    .action{
-        i{
+.admin-table-role {
+    margin: 1rem 0;
+
+    .table {
+        border-collapse: collapse;
+        width: 100%;
+        background-color: #fff;
+
+        th,
+        td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        th {
+            background-color: #343a40;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+            /* Màu nền xen kẽ */
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            padding: 6px 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background-color: #c82333;
+                transform: scale(1.1);
+            }
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+
+        th,
+        td {
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        .action-btn {
+            font-size: 12px;
+            padding: 4px 8px;
+        }
+    }
+}
+
+.role-container {
+    .action {
+        i {
             font-size: 25px;
             margin-right: 13px;
             cursor: pointer;
-           
-        } .add{
+
+        }
+
+        .add {
             color: rgb(51, 154, 69);
         }
-        .delete{
+
+        .delete {
             color: #d51818;
         }
 

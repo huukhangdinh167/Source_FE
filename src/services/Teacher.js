@@ -4,9 +4,9 @@ const teacherPB = (user) => {
     return axios.put("/api/v1/teacher/getLichChamPB", { data: { maSo: user.maSo } })
 }
 
-const teacherGetDSHD = (user) => {
-    return axios.put("/api/v1/teacher/getDSHD", { data: { maSo: user.maSo } })
-}
+// const teacherGetDSHD = (user) => {
+//     return axios.put("/api/v1/teacher/getDSHD", {data : {maSo : user.maSo } })
+// }
 
 const teacherDGHD = (danhgia, data4table) => {
     return axios.put("/api/v1/teacher/DGHD", {
@@ -27,7 +27,11 @@ const teacherDGHD = (danhgia, data4table) => {
         }
     })
 }
-
+const teacherGetDSHD = (user) => {
+    return axios.put("/api/v1/teacher/getDSHD", {data : {maSo : user.maSo} })
+}
 export {
+
     teacherPB, teacherGetDSHD, teacherDGHD
+
 }

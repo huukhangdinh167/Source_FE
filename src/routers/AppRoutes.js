@@ -13,13 +13,22 @@ import Results from "../components/StudentRS/Results";
 import AdminUsers from '../components/AdminMangementUser/User';
 import AdminRole from "../components/AdminRole/AdminRole";
 
-import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole"; 
+import AdminAssignRole from "../components/AdminAssignRole/AdminAssignRole";
 import HeadProject from '../components/Head/HeadProject/Project'
 import HeadAssignRole from '../components/Head/HeadAssginMentRole/HeadAssginmentRole'
 import HeadAssignGV from '../components/Head/HeadAssginMentGV/HeadProject'
 import TeacherChamPB from '../components/Teacher/TeacherChamPB/TeacherChamPB'
 import Projects from "../components/TeacherProject/Projects";
 import TeacherChamHD from '../components/Teacher/TeacherChamHD/TeacherChamHD'
+<<<<<<< HEAD
+=======
+
+//home(trang chủ)
+import adminHome from "../components/Home/admin";
+import studentHome from "../components/Home/student";
+import teacherHome from "../components/Home/teacher";
+import headHome from "../components/Home/head";
+>>>>>>> huy
 
 const AppRoutes = () => {
 
@@ -44,6 +53,15 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/teacher-chamPB" component={TeacherChamPB} />
                 <PrivateRoutes path="/teacher/projects" component={Projects} />
                 <PrivateRoutes path="/teacher-chamHD" component={TeacherChamHD} />
+<<<<<<< HEAD
+=======
+
+                <PrivateRoutes path="/teacher-home" component={teacherHome} />
+                <PrivateRoutes path="/student-home" component={studentHome} />
+                <PrivateRoutes path="/head-home" component={headHome} />
+                <PrivateRoutes path="/admin-home" component={adminHome} />
+
+>>>>>>> huy
                 <Route path="/login">
                     <Login />
                 </Route>

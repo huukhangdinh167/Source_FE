@@ -3,7 +3,9 @@ import { Modal, Button } from "react-bootstrap"; // Import modal từ React Boot
 import swal from "sweetalert";
 import "./TeacherChamHD.scss";
 
+
 import { teacherGetDSHD, teacherDGHD } from "../../../services/Teacher";
+
 import _, { cloneDeep } from "lodash";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/userContext";
@@ -13,6 +15,7 @@ const TeacherChamHD = (props) => {
     const [DSHD, setDSHD] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [ModalUser, setModalUser] = useState(false);
+
     // const [showFinalEvaluation, setShowFinalEvaluation] = useState(false); // Hiển thị đánh giá cuối kỳ
     const [data4table, setData4table] = useState('')
     const [dataModal, setDataModal] = useState({})
@@ -29,14 +32,12 @@ const TeacherChamHD = (props) => {
         LOL7: '',
         LOL8: '',
         ghichu: ''
-
     }
     const [danhgia, setDanhGia] = useState(defaultdanhgia)
     //  const [danhgiaCk, setDanhGiaCk] = useState()
     useEffect(() => {
         studentss();
     }, []);
-
 
     // useEffect(() => {
     //     studentss();
@@ -61,6 +62,7 @@ const TeacherChamHD = (props) => {
         });
     }, [dataModal]);
 
+
     const studentss = async () => {
         let data = await teacherGetDSHD(user);
         setDSHD(data.DT);
@@ -68,6 +70,7 @@ const TeacherChamHD = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
+
         // setShowFinalEvaluation(false); // Reset hiển thị đánh giá cuối kỳ
         setTimeout(() => {
             setDanhGia(defaultdanhgia); // Sau 0.5 giây sẽ reset lại danh gia
@@ -152,6 +155,7 @@ const TeacherChamHD = (props) => {
             toast.error(reponse.EM)
         }
         //  console.log(danhgia)
+
     }
 
     return (
@@ -196,10 +200,11 @@ const TeacherChamHD = (props) => {
                                                 item.groupStudent
                                             )}
                                         </td>
-                                        <td>{item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
+                                       <td>{item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
                                         <td>{item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
                                             <p> {item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
                                         </td>
+
                                         <td>
                                             <button
                                                 onClick={() =>
@@ -251,10 +256,12 @@ const TeacherChamHD = (props) => {
                             <b>Đánh giá giữa kỳ</b>
                         </div>
                         <div className="DGGK col-sm-4">
+
                             <select value={danhgia.danhgiagiuaky} onChange={(event) => handleOnchange(event.target.value, 'danhgiagiuaky')} className="form-select">
                                 <option value={''}>---</option>
                                 <option className="text-primary" value={'true'}>Đạt</option>
                                 <option className="text-danger" value={'false'}>Không đạt</option>
+
                             </select>
                         </div>
                         <div className="col-sm-2"></div>
@@ -265,6 +272,7 @@ const TeacherChamHD = (props) => {
 
                     {/* Nút toggle "Đánh giá cuối kỳ" */}
                     <div className="row mt-3">
+
                         <div className="col-sm-1"></div>
                         <div className="col-sm-4">
                             <button
@@ -295,6 +303,7 @@ const TeacherChamHD = (props) => {
                                 <div className="col-sm-6"></div>
                                 <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn</i></div>
                                 <input value={danhgia.diemGVHD} onChange={(event) => handleOnchange(event.target.value, 'diemGVHD')} className="col-sm-2 " type="number" />
+
                             </div>
                             <div className="row mt-3">
                                 <div className="col-sm-12">
@@ -325,6 +334,7 @@ const TeacherChamHD = (props) => {
                                                     <td>{index + 1}</td>
                                                     <td>{criteria}</td>
                                                     <td>
+
                                                         <select value={danhgia[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
                                                             <option>----</option>
                                                             <option value={'1'}>1</option>
@@ -336,10 +346,12 @@ const TeacherChamHD = (props) => {
                                                 </tr>
                                             ))}
 
+
                                         </tbody>
                                     </table>
 
                                 </div>
+
 
                             </div>
                             <div className="row">
@@ -348,13 +360,16 @@ const TeacherChamHD = (props) => {
                         </>
 
 
+
                     )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseModal}>
                         Đóng
                     </Button>
+
                     <Button onClick={danhgiaHD} variant="primary">Xác nhận</Button>
+
                 </Modal.Footer>
             </Modal>
         </>

@@ -1,6 +1,76 @@
-.btnsave{
-  
-    width: 120px;
-    height: 40px;
-    
+.table-responsive {
+    overflow-x: auto;
+    /* Cuộn ngang khi không đủ không gian */
+}
+
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+    background-color: #fff;
+
+    th,
+    td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    th {
+        background-color: #343a40 !important;
+        /* Màu nền tiêu đề */
+        color: #fff;
+        /* Chữ trắng */
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+        /* Nền hàng xen kẽ */
+    }
+
+    tr:hover {
+        background-color: #e9ecef;
+        /* Nền khi hover */
+    }
+
+    .form-check-input {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+    }
+
+    .form-check-label {
+        font-size: 14px;
+        margin-left: 8px;
+    }
+
+    .btnsave {
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+
+    th,
+    td {
+        font-size: 12px;
+        /* Giảm kích thước chữ */
+        padding: 8px;
+    }
+
+    .btnsave {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
 }

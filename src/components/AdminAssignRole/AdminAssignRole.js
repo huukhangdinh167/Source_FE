@@ -101,13 +101,13 @@ const AdminAssignRole = () => {
         <div className='group-role-container'>
             <div className='container'>
                 <div className='container'>
-                    <h4>Group-Role</h4>
+                    <h4>Gán quyền vào người dùng</h4>
                     <div className='select-group'>
 
                         <div className="col-12 col-sm-6 form-group">
                             <label>Selec Group<span className="text-danger">*</span></label>
                             <select onChange={(event) => handleOnChangeGroup(event.target.value)} className={"form-select"}>
-                                <option className="text-danger" key='' value="" >Pleas select group.....</option>
+                                <option className="text-danger" key='' value="" >Vui lòng chọn nhóm người dùng</option>
                                 {userGroup.length > 0 &&
                                     userGroup.map((item, index) => {
                                         return (
@@ -121,61 +121,72 @@ const AdminAssignRole = () => {
                         </div>
                     </div>
                     <hr />
-                    <h4>Assigment Role</h4>
-                    <div className='row justify-content-center'>
-                        <div className='col-sm-7'>
-                            <table className='table  table-hover text-center'>
-                                <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col" style={{ width: "40%" }}>Role</th>
-                                        <th scope="col">Description</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {selectGroup && (
-                                        <>
-                                            {assigmentRoleByGroup && assigmentRoleByGroup.length > 0 ? (
-                                                assigmentRoleByGroup.map((item, index) => (
-                                                    <tr key={`list-role-${index}`}>
-                                                        <td>
-                                                            <div className="form-check d-flex  align-items-center">
-                                                                <input
-                                                                    className="form-check-input"
-                                                                    type="checkbox"
-                                                                    value={item.id}
-                                                                    id={`list-role${index}`}
-                                                                    checked={item.isAssigned}
-                                                                    onChange={(event) => handleSelectRole(event.target.value)}
-                                                                /> 
-                                                                <label
-                                                                    className="form-check-label ml-2"
-                                                                    htmlFor={`list-role${index}`}
-                                                                >
-                                                                    {item.url}
-                                                                </label>
-                                                            </div>
+                    <h4>Gán quyền</h4>
+                    <div className="row justify-content-center">
+                        <div className="col-sm-7">
+                            <div className="table-responsive">
+                                <table className="table table-bordered table-hover text-center">
+                                    <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col" style={{ width: "40%" }}>Các quyền</th>
+                                            <th scope="col">Mô tả</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {selectGroup ? (
+                                            <>
+                                                {assigmentRoleByGroup && assigmentRoleByGroup.length > 0 ? (
+                                                    assigmentRoleByGroup.map((item, index) => (
+                                                        <tr key={`list-role-${index}`}>
+                                                            <td>
+                                                                <div className="form-check d-flex align-items-center">
+                                                                    <input
+                                                                        className="form-check-input"
+                                                                        type="checkbox"
+                                                                        value={item.id}
+                                                                        id={`list-role${index}`}
+                                                                        checked={item.isAssigned}
+                                                                        onChange={(event) => handleSelectRole(event.target.value)}
+                                                                    />
+                                                                    <label
+                                                                        className="form-check-label ml-2"
+                                                                        htmlFor={`list-role${index}`}
+                                                                    >
+                                                                        {item.url}
+                                                                    </label>
+                                                                </div>
+                                                            </td>
+                                                            <td>{item.description}</td>
+                                                        </tr>
+                                                    ))
+                                                ) : (
+                                                    <tr>
+                                                        <td colSpan="2" className="text-center text-muted">
+                                                            Nhóm này chưa được phân quyền
                                                         </td>
-                                                        <td>{item.description}</td>
                                                     </tr>
-                                                ))
-                                            ) : (
+                                                )}
                                                 <tr>
-                                                    <td colSpan="2" className="text-center text-muted">
-                                                        No roles assigned to this group.
+                                                    <td colSpan="2" className="text-right">
+                                                        <button
+                                                            className="btn btn-success btn-sm btnsave mt-3"
+                                                            onClick={handleSave}
+                                                        >
+                                                            Lưu
+                                                        </button>
                                                     </td>
                                                 </tr>
-                                            )}
+                                            </>
+                                        ) : (
                                             <tr>
-                                                <td colSpan="2" className="text-right">
-                                                    <button className="btn btn-success btn-sm btnsave mt-3" onClick={handleSave}>
-                                                        Save Changes
-                                                    </button>
+                                                <td colSpan="2" className="text-center text-muted">
+                                                    Vui lòng chọn nhóm người dùng
                                                 </td>
                                             </tr>
-                                        </>
-                                    )}
-                                </tbody>
-                            </table>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
 

@@ -59,7 +59,9 @@ const TeacherChamPB = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
+
         console.log("Sex", students)
+
     };
 
     const handleConfirmAssign = async () => {
@@ -162,7 +164,7 @@ const TeacherChamPB = (props) => {
                             );
                         }) : <tr>
 
-                            <td colSpan={11}><i>Chưa được phân chấm phản biện</i></td>
+                            <td colSpan={10}><i>Chưa được phân chấm phản biện</i></td>
                         </tr>}
                     </tbody>
                 </table>

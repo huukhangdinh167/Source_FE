@@ -38,7 +38,7 @@ const ModalUser = (props) => {
             return true;
         setValidInputs(validInputsDefault);
         // console.log("check user data", userData)
-        let arr = ['maSo','password','name', 'group']
+        let arr = ['maSo', 'password', 'name', 'group']
         let check = true;
         for (let i = 0; i < arr.length; i++) {
             if (!userData[arr[i]]) {
@@ -54,15 +54,15 @@ const ModalUser = (props) => {
 
     }
     const handleConfirmUser = async () => {
-       let check = checkValidateInputs();
+        let check = checkValidateInputs();
         if (check === true) {
             let res = action === "CREATE" ?
                 await admincreateNewTeacher({ ...userData, groupId: userData['group'] })
-               
+
                 : await adminupdateNewUser({ ...userData, groupId: userData['group'] })
                 ;
-          
-          
+
+
             if (res && res.EC === 0) {
                 props.onHide()
                 setUserData({ ...deFaultUserData, group: userGroup[0].id })
@@ -75,7 +75,7 @@ const ModalUser = (props) => {
                 toast.error(res.EM);
                 let _validInputs = _.cloneDeep(validInputsDefault);
                 _validInputs[res.DT] = false
-               setValidInputs(_validInputs)
+                setValidInputs(_validInputs)
             }
         }
     }
@@ -90,7 +90,7 @@ const ModalUser = (props) => {
     useEffect(() => {
         getGroup()
     }, [])
-   
+
     useEffect(() => {
         if (action === "UPDATE") {
             // console.log("Check data modal user", dataModalUser)
@@ -128,27 +128,27 @@ const ModalUser = (props) => {
             <Modal size="lg" show={props.show} className="modal-user">
                 <Modal.Header closeButton onClick={() => { handleCloseModalUser() }}>
                     <Modal.Title id="contained-modal-title-vcenter">
-                        {action === "CREATE" ? "Create Teacher" : "Edit user"}
+                        {action === "CREATE" ? "Tạo mới giảng viên" : "Cập nhật người dùng"}
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="content-body row">
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Email address:</label>
+                            <label>Email :</label>
                             <input className={validInputs.email ? "form-control" : "form-control is-invalid"} type="email" value={userData.email}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "email")}
                             />
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Phone number:</label>
+                            <label>Số điện thoại :</label>
                             <input className={validInputs.phoneNumber ? "form-control" : "form-control is-invalid"} type="text" value={userData.phoneNumber}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "phoneNumber")}
                             />
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Ma So(<span className="text-danger">*</span>)</label>
+                            <label>Mã số giảng viên(<span className="text-danger">*</span>)</label>
                             <input disabled={action === "CREATE" ? false : true} className={validInputs.maSo ? "form-control" : "form-control is-invalid"} type="email" value={userData.maSo}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "maSo")}
                             />
@@ -157,7 +157,7 @@ const ModalUser = (props) => {
                         <div className="col-12 col-sm-6 form-group">
 
 
-                            <label> Password(<span className="text-danger">*</span>) </label>
+                            <label> Mật khẩu(<span className="text-danger">*</span>) </label>
                             <input className={validInputs.password ? "form-control" : "form-control is-invalid"} type="email" value={userData.password}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "password")}
                             />
@@ -167,7 +167,7 @@ const ModalUser = (props) => {
 
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label> Name (<span className="text-danger">*</span>)</label>
+                            <label> Tên (<span className="text-danger">*</span>)</label>
                             <input className={validInputs.name ? "form-control" : "form-control is-invalid"} value={userData.name}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "name")}
                             />
@@ -176,9 +176,9 @@ const ModalUser = (props) => {
                             {/* <input className="form-control" type="text" /> */}
                         </div>
 
-                     
+
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Group</label>
+                            <label>Nhóm người dùng</label>
                             <select disabled={action === "CREATE" ? false : true} className={validInputs.group ? "form-select" : "form-select is-invalid"}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "group")}
                                 value={userData.group}
@@ -191,17 +191,17 @@ const ModalUser = (props) => {
                                                 <option key={`group-${index}`} value={item.id}>{item.name}</option>
                                             );
                                         })
-                                        :
-                                      
-                                            userGroup.map((item, index) => {
-                                                return (
-                                                    <option key={`group-${index}`} value={item.id} >{item.name}</option>
-                                                )
-                                            }) 
-                                        
-                                        
+                                    :
+
+                                    userGroup.map((item, index) => {
+                                        return (
+                                            <option key={`group-${index}`} value={item.id} >{item.name}</option>
+                                        )
+                                    })
+
+
                                 }
-                               
+
 
 
                             </select>
@@ -210,8 +210,8 @@ const ModalUser = (props) => {
                     </div>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={() => handleCloseModalUser()}>Close</Button>
-                    <Button variant="primary" onClick={() => handleConfirmUser()}>{action === 'CREATE' ? 'CREATE' : 'UPDATE'}</Button>
+                    <Button variant="secondary" onClick={() => handleCloseModalUser()}>Đóng</Button>
+                    <Button variant="primary" onClick={() => handleConfirmUser()}>{action === 'CREATE' ? 'Tạo mới' : 'Lưu'}</Button>
                 </Modal.Footer>
             </Modal>
         </>

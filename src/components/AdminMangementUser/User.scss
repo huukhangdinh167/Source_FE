@@ -1,24 +1,281 @@
-.manage-users-container{
-    .bd{
-        padding-right: 5px;
-    } 
-    button{
-        margin-right: 8px;
+.user-body {
+    overflow-x: auto;
+    /* Cho phép cuộn ngang */
+    margin-top: 20px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    /* Hiệu ứng đổ bóng tinh tế */
+}
+
+.user-body table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Gộp viền */
+    font-size: 16px;
+    color: #333;
+    /* Màu chữ chính */
+    text-align: left;
+    background-color: white;
+    min-width: 600px;
+    /* Đặt độ rộng tối thiểu */
+}
+
+
+.user-body table th {
+    background-color: #343a40;
+    /* Nền xanh đậm */
+    color: #f1faee;
+    /* Chữ trắng */
+    font-weight: bold;
+    text-transform: uppercase;
+    /* Chữ in hoa */
+    padding: 15px 10px;
+    border-bottom: 2px solid #dee2e6;
+    /* Đường viền dưới */
+}
+
+.user-body table td {
+    padding: 12px 10px;
+    /* Thêm khoảng cách giữa các ô */
+    border-bottom: 1px solid #dee2e6;
+    /* Đường viền dưới tinh tế */
+    vertical-align: middle;
+    /* Căn giữa nội dung theo chiều dọc */
+}
+
+.user-body table tr:hover {
+    background-color: #f8f9fa;
+    /* Hiệu ứng hover nhẹ */
+    transition: background-color 0.2s ease-in-out;
+}
+
+.user-body table tr:nth-child(even) {
+    background-color: #f9f9f9;
+    /* Nền hàng chẵn */
+}
+
+.user-body table tr:nth-child(odd) {
+    background-color: #ffffff;
+    /* Nền hàng lẻ */
+}
+
+.user-body table .btn {
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.user-body table .btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+.user-body table .btn-warning:hover {
+    background-color: #e0a800;
+    transform: scale(1.05);
+    /* Phóng to nhẹ */
+}
+
+.user-body table .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.user-body table .btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+    /* Phóng to nhẹ */
+}
+
+.user-body table td .actions {
+    display: flex;
+    /* Hiển thị nút theo dạng khối */
+    flex-direction: column;
+    /* Xếp nút theo chiều dọc */
+    justify-content: center;
+    /* Căn giữa theo chiều dọc */
+    align-items: center;
+    /* Căn giữa theo chiều ngang */
+    gap: 10px;
+    /* Khoảng cách giữa các nút */
+}
+
+@media screen and (max-width: 576px) {
+    .manage-users-container {
+        overflow-x: auto;
+        /* Thêm cuộn ngang nếu bảng lớn */
     }
-} 
-.role-container{
-    .action{
-        i{
-            font-size: 32px;
-            margin-right: 13px;
-            cursor: pointer;
-           
-        } .add{
-            color: rgb(6, 175, 133);
-        }
-        .delete{
-            color: #d51818;
+
+    .table {
+        font-size: 12px;
+        /* Giảm kích thước chữ trong bảng */
+    }
+
+    .actions button {
+        padding: 5px;
+        /* Thu nhỏ nút */
+        font-size: 10px;
+        /* Giảm kích thước chữ trong nút */
+    }
+
+    .role-container {
+        flex-wrap: wrap;
+        /* Đưa các phần tử xuống dòng khi không đủ không gian */
+    }
+
+    .col-4,
+    .col-3,
+    .col-2 {
+        flex: 0 0 100%;
+        /* Cho mỗi cột chiếm 100% chiều rộng */
+        max-width: 100%;
+        /* Điều chỉnh độ rộng tối đa */
+        margin-bottom: 10px;
+        /* Thêm khoảng cách giữa các hàng */
+    }
+
+    .pagination {
+        flex-wrap: wrap;
+        /* Phân trang xuống dòng khi không đủ chỗ */
+        justify-content: center;
+        /* Canh giữa pagination */
+    }
+}
+
+button.btn-success:focus,
+button.btn-primary:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+button.btn-success {
+    background: linear-gradient(135deg, #4caf50, #43a047) !important;
+
+    /* Gradient màu xanh lá */
+    &:hover {
+        background: linear-gradient(135deg, #43a047, #388e3c) !important;
+        /* Đổi màu khi hover */
+    }
+}
+
+button.btn-primary {
+    background: linear-gradient(135deg, #1976d2, #1565c0);
+
+    /* Gradient màu xanh dương */
+    &:hover {
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        /* Đổi màu khi hover */
+    }
+}
+
+// button.btn-success {
+//     background: linear-gradient(135deg, #4caf50, #43a047);
+
+//     /* Gradient màu xanh lá */
+//     &:hover {
+//         background: linear-gradient(135deg, #43a047, #388e3c);
+//         /* Đổi màu khi hover */
+//     }
+// }
+
+@media screen and (max-width: 576px) {
+    button {
+        font-size: 14px;
+        /* Giảm kích thước chữ */
+        padding: 8px 15px;
+        /* Giảm khoảng cách */
+    }
+
+    i {
+        font-size: 16px;
+        /* Thu nhỏ icon */
+    }
+}
+
+//student
+.role-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+
+    .form-group {
+        flex: 1 1 calc(25% - 1rem);
+        /* Mỗi input chiếm 1/4 chiều rộng */
+        max-width: calc(25% - 1rem);
+        margin-right: 1rem;
+
+        @media screen and (max-width: 768px) {
+            flex: 1 1 100%;
+            /* Khi màn hình nhỏ, input chiếm 100% */
+            max-width: 100%;
         }
 
+        label {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+
+            &:focus {
+                border-color: #43a047;
+                outline: none;
+                box-shadow: 0 0 5px rgba(67, 160, 71, 0.5);
+            }
+        }
+    }
+
+    .fa-plus-square,
+    .fa-trash {
+        font-size: 20px;
+        cursor: pointer;
+        margin: 0 5px;
+    }
+
+    .fa-plus-square {
+        color: #4caf50;
+    }
+
+    .fa-trash {
+        color: white;
+    }
+
+    @media screen and (max-width: 576px) {
+        .form-group {
+            flex: 1 1 100%;
+            /* Input xuống hàng khi màn hình nhỏ */
+            max-width: 100%;
+        }
+
+        .fa-plus-square,
+        .fa-trash {
+            font-size: 18px;
+        }
+
+        .role-container {
+            flex-direction: column;
+            /* Sắp xếp dọc khi thu nhỏ */
+        }
+    }
+}
+
+//--button
+@media screen and (max-width: 768px) {
+
+    .add-btn,
+    .delete-btn {
+        width: 100%;
+        /* Khi màn hình nhỏ, nút chiếm 100% chiều rộng */
+        margin: 5px 0;
+        /* Thêm khoảng cách */
     }
 }

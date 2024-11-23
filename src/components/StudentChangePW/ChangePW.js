@@ -1,5 +1,5 @@
-
-import React, { useEffect, useState, useContext } from 'react';
+import styles from './changepassword.module.scss'; // Import CSS Modules
+import React, { useEffect, useState, useContext, useRef } from 'react';
 import { UserContext } from '../../context/userContext';
 import { toast } from 'react-toastify';
 import { changePassWord } from '../../services/studentService'
@@ -9,12 +9,13 @@ const ChangePW = () => {
         isvalidValuePassword: true,
         isvalidValueRePassword: true,
         isvalidValueRe2Password: true
-    } 
-    console.log("user",user)
+    }
+    console.log("user", user)
     const [ObjValidInput, setObjValidInput] = useState(defautObjValidInput)
     const [password, setpassword] = useState()
     const [rePassword, setRePassword] = useState()
     const [re2Password, setRe2Password] = useState()
+    const passwordInputRef = useRef(null);
     const handleChangePassword = async () => {
         setObjValidInput(defautObjValidInput)
         if (!password) {
@@ -48,56 +49,58 @@ const ChangePW = () => {
             toast.error(reponse.EM)
         }
     }
+
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        handleChangePassword();
+    };
     return (
-        <div className="container">
-            <div className="row mt-5 text-center">
-                <div className="col-sm-4">
 
+        <div className={styles['login-container']}>
+            <h2>Đổi mật khẩu</h2>
+            <form onSubmit={handleSubmit}>
+                <div className={styles['form-group']}>
+                    <label>Nhập mật khẩu hiện tại của bạn:</label>
+                    <input
+                        type="password"
+                        placeholder="Nhập mật khẩu hiện tại của bạn"
+                        value={password}
+                        onChange={(event) => setpassword(event.target.value)}
+                        ref={passwordInputRef}
+                        className={ObjValidInput.isvalidValuePassword
+                            ? styles['form-control']
+                            : `${styles['form-control']} ${styles['is-invalid']}`}
+                    />
                 </div>
-                <div className="col-sm-5">
-                    <h4>Change password</h4>
-                    <table class="table mt-4">
-
-                        <tbody>
-                            <tr>
-                                <td ></td>
-                                <td></td>
-
-                            </tr>
-                            <tr>
-                                <td ><i>Nhập vào mật khẩu hiện tại</i></td>
-                                <td><input type="password" value={password} onChange={(event) => setpassword(event.target.value)}
-                                    className={ObjValidInput.isvalidValuePassword ? 'form-control  mb-3' : 'form-control  mb-3 is-invalid'}
-                                /></td>
-
-                            </tr>
-                            <tr>
-                                <td ><i>Nhập mật khẩu muốn thay đổi</i></td>
-                                <td><input type="password" value={rePassword} onChange={(event) => setRePassword(event.target.value)}
-                                    className={ObjValidInput.isvalidValueRePassword ? 'form-control  ' : 'form-control  is-invalid'}
-                                /></td>
-
-                            </tr>
-                            <tr>
-                                <td ><i>Nhập lại khẩu muốn thay đổi</i></td>
-                                <td><input type="password" value={re2Password} onChange={(event) => setRe2Password(event.target.value)}
-                                    className={ObjValidInput.isvalidValueRe2Password ? 'form-control  ' : 'form-control  is-invalid'}
-                                /></td>
-
-                            </tr>
-                            <tr>
-                                <td ></td>
-                                <td><div onClick={() => handleChangePassword()} className="btn btn-success">Change</div></td>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
+                <div className={styles['form-group']}>
+                    <label>Mật khẩu mới:</label>
+                    <input
+                        type="password"
+                        placeholder="Nhập mật khẩu mới"
+                        value={rePassword}
+                        onChange={(event) => setRePassword(event.target.value)}
+                        ref={passwordInputRef}
+                        className={ObjValidInput.isvalidValueRePassword
+                            ? styles['form-control']
+                            : `${styles['form-control']} ${styles['is-invalid']}`}
+                    />
                 </div>
-                <div className="col-sm-3">
-
+                <div className={styles['form-group']}>
+                    <label>Mật lại mật khẩu mới:</label>
+                    <input
+                        type="password"
+                        placeholder="Nhập mật khẩu mới"
+                        value={re2Password}
+                        onChange={(event) => setRe2Password(event.target.value)}
+                        ref={passwordInputRef}
+                        className={ObjValidInput.isvalidValueRe2Password
+                            ? styles['form-control']
+                            : `${styles['form-control']} ${styles['is-invalid']}`}
+                    />
                 </div>
-            </div>
+                <button className={`${styles.btn} ${styles['btn-primary']} ${styles['btn-lg']}`}
+                >Lưu thay đổi</button>
+            </form>
         </div>
     )
 }
