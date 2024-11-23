@@ -70,7 +70,6 @@ const TeacherChamHD = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-
         // setShowFinalEvaluation(false); // Reset hiển thị đánh giá cuối kỳ
         setTimeout(() => {
             setDanhGia(defaultdanhgia); // Sau 0.5 giây sẽ reset lại danh gia
@@ -224,7 +223,7 @@ const TeacherChamHD = (props) => {
                             })
                         ) : (
                             <tr>
-                                <td colSpan={11}>
+                                <td colSpan={9}>
                                     <i>Danh sách trống</i>
                                 </td>
                             </tr>
