@@ -172,7 +172,7 @@ const AdminAssignRole = () => {
                                                             className="btn btn-success btn-sm btnsave mt-3"
                                                             onClick={handleSave}
                                                         >
-                                                            Lưu những thay đổi
+                                                            Lưu
                                                         </button>
                                                     </td>
                                                 </tr>

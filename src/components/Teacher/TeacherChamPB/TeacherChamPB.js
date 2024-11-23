@@ -132,22 +132,22 @@ const TeacherChamPB = (props) => {
                                     <td>{item.Project.instuctor}</td>
                                     <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
                                     <td>
-                                        
-                                            {/* Hiển thị giáo viên PB1 */}
-                                            {listtecher && (
-                                                listtecher
-                                                    .filter(itemm => itemm.id == item.pb1 )
-                                                    .map((itemmm, index) => (
-                                                        <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
-                                                    ))
-                                            )}
-                                              {listtecher && (
-                                                listtecher
-                                                    .filter(itemm => itemm.id == item.pb2)
-                                                    .map((itemmm, index) => (
-                                                        <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
-                                                    ))
-                                            )}
+
+                                        {/* Hiển thị giáo viên PB1 */}
+                                        {listtecher && (
+                                            listtecher
+                                                .filter(itemm => itemm.id == item.pb1)
+                                                .map((itemmm, index) => (
+                                                    <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
+                                                ))
+                                        )}
+                                        {listtecher && (
+                                            listtecher
+                                                .filter(itemm => itemm.id == item.pb2)
+                                                .map((itemmm, index) => (
+                                                    <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
+                                                ))
+                                        )}
                                     </td>
                                     <td>
                                         {showButton && (
@@ -161,7 +161,7 @@ const TeacherChamPB = (props) => {
                             );
                         }) : <tr>
 
-                            <td colSpan={11}><i>Chưa được phân chấm phản biện</i></td>
+                            <td colSpan={10}><i>Chưa được phân chấm phản biện</i></td>
                         </tr>}
                     </tbody>
                 </table>

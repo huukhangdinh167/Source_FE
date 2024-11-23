@@ -43,7 +43,7 @@ const HeadAssignGV = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-        setPB({...defaultPB })
+        setPB({ ...defaultPB })
 
     };
 
@@ -88,7 +88,7 @@ const HeadAssignGV = (props) => {
                             <th>Tên</th>
                             <th>Tên Đề Tài</th>
                             <th>GVHD</th>
-                            <th>Nhó</th>
+                            <th>Nhóm</th>
                             <th>GV Phản Biện</th>
                             <th>Phân công</th>
                             <th style={{ width: "7%" }}>Bộ môn</th>
@@ -116,14 +116,14 @@ const HeadAssignGV = (props) => {
                                         {/* Hiển thị giáo viên PB1 */}
                                         {listtecher && (
                                             listtecher
-                                                .filter(itemm => itemm.id == item.pb1 )
+                                                .filter(itemm => itemm.id == item.pb1)
                                                 .map((itemmm, index) => (
                                                     <p key={`pb1-${index}`}>{itemmm.name}</p>
                                                 ))
                                         )}
-                                         {listtecher && (
+                                        {listtecher && (
                                             listtecher
-                                                .filter(itemm =>itemm.id == item.pb2)
+                                                .filter(itemm => itemm.id == item.pb2)
                                                 .map((itemmm, index) => (
                                                     <p key={`pb1-${index}`}>{itemmm.name}</p>
                                                 ))
@@ -183,7 +183,7 @@ const HeadAssignGV = (props) => {
                                 <div className="col-sm-6">
 
                                     {
-                                      PB.pb1 && PB.pb1 !== '' &&
+                                        PB.pb1 && PB.pb1 !== '' &&
                                         <>
                                             Pb2:
                                             <select value={PB.pb2} onChange={(event) => handleOnchange(event.target.value, 'pb2')}>
@@ -207,7 +207,7 @@ const HeadAssignGV = (props) => {
                                                         })
                                                 }
                                             </select>
-                                        </> 
+                                        </>
                                     }
 
                                 </div>

@@ -90,9 +90,9 @@ const Projects = (props) => {
         setIsShowModalDelete(true);
 
     }
-    const handleXemLyDo = (reasonrefuse)=>{
-        swal ( " Lý do ! " ,  reasonrefuse )  ;
-       // alert(reasonrefuse)
+    const handleXemLyDo = (reasonrefuse) => {
+        swal(" Lý do ! ", reasonrefuse);
+        // alert(reasonrefuse)
     }
 
 
@@ -123,14 +123,14 @@ const Projects = (props) => {
                         <table className="table table-bordered table-hover text-center">
                             <thead>
                                 <tr>
-                                    <th style={{ width: '50px' }}>ID</th>
-                                    <th style={{ width: '150px' }}>Name</th>
-                                    <th style={{ width: '250px' }}>Description</th>
-                                    <th style={{ width: '200px' }}>Require</th>
-                                    <th style={{ width: '200px' }}>Knowledge Skills</th>
-                                    <th style={{ width: '150px' }}>Instructor</th>
-                                    <th style={{ width: '150px' }}>Status</th>
-                                    <th style={{ width: '120px' }}>Actions</th>
+                                    <th style={{ width: '5%' }}>ID</th>
+                                    <th style={{ width: '10%' }}>Tên đề tài</th>
+                                    <th style={{ width: '20%' }}>Mô tả</th>
+                                    <th style={{ width: '20%' }}>Yêu cầu</th>
+                                    <th style={{ width: '15%' }}>Kiến thức</th>
+                                    <th style={{ width: '15%' }}>GVHD</th>
+                                    <th style={{ width: '10%' }}>Trạng thái</th>
+                                    <th style={{ width: '7%' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -147,7 +147,7 @@ const Projects = (props) => {
                                                         <td style={{ width: '300px' }}>{item.require}</td>
                                                         <td style={{ width: '300px' }}>{item.knowledgeSkills}</td>
                                                         <td style={{ width: '300px' }}>{item.instuctor}</td>
-                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? <p className="text-danger">Chờ duyệt</p> : (+item.status === 2 ? <><b> <p className="text-danger ">Từ Chối duyệt</p></b>  <div onClick={()=> handleXemLyDo(item.reasonrefuse)} className="text-danger reasonrefuse">(Xem lý do)</div> </>  :  <p className="text-primary">Đã duyệt (ok)</p>)}</td>
+                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? <p className="text-danger">Chờ duyệt</p> : (+item.status === 2 ? <><b> <p className="text-danger ">Từ Chối duyệt</p></b>  <div onClick={() => handleXemLyDo(item.reasonrefuse)} className="text-danger reasonrefuse">(Xem lý do)</div> </> : <p className="text-primary">Đã duyệt (ok)</p>)}</td>
                                                         <td style={{ width: '150px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                                                             <button className="btn btn-warning btn-sm mx-1"
                                                                 onClick={() => handleEditProject(item)}
