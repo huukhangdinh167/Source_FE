@@ -41,7 +41,12 @@ const huyDangKiProject =(user, lisProjectRegister)=>{
     return axios.put("/api/v1/student/huydangki", { data: {id: user.maSo,  projectId: lisProjectRegister.id }  })
 }
 
+const getResults =(user)=>{ 
+   
+    return axios.put("/api/v1/student/results", { data: {maSo: user.maSo }  })
+}
+
 export {
     fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,
-    fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup,changePassWord,updateInFor
+    fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup,changePassWord,updateInFor,getResults
 }

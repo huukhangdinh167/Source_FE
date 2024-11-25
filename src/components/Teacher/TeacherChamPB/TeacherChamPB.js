@@ -123,7 +123,7 @@ const TeacherChamPB = (props) => {
                 LOL7: item.Criteriapb?.LOL7,
                 LOL8: item.Criteriapb?.LOL8,
                 ghichu: item.Criteriapb?.ghichu,
-                diemSV1: item.Result?.diemGVPB1 || item.Result?.diemGVPB2
+                diemSV1: item.Result?.diemGVPB1 
             })
             let data = await teacherXemKetQuaPBSV2(item.groupStudent)
             if (data.EC == 0) {
@@ -138,7 +138,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1].Criteriapb?.LOL6,
                     LOL7: res[1].Criteriapb?.LOL7,
                     LOL8: res[1].Criteriapb?.LOL8,
-                    diemSV2: res[1].Result?.diemGVPB1 || res[1].Result?.diemGVPB2
+                    diemSV2: res[1].Result?.diemGVPB1 
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -158,7 +158,7 @@ const TeacherChamPB = (props) => {
                 LOL7: item.Criteriapb?.LOL7PB2,
                 LOL8: item.Criteriapb?.LOL8PB2,
                 ghichu: item.Criteriapb?.ghichu,
-                diemSV1: item.Result?.diemGVPB1 || item.Result?.diemGVPB2
+                diemSV1:  item.Result?.diemGVPB2
             })
             let data = await teacherXemKetQuaPBSV2(item.groupStudent)
             if (data.EC == 0) {
@@ -174,7 +174,7 @@ const TeacherChamPB = (props) => {
                     LOL7: res[1].Criteriapb?.LOL7PB2,
                     LOL8: res[1].Criteriapb?.LOL8PB2,
                     //  ghichu: res[1].Criteriapb?.ghichu,
-                    diemSV2: res[1].Result?.diemGVPB1 || res[1].Result?.diemGVPB2
+                    diemSV2:  res[1].Result?.diemGVPB2
                 })
                 console.log("datamodaaal", res)
             } else {

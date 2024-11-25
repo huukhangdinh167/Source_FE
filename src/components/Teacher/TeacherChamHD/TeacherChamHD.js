@@ -77,10 +77,10 @@ const TeacherChamHD = (props) => {
     };
 
     const handleChamHD = async (item) => {
-         setShowModal(true);
-         setModalUser(item);
-         setData4table(item)
-         setDataModal({
+        setShowModal(true);
+        setModalUser(item);
+        setData4table(item)
+        setDataModal({
             ...item, danhgiagiuaky: dataModal.Result?.danhgiagiuaky,
             danhgiacuoiky: dataModal.Result?.danhgiacuoiky,
             LOL1: dataModal.Criterion?.LOL1,
@@ -199,9 +199,9 @@ const TeacherChamHD = (props) => {
                                                 item.groupStudent
                                             )}
                                         </td>
-                                       <td>{item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
-                                        <td>{item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
-                                            <p> {item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
+                                        <td>{item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
+                                        <td>{item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
+                                            <p> {item.Result && item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
                                         </td>
 
                                         <td>
@@ -355,7 +355,8 @@ const TeacherChamHD = (props) => {
                             </div>
                             <div className="row">
                                 <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                                <textarea value={danhgia.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea></div>
+                                <textarea value={danhgia.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                            </div>
                         </>
 
 
