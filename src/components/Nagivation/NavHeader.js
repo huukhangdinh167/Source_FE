@@ -98,7 +98,7 @@ const NavHeader = (props) => {
                                 </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
                                     <NavLink className="nav-link" to="/head-home" >Trang chủ</NavLink>
                                     <NavLink className="nav-link" to="/head-project" exact >Đề tài</NavLink>
-                                    <NavLink className="nav-link" to="/s">Thống kê </NavLink>
+                                    <NavLink className="nav-link" to="/headKetQuaCham">Kết quả chấm </NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentrol">Phân quyền</NavLink>
                                 </Nav>

@@ -21,14 +21,8 @@ const HeadAssignGV = (props) => {
         studentss();
     }, []); 
 
-
-    // Nếu có dòng này thì netword sẽ chạy hàm liên tục không ngừng nghĩ > nóng máy
-    // useEffect(() => {
-    //     studentss();
-    // }, [students]);
-
     useEffect(() => {
-        setPB({ ...dataModal })
+        setPB(dataModal)
     }, [dataModal]);
 
     const studentss = async () => {
@@ -42,13 +36,12 @@ const HeadAssignGV = (props) => {
         setSelectedStudent(item); // Lưu sinh viên được chọn vào state
         setShowModal(true); // Hiển thị modal
         setDataModal(item)
-        // console.log("Checkscscs", item)
+       
     };
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-        setPB({ ...defaultPB })
-
+      //  setPB({ ...defaultPB })
     };
 
     const handleConfirmAssign = async () => {
@@ -111,7 +104,7 @@ const HeadAssignGV = (props) => {
 
                             return (
                                 <tr key={`student-${index}`}>
-                                    <td>{item.maSo}</td>
+                                    <td>{item.id}</td>
                                     <td>{item.name}</td>
                                     <td>{item.Project.name}</td>
                                     <td>{item.Project.instuctor}</td>

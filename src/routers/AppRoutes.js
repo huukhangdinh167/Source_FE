@@ -20,7 +20,7 @@ import HeadAssignGV from '../components/Head/HeadAssginMentGV/HeadProject'
 import TeacherChamPB from '../components/Teacher/TeacherChamPB/TeacherChamPB'
 import Projects from "../components/TeacherProject/Projects";
 import TeacherChamHD from '../components/Teacher/TeacherChamHD/TeacherChamHD'
-
+import HeadKetQuaCham from '../components/Head/HeadKetQuaCham/HeadKetQuaCham'
 
 //home(trang chủ)
 import adminHome from "../components/Home/admin";
@@ -51,7 +51,7 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/teacher-chamPB" component={TeacherChamPB} />
                 <PrivateRoutes path="/teacher/projects" component={Projects} />
                 <PrivateRoutes path="/teacher-chamHD" component={TeacherChamHD} />
-
+                <PrivateRoutes path="/headKetQuaCham" component={HeadKetQuaCham} />
 
                 <PrivateRoutes path="/teacher-home" component={teacherHome} />
                 <PrivateRoutes path="/student-home" component={studentHome} />

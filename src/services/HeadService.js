@@ -31,6 +31,10 @@ const headFetchListTeacher =()=>{
 const test =()=>{
     return axios.get("/api/v1/head/project-test")
 } 
+
+const GetDSHoiDong =()=>{
+    return axios.get("/api/v1/head/get-danh-sach-hoi-dong")
+} 
 const AssignPB1and2 =(data)=>{
     return axios.put("/api/v1/head/assignPB1and2",
      { data: {pb1: data.PB.pb1, pb2: data.PB.pb2, groupStudent: data.selectedStudent.groupStudent,
@@ -39,5 +43,5 @@ const AssignPB1and2 =(data)=>{
 
 export {
     headGetProjectandUser,headDeleteProjct,headHuyDangKi,headGetProjectApprove,
-    headApproveFroject,headFetchListTeacher,test,AssignPB1and2,headRefuseFroject
+    headApproveFroject,headFetchListTeacher,test,AssignPB1and2,headRefuseFroject,GetDSHoiDong
 }

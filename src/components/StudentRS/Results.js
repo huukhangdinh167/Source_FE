@@ -1,4 +1,4 @@
-
+import { test, headFetchListTeacher, AssignPB1and2, } from '../../services/HeadService';
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
 import { fetchAllProjectRegister, getResults } from '../../services/studentService'
 import { Modal, Button } from "react-bootstrap";
@@ -23,11 +23,21 @@ const Results = () => {
     const [showModalTBPB, setShowModalTBPB] = useState(false);
     const [lisProjectRegister, setListProjectRegister] = useState(defautlisProjectRegister)
     const [results, setResults] = useState()
+    const [listTeacher, setListTeacher] = useState([])
     useEffect(() => {
         addd(user)
         Allresults()
+        getlistTeacher()
         //  console.log(lisProjectRegister)
-    }, [])
+    }, []) 
+    const getlistTeacher = async()=>{
+        let data = await headFetchListTeacher()
+        if(data.EC == 0){
+            setListTeacher(data.DT)
+        }else{
+            toast.error("Can't get list teacher")
+        }
+    }
     const addd = async (user) => {
         let data = await fetchAllProjectRegister(user)
         if (data && +data.EC === 0) {
@@ -115,12 +125,27 @@ const Results = () => {
 
                         </thead>
                         <tbody>
-                            {results && 
+                            {results && results.Result &&
                                 <tr>
 
-                                    <td><b>{results.Result.diemGVHD} </b><br></br> {results.Result.diemGVHD && <i onClick={() => handleXemChiTiet()} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
-                                    <td>{results.Result.diemGVPB1}</td>
-                                    <td>{results.Result.diemGVPB2}</td>
+                                    <td>{results.Result.danhgiacuoiky == 'false' || results.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : <><b>{results.Result.diemGVHD} </b><br></br> {results.Result.diemGVHD && <i onClick={() => handleXemChiTiet()} className="text-primary xemchitiet">Xem chi tiết</i>}</> }  </td>
+                                    <td>
+                                        
+                                        {results.Result.diemGVPB1} <br></br>
+                                        {listTeacher && 
+                                        listTeacher.filter(item => item.id == results.pb1)
+                                        .map((itemmap, index) => ( 
+                                            <i> {itemmap.name} </i>
+                                          ))}
+                                        </td>
+                                    <td>
+                                   
+                                    {results.Result.diemGVPB2}  <br></br>
+                                    {listTeacher && 
+                                        listTeacher.filter(item => item.id == results.pb2)
+                                        .map((itemmap, index) => ( 
+                                            <i> {itemmap.name} </i>
+                                          ))} </td>
                                     <td><b>{results.Result.trungbinhphanbien}</b> <br></br> {results.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
                                     <td>{results.Result.diemCTHD}</td>
                                     <td>{results.Result.diemTK}</td>
@@ -296,9 +321,9 @@ const Results = () => {
                     <div className="row mt-0">
                         <div className="col-sm-1"></div>
                         <div className="col-sm-3  "><i className="text-danger"> Điểm GVPB1 </i></div>
-                        <input value={results && results.Result.diemGVPB1} className="col-sm-2 " type="number" />
+                        <input value={results  && results.Result && results.Result.diemGVPB1} className="col-sm-2 " type="number" />
                         <div className="col-sm-3  "><i className="text-danger"> Điểm GVPB1 </i></div>
-                        <input value={results && results.Result.diemGVPB2} className="col-sm-2 " type="number" />
+                        <input value={results  && results.Result && results.Result.diemGVPB2} className="col-sm-2 " type="number" />
 
                     </div>
                     <div className="row">
@@ -438,7 +463,7 @@ const Results = () => {
 
                                             <tr>
                                                 <td>8</td>
-                                                <td>Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn</td>
+                                                <td>Bảo vệ khóa kết quả khóa luận trước giản viên phản biện</td>
                                                 <td>
                                                     <select className="form-select">
                                                         <option >{results.Criteriapb && results.Criteriapb.LOL8}</option>

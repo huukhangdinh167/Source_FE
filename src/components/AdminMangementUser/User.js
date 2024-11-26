@@ -201,7 +201,7 @@ const Users = (props) => {
                                 onClick={() => {
                                     setIsShowModalUser(true);
                                     setActionModalUser("CREATE");
-                                }}><i class="fa fa-plus-square bd"></i>Thêm mới sinh viên</button>
+                                }}><i class="fa fa-plus-square bd"></i>Thêm mới giảng viên</button>
                         </div>
                     </div>
 

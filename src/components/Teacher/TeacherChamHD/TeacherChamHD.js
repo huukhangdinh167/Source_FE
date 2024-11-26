@@ -200,8 +200,8 @@ const TeacherChamHD = (props) => {
                                             )}
                                         </td>
                                         <td>{item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
-                                        <td>{item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
-                                            <p> {item.Result && item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
+                                        <td>{item && item.Result && item.Result.danhgiacuoiky && ( item.Result.danhgiacuoiky == 'false' ||  item.Result.danhgiagiuaky == 'false' ) ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
+                                            <p> {item.Result && item.Result.diemGVHD && item.Result.danhgiacuoiky == 'true' && item.Result.danhgiagiuaky == 'true' ? item.Result.diemGVHD : ''}</p>
                                         </td>
 
                                         <td>
