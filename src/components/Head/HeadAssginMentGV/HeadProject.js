@@ -60,7 +60,6 @@ const HeadAssignGV = (props) => {
         let data = await AssignPB1and2({ PB, selectedStudent })
         if (data.EC === 0) {
             toast.success(data.EM)
-           
             studentss()
         }
         setShowModal(false); 
@@ -150,14 +149,8 @@ const HeadAssignGV = (props) => {
                 <Modal.Body>
                     {selectedStudent && (
                         <>
-                            {/* <p><strong>Mã số:</strong> {selectedStudent.maSo}</p>
-                            <p><strong>Tên sinh viên:</strong> {selectedStudent.name}</p>
-                            <p><strong>Dự án:</strong> {selectedStudent.Project.name}</p>
-                            <p><strong>Giảng viên hướng dẫn:</strong> {selectedStudent.Project.instuctor}</p> */}
-
                             <strong>Tên đề tài:</strong>  {selectedStudent.Project.name} <br></br>
                             <strong>Giảng viên hướng dẫn:</strong> {selectedStudent.Project.instuctor}
-
                             <div className="row mt-3">
                                 <div className="col-sm-6">
                                     Pb1:
