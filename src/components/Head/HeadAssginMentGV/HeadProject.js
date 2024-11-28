@@ -81,13 +81,13 @@ const HeadAssignGV = (props) => {
                     <thead>
                         <tr>
                             <th style={{ width: "5%" }}>Ma So</th>
-                            <th>Tên</th>
-                            <th>Tên Đề Tài</th>
-                            <th>GVHD</th>
-                            <th>Nhóm</th>
-                            <th>GV Phản Biện</th>
-                            <th>Phân công</th>
-                            <th style={{ width: "7%" }}>Bộ môn</th>
+                            <th style={{ width: "10%" }}>Tên</th>
+                            <th style={{ width: "20%" }}>Tên Đề Tài</th>
+                            <th style={{ width: "15%" }}>GVHD</th>
+                            <th style={{ width: "10%" }}>Nhóm</th>
+                            <th style={{ width: "15%" }}>GV Phản Biện</th>
+                            <th style={{ width: "10%" }}>Phân công</th>
+                            <th style={{ width: "5%" }}>Bộ môn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -124,6 +124,10 @@ const HeadAssignGV = (props) => {
                                                     <p key={`pb1-${index}`}>{itemmm.name}</p>
                                                 ))
                                         )}
+
+                                        {
+                                          ( !item.pb1 || !item.pb2 ) &&  <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
+                                        }
                                     </td>
                                     <td>
                                         {showButton && (

@@ -272,7 +272,7 @@ const Project = () => {
                                                             <td>{item.groupStudent !== "null" ? `${item.groupStudent}` : 'Làm một mình'}</td>
                                                             <td className="center-button ">
                                                                 {item.maSo == user.maSo ? '---' : (item.groupStudent !== "null" ? <i>Đã có nhóm</i>
-                                                                    : (choosegroup == true ? <div onClick={() => handleChonNhom(item.maSo, user.maSo, getUniqueRandom(20, 999))}
+                                                                    : (choosegroup == true ? <div onClick={() => handleChonNhom(item.maSo, user.maSo, getUniqueRandom(20, 8000))}
                                                                         className="btn btn-info dang-ki-nhom">Chọn</div> : ''))}
                                                             </td>
 

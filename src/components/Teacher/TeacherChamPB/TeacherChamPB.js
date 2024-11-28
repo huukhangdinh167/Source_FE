@@ -47,12 +47,6 @@ const TeacherChamPB = (props) => {
        
     }, []);
   
-
-   
-
-
-
-
     useEffect(() => {
         setPBSV1({
             ...dataModal,
@@ -423,15 +417,20 @@ const TeacherChamPB = (props) => {
                                         {listtecher && (
                                             listtecher
                                                 .filter(itemm => itemm.id == item.pb1)
-                                                .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
+                                                .map((itemmm, index) => ( 
+                                                    itemmm.maSo == user.maSo ? 
+                                                      <b><p key={`pb1-${index}`}>PB1: {itemmm.name}</p></b>  
+                                                    : <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
+                                                   
                                                 ))
                                         )}
                                         {listtecher && (
                                             listtecher
                                                 .filter(itemm => itemm.id == item.pb2)
-                                                .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
+                                                .map((itemmm, index) => ( 
+                                                    itemmm.maSo == user.maSo ? 
+                                                  <b><p key={`pb1-${index}`}>PB2: {itemmm.name}</p></b>  
+                                                  : <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
                                                 ))
                                         )}
                                     </td>

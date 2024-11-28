@@ -34,6 +34,10 @@ const test = () => {
 
 const GetDSHoiDong = () => {
     return axios.get("/api/v1/head/get-danh-sach-hoi-dong")
+} 
+
+const GetAllListTeacherHoiDong = () => {
+    return axios.get("/api/v1/head/getlistTeacherHoiDong")
 }
 const AssignPB1and2 = (data) => {
     return axios.put("/api/v1/head/assignPB1and2",
@@ -67,9 +71,10 @@ const AssignPoster = (data) => {
                 id: data.selectedStudent.id
             }
         })
-}
+} 
+
 export {
     headGetProjectandUser, headDeleteProjct, headHuyDangKi, headGetProjectApprove,
     headApproveFroject, headFetchListTeacher, test, AssignPB1and2, headRefuseFroject, GetDSHoiDong,
-    AssignHoiDong,AssignPoster
+    AssignHoiDong,AssignPoster,GetAllListTeacherHoiDong
 }

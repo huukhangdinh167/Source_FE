@@ -274,8 +274,9 @@ const Users = (props) => {
                                     <th scope="col">Số điện thoại</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Mã số</th>
-                                    <th scope="col">Mật khẩu</th>
-                                    <th ></th>
+                                    <th scope="col">Group</th>
+                                    <th scope="col">Action</th>
+
 
                                 </tr>
                             </thead>
