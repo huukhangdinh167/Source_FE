@@ -219,7 +219,7 @@ const Project = () => {
                                             <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
                                             <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
                                             <th scope="col" style={{ width: "10%" }}>GVHD</th>
-                                            <th scope="col" style={{ width: "10%" }}></th>
+                                            <th scope="col" style={{ width: "12%" }}></th>
 
                                         </tr>
 

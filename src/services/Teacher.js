@@ -75,10 +75,9 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2, maSoGV) => 
     })
 }
 
-const teacherXemKetQuaPBSV2 = (user) => {
-    return axios.put("/api/v1/teacher/xemDGPhanBienSV2", { data: { maSo: user } })
+const teacherXemKetQuaPBSV2 = (user, id) => {
+    return axios.put("/api/v1/teacher/xemDGPhanBienSV2", { data: { maSo: user, id: id } })
 } 
-
 // xác định user là pb1 hay pb1 của đề tài đó
 const teacherDefinePB1PB2 = (maSoSV, maSoGV) => {
     return axios.put("/api/v1/teacher/definePB1PB2", { data: { maSoSV: maSoSV,   maSoGV: maSoGV} })

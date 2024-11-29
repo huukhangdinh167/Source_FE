@@ -73,8 +73,15 @@ const AssignPoster = (data) => {
         })
 } 
 
+const GetAllResults = () => {
+    return axios.get("/api/v1/head/headGetAllResults")
+} 
+
+const headGetResultEveryStudent = (item) => {
+    return axios.put("/api/v1/head/getResultsEveryStudent", { data: { id: item.id} })
+}
 export {
     headGetProjectandUser, headDeleteProjct, headHuyDangKi, headGetProjectApprove,
     headApproveFroject, headFetchListTeacher, test, AssignPB1and2, headRefuseFroject, GetDSHoiDong,
-    AssignHoiDong,AssignPoster,GetAllListTeacherHoiDong
+    AssignHoiDong,AssignPoster,GetAllListTeacherHoiDong,GetAllResults,headGetResultEveryStudent
 }

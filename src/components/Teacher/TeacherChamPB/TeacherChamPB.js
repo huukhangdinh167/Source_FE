@@ -44,9 +44,9 @@ const TeacherChamPB = (props) => {
     const [PBSV2, setPBSV2] = useState(defaultPBSV2)
     useEffect(() => {
         studentss();
-       
+
     }, []);
-  
+
     useEffect(() => {
         setPBSV1({
             ...dataModal,
@@ -100,7 +100,7 @@ const TeacherChamPB = (props) => {
     }
     const handleChamDiemPB = async (item) => {
         let define = await definePB1PB2(item)
-        let aee = await teacherXemKetQuaPBSV2(item.groupStudent)
+        let aee = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
         if (aee.EC != 0) {
             toast.error(aee.EM)
         }
@@ -117,22 +117,22 @@ const TeacherChamPB = (props) => {
                 LOL7: item.Criteriapb?.LOL7,
                 LOL8: item.Criteriapb?.LOL8,
                 ghichu: item.Criteriapb?.ghichu,
-                diemSV1: item.Result?.diemGVPB1 
+                diemSV1: item.Result?.diemGVPB1
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent)
+            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPBSV2({
                     ...res,
-                    LOL1: res[1].Criteriapb?.LOL1,
-                    LOL2: res[1].Criteriapb?.LOL2,
-                    LOL3: res[1].Criteriapb?.LOL3,
-                    LOL4: res[1].Criteriapb?.LOL4,
-                    LOL5: res[1].Criteriapb?.LOL5,
-                    LOL6: res[1].Criteriapb?.LOL6,
-                    LOL7: res[1].Criteriapb?.LOL7,
-                    LOL8: res[1].Criteriapb?.LOL8,
-                    diemSV2: res[1].Result?.diemGVPB1 
+                    LOL1: res[1] && res[1].Criteriapb?.LOL1,
+                    LOL2: res[1] && res[1].Criteriapb?.LOL2,
+                    LOL3: res[1] && res[1].Criteriapb?.LOL3,
+                    LOL4: res[1] && res[1].Criteriapb?.LOL4,
+                    LOL5: res[1] && res[1].Criteriapb?.LOL5,
+                    LOL6: res[1] && res[1].Criteriapb?.LOL6,
+                    LOL7: res[1] && res[1].Criteriapb?.LOL7,
+                    LOL8: res[1] && res[1].Criteriapb?.LOL8,
+                    diemSV2: res[1] && res[1].Result?.diemGVPB1
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -152,23 +152,23 @@ const TeacherChamPB = (props) => {
                 LOL7: item.Criteriapb?.LOL7PB2,
                 LOL8: item.Criteriapb?.LOL8PB2,
                 ghichu: item.Criteriapb?.ghichu,
-                diemSV1:  item.Result?.diemGVPB2
+                diemSV1: item.Result?.diemGVPB2
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent)
+            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPBSV2({
                     ...res,
-                    LOL1: res[1].Criteriapb?.LOL1PB2,
-                    LOL2: res[1].Criteriapb?.LOL2PB2,
-                    LOL3: res[1].Criteriapb?.LOL3PB2,
-                    LOL4: res[1].Criteriapb?.LOL4PB2,
-                    LOL5: res[1].Criteriapb?.LOL5PB2,
-                    LOL6: res[1].Criteriapb?.LOL6PB2,
-                    LOL7: res[1].Criteriapb?.LOL7PB2,
-                    LOL8: res[1].Criteriapb?.LOL8PB2,
+                    LOL1: res[1] && res[1].Criteriapb?.LOL1PB2,
+                    LOL2: res[1] && res[1].Criteriapb?.LOL2PB2,
+                    LOL3: res[1] && res[1].Criteriapb?.LOL3PB2,
+                    LOL4: res[1] && res[1].Criteriapb?.LOL4PB2,
+                    LOL5: res[1] && res[1].Criteriapb?.LOL5PB2,
+                    LOL6: res[1] && res[1].Criteriapb?.LOL6PB2,
+                    LOL7: res[1] && res[1].Criteriapb?.LOL7PB2,
+                    LOL8: res[1] && res[1].Criteriapb?.LOL8PB2,
                     //  ghichu: res[1].Criteriapb?.ghichu,
-                    diemSV2:  res[1].Result?.diemGVPB2
+                    diemSV2: res[1] && res[1].Result?.diemGVPB2
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -417,20 +417,20 @@ const TeacherChamPB = (props) => {
                                         {listtecher && (
                                             listtecher
                                                 .filter(itemm => itemm.id == item.pb1)
-                                                .map((itemmm, index) => ( 
-                                                    itemmm.maSo == user.maSo ? 
-                                                      <b><p key={`pb1-${index}`}>PB1: {itemmm.name}</p></b>  
-                                                    : <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
-                                                   
+                                                .map((itemmm, index) => (
+                                                    itemmm.maSo == user.maSo ?
+                                                        <b><p key={`pb1-${index}`}>PB1: {itemmm.name}</p></b>
+                                                        : <p key={`pb1-${index}`}>PB1: {itemmm.name}</p>
+
                                                 ))
                                         )}
                                         {listtecher && (
                                             listtecher
                                                 .filter(itemm => itemm.id == item.pb2)
-                                                .map((itemmm, index) => ( 
-                                                    itemmm.maSo == user.maSo ? 
-                                                  <b><p key={`pb1-${index}`}>PB2: {itemmm.name}</p></b>  
-                                                  : <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
+                                                .map((itemmm, index) => (
+                                                    itemmm.maSo == user.maSo ?
+                                                        <b><p key={`pb1-${index}`}>PB2: {itemmm.name}</p></b>
+                                                        : <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
                                                 ))
                                         )}
                                     </td>
@@ -442,18 +442,18 @@ const TeacherChamPB = (props) => {
                                                 </button>
                                                 <br /><br />
                                                 {item.groupStudent &&
-                                                    ((item.Result?.diemGVPB1 !== null ) ? (
+                                                    ((item.Result?.diemGVPB1 !== null) ? (
                                                         <i className="text-primary">PB1 Đã đánh giá</i>
                                                     ) : (
                                                         <i className="text-danger">PB1 Chưa đánh giá</i>
-                                                    ))} 
-                                                    <br></br>
-                                                  {item.groupStudent &&
-                                                    ((item.Result?.diemGVPB2 !== null ) ? (
+                                                    ))}
+                                                <br></br>
+                                                {item.groupStudent &&
+                                                    ((item.Result?.diemGVPB2 !== null) ? (
                                                         <i className="text-primary">PB2 Đã đánh giá</i>
                                                     ) : (
                                                         <i className="text-danger">PB2 Chưa đánh giá</i>
-                                                    ))}  
+                                                    ))}
                                             </>
                                         )}
                                     </td>

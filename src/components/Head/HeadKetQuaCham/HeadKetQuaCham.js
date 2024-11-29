@@ -337,7 +337,7 @@ const HeadKetQuaCham = () => {
                                             listtecher
                                                 .filter(itemm => itemm.id == item.TK)
                                                 .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>TK: {itemmm.name}</p>
+                                                    <p className='text-success' key={`pb1-${index}`}>TK: {itemmm.name}</p>
                                                 ))
                                         )}
                                         {listtecher && (
@@ -418,7 +418,7 @@ const HeadKetQuaCham = () => {
                                             listtecher
                                                 .filter(itemm => itemm.id == item.Poster2)
                                                 .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>Poster2: {itemmm.name}</p>
+                                                    <p className='text-success' key={`pb1-${index}`}>Poster2: {itemmm.name}</p>
                                                 ))
                                         )}
                                     </td>

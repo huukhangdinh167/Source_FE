@@ -82,6 +82,7 @@ const NavHeader = (props) => {
                                     <NavLink className="nav-link" to="/teacher-chamHoiDong">Chấm Hội Đồng</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamHD">Chấm HD</NavLink>
+                                    
 
                                     {/* <NavLink className="nav-link" to="/">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/">Teach</NavLink>
@@ -101,6 +102,7 @@ const NavHeader = (props) => {
                                     <NavLink className="nav-link" to="/headKetQuaCham">Phân Công HĐ </NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentrol">Phân quyền</NavLink>
+                                    <NavLink className="nav-link" to="/head/results">Kết quả</NavLink>
                                 </Nav>
 
                                     : (<Nav className="me-auto">

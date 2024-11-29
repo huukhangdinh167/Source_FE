@@ -182,13 +182,13 @@ const TeacherChamHoiDong = (props) => {
     }
     const handleChamDiemHoiDong = async (item) => {
         let define = await defineHoiDong(item)
-        let aee = await teacherXemKetQuaPBSV2(item.groupStudent)
+        let aee = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
         if (aee.EC != 0) {
             toast.error(aee.EM)
         }
         if (define == 'CTHD' && aee.DT[0].Result.diemCTHD != null) {
             // người dùng đang là phản biện 1
-            console.log("nè",aee.DT)
+            console.log("nè", aee.DT)
             setDataModal({
                 ...item,
                 LOL1: item.Criteriahoidong?.LOL1,
@@ -207,15 +207,15 @@ const TeacherChamHoiDong = (props) => {
                 let res = data.DT
                 setXemPBSV2({
                     ...res,
-                    LOL1: res[1].Criteriahoidong?.LOL1,
-                    LOL2: res[1].Criteriahoidong?.LOL2,
-                    LOL3: res[1].Criteriahoidong?.LOL3,
-                    LOL4: res[1].Criteriahoidong?.LOL4,
-                    LOL5: res[1].Criteriahoidong?.LOL5,
-                    LOL6: res[1].Criteriahoidong?.LOL6,
-                    LOL7: res[1].Criteriahoidong?.LOL7,
-                    LOL8: res[1].Criteriahoidong?.LOL8,
-                    diemSV2: res[1].Result?.diemCTHD
+                    LOL1: res[1] && res[1].Criteriahoidong?.LOL1,
+                    LOL2: res[1] && res[1].Criteriahoidong?.LOL2,
+                    LOL3: res[1] && res[1].Criteriahoidong?.LOL3,
+                    LOL4: res[1] && res[1].Criteriahoidong?.LOL4,
+                    LOL5: res[1] && res[1].Criteriahoidong?.LOL5,
+                    LOL6: res[1] && res[1].Criteriahoidong?.LOL6,
+                    LOL7: res[1] && res[1].Criteriahoidong?.LOL7,
+                    LOL8: res[1] && res[1].Criteriahoidong?.LOL8,
+                    diemSV2:res[1] && res[1].Result?.diemCTHD
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -224,7 +224,7 @@ const TeacherChamHoiDong = (props) => {
 
         } else if (define == 'TK' && aee.DT[0].Result.diemTK != null) {
             // người dùng đang là phản biện 2
-            console.log("nè",aee.DT)
+            console.log("nè", aee.DT)
             setDataModal({
                 ...item,
                 LOL1: item.Criteriahoidong?.LOL1TK,
@@ -243,14 +243,14 @@ const TeacherChamHoiDong = (props) => {
                 let res = data.DT
                 setXemPBSV2({
                     ...res,
-                    LOL1: res[1].Criteriahoidong?.LOL1TK,
-                    LOL2: res[1].Criteriahoidong?.LOL2TK,
-                    LOL3: res[1].Criteriahoidong?.LOL3TK,
-                    LOL4: res[1].Criteriahoidong?.LOL4TK,
-                    LOL5: res[1].Criteriahoidong?.LOL5TK,
-                    LOL6: res[1].Criteriahoidong?.LOL6TK,
-                    LOL7: res[1].Criteriahoidong?.LOL7TK,
-                    LOL8: res[1].Criteriahoidong?.LOL8TK,
+                    LOL1: res[1] && res[1].Criteriahoidong?.LOL1TK,
+                    LOL2: res[1] && res[1].Criteriahoidong?.LOL2TK,
+                    LOL3: res[1] && res[1].Criteriahoidong?.LOL3TK,
+                    LOL4: res[1] && res[1].Criteriahoidong?.LOL4TK,
+                    LOL5: res[1] && res[1].Criteriahoidong?.LOL5TK,
+                    LOL6: res[1] && res[1].Criteriahoidong?.LOL6TK,
+                    LOL7: res[1] && res[1].Criteriahoidong?.LOL7TK,
+                    LOL8: res[1] && res[1].Criteriahoidong?.LOL8TK,
                     //  ghichu: res[1].Criteriahoidong?.ghichu,
                     diemSV2: res[1].Result?.diemTK
                 })
@@ -279,16 +279,16 @@ const TeacherChamHoiDong = (props) => {
                 let res = data.DT
                 setXemPBSV2({
                     ...res,
-                    LOL1: res[1].Criteriahoidong?.LOL1UV,
-                    LOL2: res[1].Criteriahoidong?.LOL2UV,
-                    LOL3: res[1].Criteriahoidong?.LOL3UV,
-                    LOL4: res[1].Criteriahoidong?.LOL4UV,
-                    LOL5: res[1].Criteriahoidong?.LOL5UV,
-                    LOL6: res[1].Criteriahoidong?.LOL6UV,
-                    LOL7: res[1].Criteriahoidong?.LOL7UV,
-                    LOL8: res[1].Criteriahoidong?.LOL8UV,
+                    LOL1: res[1] && res[1].Criteriahoidong?.LOL1UV,
+                    LOL2: res[1] && res[1].Criteriahoidong?.LOL2UV,
+                    LOL3: res[1] && res[1].Criteriahoidong?.LOL3UV,
+                    LOL4: res[1] && res[1].Criteriahoidong?.LOL4UV,
+                    LOL5: res[1] && res[1].Criteriahoidong?.LOL5UV,
+                    LOL6: res[1] && res[1].Criteriahoidong?.LOL6UV,
+                    LOL7: res[1] && res[1].Criteriahoidong?.LOL7UV,
+                    LOL8: res[1] && res[1].Criteriahoidong?.LOL8UV,
                     //  ghichu: res[1].Criteriahoidong?.ghichu,
-                    diemSV2: res[1].Result?.diemUV
+                    diemSV2: res[1] && res[1].Result?.diemUV
 
                 })
                 console.log("datamodaaal", res)
@@ -299,7 +299,7 @@ const TeacherChamHoiDong = (props) => {
         }
         else {
             toast.error("Trống")
-           
+
         }
         setShowModal(true); // Hiển thị modal
         // setDataModal({
@@ -351,7 +351,7 @@ const TeacherChamHoiDong = (props) => {
         }
         if (define == 'Poster1' && aee.DT[0].Result.diemPoster1 != null) {
             // người dùng đang là phản biện 1
-           // toast.error("yyy")
+            // toast.error("yyy")
             setDataModalPoster({
                 ...item,
                 LOL1: item.Criteriahoidong?.LOL1Poster1,
@@ -370,16 +370,16 @@ const TeacherChamHoiDong = (props) => {
                 let res = data.DT
                 setXemPosterSV2({
                     ...res,
-                    LOL1: res[1].Criteriahoidong?.LOL1Poster1,
-                    LOL2: res[1].Criteriahoidong?.LOL2Poster1,
-                    LOL3: res[1].Criteriahoidong?.LOL3Poster1,
-                    LOL4: res[1].Criteriahoidong?.LOL4Poster1,
-                    LOL5: res[1].Criteriahoidong?.LOL5Poster1,
-                    LOL6: res[1].Criteriahoidong?.LOL6Poster1,
-                    LOL7: res[1].Criteriahoidong?.LOL7Poster1,
-                    LOL8: res[1].Criteriahoidong?.LOL8Poster1,
-                    ghichu: res[1].Criteriahoidong?.ghichuPoster1,
-                    diemSV1: res[1].Result?.diemPoster1
+                    LOL1: res[1] && res[1].Criteriahoidong?.LOL1Poster1,
+                    LOL2: res[1] && res[1].Criteriahoidong?.LOL2Poster1,
+                    LOL3: res[1] && res[1].Criteriahoidong?.LOL3Poster1,
+                    LOL4: res[1] && res[1].Criteriahoidong?.LOL4Poster1,
+                    LOL5: res[1] && res[1].Criteriahoidong?.LOL5Poster1,
+                    LOL6: res[1] && res[1].Criteriahoidong?.LOL6Poster1,
+                    LOL7: res[1] && res[1].Criteriahoidong?.LOL7Poster1,
+                    LOL8: res[1] && res[1].Criteriahoidong?.LOL8Poster1,
+                    ghichu: res[1] && res[1].Criteriahoidong?.ghichuPoster1,
+                    diemSV1: res[1] && res[1].Result?.diemPoster1
                 })
                 console.log("setDataModalPoster", res)
             } else {
@@ -388,7 +388,7 @@ const TeacherChamHoiDong = (props) => {
 
         } else if (define == 'Poster2' && aee.DT[0].Result.diemPoster2 != null) {
             // người dùng đang là phản biện 2
-           
+
             setDataModalPoster({
                 ...item,
                 LOL1: item.Criteriahoidong?.LOL1Poster2,
@@ -407,16 +407,16 @@ const TeacherChamHoiDong = (props) => {
                 let res = data.DT
                 setXemPosterSV2({
                     ...res,
-                    LOL1: res[1].Criteriahoidong?.LOL1Poster2,
-                    LOL2: res[1].Criteriahoidong?.LOL2Poster2,
-                    LOL3: res[1].Criteriahoidong?.LOL3Poster2,
-                    LOL4: res[1].Criteriahoidong?.LOL4Poster2,
-                    LOL5: res[1].Criteriahoidong?.LOL5Poster2,
-                    LOL6: res[1].Criteriahoidong?.LOL6Poster2,
-                    LOL7: res[1].Criteriahoidong?.LOL7Poster2,
-                    LOL8: res[1].Criteriahoidong?.LOL8Poster2,
-                    ghichu: res[1].Criteriahoidong?.ghichuPoster2,
-                    diemSV2: res[1].Result?.diemPoster2
+                    LOL1: res[1] && res[1].Criteriahoidong?.LOL1Poster2,
+                    LOL2: res[1] && res[1].Criteriahoidong?.LOL2Poster2,
+                    LOL3: res[1] && res[1].Criteriahoidong?.LOL3Poster2,
+                    LOL4: res[1] && res[1].Criteriahoidong?.LOL4Poster2,
+                    LOL5: res[1] && res[1].Criteriahoidong?.LOL5Poster2,
+                    LOL6: res[1] && res[1].Criteriahoidong?.LOL6Poster2,
+                    LOL7: res[1] && res[1].Criteriahoidong?.LOL7Poster2,
+                    LOL8: res[1] && res[1].Criteriahoidong?.LOL8Poster2,
+                    ghichu: res[1] && res[1].Criteriahoidong?.ghichuPoster2,
+                    diemSV2: res[1] && res[1].Result?.diemPoster2
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -425,8 +425,8 @@ const TeacherChamHoiDong = (props) => {
 
         }
         else {
-           toast.error(define)
-           console.log("nè",aee.DT)
+         //   toast.error(define)
+            console.log("nè", aee.DT)
         }
         setShowModalPoster(true); // Hiển thị modal
 
@@ -847,7 +847,7 @@ const TeacherChamHoiDong = (props) => {
                             );
                         }) : <tr>
 
-                            <td colSpan={9}><i>Chưa được phân chấm hội đồng</i></td>
+                            <td colSpan={8}><i>Chưa được phân chấm hội đồng</i></td>
                         </tr>}
                     </tbody>
                 </table>
@@ -1068,13 +1068,11 @@ const TeacherChamHoiDong = (props) => {
                                             </>
                                         )}
                                     </td>
-
-
                                 </tr>
                             );
                         }) : <tr>
 
-                            <td colSpan={9}><i>Chưa được phân chấm hội đồng</i></td>
+                            <td colSpan={8}><i>Chưa được phân chấm Poster</i></td>
                         </tr>}
                     </tbody>
                 </table>

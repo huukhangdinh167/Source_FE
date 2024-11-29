@@ -27,7 +27,7 @@ import adminHome from "../components/Home/admin";
 import studentHome from "../components/Home/student";
 import teacherHome from "../components/Home/teacher";
 import headHome from "../components/Home/head";
-
+import HeadResults from '../components/Head/HeadResults/HeadResults'
 const AppRoutes = () => {
 
     return (
@@ -48,11 +48,14 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/head-project" component={HeadProject} />
                 <PrivateRoutes path="/head/assginmentrol" component={HeadAssignRole} />
                 <PrivateRoutes path="/head/assginmentGV" component={HeadAssignGV} />
+                <PrivateRoutes path="/head/results" component={HeadResults} />
+                
                 <PrivateRoutes path="/teacher-chamPB" component={TeacherChamPB} />
                 <PrivateRoutes path="/teacher-chamHoiDong" component={TeacherChamHoiDong} />
                 <PrivateRoutes path="/teacher/projects" component={Projects} />
                 <PrivateRoutes path="/teacher-chamHD" component={TeacherChamHD} />
                 <PrivateRoutes path="/headKetQuaCham" component={HeadKetQuaCham} />
+               
 
                 <PrivateRoutes path="/teacher-home" component={teacherHome} />
                 <PrivateRoutes path="/student-home" component={studentHome} />
