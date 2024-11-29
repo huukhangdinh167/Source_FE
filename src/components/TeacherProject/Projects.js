@@ -17,6 +17,7 @@ const Projects = (props) => {
 
     useEffect(() => {
         fetchProjects(user);
+      //  console.log("sex",listProjects)
     }, []);
 
 
@@ -90,9 +91,9 @@ const Projects = (props) => {
         setIsShowModalDelete(true);
 
     }
-    const handleXemLyDo = (reasonrefuse) => {
-        swal(" Lý do ! ", reasonrefuse);
-        // alert(reasonrefuse)
+    const handleXemLyDo = (reasonrefuse)=>{
+        swal ( " Lý do ! " ,  reasonrefuse )  ;
+       // alert(reasonrefuse)
     }
 
 
@@ -130,7 +131,7 @@ const Projects = (props) => {
                                     <th style={{ width: '15%' }}>Kiến thức</th>
                                     <th style={{ width: '15%' }}>GVHD</th>
                                     <th style={{ width: '10%' }}>Trạng thái</th>
-                                    <th style={{ width: '7%' }}>Actions</th>
+                                    <th style={{ width: '5%' }}>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -147,7 +148,7 @@ const Projects = (props) => {
                                                         <td style={{ width: '300px' }}>{item.require}</td>
                                                         <td style={{ width: '300px' }}>{item.knowledgeSkills}</td>
                                                         <td style={{ width: '300px' }}>{item.instuctor}</td>
-                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? <p className="text-danger">Chờ duyệt</p> : (+item.status === 2 ? <><b> <p className="text-danger ">Từ Chối duyệt</p></b>  <div onClick={() => handleXemLyDo(item.reasonrefuse)} className="text-danger reasonrefuse">(Xem lý do)</div> </> : <p className="text-primary">Đã duyệt (ok)</p>)}</td>
+                                                        <td style={{ width: '300px' }} >{+item.status === 0 ? <p className="text-danger">Chờ duyệt</p> : (+item.status === 2 ? <><b> <p className="text-danger ">Từ Chối duyệt</p></b>  <div onClick={()=> handleXemLyDo(item.reasonrefuse)} className="text-danger reasonrefuse">(Xem lý do)</div> </>  :  <p className="text-primary">Đã duyệt (ok)</p>)}</td>
                                                         <td style={{ width: '150px', textAlign: 'center', whiteSpace: 'nowrap' }}>
                                                             <button className="btn btn-warning btn-sm mx-1"
                                                                 onClick={() => handleEditProject(item)}
@@ -166,7 +167,7 @@ const Projects = (props) => {
                                             })}
                                         </>
                                         :
-                                        <><tr><td>Not found any Projects</td></tr></>
+                                        <><tr><td colSpan={8}>Not found any Projects</td></tr></>
                                 }
                             </tbody>
                         </table>

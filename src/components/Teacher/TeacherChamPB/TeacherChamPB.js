@@ -22,13 +22,13 @@ const TeacherChamPB = (props) => {
     const [PB, setPB] = useState(defaultPB)
     useEffect(() => {
         studentss();
-
+       
         TeahcerPB()
     }, []);
 
-    useEffect(() => {
-        studentss();
-    }, [students]);
+    // useEffect(() => {
+    //     studentss();
+    // }, [students]);
 
     useEffect(() => {
         setPB({ ...dataModal })
@@ -39,9 +39,9 @@ const TeacherChamPB = (props) => {
         setData(data.DT);
         let list = await headFetchListTeacher()
         setListTeacher(list.DT)
-        //  console.log("Check test",)
+       //  console.log("Check test",data.DT)
     };
-
+   // console.log("Check test",students)
     const TeahcerPB = async () => {
         let data = await teacherPB(user)
         console.log("Check chấm pb", data)
@@ -59,6 +59,7 @@ const TeacherChamPB = (props) => {
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
+        console.log("Sex", students)
     };
 
     const handleConfirmAssign = async () => {
@@ -161,7 +162,7 @@ const TeacherChamPB = (props) => {
                             );
                         }) : <tr>
 
-                            <td colSpan={10}><i>Chưa được phân chấm phản biện</i></td>
+                            <td colSpan={11}><i>Chưa được phân chấm phản biện</i></td>
                         </tr>}
                     </tbody>
                 </table>
