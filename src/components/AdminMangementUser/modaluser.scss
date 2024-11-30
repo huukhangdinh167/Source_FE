@@ -1,0 +1,109 @@
+.modal-user {
+    .modal-content {
+        border-radius: 10px;
+        /* Bo tròn góc modal */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        /* Hiệu ứng bóng mượt mà */
+        border: none;
+        /* Loại bỏ viền */
+        background: #ffffff;
+        /* Nền trắng */
+    }
+
+    .modal-header {
+        background: linear-gradient(90deg, #003d66, #005b99);
+        /* Gradient cho header */
+        color: #ffffff;
+        /* Chữ trắng */
+        border-bottom: none;
+        /* Loại bỏ đường viền */
+        border-radius: 10px 10px 0 0;
+        /* Bo góc chỉ ở phần trên */
+        padding: 20px;
+        text-align: center;
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+            text-transform: capitalize;
+            letter-spacing: 1px;
+        }
+
+        button.close {
+            color: #ffffff;
+            opacity: 1;
+
+            &:hover {
+                color: #ffcccc;
+                /* Hiệu ứng khi hover */
+            }
+        }
+    }
+
+    .modal-body {
+        padding: 20px 30px;
+        font-size: 14px;
+
+        .form-group {
+            margin-bottom: 15px;
+
+            label {
+                font-weight: bold;
+                font-size: 14px;
+                color: #333;
+            }
+
+            input,
+            select {
+                height: 40px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                padding: 0 10px;
+                font-size: 14px;
+                transition: border-color 0.3s ease;
+
+                &:focus {
+                    border-color: #005b99;
+                    box-shadow: 0 0 5px rgba(0, 91, 153, 0.2);
+                }
+
+                &.is-invalid {
+                    border-color: #dc3545;
+                    box-shadow: 0 0 5px rgba(220, 53, 69, 0.2);
+                }
+            }
+        }
+    }
+
+    .modal-footer {
+        border-top: none;
+        /* Loại bỏ đường viền trên */
+        padding: 20px 30px;
+
+        button {
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 14px;
+
+            &.btn-primary {
+                background: linear-gradient(135deg, #1976d2, #1565c0);
+                border: none;
+                color: #ffffff;
+
+                &:hover {
+                    background: linear-gradient(90deg, #004080, #0056b3);
+                }
+            }
+
+            &.btn-secondary {
+                background: #f8f9fa;
+                border: 1px solid #ddd;
+                color: #333;
+
+                &:hover {
+                    background: #e2e6ea;
+                }
+            }
+        }
+    }
+}

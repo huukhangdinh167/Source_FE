@@ -297,13 +297,13 @@ const Users = (props) => {
                                                         <td>
                                                             <div className="actions">
                                                                 <button
-                                                                    className="btn btn-warning"
+                                                                    className="btn btn-warning btn-sm"
                                                                     onClick={() => handleEditUser(item)}
                                                                 >
                                                                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                                 </button>
                                                                 <button
-                                                                    className="btn btn-danger"
+                                                                    className="btn btn-danger btn-sm"
                                                                     onClick={() => handleDeleteUser(item)}
                                                                 >
                                                                     <i className="fa fa-trash" aria-hidden="true"></i>

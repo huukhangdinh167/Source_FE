@@ -75,10 +75,10 @@ const TeacherChamHD = (props) => {
     };
 
     const handleChamHD = async (item) => {
-         setShowModal(true);
-         setModalUser(item);
-         setData4table(item)
-         setDataModal({
+        setShowModal(true);
+        setModalUser(item);
+        setData4table(item)
+        setDataModal({
             ...item, danhgiagiuaky: dataModal.Result?.danhgiagiuaky,
             danhgiacuoiky: dataModal.Result?.danhgiacuoiky,
             LOL1: dataModal.Criterion?.LOL1,
@@ -186,9 +186,9 @@ const TeacherChamHD = (props) => {
                                     <tr key={`student-${index}`}>
                                         <td>{item.maSo}</td>
                                         <td>{item.name}</td>
-                                        <td>{item.Project.name}</td>
+                                        <td>{item.Project && item.Project.name}</td>
 
-                                        <td>{item.Project.instuctor}</td>
+                                        <td>{item.Project && item.Project.instuctor}</td>
                                         <td>
                                             {isGroupNull ? (
                                                 <i>Làm một mình</i>
@@ -196,9 +196,9 @@ const TeacherChamHD = (props) => {
                                                 item.groupStudent
                                             )}
                                         </td>
-                                        <td>{item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
-                                        <td>{item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
-                                            <p> {item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
+                                        <td>{item.Result && item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result && item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
+                                        <td>{item.Result && item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
+                                            <p> {item.Result && item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
                                         </td>
                                         <td>
                                             <button

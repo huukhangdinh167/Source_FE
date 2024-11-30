@@ -105,7 +105,7 @@ const AdminAssignRole = () => {
                     <div className='select-group'>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Selec Group<span className="text-danger">*</span></label>
+                            <label>Chọn nhóm:<span className="text-danger">*</span></label>
                             <select onChange={(event) => handleOnChangeGroup(event.target.value)} className={"form-select"}>
                                 <option className="text-danger" key='' value="" >Vui lòng chọn nhóm người dùng</option>
                                 {userGroup.length > 0 &&

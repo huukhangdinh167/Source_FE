@@ -1,8 +1,10 @@
 import swal from 'sweetalert';
 import './Project.scss'
 import { useEffect, useState, useContext } from "react";
-import { headGetProjectandUser, headDeleteProjct, headHuyDangKi,
-    headRefuseFroject, headGetProjectApprove, headApproveFroject } from '../../../services/HeadService'
+import {
+    headGetProjectandUser, headDeleteProjct, headHuyDangKi,
+    headRefuseFroject, headGetProjectApprove, headApproveFroject
+} from '../../../services/HeadService'
 import React from 'react';
 import { UserContext } from '../../../context/userContext';
 import { toast } from "react-toastify";
@@ -63,27 +65,27 @@ const HeadProject = () => {
         swal({
             title: `Bạn vui lòng nhập lý do từ chối duyệt cho đề tài:`,
             text: `${item.name}`,  // Đưa phần text vào một phần riêng biệt
-           
+
             buttons: ["No!", "Yes!"],
             content: textarea,
             dangerMode: true, // Cho phép HTML trong nội dung
             html: true, // Cho phép HTML trong phần text
             className: "custom-swal-title",
         })
-        
-        
+
+
             .then(async (willUnregister) => {
                 if (willUnregister) {
-                   console.log(textarea.value)
-                  let reason = textarea.value.trim()
-                  let data = await headRefuseFroject(item, reason) 
-                  getALLProject()
-                  GetAllProjectApprove()
-                  if(data && +data.EC === 0){
-                    toast.success(data.EM)
-                  }else{
-                    toast.error(data.EM)
-                  }
+                    console.log(textarea.value)
+                    let reason = textarea.value.trim()
+                    let data = await headRefuseFroject(item, reason)
+                    getALLProject()
+                    GetAllProjectApprove()
+                    if (data && +data.EC === 0) {
+                        toast.success(data.EM)
+                    } else {
+                        toast.error(data.EM)
+                    }
                 } else {
                     // Người dùng chọn "Không"
                     console.log("item", item)
@@ -180,8 +182,8 @@ const HeadProject = () => {
                                                     <td>{item.require}</td>
                                                     <td>{item.knowledgeSkills}</td>
                                                     <td>{item.description}</td>
-                                                    <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success'>Duyệt</div>
-                                                        <div onClick={() => handleRefuseProject(item)} className='  btn btn-danger'>Từ chối</div>
+                                                    <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success btn-sm'>Duyệt</div>
+                                                        <div onClick={() => handleRefuseProject(item)} className='  btn btn-danger btn-sm'>Từ chối</div>
                                                     </td>
 
                                                 </tr>

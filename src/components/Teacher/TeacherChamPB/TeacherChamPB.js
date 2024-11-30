@@ -22,7 +22,7 @@ const TeacherChamPB = (props) => {
     const [PB, setPB] = useState(defaultPB)
     useEffect(() => {
         studentss();
-       
+
         TeahcerPB()
     }, []);
 
@@ -39,9 +39,9 @@ const TeacherChamPB = (props) => {
         setData(data.DT);
         let list = await headFetchListTeacher()
         setListTeacher(list.DT)
-       //  console.log("Check test",data.DT)
+        //  console.log("Check test",data.DT)
     };
-   // console.log("Check test",students)
+    // console.log("Check test",students)
     const TeahcerPB = async () => {
         let data = await teacherPB(user)
         console.log("Check chấm pb", data)
@@ -100,7 +100,7 @@ const TeacherChamPB = (props) => {
                 <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-                            <th style={{ width: "5%" }} >MSSV</th>
+                            <th style={{ width: "6%" }} >MSSV</th>
                             <th style={{ width: "10%" }}>Tên</th>
                             <th style={{ width: "15%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
@@ -109,7 +109,7 @@ const TeacherChamPB = (props) => {
                             <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
                             <th style={{ width: "8%" }}>Phân Công</th>
-                            <th style={{ width: "5%" }}>Bộ môn</th>
+                            <th style={{ width: "7%" }}>Bộ môn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -162,7 +162,7 @@ const TeacherChamPB = (props) => {
                             );
                         }) : <tr>
 
-                            <td colSpan={11}><i>Chưa được phân chấm phản biện</i></td>
+                            <td colSpan={10}><i>Chưa được phân chấm phản biện</i></td>
                         </tr>}
                     </tbody>
                 </table>

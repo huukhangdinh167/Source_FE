@@ -26,15 +26,15 @@ const AdminTableRole = forwardRef((props, ref) => {
     }
 
     const handleDeleteRole = async (role) => {
-        swal("Are you sure you want to do this?", {
-            buttons: ["No!", "Yes!"],
+        swal("Bạn có chắc chắn về hành động của mình ?", {
+            buttons: ["Không!", "Có!"],
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
                     let data = await deletRole(role)
                     if (data && +data.EC === 0) {
                         await getALLRole()
-                        toast.success("Delete role success")
+                        toast.success("Xoá quyền thành công")
                     }
 
                 } else {

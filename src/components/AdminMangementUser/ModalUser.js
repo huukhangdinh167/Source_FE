@@ -5,6 +5,7 @@ import { fetchGroup, createNewUser, updateNewUser } from "../../services/userSer
 import { adminupdateNewUser, admincreateNewTeacher } from '../../services/AdminService'
 import { toast } from "react-toastify";
 import _, { values } from "lodash";
+import './modaluser.scss'
 
 import bcrypt from 'bcryptjs';
 const ModalUser = (props) => {

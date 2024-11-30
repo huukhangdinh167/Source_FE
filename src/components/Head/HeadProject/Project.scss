@@ -1,42 +1,53 @@
-
-
 /* CSS tùy chỉnh để căn giữa nút */
 .center-button {
     text-align: center;
     vertical-align: middle;
-    .butondangki{
+
+    .butondangki {
         width: 80px;
         height: 37px;
-       
+
     }
-}.center-button {
+}
+
+.center-button {
     text-align: center;
     vertical-align: middle;
-    .da-dang-ki{
+
+    .da-dang-ki {
         width: 115px;
         height: 40px;
-       
+
     }
-    .dang-ki-nhom{
+
+    .dang-ki-nhom {
         width: 70px;
         height: 35px;
     }
-    .btn{
+
+    .btn {
         margin-left: 5px;
     }
-    
+
 }
-.huynhom{
+
+.huynhom {
     width: 120px;
     height: 38px;
-   // margin-right: 250px;
+    // margin-right: 250px;
 }
+
 .swal-title {
-    font-size: 18px; /* Chỉnh kích thước */
-    font-weight: bold; /* Nếu cần in đậm */
-    line-height: 1.5; /* Khoảng cách dòng */
+    font-size: 18px;
+    /* Chỉnh kích thước */
+    font-weight: bold;
+    /* Nếu cần in đậm */
+    line-height: 1.5;
+    /* Khoảng cách dòng */
 }
+
 .swal-text {
     font-style: italic;
-    font-weight: 500; /* Nếu cần in đậm */
+    font-weight: 500;
+    /* Nếu cần in đậm */
 }
