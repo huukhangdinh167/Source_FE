@@ -3,7 +3,9 @@ import { Modal, Button } from "react-bootstrap"; // Import modal từ React Boot
 import swal from "sweetalert";
 import "./TeacherChamHD.scss";
 
+
 import { teacherGetDSHD, teacherDGHD } from "../../../services/Teacher";
+
 import _, { cloneDeep } from "lodash";
 import { toast } from "react-toastify";
 import { UserContext } from "../../../context/userContext";
@@ -13,6 +15,7 @@ const TeacherChamHD = (props) => {
     const [DSHD, setDSHD] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [ModalUser, setModalUser] = useState(false);
+
     // const [showFinalEvaluation, setShowFinalEvaluation] = useState(false); // Hiển thị đánh giá cuối kỳ
     const [data4table, setData4table] = useState('')
     const [dataModal, setDataModal] = useState({})
@@ -36,7 +39,6 @@ const TeacherChamHD = (props) => {
     useEffect(() => {
         studentss();
     }, []);
-
 
     // useEffect(() => {
     //     studentss();
@@ -196,9 +198,10 @@ const TeacherChamHD = (props) => {
                                                 item.groupStudent
                                             )}
                                         </td>
-                                        <td>{item.Result && item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result && item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
-                                        <td>{item.Result && item.Result.danhgiacuoiky == 'false' ? <i className="text-danger">Không đạt</i> : (item.Result && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
-                                            <p> {item.Result && item.Result.diemGVHD ? item.Result.diemGVHD : ''}</p>
+
+                                        <td>{item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
+                                        <td>{item && item.Result && item.Result.danhgiacuoiky && (item.Result.danhgiacuoiky == 'false' || item.Result.danhgiagiuaky == 'false') ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
+                                            <p> {item.Result && item.Result.diemGVHD && item.Result.danhgiacuoiky == 'true' && item.Result.danhgiagiuaky == 'true' ? item.Result.diemGVHD : ''}</p>
                                         </td>
                                         <td>
                                             <button
@@ -219,7 +222,7 @@ const TeacherChamHD = (props) => {
                             })
                         ) : (
                             <tr>
-                                <td colSpan={11}>
+                                <td colSpan={9}>
                                     <i>Danh sách trống</i>
                                 </td>
                             </tr>
@@ -251,10 +254,14 @@ const TeacherChamHD = (props) => {
                             <b>Đánh giá giữa kỳ</b>
                         </div>
                         <div className="DGGK col-sm-4">
+
+
+
                             <select value={danhgia.danhgiagiuaky} onChange={(event) => handleOnchange(event.target.value, 'danhgiagiuaky')} className="form-select">
                                 <option value={''}>---</option>
                                 <option className="text-primary" value={'true'}>Đạt</option>
                                 <option className="text-danger" value={'false'}>Không đạt</option>
+
                             </select>
                         </div>
                         <div className="col-sm-2"></div>
@@ -265,6 +272,7 @@ const TeacherChamHD = (props) => {
 
                     {/* Nút toggle "Đánh giá cuối kỳ" */}
                     <div className="row mt-3">
+
                         <div className="col-sm-1"></div>
                         <div className="col-sm-4">
                             <button
@@ -335,7 +343,6 @@ const TeacherChamHD = (props) => {
                                                     </td>
                                                 </tr>
                                             ))}
-
                                         </tbody>
                                     </table>
 
@@ -344,7 +351,8 @@ const TeacherChamHD = (props) => {
                             </div>
                             <div className="row">
                                 <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                                <textarea value={danhgia.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea></div>
+                                <textarea value={danhgia.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                            </div>
                         </>
 
 
@@ -354,7 +362,10 @@ const TeacherChamHD = (props) => {
                     <Button variant="secondary" onClick={handleCloseModal}>
                         Đóng
                     </Button>
+
+
                     <Button onClick={danhgiaHD} variant="primary">Xác nhận</Button>
+
                 </Modal.Footer>
             </Modal>
         </>

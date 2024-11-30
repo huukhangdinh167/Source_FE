@@ -131,7 +131,10 @@ const Projects = (props) => {
                                     <th style={{ width: '15%' }}>Kiến thức</th>
                                     <th style={{ width: '15%' }}>GVHD</th>
                                     <th style={{ width: '10%' }}>Trạng thái</th>
-                                    <th>Actions</th>
+
+
+                                    <th style={{ width: '8%' }}>Action</th>
+
                                 </tr>
                             </thead>
                             <tbody>

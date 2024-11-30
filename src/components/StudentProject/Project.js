@@ -188,9 +188,7 @@ const Project = () => {
             item => item.maSo === user.maSo
         );
         return foundItem.groupStudent
-    }
-
-    // swal("Are you sure you want to do this?", {
+    }// swal("Are you sure you want to do this?", {
     //     buttons: ["No!", "Yes!"],
     // })
     //     .then(async (willUnregister) => {
@@ -204,151 +202,153 @@ const Project = () => {
     //     });
     return (
         <>
+            <div className="container">
+                <div className='mt-3'>
+                    <div className='mt-3 '>
+                        {lisProjectRegister.dangki == false &&
+                            <> <h4> Project đã đăng kí</h4>
+                                <table className="table table-bordered text-center table-hover mt-3">
+                                    <thead>
+                                        <tr>
 
-            <div className='mt-3 project '>
-                {lisProjectRegister.dangki == false &&
-                    <> <h4> Project đã đăng kí</h4>
-                        <table className="table table-bordered text-center table-hover mt-3">
-                            <thead>
-                                <tr>
+                                            <th scope="col" style={{ width: "5%" }}>ID</th>
+                                            <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
+                                            <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
+                                            <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
+                                            <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
+                                            <th scope="col" style={{ width: "10%" }}>GVHD</th>
+                                            <th scope="col" style={{ width: "12%" }}></th>
 
-                                    <th scope="col" style={{ width: "5%" }}>ID</th>
-                                    <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
-                                    <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
-                                    <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
-                                    <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
-                                    <th scope="col" style={{ width: "10%" }}>GVHD</th>
-                                    <th scope="col" style={{ width: "10%" }}></th>
+                                        </tr>
 
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{lisProjectRegister.id}</td>
-                                    <td>{lisProjectRegister.name}</td>
-                                    <td>{lisProjectRegister.description}</td>
-                                    <td>{lisProjectRegister.require}</td>
-                                    <td>{lisProjectRegister.knowledgeSkills}</td>
-                                    <td>{lisProjectRegister.instuctor}</td>
-                                    <td className="center-button "><div onClick={() => hanldeHuyDangki(user, lisProjectRegister)} className="btn btn-warning da-dang-ki">Hủy đăng kí</div>
-                                        {/* // */}
-                                    </td>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{lisProjectRegister.id}</td>
+                                            <td>{lisProjectRegister.name}</td>
+                                            <td>{lisProjectRegister.description}</td>
+                                            <td>{lisProjectRegister.require}</td>
+                                            <td>{lisProjectRegister.knowledgeSkills}</td>
+                                            <td>{lisProjectRegister.instuctor}</td>
+                                            <td className="center-button "><div onClick={() => hanldeHuyDangki(user, lisProjectRegister)} className="btn btn-warning da-dang-ki">Hủy đăng kí</div>
+                                                {/* // */}
+                                            </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div className='mt-5'> </div>
-                        <div className='text-center mt-3'><h6>Danh sách sinh viên cùng đăng kí đề tài</h6></div>
-                        <table className="table table-bordered text-center table-hover mt-3">
-                            <thead>
-                                <tr>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div className='mt-5'> </div>
+                                <div className='text-center mt-3'><h6>Danh sách sinh viên cùng đăng kí đề tài</h6></div>
+                                <table className="table table-bordered text-center table-hover mt-3">
+                                    <thead>
+                                        <tr><th scope="col" style={{ width: "5%" }}>STT</th>
+                                            <th scope="col" style={{ width: "15%" }}>TÊN</th>
+                                            <th scope="col" style={{ width: "25%" }}>MSSV</th>
+                                            <th scope="col" style={{ width: "15%" }}>LỚP</th>
+                                            <th scope="col" style={{ width: "20%" }}>MÃ ĐỀ TÀI</th>
+                                            <th scope="col" style={{ width: "10%" }}>NHÓM</th>
+                                            <th scope="col" style={{ width: "10%" }}>Chọn nhóm</th>
 
-                                    <th scope="col" style={{ width: "5%" }}>STT</th>
-                                    <th scope="col" style={{ width: "15%" }}>TÊN</th>
-                                    <th scope="col" style={{ width: "25%" }}>MSSV</th>
-                                    <th scope="col" style={{ width: "15%" }}>LỚP</th>
-                                    <th scope="col" style={{ width: "20%" }}>MÃ ĐỀ TÀI</th>
-                                    <th scope="col" style={{ width: "10%" }}>NHÓM</th>
-                                    <th scope="col" style={{ width: "10%" }}>Chọn nhóm</th>
+                                        </tr>
 
-                                </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            listUserRegisterProject &&
+                                            <>
+                                                {listUserRegisterProject.map((item, index) => {
+                                                    return (
+                                                        <tr key={`row-${index}`}>
+                                                            <td>{index}</td>
+                                                            <td>{item.name}</td>
+                                                            <td>{item.maSo}</td>
+                                                            <td>{item.class}</td>
+                                                            <td>{item.projectId}</td>
+                                                            <td>{item.groupStudent !== "null" ? `${item.groupStudent}` : 'Làm một mình'}</td>
+                                                            <td className="center-button ">
+                                                                {item.maSo == user.maSo ? '---' : (item.groupStudent !== "null" ? <i>Đã có nhóm</i>
+                                                                    : (choosegroup == true ? <div onClick={() => handleChonNhom(item.maSo, user.maSo, getUniqueRandom(20, 8000))}
+                                                                        className="btn btn-info dang-ki-nhom">Chọn</div> : ''))}
+                                                            </td>
 
-                            </thead>
-                            <tbody>
+
+                                                        </tr>
+                                                    )
+                                                })}
+                                            </>
+                                        }
+
+                                    </tbody>
+
+                                </table>
                                 {
-                                    listUserRegisterProject &&
-                                    <>
-                                        {listUserRegisterProject.map((item, index) => {
-                                            return (
-                                                <tr key={`row-${index}`}>
-                                                    <td>{index}</td>
-                                                    <td>{item.name}</td>
-                                                    <td>{item.maSo}</td>
-                                                    <td>{item.class}</td>
-                                                    <td>{item.projectId}</td>
-                                                    <td>{item.groupStudent !== "null" ? `${item.groupStudent}` : 'Làm một mình'}</td>
-                                                    <td className="center-button ">
-                                                        {item.maSo == user.maSo ? '---' : (item.groupStudent !== "null" ? <i>Đã có nhóm</i>
-                                                            : (choosegroup == true ? <div onClick={() => handleChonNhom(item.maSo, user.maSo, getUniqueRandom(20, 999))}
-                                                                className="btn btn-info dang-ki-nhom">Chọn</div> : ''))}
-                                                    </td>
+                                    choosegroup === false &&
 
+                                    <div className='row'>
+                                        <div className='col-sm-11'>
 
-                                                </tr>
-                                            )
-                                        })}
-                                    </>
+                                        </div><div onClick={() => handleHuyNhom(foundGroupStudent())} className="btn btn-warning huynhom  col-sm-1 ">
+                                            Hủy nhóm
+
+                                        </div>
+                                    </div>
                                 }
 
-                            </tbody>
-
-                        </table>
-                        {
-                            choosegroup === false &&
-
-                            <div className='row'>
-                                <div className='col-sm-11'>
-
-                                </div>
-                                <div onClick={() => handleHuyNhom(foundGroupStudent())} className="btn btn-warning huynhom  col-sm-1 ">
-                                    Hủy nhóm
-
-                                </div>
-                            </div>
+                            </>
                         }
+                    </div>
+                    <div className='mt-3'>
+                        {lisProjectRegister.dangki == true &&
+                            <>
+                                <div className="mt-3"><h4>List project:</h4>
+                                </div>
+                                <div className="mt-3 text-center">
+                                    <table className="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col" style={{ width: "5%" }}>ID</th>
+                                                <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
+                                                <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
+                                                <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
+                                                <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
+                                                <th scope="col" style={{ width: "10%" }}>GVHD</th>
+                                                <th scope="col" style={{ width: "10%" }}></th>
 
-                    </>
-                }
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {
+                                                listProject && listProject.length > 0 &&
+                                                <>
+                                                    {listProject.map((item, index) => {
+                                                        return (
+                                                            <tr key={`row-${index}`}>
+                                                                <td>{item.id}</td>
+                                                                <td>{item.name}</td>
+                                                                <td>{item.description}</td>
+                                                                <td> {item.require}</td>
+                                                                <td>{item.knowledgeSkills}</td>
+                                                                <td>{item.instuctor}</td>
+                                                                <td className="center-button"><div onClick={() => hanldeDangki(item, user)} className="btn btn-success butondangki">Đăng kí</div>
+                                                                </td></tr>
+                                                        )
+                                                    })}
+                                                </>
+
+                                            }
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </>
+                        }
+                    </div>
+
+                </div>
+
+
+
             </div>
-            <div className='mt-3 student'>
-                {lisProjectRegister.dangki == true &&
-                    <>
-                        <div className="mt-3"><h4>List project:</h4>
-                        </div>
-                        <div className="mt-3 text-center">
-                            <table className="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style={{ width: "5%" }}>ID</th>
-                                        <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
-                                        <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
-                                        <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
-                                        <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
-                                        <th scope="col" style={{ width: "10%" }}>GVHD</th>
-                                        <th scope="col" style={{ width: "10%" }}></th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        listProject && listProject.length > 0 &&
-                                        <>
-                                            {listProject.map((item, index) => {
-                                                return (
-                                                    <tr key={`row-${index}`}>
-                                                        <td>{item.id}</td>
-                                                        <td>{item.name}</td>
-                                                        <td>{item.description}</td>
-                                                        <td> {item.require}</td>
-                                                        <td>{item.knowledgeSkills}</td>
-                                                        <td>{item.instuctor}</td>
-                                                        <td className="center-button"><div onClick={() => hanldeDangki(item, user)} className="btn btn-success butondangki">Đăng kí</div>
-                                                        </td>
-                                                    </tr>
-                                                )
-                                            })}
-                                        </>
-
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                    </>
-                }
-            </div>
-
         </>)
 
 

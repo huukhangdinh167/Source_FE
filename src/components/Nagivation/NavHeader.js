@@ -79,9 +79,10 @@ const NavHeader = (props) => {
                                 : (user && user.groupId === 2 ? <Nav className="me-auto">
                                     <NavLink className="nav-link" to="/teacher-home" >Trang chủ</NavLink>
                                     <NavLink className="nav-link" to="/teacher/projects">Quản lí đề tài</NavLink>
-                                    <NavLink className="nav-link" to="/teacher-DSDK">Danh sách đăng kí</NavLink>
+                                    <NavLink className="nav-link" to="/teacher-chamHoiDong">Chấm Hội Đồng</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamHD">Chấm HD</NavLink>
+                                    
 
                                     {/* <NavLink className="nav-link" to="/">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/">Teach</NavLink>
@@ -98,9 +99,10 @@ const NavHeader = (props) => {
                                 </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
                                     <NavLink className="nav-link" to="/head-home" >Trang chủ</NavLink>
                                     <NavLink className="nav-link" to="/head-project" exact >Đề tài</NavLink>
-                                    <NavLink className="nav-link" to="/s">Thống kê </NavLink>
+                                    <NavLink className="nav-link" to="/headKetQuaCham">Phân Công HĐ </NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentrol">Phân quyền</NavLink>
+                                    <NavLink className="nav-link" to="/head/results">Kết quả</NavLink>
                                 </Nav>
 
                                     : (<Nav className="me-auto">

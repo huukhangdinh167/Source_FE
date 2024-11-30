@@ -21,14 +21,8 @@ const HeadAssignGV = (props) => {
         studentss();
     }, []); 
 
-
-    // Nếu có dòng này thì netword sẽ chạy hàm liên tục không ngừng nghĩ > nóng máy
-    // useEffect(() => {
-    //     studentss();
-    // }, [students]);
-
     useEffect(() => {
-        setPB({ ...dataModal })
+        setPB(dataModal)
     }, [dataModal]);
 
     const studentss = async () => {
@@ -42,13 +36,12 @@ const HeadAssignGV = (props) => {
         setSelectedStudent(item); // Lưu sinh viên được chọn vào state
         setShowModal(true); // Hiển thị modal
         setDataModal(item)
-        // console.log("Checkscscs", item)
+       
     };
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-        setPB({ ...defaultPB })
-
+      //  setPB({ ...defaultPB })
     };
 
     const handleConfirmAssign = async () => {
@@ -67,7 +60,6 @@ const HeadAssignGV = (props) => {
         let data = await AssignPB1and2({ PB, selectedStudent })
         if (data.EC === 0) {
             toast.success(data.EM)
-           
             studentss()
         }
         setShowModal(false); 
@@ -89,13 +81,13 @@ const HeadAssignGV = (props) => {
                     <thead>
                         <tr>
                             <th style={{ width: "5%" }}>Ma So</th>
-                            <th>Tên</th>
-                            <th>Tên Đề Tài</th>
-                            <th>GVHD</th>
-                            <th>Nhóm</th>
-                            <th>GV Phản Biện</th>
-                            <th>Phân công</th>
-                            <th style={{ width: "7%" }}>Bộ môn</th>
+                            <th style={{ width: "10%" }}>Tên</th>
+                            <th style={{ width: "20%" }}>Tên Đề Tài</th>
+                            <th style={{ width: "15%" }}>GVHD</th>
+                            <th style={{ width: "10%" }}>Nhóm</th>
+                            <th style={{ width: "15%" }}>GV Phản Biện</th>
+                            <th style={{ width: "10%" }}>Phân công</th>
+                            <th style={{ width: "5%" }}>Bộ môn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -111,7 +103,7 @@ const HeadAssignGV = (props) => {
 
                             return (
                                 <tr key={`student-${index}`}>
-                                    <td>{item.maSo}</td>
+                                    <td>{item.id}</td>
                                     <td>{item.name}</td>
                                     <td>{item.Project.name}</td>
                                     <td>{item.Project.instuctor}</td>
@@ -132,6 +124,10 @@ const HeadAssignGV = (props) => {
                                                     <p key={`pb1-${index}`}>{itemmm.name}</p>
                                                 ))
                                         )}
+
+                                        {
+                                          ( !item.pb1 || !item.pb2 ) &&  <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
+                                        }
                                     </td>
                                     <td>
                                         {showButton && (
@@ -157,14 +153,8 @@ const HeadAssignGV = (props) => {
                 <Modal.Body>
                     {selectedStudent && (
                         <>
-                            {/* <p><strong>Mã số:</strong> {selectedStudent.maSo}</p>
-                            <p><strong>Tên sinh viên:</strong> {selectedStudent.name}</p>
-                            <p><strong>Dự án:</strong> {selectedStudent.Project.name}</p>
-                            <p><strong>Giảng viên hướng dẫn:</strong> {selectedStudent.Project.instuctor}</p> */}
-
                             <strong>Tên đề tài:</strong>  {selectedStudent.Project.name} <br></br>
                             <strong>Giảng viên hướng dẫn:</strong> {selectedStudent.Project.instuctor}
-
                             <div className="row mt-3">
                                 <div className="col-sm-6">
                                     Pb1:
