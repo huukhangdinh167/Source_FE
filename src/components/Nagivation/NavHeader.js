@@ -82,7 +82,7 @@ const NavHeader = (props) => {
                                     <NavLink className="nav-link" to="/teacher-chamHoiDong">Chấm Hội Đồng</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamHD">Chấm HD</NavLink>
-                                    
+
 
                                     {/* <NavLink className="nav-link" to="/">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/">Teach</NavLink>
@@ -93,7 +93,7 @@ const NavHeader = (props) => {
                                 </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
                                     <NavLink className="nav-link" to="/admin-home" >Trang chủ</NavLink>
                                     <NavLink className="nav-link" to="/admin/users" >Quản lý người dùng</NavLink>
-                                    <NavLink className="nav-link" to="/admin/add-role" exact>Add-Role</NavLink>
+                                    <NavLink className="nav-link" to="/admin/add-role" exact>Thêm quyền</NavLink>
                                     <NavLink className="nav-link" to="/admin/assign-role">Phân quyền người dùng</NavLink>
 
                                 </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
@@ -123,14 +123,14 @@ const NavHeader = (props) => {
                                     <>
                                         {/* <Nav.Item className='nav-link' href="#deets"><b> {user.name}</b> !</Nav.Item> */}
                                         <NavDropdown title={<b>{user.name} </b>} id="basic-nav-dropdown">
-                                            <NavDropdown.Item > <NavLink className="nav-link" to="/changepassword">Change password</NavLink></NavDropdown.Item>
-                                            <NavDropdown.Item > <NavLink className="nav-link" to="/updateInfor">Update infor</NavLink></NavDropdown.Item>
-                                            <NavDropdown.Item className='dropdown' > <span onClick={() => handleLogout()}>Log-out</span></NavDropdown.Item>
+                                            <NavDropdown.Item > <NavLink className="nav-link" to="/changepassword">Thay đổi mật khẩu</NavLink></NavDropdown.Item>
+                                            <NavDropdown.Item > <NavLink className="nav-link" to="/updateInfor">Thay đổi thông tin </NavLink></NavDropdown.Item>
+                                            <NavDropdown.Item className='dropdown' > <span onClick={() => handleLogout()}>Đăng xuất</span></NavDropdown.Item>
 
                                         </NavDropdown>
                                     </>
                                     :
-                                    <Link className='nav-link' href="#deets" to='/login'>LOGIN !</Link>
+                                    <Link className='nav-link' href="#deets" to='/login'>Đăng nhập</Link>
 
                             }
 

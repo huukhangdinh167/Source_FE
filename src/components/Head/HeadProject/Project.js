@@ -35,7 +35,7 @@ const HeadProject = () => {
 
     const handleApproveProject = async (item) => {
         swal(`Bạn có chắc muốn duyệt đề tài ${item.id} ?`, {
-            buttons: ["No!", "Yes!"],
+            buttons: ["Không!", "Có!"],
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
@@ -66,7 +66,7 @@ const HeadProject = () => {
             title: `Bạn vui lòng nhập lý do từ chối duyệt cho đề tài:`,
             text: `${item.name}`,  // Đưa phần text vào một phần riêng biệt
 
-            buttons: ["No!", "Yes!"],
+            buttons: ["Không!", "Có!"],
             content: textarea,
             dangerMode: true, // Cho phép HTML trong nội dung
             html: true, // Cho phép HTML trong phần text
@@ -206,21 +206,22 @@ const HeadProject = () => {
                     {listProject && (
                         <>
                             <div className="mt-1 text-center">
+                                <table className="table table-bordered table-hover mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th style={{ width: "5%" }} >ID</th>
+                                            <th style={{ width: "20%" }}>TÊN ĐỀ TÀI</th>
+                                            <th style={{ width: "13%" }}>GVHD</th>
+                                            <th style={{ width: "30%" }}>KIẾN THỨC</th>
+                                            <th style={{ width: "25%" }}>YÊU CẦU</th>
+                                            {/* <th>STUDENT NAME</th> */}
+                                            {/* <th style={{ width: "7%" }}>XÓA</th> */}
+                                        </tr>
+                                    </thead>
 
-                                {listProject.length > 0 && listProject.map((item, index) => (
-                                    <>
-                                        <table className="table table-bordered table-hover mt-3">
-                                            <thead>
-                                                <tr>
-                                                    <th style={{ width: "5%" }} >ID</th>
-                                                    <th style={{ width: "20%" }}>TÊN ĐỀ TÀI</th>
-                                                    <th style={{ width: "13%" }}>GVHD</th>
-                                                    <th style={{ width: "30%" }}>KIẾN THỨC</th>
-                                                    <th style={{ width: "25%" }}>YÊU CẦU</th>
-                                                    {/* <th>STUDENT NAME</th> */}
-                                                    {/* <th style={{ width: "7%" }}>XÓA</th> */}
-                                                </tr>
-                                            </thead>
+                                    {listProject.length > 0 && listProject.map((item, index) => (
+                                        <>
+
                                             <tbody>
                                                 <tr key={`project-${index}`}>
                                                     <td>{item.id}</td>
@@ -239,8 +240,8 @@ const HeadProject = () => {
                                                 </tr>
                                             </tbody>
 
-                                        </table >
-                                        {/* <div className='row'>
+
+                                            {/* <div className='row'>
                                             <div className='col-sm-2'>
 
                                             </div>
@@ -290,10 +291,10 @@ const HeadProject = () => {
                                                 </table>
                                             </div>
                                         </div> */}
-                                    </>
-                                ))}
+                                        </>
+                                    ))}
 
-
+                                </table >
                             </div>
                         </>
                     )}

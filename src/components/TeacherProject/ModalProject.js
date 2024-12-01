@@ -89,11 +89,11 @@ const ModalProject = (props) => {
                 : await updateCurrentProject({ ...projectData, status: 0 });
             if (res && res.EC == 0) {
                 props.onHide();
-              //  toast.success("Thành công!");
+                //  toast.success("Thành công!");
                 props.onProjectAdded(user);
                 setProjectData({ ...defaultProjectData })
             } if (res && res.EC !== 0) {//hiện ô input đỏ khi mà nhập sai hoặc nhập thông tin đã có sẵn
-               // toast.error(res.EM);
+                // toast.error(res.EM);
                 let _validInputs = _.cloneDeep(validInputsDefault);
                 _validInputs[res.DT] = false;
                 setvalidInputs(_validInputs);
@@ -121,7 +121,7 @@ const ModalProject = (props) => {
                 <Modal.Body>
 
                     <div className="col-12 form-group">
-                        <label>Name : <span className="text-danger">*</span></label>
+                        <label>Tên đề tài : <span className="text-danger">*</span></label>
                         <textarea
                             className={validInputs.name ? 'form-control' : 'form-control is-invalid'}
                             type="text"
@@ -130,7 +130,7 @@ const ModalProject = (props) => {
                         />
                     </div>
                     <div className="col-12 form-group">
-                        <label>Description :</label>
+                        <label>Mô tả :</label>
                         <textarea
                             className={validInputs.description ? 'form-control' : 'form-control is-invalid'}
                             value={projectData.description}
@@ -138,7 +138,7 @@ const ModalProject = (props) => {
                         />
                     </div>
                     <div className="col-12 form-group">
-                        <label>Require :</label>
+                        <label>Yêu cầu :</label>
                         <textarea
                             className={validInputs.require ? 'form-control' : 'form-control is-invalid'}
                             value={projectData.require}
@@ -146,7 +146,7 @@ const ModalProject = (props) => {
                         />
                     </div>
                     <div className="col-12 form-group">
-                        <label>Knowledge Skills :</label>
+                        <label>Kiến thức :</label>
                         <textarea
                             className={validInputs.knowledgeSkills ? 'form-control' : 'form-control is-invalid'}
                             value={projectData.knowledgeSkills}

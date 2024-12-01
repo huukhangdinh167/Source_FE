@@ -253,7 +253,7 @@ const Users = (props) => {
                             <div className='row'>
                                 <div className='col-10'></div>
                                 <div className="col-12 col-md-6 d-flex justify-content-end">
-                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Save</button>
+                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Lưu thay đổi</button>
                                 </div>
 
                             </div>

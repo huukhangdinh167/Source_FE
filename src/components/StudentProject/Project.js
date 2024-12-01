@@ -85,7 +85,7 @@ const Project = () => {
 
     const hanldeDangki = async (item, user) => {
         swal("Bạn có chắc muốn đăng kí đề tài này ?", {
-            buttons: ["No!", "Yes!"],
+            buttons: ["Không!", "Có!"],
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
@@ -106,8 +106,8 @@ const Project = () => {
     }
 
     const hanldeHuyDangki = async (user, lisProjectRegister) => {
-        swal("Are you sure you want to do this?", {
-            buttons: ["No!", "Yes!"],
+        swal("Bạn có muốn huỷ đăng kí hay không", {
+            buttons: ["Không!", "Có!"],
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
@@ -127,8 +127,8 @@ const Project = () => {
     }
 
     const handleChonNhom = async (ortherST, mystudent, groupST) => {
-        swal("Are you sure choose group?", {
-            buttons: ["No!", "Yes!"],
+        swal("Bạn có chắc muốn hợp tác với sinh viên này không?", {
+            buttons: ["Không!", "Có!"],
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {
@@ -153,8 +153,8 @@ const Project = () => {
 
 
     const handleHuyNhom = async (groupStudent) => {
-        swal("Are you sure you want Cancel choose group ?", {
-            buttons: ["No!", "Yes!"],
+        swal("Bạn có muốn huỷ nhóm hiện tại hay không ?", {
+            buttons: ["Không!", "Có!"],
         })
             .then(async (willUnregister) => {
                 if (willUnregister) {

@@ -176,7 +176,6 @@ const TeacherChamPB = (props) => {
             }
 
         } else {
-            toast.error("Trống")
 
         }
         setShowModal(true); // Hiển thị modal
@@ -382,7 +381,7 @@ const TeacherChamPB = (props) => {
                     <thead>
                         <tr>
 
-                            <th style={{ width: "5%" }} >MSSV</th>
+                            <th style={{ width: "6%" }} >MSSV</th>
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
@@ -391,7 +390,7 @@ const TeacherChamPB = (props) => {
                             <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
                             <th style={{ width: "12%" }}>Chấm</th>
-                            <th style={{ width: "4%" }}>Bộ môn</th>
+                            <th style={{ width: "6%" }}>Bộ môn</th>
 
                         </tr>
                     </thead>

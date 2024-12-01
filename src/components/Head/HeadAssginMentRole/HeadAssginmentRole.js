@@ -1,11 +1,11 @@
 import './HeadAssignMentRole.scss'
-import { useEffect, useState,useContext } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { fetchGroup } from "../../../services/userServer";
 import { toast } from "react-toastify";
 import { fetchAllRole, fetchRoleByRole, assignRoleToGroup } from '../../../services/roleService'
 import _, { cloneDeep } from 'lodash'
 import { UserContext } from '../../../context/userContext';
- 
+
 // ------------------------Trưởng bộ môn phân quyền sẽ kế thừa từ chức phân quyền của Admin
 
 
@@ -111,16 +111,16 @@ const HeadAssignRole = () => {
                     <div className='select-group'>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Selec Group<span className="text-danger">*</span></label>
+                            <label>Chọn nhóm<span className="text-danger">*</span></label>
                             <select onChange={(event) => handleOnChangeGroup(event.target.value)} className={"form-select"}>
-                                <option className="text-danger" key='' value="" >Pleas select group.....</option>
+                                <option className="text-danger" key='' value="" >Vui lòng chọn group</option>
                                 {userGroup.length > 0 &&
-                                    userGroup.filter(item => item.name !== 'Admin' &&  item.name !== 'Department head' )
-                                    .map((item, index) => {
-                                        return (
-                                            <option key={`group-${index}`} value={item.id} >{item.name}</option>
-                                        )
-                                    })
+                                    userGroup.filter(item => item.name !== 'Admin' && item.name !== 'Department head')
+                                        .map((item, index) => {
+                                            return (
+                                                <option key={`group-${index}`} value={item.id} >{item.name}</option>
+                                            )
+                                        })
                                 }
 
 
@@ -128,14 +128,14 @@ const HeadAssignRole = () => {
                         </div>
                     </div>
                     <hr />
-                    <h4>Assigment Role</h4>
+                    <h4>Phân Quyền</h4>
                     <div className='row justify-content-center'>
                         <div className='col-sm-7'>
                             <table className='table  table-hover text-center'>
                                 <thead className="thead-dark">
                                     <tr>
-                                        <th scope="col" style={{ width: "40%" }}>Role</th>
-                                        <th scope="col">Description</th>
+                                        <th scope="col" style={{ width: "40%" }}>Quyền</th>
+                                        <th scope="col">Mô tả</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -153,7 +153,7 @@ const HeadAssignRole = () => {
                                                                     id={`list-role${index}`}
                                                                     checked={item.isAssigned}
                                                                     onChange={(event) => handleSelectRole(event.target.value)}
-                                                                /> 
+                                                                />
                                                                 <label
                                                                     className="form-check-label ml-2"
                                                                     htmlFor={`list-role${index}`}
@@ -168,14 +168,14 @@ const HeadAssignRole = () => {
                                             ) : (
                                                 <tr>
                                                     <td colSpan="2" className="text-center text-muted">
-                                                        No roles assigned to this group.
+                                                        Không có quyền được phân quyền trong nhóm
                                                     </td>
                                                 </tr>
                                             )}
                                             <tr>
                                                 <td colSpan="2" className="text-right">
                                                     <button className="btn btn-success btn-sm btnsave mt-3" onClick={handleSave}>
-                                                        Save Changes
+                                                        Lưu thay đổi
                                                     </button>
                                                 </td>
                                             </tr>
