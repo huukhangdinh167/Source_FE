@@ -17,7 +17,7 @@ const Projects = (props) => {
 
     useEffect(() => {
         fetchProjects(user);
-      //  console.log("sex",listProjects)
+        //  console.log("sex",listProjects)
     }, []);
 
 
@@ -113,10 +113,10 @@ const Projects = (props) => {
                             </h3>
                         </div>
                         <div className="action">
-                            <button className="btn btn-success  mb-3" onClick={handleRefeshPage}><i className="fa fa-refresh"></i> Refresh</button>
+                            <button className="btn btn-success  mb-3" onClick={handleRefeshPage}><i className="fa fa-refresh"></i> Làm mới</button>
                             <button className="btn btn-primary mx-3 mb-3"
                                 onClick={() => { setIsShowModalProject(true); setActionModalProject("CREATE") }}>
-                                <i className="fa fa-project-plus" ></i> Add new Project
+                                <i className="fa fa-project-plus" ></i> Thêm mới dự án
                             </button>
                         </div>
                     </div>
@@ -125,14 +125,15 @@ const Projects = (props) => {
                             <thead>
                                 <tr>
                                     <th style={{ width: '5%' }}>ID</th>
-                                    <th style={{ width: '10%' }}>Tên đề tài</th>
+                                    <th style={{ width: '20%' }}>Tên đề tài</th>
                                     <th style={{ width: '20%' }}>Mô tả</th>
                                     <th style={{ width: '20%' }}>Yêu cầu</th>
                                     <th style={{ width: '15%' }}>Kiến thức</th>
                                     <th style={{ width: '15%' }}>GVHD</th>
                                     <th style={{ width: '10%' }}>Trạng thái</th>
 
-                                    <th style={{ width: '8%' }}>Action</th>
+
+                                    <th style={{ width: '8%' }}>Trạng thái</th>
 
                                 </tr>
                             </thead>
@@ -169,7 +170,7 @@ const Projects = (props) => {
                                             })}
                                         </>
                                         :
-                                        <><tr><td colSpan={8}>Not found any Projects</td></tr></>
+                                        <><tr><td colSpan={8}>Không tìm thấy đề tài nào</td></tr></>
                                 }
                             </tbody>
                         </table>

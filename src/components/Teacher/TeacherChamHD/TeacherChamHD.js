@@ -32,6 +32,7 @@ const TeacherChamHD = (props) => {
         LOL7: '',
         LOL8: '',
         ghichu: ''
+
     }
     const [danhgia, setDanhGia] = useState(defaultdanhgia)
     //  const [danhgiaCk, setDanhGiaCk] = useState()
@@ -61,7 +62,6 @@ const TeacherChamHD = (props) => {
 
         });
     }, [dataModal]);
-
 
     const studentss = async () => {
         let data = await teacherGetDSHD(user);
@@ -154,7 +154,6 @@ const TeacherChamHD = (props) => {
             toast.error(reponse.EM)
         }
         //  console.log(danhgia)
-
     }
 
     return (
@@ -189,9 +188,9 @@ const TeacherChamHD = (props) => {
                                     <tr key={`student-${index}`}>
                                         <td>{item.maSo}</td>
                                         <td>{item.name}</td>
-                                        <td>{item.Project.name}</td>
+                                        <td>{item.Project && item.Project.name}</td>
 
-                                        <td>{item.Project.instuctor}</td>
+                                        <td>{item.Project && item.Project.instuctor}</td>
                                         <td>
                                             {isGroupNull ? (
                                                 <i>Làm một mình</i>
@@ -199,11 +198,11 @@ const TeacherChamHD = (props) => {
                                                 item.groupStudent
                                             )}
                                         </td>
+
                                         <td>{item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiagiuaky && item.Result.danhgiagiuaky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')} </td>
-                                        <td>{item && item.Result && item.Result.danhgiacuoiky && ( item.Result.danhgiacuoiky == 'false' ||  item.Result.danhgiagiuaky == 'false' ) ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
+                                        <td>{item && item.Result && item.Result.danhgiacuoiky && (item.Result.danhgiacuoiky == 'false' || item.Result.danhgiagiuaky == 'false') ? <i className="text-danger">Không đạt</i> : (item && item.Result && item.Result.danhgiacuoiky && item.Result.danhgiacuoiky == 'true' ? <b><i className="text-primary">Đạt (Ok)</i></b> : '')}
                                             <p> {item.Result && item.Result.diemGVHD && item.Result.danhgiacuoiky == 'true' && item.Result.danhgiagiuaky == 'true' ? item.Result.diemGVHD : ''}</p>
                                         </td>
-
                                         <td>
                                             <button
                                                 onClick={() =>
@@ -256,6 +255,8 @@ const TeacherChamHD = (props) => {
                         </div>
                         <div className="DGGK col-sm-4">
 
+
+
                             <select value={danhgia.danhgiagiuaky} onChange={(event) => handleOnchange(event.target.value, 'danhgiagiuaky')} className="form-select">
                                 <option value={''}>---</option>
                                 <option className="text-primary" value={'true'}>Đạt</option>
@@ -302,7 +303,6 @@ const TeacherChamHD = (props) => {
                                 <div className="col-sm-6"></div>
                                 <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn</i></div>
                                 <input value={danhgia.diemGVHD} onChange={(event) => handleOnchange(event.target.value, 'diemGVHD')} className="col-sm-2 " type="number" />
-
                             </div>
                             <div className="row mt-3">
                                 <div className="col-sm-12">
@@ -333,7 +333,6 @@ const TeacherChamHD = (props) => {
                                                     <td>{index + 1}</td>
                                                     <td>{criteria}</td>
                                                     <td>
-
                                                         <select value={danhgia[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
                                                             <option>----</option>
                                                             <option value={'1'}>1</option>
@@ -344,13 +343,10 @@ const TeacherChamHD = (props) => {
                                                     </td>
                                                 </tr>
                                             ))}
-
-
                                         </tbody>
                                     </table>
 
                                 </div>
-
 
                             </div>
                             <div className="row">
@@ -360,13 +356,13 @@ const TeacherChamHD = (props) => {
                         </>
 
 
-
                     )}
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleCloseModal}>
                         Đóng
                     </Button>
+
 
                     <Button onClick={danhgiaHD} variant="primary">Xác nhận</Button>
 

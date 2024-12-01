@@ -19,7 +19,7 @@ const HeadAssignGV = (props) => {
     const [PB, setPB] = useState(defaultPB)
     useEffect(() => {
         studentss();
-    }, []); 
+    }, []);
 
     useEffect(() => {
         setPB(dataModal)
@@ -36,12 +36,12 @@ const HeadAssignGV = (props) => {
         setSelectedStudent(item); // Lưu sinh viên được chọn vào state
         setShowModal(true); // Hiển thị modal
         setDataModal(item)
-       
+
     };
 
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-      //  setPB({ ...defaultPB })
+        //  setPB({ ...defaultPB })
     };
 
     const handleConfirmAssign = async () => {
@@ -62,8 +62,8 @@ const HeadAssignGV = (props) => {
             toast.success(data.EM)
             studentss()
         }
-        setShowModal(false); 
-        
+        setShowModal(false);
+
     };
 
     const handleOnchange = (value, name) => {
@@ -80,7 +80,7 @@ const HeadAssignGV = (props) => {
                 <table className="table text-center table-bordered table-hover mt-5">
                     <thead>
                         <tr>
-                            <th style={{ width: "5%" }}>Ma So</th>
+                            <th style={{ width: "5%" }}>Mã Số</th>
                             <th style={{ width: "10%" }}>Tên</th>
                             <th style={{ width: "20%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>GVHD</th>
@@ -126,7 +126,7 @@ const HeadAssignGV = (props) => {
                                         )}
 
                                         {
-                                          ( !item.pb1 || !item.pb2 ) &&  <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
+                                            (!item.pb1 || !item.pb2) && <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
                                         }
                                     </td>
                                     <td>
@@ -147,7 +147,7 @@ const HeadAssignGV = (props) => {
             {/* Modal */}
             <Modal show={showModal} onHide={handleCloseModal} centered>
                 <Modal.Header closeButton>
-                    <Modal.Title>Assign Student
+                    <Modal.Title>Phân công phản biện
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

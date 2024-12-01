@@ -23,9 +23,9 @@ const teacherHome = () => {
                 <div className="col-12 col-md-6 col-lg-4">
                     <div className="card border-0 shadow-sm">
                         <div className="card-body">
-                            <h3 className="card-title h5 fw-bold">Danh sách đăng kí</h3>
-                            <p className="card-text text-muted">Danh sách đăng kí đề tài</p>
-                            <a href="/teacher-DSDK" className="btn btn-primary w-100" style={{ backgroundColor: '#1d3557' }}>
+                            <h3 className="card-title h5 fw-bold">Chấm hội đồng</h3>
+                            <p className="card-text text-muted">Chấm hội đồng các nhóm được phân công</p>
+                            <a href="/teacher-chamHoiDong" className="btn btn-primary w-100" style={{ backgroundColor: '#1d3557' }}>
                                 Xem chi tiết
                             </a>
                         </div>
@@ -45,8 +45,8 @@ const teacherHome = () => {
                 <div className="col-12 col-md-6 col-lg-4">
                     <div className="card border-0 shadow-sm">
                         <div className="card-body">
-                            <h3 className="card-title h5 fw-bold">Chấm điểm hội đồng/Poster</h3>
-                            <p className="card-text text-muted">Chấm điểm các nhóm được phân công bảo vệ hội đồng/poster</p>
+                            <h3 className="card-title h5 fw-bold">Chấm điểm hướng dẫn</h3>
+                            <p className="card-text text-muted">Chấm điểm các nhóm mà mình hướng dẫn</p>
                             <a href="/teacher-chamHD" className="btn btn-primary w-100" style={{ backgroundColor: '#1d3557' }}>
                                 Xem chi tiết
                             </a>

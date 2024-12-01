@@ -44,7 +44,6 @@ const TeacherChamPB = (props) => {
     const [PBSV2, setPBSV2] = useState(defaultPBSV2)
     useEffect(() => {
         studentss();
-
     }, []);
 
     useEffect(() => {
@@ -86,6 +85,7 @@ const TeacherChamPB = (props) => {
         setData(data.DT);
         let list = await headFetchListTeacher()
         setListTeacher(list.DT)
+
     };
 
     // hàm này xác định xem user đang đang là vai trò PB1 hay Pb2 mỗi khi bậc modal ở mỗi đề tài
@@ -178,7 +178,6 @@ const TeacherChamPB = (props) => {
             }
 
         } else {
-            toast.error("Trống")
 
         }
         setShowModal(true); // Hiển thị modal
@@ -225,6 +224,7 @@ const TeacherChamPB = (props) => {
 
 
     const handleCloseModal = async () => {
+
         setShowModal(false); // Đóng 
         setPBSV1(defaultPBSV1)
         setPBSV2(defaultPBSV2)
@@ -382,7 +382,8 @@ const TeacherChamPB = (props) => {
                 <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-                            <th style={{ width: "5%" }} >MSSV</th>
+
+                            <th style={{ width: "6%" }} >MSSV</th>
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
@@ -391,7 +392,8 @@ const TeacherChamPB = (props) => {
                             <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
                             <th style={{ width: "12%" }}>Chấm</th>
-                            <th style={{ width: "4%" }}>Bộ môn</th>
+                            <th style={{ width: "6%" }}>Bộ môn</th>
+
                         </tr>
                     </thead>
                     <tbody>

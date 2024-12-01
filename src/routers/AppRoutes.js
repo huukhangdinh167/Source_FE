@@ -49,13 +49,12 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/head/assginmentrol" component={HeadAssignRole} />
                 <PrivateRoutes path="/head/assginmentGV" component={HeadAssignGV} />
                 <PrivateRoutes path="/head/results" component={HeadResults} />
-                
+
                 <PrivateRoutes path="/teacher-chamPB" component={TeacherChamPB} />
-                <PrivateRoutes path="/teacher-chamHoiDong" component={TeacherChamHoiDong} />
-                <PrivateRoutes path="/teacher/projects" component={Projects} />
+                <PrivateRoutes path="/teacher-chamHoiDong" component={TeacherChamHoiDong} /><PrivateRoutes path="/teacher/projects" component={Projects} />
                 <PrivateRoutes path="/teacher-chamHD" component={TeacherChamHD} />
                 <PrivateRoutes path="/headKetQuaCham" component={HeadKetQuaCham} />
-               
+
 
                 <PrivateRoutes path="/teacher-home" component={teacherHome} />
                 <PrivateRoutes path="/student-home" component={studentHome} />

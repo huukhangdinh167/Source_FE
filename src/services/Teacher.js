@@ -2,11 +2,11 @@ import axios from "../setup/axios"
 
 const teacherPB = (user) => {
     return axios.put("/api/v1/teacher/getLichChamPB", { data: { maSo: user.maSo } })
-} 
+}
 
 const teacherHoiDong = (user) => {
     return axios.put("/api/v1/teacher/getLichHoiDong", { data: { maSo: user.maSo } })
-} 
+}
 
 const teacherPoseter = (user) => {
     return axios.put("/api/v1/teacher/getLichPoster", { data: { maSo: user.maSo } })
@@ -34,6 +34,7 @@ const teacherDGHD = (danhgia, data4table) => {
         }
     })
 }
+
 const teacherGetDSHD = (user) => {
     return axios.put("/api/v1/teacher/getDSHD", { data: { maSo: user.maSo } })
 }
@@ -63,33 +64,33 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2, maSoGV) => 
             LOL8: danhgiaSV2.LOL8,
             diem: danhgiaSV2.diemSV2,
         },
-        idSV1:{
+        idSV1: {
             id1: idSV1
         },
-        idSV2:{
+        idSV2: {
             id2: idSV2
-        }, 
-        pb1: { pb1: pb1},
-        pb2: { pb2: pb2}, 
-        maSoGV: {maSoGV: maSoGV}
+        },
+        pb1: { pb1: pb1 },
+        pb2: { pb2: pb2 },
+        maSoGV: { maSoGV: maSoGV }
     })
 }
 
 const teacherXemKetQuaPBSV2 = (user, id) => {
     return axios.put("/api/v1/teacher/xemDGPhanBienSV2", { data: { maSo: user, id: id } })
-} 
+}
 // xác định user là pb1 hay pb1 của đề tài đó
 const teacherDefinePB1PB2 = (maSoSV, maSoGV) => {
-    return axios.put("/api/v1/teacher/definePB1PB2", { data: { maSoSV: maSoSV,   maSoGV: maSoGV} })
-} 
+    return axios.put("/api/v1/teacher/definePB1PB2", { data: { maSoSV: maSoSV, maSoGV: maSoGV } })
+}
 
 const teacherDefineHoiDong = (maSoSV, maSoGV) => {
-    return axios.put("/api/v1/teacher/defineHoiDong", { data: { maSoSV: maSoSV,   maSoGV: maSoGV} })
-} 
+    return axios.put("/api/v1/teacher/defineHoiDong", { data: { maSoSV: maSoSV, maSoGV: maSoGV } })
+}
 
 const teacherDefinePoster = (maSoSV, maSoGV) => {
-    return axios.put("/api/v1/teacher/definePoster", { data: { maSoSV: maSoSV,   maSoGV: maSoGV} })
-} 
+    return axios.put("/api/v1/teacher/definePoster", { data: { maSoSV: maSoSV, maSoGV: maSoGV } })
+}
 
 const teacherDGHoiDong = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, CTHD, TK, UV, maSoGV) => {
     return axios.put("/api/v1/teacher/DGPHoiDong", {
@@ -116,18 +117,18 @@ const teacherDGHoiDong = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, CTHD, TK, UV, ma
             LOL8: danhgiaSV2.LOL8,
             diem: danhgiaSV2.diemSV2,
         },
-        idSV1:{
+        idSV1: {
             id1: idSV1
         },
-        idSV2:{
+        idSV2: {
             id2: idSV2
-        }, 
-        CTHD: { CTHD: CTHD},
-        TK: { TK: TK}, 
-        UV: { UV: UV},
-        maSoGV: {maSoGV: maSoGV}
+        },
+        CTHD: { CTHD: CTHD },
+        TK: { TK: TK },
+        UV: { UV: UV },
+        maSoGV: { maSoGV: maSoGV }
     })
-}  
+}
 
 const teacherDGPoster = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, Poster1, Poster2, maSoGV) => {
     return axios.put("/api/v1/teacher/DGPPoster", {
@@ -154,20 +155,20 @@ const teacherDGPoster = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, Poster1, Poster2,
             LOL8: danhgiaSV2.LOL8,
             diem: danhgiaSV2.diemSV2,
         },
-        idSV1:{
+        idSV1: {
             id1: idSV1
         },
-        idSV2:{
+        idSV2: {
             id2: idSV2
-        }, 
-        Poster1: { Poster1: Poster1},
-        Poster2: { Poster2: Poster2}, 
-        maSoGV: {maSoGV: maSoGV}
+        },
+        Poster1: { Poster1: Poster1 },
+        Poster2: { Poster2: Poster2 },
+        maSoGV: { maSoGV: maSoGV }
     })
 }
 
 export {
     teacherPB, teacherGetDSHD, teacherDGHD, teacherGetIn4SV1andSV2, teacherDGPB,
-    teacherXemKetQuaPBSV2,teacherDefinePB1PB2,teacherHoiDong,teacherDefineHoiDong,teacherDGHoiDong,
-    teacherPoseter,teacherDefinePoster,teacherDGPoster
+    teacherXemKetQuaPBSV2, teacherDefinePB1PB2, teacherHoiDong, teacherDefineHoiDong, teacherDGHoiDong,
+    teacherPoseter, teacherDefinePoster, teacherDGPoster
 }

@@ -253,7 +253,7 @@ const Users = (props) => {
                             <div className='row'>
                                 <div className='col-10'></div>
                                 <div className="col-12 col-md-6 d-flex justify-content-end">
-                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Save</button>
+                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Lưu thay đổi</button>
                                 </div>
 
                             </div>
@@ -298,13 +298,13 @@ const Users = (props) => {
                                                         <td>
                                                             <div className="actions">
                                                                 <button
-                                                                    className="btn btn-warning"
+                                                                    className="btn btn-warning btn-sm"
                                                                     onClick={() => handleEditUser(item)}
                                                                 >
                                                                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                                 </button>
                                                                 <button
-                                                                    className="btn btn-danger"
+                                                                    className="btn btn-danger btn-sm"
                                                                     onClick={() => handleDeleteUser(item)}
                                                                 >
                                                                     <i className="fa fa-trash" aria-hidden="true"></i>

@@ -173,6 +173,26 @@ button.btn-primary {
     }
 }
 
+.user-body table .btn {
+    font-size: 14px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+
+    /* Thêm các thuộc tính dưới đây */
+    display: inline-block;
+    /* Đảm bảo là nút */
+    width: 50px;
+    /* Đặt chiều rộng cố định */
+    text-align: center;
+    /* Căn giữa nội dung */
+    line-height: 20px;
+    /* Cân đối chiều cao nội dung */
+}
+
+
 // button.btn-success {
 //     background: linear-gradient(135deg, #4caf50, #43a047);
 
@@ -183,6 +203,8 @@ button.btn-primary {
 //     }
 // }
 
+
+
 @media screen and (max-width: 576px) {
     button {
         font-size: 14px;
@@ -192,7 +214,7 @@ button.btn-primary {
     }
 
     i {
-        font-size: 16px;
+        font-size: 10px;
         /* Thu nhỏ icon */
     }
 }
