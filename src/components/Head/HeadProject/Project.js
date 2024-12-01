@@ -8,6 +8,7 @@ import {
 import React from 'react';
 import { UserContext } from '../../../context/userContext';
 import { toast } from "react-toastify";
+import { times } from 'lodash';
 const HeadProject = () => {
     const [listProject, setListProject] = useState([]);
     const [listProjectApprove, setListProjectApprove] = useState([]);
@@ -64,7 +65,7 @@ const HeadProject = () => {
 
         swal({
             title: `Bạn vui lòng nhập lý do từ chối duyệt cho đề tài:`,
-            text: `${item.name}`,  // Đưa phần text vào một phần riêng biệt
+
             buttons: ["Không!", "Có!"],
             content: textarea,
             dangerMode: true, // Cho phép HTML trong nội dung
@@ -80,9 +81,9 @@ const HeadProject = () => {
                     let data = await headRefuseFroject(item, reason)
                     getALLProject()
                     GetAllProjectApprove()
-                    if(data && +data.EC === 0){
+                    if (data && +data.EC === 0) {
                         toast.success(data.EM)
-                    }else{
+                    } else {
 
                         toast.error(data.EM)
                     }
@@ -136,7 +137,9 @@ const HeadProject = () => {
             });
 
     }
-
+    const lydotuchoi = (item) => {
+        alert(item.reasonrefuse)
+    }
 
     // swal("Are you sure you want to do this?", {
     //     buttons: ["No!", "Yes!"],
@@ -169,7 +172,7 @@ const HeadProject = () => {
                                             <th style={{ width: "15%" }}>KIẾN THỨC</th>
                                             <th style={{ width: "15%" }}>YÊU CẦU</th>
                                             <th style={{ width: "25%" }}>MÔ TẢ</th>
-                                            <th style={{ width: "13%" }}>DUYỆT</th>
+                                            <th style={{ width: "16%" }}>DUYỆT</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -184,6 +187,7 @@ const HeadProject = () => {
                                                     <td>{item.description}</td>
                                                     <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success btn-sm'>Duyệt</div>
                                                         <div onClick={() => handleRefuseProject(item)} className='  btn btn-danger btn-sm'>Từ chối</div>
+                                                        {item.reasonrefuse && <p onClick={() => lydotuchoi(item)}  className='text-primary lydotuchoi'>(Lý do từ chối trước đó)</p>}
                                                     </td>
 
                                                 </tr>

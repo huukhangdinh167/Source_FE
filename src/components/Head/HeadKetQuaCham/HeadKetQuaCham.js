@@ -12,7 +12,45 @@ const HeadKetQuaCham = () => {
         try {
             const data = await GetDSHoiDong();
             if (data.EC == 0) {
-                setDSHD(data.DT);
+                let result = data.DT.map(item => ({
+                    ...item,
+                    danhgiacuoiky: item.Result.danhgiacuoiky,
+                    danhgiagiuaky: item.Result.danhgiagiuaky,
+        
+                  }));
+                
+                  // 1. Loại bỏ sinh viên có group = null và danhgiacuoiky = false
+                  let filteredData1 = result.filter(item => !(item.danhgiacuoiky == null));
+                  let filteredData = filteredData1.filter(item => !(item.groupStudent == 'null' && item.danhgiacuoiky === 'false'));
+                  
+                  // 2. Tìm các nhóm có cùng groupStudent và có sinh viên có danhgiacuoiky = false
+                  let groupMap = new Map();
+                  
+                  // Đánh dấu các nhóm, theo dõi các sinh viên trong nhóm có danhgiacuoiky = true
+                  filteredData.forEach(item => {
+                    if (item.groupStudent !== 'null') {
+                      if (!groupMap.has(item.groupStudent)) {
+                        groupMap.set(item.groupStudent, { hasTrue: false, ids: [] });
+                      }
+                      if (item.danhgiacuoiky === 'true') {
+                        groupMap.get(item.groupStudent).hasTrue = true;
+                      }
+                      groupMap.get(item.groupStudent).ids.push(item.id);
+                    }
+                  });
+                  
+                  // 3. Lọc các nhóm, giữ lại các sinh viên có groupStudent giống nhau và có ít nhất một sinh viên có danhgiacuoiky = true
+                 let  filteredData2 = filteredData.filter(item => {
+                    if (item.groupStudent !== 'null' && groupMap.has(item.groupStudent)) {
+                      const groupInfo = groupMap.get(item.groupStudent);
+                      // Giữ lại nhóm nếu có ít nhất một sinh viên có danhgiacuoiky = true
+                      if (groupInfo.hasTrue) {
+                        return true;
+                      }
+                    }
+                    return true;
+                  });
+                setDSHD(filteredData2);
                 // console.log(data.DT)
             } else {
                 console.log("Lỗi lấy danh sách hội đồng:", data.EM);
@@ -289,7 +327,7 @@ const HeadKetQuaCham = () => {
                 <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-                            <th style={{ width: "4%" }}>ID</th>
+                            <th style={{ width: "6%" }}>ID</th>
                             <th style={{ width: "12%" }}>Tên</th>
                             <th style={{ width: "26%" }}>Tên Đề Tài</th>
                             <th style={{ width: "10%" }}>GVHD</th>
@@ -298,7 +336,7 @@ const HeadKetQuaCham = () => {
                             <th style={{ width: "8%" }}>Nhóm</th>
                             <th style={{ width: "20%" }}>Hội Đồng</th>
                             <th style={{ width: "7%" }}></th>
-                            <th style={{ width: "10%" }}>Bộ Môn</th>
+                            <th style={{ width: "7%" }}>Bộ Môn</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -369,7 +407,7 @@ const HeadKetQuaCham = () => {
                 <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-                            <th style={{ width: "4%" }}>ID</th>
+                            <th style={{ width: "6%" }}>ID</th>
                             <th style={{ width: "12%" }}>Tên</th>
                             <th style={{ width: "26%" }}>Tên Đề Tài</th>
                             <th style={{ width: "10%" }}>GVHD</th>
@@ -378,7 +416,7 @@ const HeadKetQuaCham = () => {
                             <th style={{ width: "8%" }}>Nhóm</th>
                             <th style={{ width: "20%" }}>Poster</th>
                             <th style={{ width: "7%" }}></th>
-                            <th style={{ width: "10%" }}>Bộ Môn</th>
+                            <th style={{ width: "7%" }}>Bộ Môn</th>
                         </tr>
                     </thead>
                     <tbody>

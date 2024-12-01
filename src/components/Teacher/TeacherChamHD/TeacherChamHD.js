@@ -97,9 +97,15 @@ const TeacherChamHD = (props) => {
         // setDataModal(item)
     };
     const handleOnchange = (value, name) => {
-        let _danhgia = _.cloneDeep(danhgia)
-        _danhgia[name] = value
-        setDanhGia(_danhgia)
+        
+        let _danhgia = _.cloneDeep(danhgia) 
+        if(name == 'danhgiagiuaky' && value == 'false'){
+            setDanhGia({..._danhgia, danhgiacuoiky: 'false', danhgiagiuaky: 'false'})
+        }else{
+            _danhgia[name] = value
+            setDanhGia(_danhgia)
+        }
+       
 
 
     }
@@ -107,7 +113,9 @@ const TeacherChamHD = (props) => {
         if (!danhgia.danhgiagiuaky) {
             toast.error("Vui lòng đánh giá giữa kì")
             return
-        } if (danhgia.danhgiacuoiky == 'true') {
+        }
+        if(danhgia.danhgiagiuaky == 'true'){
+              if (danhgia.danhgiacuoiky == 'true') {
             if (!danhgia.diemGVHD) {
                 toast.error("Vui lòng nhập điểm hướng dẫn")
                 return
@@ -145,6 +153,8 @@ const TeacherChamHD = (props) => {
                 return
             }
         }
+        }
+      
         let reponse = await teacherDGHD(danhgia, data4table)
         if (reponse.EC == 0) {
             toast.success("Đánh giá thành công")
@@ -254,9 +264,6 @@ const TeacherChamHD = (props) => {
                             <b>Đánh giá giữa kỳ</b>
                         </div>
                         <div className="DGGK col-sm-4">
-
-
-
                             <select value={danhgia.danhgiagiuaky} onChange={(event) => handleOnchange(event.target.value, 'danhgiagiuaky')} className="form-select">
                                 <option value={''}>---</option>
                                 <option className="text-primary" value={'true'}>Đạt</option>

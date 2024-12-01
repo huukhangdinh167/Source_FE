@@ -379,7 +379,7 @@ const TeacherChamPB = (props) => {
         <>
             <div className='container'>
                 <p className="mt-3 "><i>Số lượng sinh viên cần chấm phản biện:</i> <b className="text-danger"> {students ? students.length : ''}</b></p>
-                <table className="table text-center table-bordered table-hover mt-3">
+                <table className="table  table-bordered table-hover mt-3">
                     <thead>
                         <tr>
 
@@ -387,7 +387,7 @@ const TeacherChamPB = (props) => {
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
-                            <th style={{ width: "14%" }}>Yêu cầu</th>
+                           
                             <th style={{ width: "10%" }}>GVHD</th>
                             <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
@@ -413,7 +413,7 @@ const TeacherChamPB = (props) => {
                                     <td>{item.name}</td>
                                     <td>{item.Project.name}</td>
                                     <td>{item.Project.description}</td>
-                                    <td>{item.Project.require}</td>
+                                   
                                     <td>{item.Project.instuctor}</td>
                                     <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
                                     <td>

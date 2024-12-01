@@ -27,7 +27,47 @@ const HeadAssignGV = (props) => {
 
     const studentss = async () => {
         let data = await test();
-        setData(data.DT);
+        let result = data.DT.map(item => ({
+            ...item,
+            danhgiacuoiky: item.Result.danhgiacuoiky,
+            danhgiagiuaky: item.Result.danhgiagiuaky,
+
+          }));
+        
+          // 1. Loại bỏ sinh viên có group = null và danhgiacuoiky = false
+          let filteredData1 = result.filter(item => !(item.danhgiacuoiky == null));
+          let filteredData = filteredData1.filter(item => !(item.groupStudent == 'null' && item.danhgiacuoiky === 'false'));
+          
+          // 2. Tìm các nhóm có cùng groupStudent và có sinh viên có danhgiacuoiky = false
+          let groupMap = new Map();
+          
+          // Đánh dấu các nhóm, theo dõi các sinh viên trong nhóm có danhgiacuoiky = true
+          filteredData.forEach(item => {
+            if (item.groupStudent !== 'null') {
+              if (!groupMap.has(item.groupStudent)) {
+                groupMap.set(item.groupStudent, { hasTrue: false, ids: [] });
+              }
+              if (item.danhgiacuoiky === 'true') {
+                groupMap.get(item.groupStudent).hasTrue = true;
+              }
+              groupMap.get(item.groupStudent).ids.push(item.id);
+            }
+          });
+          
+          // 3. Lọc các nhóm, giữ lại các sinh viên có groupStudent giống nhau và có ít nhất một sinh viên có danhgiacuoiky = true
+         let  filteredData2 = filteredData.filter(item => {
+            if (item.groupStudent !== 'null' && groupMap.has(item.groupStudent)) {
+              const groupInfo = groupMap.get(item.groupStudent);
+              // Giữ lại nhóm nếu có ít nhất một sinh viên có danhgiacuoiky = true
+              if (groupInfo.hasTrue) {
+                return true;
+              }
+            }
+            return true;
+          });
+          
+        console.log("thư dãn", filteredData2)
+        setData(filteredData2);
         let list = await headFetchListTeacher()
         setListTeacher(list.DT)
     };

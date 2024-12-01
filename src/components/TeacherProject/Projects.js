@@ -133,7 +133,7 @@ const Projects = (props) => {
                                     <th style={{ width: '10%' }}>Trạng thái</th>
 
 
-                                    <th style={{ width: '8%' }}>Trạng thái</th>
+                                    <th style={{ width: '10%' }}>Trạng thái</th>
 
                                 </tr>
                             </thead>
