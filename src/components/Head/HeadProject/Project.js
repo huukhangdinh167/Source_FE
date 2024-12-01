@@ -63,27 +63,27 @@ const HeadProject = () => {
         swal({
             title: `Bạn vui lòng nhập lý do từ chối duyệt cho đề tài:`,
             text: `${item.name}`,  // Đưa phần text vào một phần riêng biệt
-           
+
             buttons: ["No!", "Yes!"],
             content: textarea,
             dangerMode: true, // Cho phép HTML trong nội dung
             html: true, // Cho phép HTML trong phần text
             className: "custom-swal-title",
         })
-        
-        
+
+
             .then(async (willUnregister) => {
                 if (willUnregister) {
-                   console.log(textarea.value)
-                  let reason = textarea.value.trim()
-                  let data = await headRefuseFroject(item, reason) 
-                  getALLProject()
-                  GetAllProjectApprove()
-                  if(data && +data.EC === 0){
-                    toast.success(data.EM)
-                  }else{
-                    toast.error(data.EM)
-                  }
+                    console.log(textarea.value)
+                    let reason = textarea.value.trim()
+                    let data = await headRefuseFroject(item, reason)
+                    getALLProject()
+                    GetAllProjectApprove()
+                    if(data && +data.EC === 0){
+                        toast.success(data.EM)
+                    }else{
+                        toast.error(data.EM)
+                    }
                 } else {
                     // Người dùng chọn "Không"
                     console.log("item", item)
@@ -204,21 +204,21 @@ const HeadProject = () => {
                     {listProject && (
                         <>
                             <div className="mt-1 text-center">
+                                <table className="table table-bordered table-hover mt-3">
+                                    <thead>
+                                        <tr>
+                                            <th style={{ width: "5%" }} >ID</th>
+                                            <th style={{ width: "20%" }}>TÊN ĐỀ TÀI</th>
+                                            <th style={{ width: "13%" }}>GVHD</th>
+                                            <th style={{ width: "30%" }}>KIẾN THỨC</th>
+                                            <th style={{ width: "25%" }}>YÊU CẦU</th>
+                                            {/* <th>STUDENT NAME</th> */}
+                                            {/* <th style={{ width: "7%" }}>XÓA</th> */}
+                                        </tr>
+                                    </thead>
+                                    {listProject.length > 0 && listProject.map((item, index) => (
+                                        <>
 
-                                {listProject.length > 0 && listProject.map((item, index) => (
-                                    <>
-                                        <table className="table table-bordered table-hover mt-3">
-                                            <thead>
-                                                <tr>
-                                                    <th style={{ width: "5%" }} >ID</th>
-                                                    <th style={{ width: "20%" }}>TÊN ĐỀ TÀI</th>
-                                                    <th style={{ width: "13%" }}>GVHD</th>
-                                                    <th style={{ width: "30%" }}>KIẾN THỨC</th>
-                                                    <th style={{ width: "25%" }}>YÊU CẦU</th>
-                                                    {/* <th>STUDENT NAME</th> */}
-                                                    {/* <th style={{ width: "7%" }}>XÓA</th> */}
-                                                </tr>
-                                            </thead>
                                             <tbody>
                                                 <tr key={`project-${index}`}>
                                                     <td>{item.id}</td>
@@ -237,8 +237,8 @@ const HeadProject = () => {
                                                 </tr>
                                             </tbody>
 
-                                        </table >
-                                        {/* <div className='row'>
+
+                                            {/* <div className='row'>
                                             <div className='col-sm-2'>
 
                                             </div>
@@ -288,9 +288,9 @@ const HeadProject = () => {
                                                 </table>
                                             </div>
                                         </div> */}
-                                    </>
-                                ))}
-
+                                        </>
+                                    ))}
+                                </table >
 
                             </div>
                         </>

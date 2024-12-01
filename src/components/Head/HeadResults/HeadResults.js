@@ -98,7 +98,7 @@ const HeadResults = () => {
 
     //import jsPDF from 'jspdf';
 
-    const exportToPDF = (instuctor) => {
+    const exportToPDF = (instuctor, projectName) => {
         const pdf = new jsPDF();
 
         // Sử dụng font mặc định FreeSerif hỗ trợ Unicode
@@ -119,8 +119,8 @@ const HeadResults = () => {
         pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
 
         pdf.text(`Họ tên người đánh giá: ${instuctor}`, 15, 60);
-        pdf.text('Vai trò của người đánh giá', 15, 65);
-        pdf.text('Tên đề tài: ', 15, 75);
+        pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 15, 65);
+        pdf.text(`Tên đề tài: ${projectName}`, 15, 75);
 
         pdf.text('Họ tên sinh viên 1: ', 15, 80);
         pdf.text('Mã số sinh viên: ', 120, 80);
@@ -160,7 +160,7 @@ const HeadResults = () => {
         pdf.text('TP.HCM, ngày    tháng    năm', 120, 215);
         pdf.text('Người đánh giá', 130, 220);
         pdf.text('(Ký và ghi rõ họ tên)', 125, 225);
-        pdf.text('Th.S Đinh Hữu Khang', 125, 250);
+        pdf.text(`${instuctor}`, 125, 250);
 
         pdf.save('example.pdf');
     };
@@ -278,7 +278,7 @@ const HeadResults = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className='col-sm-4 text-primary' onClick={() =>exportToPDF(resultseveryStudent.Project.instuctor)}>
+                    <div className='col-sm-4 text-primary' onClick={() =>exportToPDF(resultseveryStudent.Project.instuctor,resultseveryStudent.Project.name,)}>
                         in phiếu đánh giá
                     </div>
 

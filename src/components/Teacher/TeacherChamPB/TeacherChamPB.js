@@ -97,7 +97,9 @@ const TeacherChamPB = (props) => {
         } else {
             toast.error("Can't not define PB1 Pb2")
         }
-    }
+    } 
+
+    
     const handleChamDiemPB = async (item) => {
         let define = await definePB1PB2(item)
         let aee = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
@@ -440,7 +442,9 @@ const TeacherChamPB = (props) => {
                                                 <button onClick={() => handleChamDiemPB(item)} className="btn btn-success">
                                                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
-                                                <br /><br />
+                                                <br /><br /> {
+                                                    <p className="text-primary">(In phiếu)</p>
+                                                }
                                                 {item.groupStudent &&
                                                     ((item.Result?.diemGVPB1 !== null) ? (
                                                         <i className="text-primary">PB1 Đã đánh giá</i>
