@@ -51,6 +51,7 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2, maSoGV) => 
             LOL6: danhgiaSV1.LOL6,
             LOL7: danhgiaSV1.LOL7,
             LOL8: danhgiaSV1.LOL8,
+            danhgiaphanbien: danhgiaSV1.danhgiaphanbien,
             diem: danhgiaSV1.diemSV1
         },
         dataSV2: {
@@ -62,6 +63,7 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2, maSoGV) => 
             LOL6: danhgiaSV2.LOL6,
             LOL7: danhgiaSV2.LOL7,
             LOL8: danhgiaSV2.LOL8,
+            danhgiaphanbien: danhgiaSV2.danhgiaphanbien,
             diem: danhgiaSV2.diemSV2,
         },
         idSV1: {

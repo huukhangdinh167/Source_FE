@@ -17,6 +17,7 @@ const TeacherChamPB = (props) => {
     const [xemPBSV2, setXemPBSV2] = useState([])
     const [daDanhGia, setDaDanhGia] = useState("false")
     const defaultPBSV1 = {
+        danhgiaphanbien: '',
         diemSV1: '',
         LOL1: '',
         LOL2: '',
@@ -29,6 +30,7 @@ const TeacherChamPB = (props) => {
         ghichu: '',
     }
     const defaultPBSV2 = {
+        danhgiaphanbien: '',
         diemSV2: '',
         LOL1: '',
         LOL2: '',
@@ -58,7 +60,8 @@ const TeacherChamPB = (props) => {
             LOL7: dataModal.LOL7,
             LOL8: dataModal.LOL8,
             ghichu: dataModal.ghichu,
-            diemSV1: dataModal.diemSV1
+            diemSV1: dataModal.diemSV1,
+            danhgiaphanbien: dataModal.danhgiaphanbien,
         })
 
     }, [dataModal]);
@@ -75,7 +78,8 @@ const TeacherChamPB = (props) => {
             LOL6: xemPBSV2.LOL6,
             LOL7: xemPBSV2.LOL7,
             LOL8: xemPBSV2.LOL8,
-            diemSV2: xemPBSV2.diemSV2
+            diemSV2: xemPBSV2.diemSV2,
+            danhgiaphanbien: xemPBSV2.danhgiaphanbien
         })
     }, [xemPBSV2, dataModal]);
 
@@ -97,9 +101,9 @@ const TeacherChamPB = (props) => {
         } else {
             toast.error("Can't not define PB1 Pb2")
         }
-    } 
+    }
 
-    
+
     const handleChamDiemPB = async (item) => {
         let define = await definePB1PB2(item)
         let aee = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
@@ -118,6 +122,7 @@ const TeacherChamPB = (props) => {
                 LOL6: item.Criteriapb?.LOL6,
                 LOL7: item.Criteriapb?.LOL7,
                 LOL8: item.Criteriapb?.LOL8,
+                danhgiaphanbien: item.Result?.danhgiaphanbien,
                 ghichu: item.Criteriapb?.ghichu,
                 diemSV1: item.Result?.diemGVPB1
             })
@@ -134,6 +139,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8,
+                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien,
                     diemSV2: res[1] && res[1].Result?.diemGVPB1
                 })
                 console.log("datamodaaal", res)
@@ -154,7 +160,8 @@ const TeacherChamPB = (props) => {
                 LOL7: item.Criteriapb?.LOL7PB2,
                 LOL8: item.Criteriapb?.LOL8PB2,
                 ghichu: item.Criteriapb?.ghichu,
-                diemSV1: item.Result?.diemGVPB2
+                diemSV1: item.Result?.diemGVPB2,
+                danhgiaphanbien: item.Result?.danhgiaphanbien,
             })
             let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
@@ -169,6 +176,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6PB2,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7PB2,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8PB2,
+                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien,
                     //  ghichu: res[1].Criteriapb?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemGVPB2
                 })
@@ -181,39 +189,6 @@ const TeacherChamPB = (props) => {
 
         }
         setShowModal(true); // Hiển thị modal
-        // setDataModal({
-        //     ...item,
-        //     LOL1: item.Criteriapb?.LOL1,
-        //     LOL2: item.Criteriapb?.LOL2,
-        //     LOL3: item.Criteriapb?.LOL3,
-        //     LOL4: item.Criteriapb?.LOL4,
-        //     LOL5: item.Criteriapb?.LOL5,
-        //     LOL6: item.Criteriapb?.LOL6,
-        //     LOL7: item.Criteriapb?.LOL7,
-        //     LOL8: item.Criteriapb?.LOL8,
-        //     ghichu: item.Criteriapb?.ghichu,
-        //     diemSV1: item.Result?.diemGVPB1 || item.Result?.diemGVPB2
-        // })
-        // let data = await teacherXemKetQuaPBSV2(item.groupStudent)
-        // if (data.EC == 0) {
-        //     let res = data.DT
-        //     setXemPBSV2({
-        //         ...res,
-        //         LOL1: res[1].Criteriapb?.LOL1,
-        //         LOL2: res[1].Criteriapb?.LOL2,
-        //         LOL3: res[1].Criteriapb?.LOL3,
-        //         LOL4: res[1].Criteriapb?.LOL4,
-        //         LOL5: res[1].Criteriapb?.LOL5,
-        //         LOL6: res[1].Criteriapb?.LOL6,
-        //         LOL7: res[1].Criteriapb?.LOL7,
-        //         LOL8: res[1].Criteriapb?.LOL8,
-        //         //  ghichu: res[1].Criteriapb?.ghichu,
-        //         diemSV2: res[1].Result?.diemGVPB1 || res[1].Result?.diemGVPB2
-        //     })
-        //     console.log("datamodaaal", res)
-        // } else {
-        //     toast.error("Lỗi gì đó")
-        // }
         console.log("datamodal", item)
         let res = await teacherGetIn4SV1andSV2(item.groupStudent, item.id)
         if (res.EC == 0) {
@@ -232,128 +207,150 @@ const TeacherChamPB = (props) => {
     };
     const hanldeConfirm = async () => {
         if (listSV1SV2.length == 2) {
-            if (!PBSV1.diemSV1) {
-                toast.error("Bạn chưa nhập điểm cho SV1");
+            if (!PBSV1.danhgiaphanbien || PBSV1.danhgiaphanbien === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (PBSV1.diemSV1 < 0 || PBSV1.diemSV1 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+            if (PBSV1.danhgiaphanbien === 'true') {
+                if (!PBSV1.diemSV1) {
+                    toast.error("Bạn chưa nhập điểm cho SV1");
+                    return
+                }
+                if (PBSV1.diemSV1 < 0 || PBSV1.diemSV1 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+                    return
+                }
+                if (!PBSV1.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    return
+                }
+            }
+
+            if (!PBSV2.danhgiaphanbien || PBSV2.danhgiaphanbien === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV2");
                 return
             }
-            if (PBSV1.LOL1 == '') {
-                toast.error("Bạn chưa nhập LOL1 cho SV1");
-                return
+            if (PBSV2.danhgiaphanbien === 'true') {
+                if (!PBSV2.diemSV2) {
+                    toast.error("Bạn chưa nhập điểm cho SV2");
+                    return
+                }
+                if (PBSV2.diemSV2 < 0 || PBSV2.diemSV2 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+                    return
+                }
+                if (!PBSV2.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV2");
+                    return
+                }
+                if (!PBSV2.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV2");
+                    return
+                }
+
             }
-            if (!PBSV1.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV1");
-                return
-            }
-            if (!PBSV2.diemSV2) {
-                toast.error("Bạn chưa nhập điểm cho SV2");
-                return
-            }
-            if (PBSV2.diemSV2 < 0 || PBSV2.diemSV2 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
-                return
-            }
-            if (!PBSV2.LOL1) {
-                toast.error("Bạn chưa nhập LOL1 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV2");
-                return
-            }
-            if (!PBSV2.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV2");
-                return
-            }
+
         }
         if (listSV1SV2.length == 1) {
-            if (!PBSV1.diemSV1) {
-                toast.error("Bạn chưa nhập điểm cho SV1");
+            if (!PBSV1.danhgiaphanbien || PBSV1.danhgiaphanbien === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (PBSV1.diemSV1 < 0 || PBSV1.diemSV1 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
-                return
+            if (PBSV1.danhgiaphanbien === 'true') {
+                if (!PBSV1.diemSV1) {
+                    toast.error("Bạn chưa nhập điểm cho SV1");
+                    return
+                }
+                if (PBSV1.diemSV1 < 0 || PBSV1.diemSV1 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+                    return
+                }
+                if (!PBSV1.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    return
+                }
+                if (!PBSV1.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    return
+                }
             }
-            if (!PBSV1.LOL1) {
-                toast.error("Bạn chưa nhập LOL1 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV1");
-                return
-            }
-            if (!PBSV1.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV1");
-                return
-            }
+
         }
         let data = await teacherDGPB(PBSV1, PBSV2, listSV1SV2[0].id, listSV1SV2[1] ? listSV1SV2[1].id : 'null', listSV1SV2[0].pb1, listSV1SV2[0].pb2, user.maSo)
         if (data.EC == 0) {
@@ -366,13 +363,30 @@ const TeacherChamPB = (props) => {
     };
     const handleOnchange = (value, name) => {
         let _PBSV1 = _.cloneDeep(PBSV1)
+        let _PBSV2 = _.cloneDeep(PBSV2)
         _PBSV1[name] = value
-        setPBSV1(_PBSV1)
+        setPBSV1(_PBSV1) 
+        if (value != 'true' && value != 'false' && name == 'danhgiaphanbien') {
+            setPBSV2({ ..._PBSV2, danhgiaphanbien: 'null' })
+        }
+        if (value == 'false' && name == 'danhgiaphanbien') {
+            setPBSV1({ ..._PBSV1, diemSV1: 0, danhgiaphanbien: 'false' })
+        }
+        if (value == 'true' && name == 'danhgiaphanbien') {
+            setPBSV1({ ..._PBSV1, diemSV1: PBSV1.diemSV1 })
+        }
     };
     const handleOnchange2 = (value, name) => {
         let _PBSV2 = _.cloneDeep(PBSV2)
+
         _PBSV2[name] = value
         setPBSV2(_PBSV2)
+        if (value == 'false' && name == 'danhgiaphanbien') {
+            setPBSV2({ ..._PBSV2, diemSV2: 0, danhgiaphanbien: 'false' })
+        }
+        if (value == 'true' && name == 'danhgiaphanbien') {
+            setPBSV2({ ..._PBSV2, diemSV2: PBSV2.diemSV2 })
+        }
     }
     const renderedGroups = new Map(); // Theo dõi nhóm đã xử lý
     return (
@@ -387,7 +401,7 @@ const TeacherChamPB = (props) => {
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
-                           
+
                             <th style={{ width: "10%" }}>GVHD</th>
                             <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
@@ -413,7 +427,7 @@ const TeacherChamPB = (props) => {
                                     <td>{item.name}</td>
                                     <td>{item.Project.name}</td>
                                     <td>{item.Project.description}</td>
-                                   
+
                                     <td>{item.Project.instuctor}</td>
                                     <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
                                     <td>
@@ -493,107 +507,245 @@ const TeacherChamPB = (props) => {
                 </Modal.Header>
                 <Modal.Body>
                     <>
+
                         {
                             listSV1SV2 && listSV1SV2.length == 2 &&
                             <>
-                                <div className="row mt-1">
-                                    <div className="col-sm-1"></div>
-                                    <div className="col-sm-5  "><b> SV1: </b>&nbsp;&nbsp;<i className="">{listSV1SV2[0].name} </i> &nbsp;<i className="">{listSV1SV2[0].maSo} </i></div>
-                                    <div className="col-sm-5  "><b> SV2:</b> &nbsp;&nbsp;<i className="">{listSV1SV2[1].name} </i>&nbsp;<i className="">{listSV1SV2[1].maSo} </i></div>
+                                <div className="row">
+
+                                    <div className="col-sm-4  px-0">
+                                        <b> SV1: </b>&nbsp;&nbsp;<i className="">{listSV1SV2[0].name} </i> &nbsp;<i className="">{listSV1SV2[0].maSo} </i>
+                                    </div>
+                                    <div className="col-sm-2 px-0">
+                                        <select value={PBSV1.danhgiaphanbien} onChange={(event) => handleOnchange(event.target.value, 'danhgiaphanbien')} className={PBSV1.danhgiaphanbien == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                            <option value={'null'}>---</option>
+                                            <option className="text-primary" value={'true'}>Đạt</option>
+                                            <option className="text-danger" value={'false'}>Không đạt</option>
+                                        </select>
+                                    </div>
+                                    {
+                                        (PBSV1.danhgiaphanbien == 'true' || PBSV1.danhgiaphanbien == 'false') &&
+                                        <>
+                                            <div className="col-sm-4 px-0">
+                                                <b> SV2:</b> &nbsp;&nbsp;<i className="">{listSV1SV2[1].name} </i>&nbsp;<i className="">{listSV1SV2[1].maSo} </i>
+                                            </div>
+                                            <div className="col-sm-2 px-0">
+                                                <select value={PBSV2.danhgiaphanbien} onChange={(event) => handleOnchange2(event.target.value, 'danhgiaphanbien')} className={PBSV2.danhgiaphanbien == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                                    <option value={'null'}>---</option>
+                                                    <option className="text-primary" value={'true'}>Đạt</option>
+                                                    <option className="text-danger" value={'false'}>Không đạt</option>
+                                                </select>
+                                            </div>
+                                        </>
+                                    }
+
                                 </div>
                             </>
                         }
-                        <div className="row mt-4">
-                            <div className="col-sm-1"></div>
+                        <div className="row mt-2">
+
                             {
                                 listSV1SV2.length == 2 ?
                                     <>
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn cho SV1</i></div>
-                                        <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn cho SV2</i></div>
-                                        <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+                                        {
+                                            PBSV1.danhgiaphanbien == 'false' && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'true' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PBSV1.danhgiaphanbien == 'true' && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'true' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+
+                                        {/* {
+                                            (PBSV1.danhgiaphanbien == 'false') && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PBSV2.diemSV2}  className="col-sm-2 " type="number" />
+
+                                            </>
+                                        } */}
+                                        {
+                                            PBSV1.danhgiaphanbien == '' &&
+                                            <>
+
+                                            </>
+                                        }
+                                        {
+                                            (PBSV1.danhgiaphanbien == 'null' || !PBSV1.danhgiaphanbien) && PBSV2.danhgiaphanbien == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+
                                     </>
                                     : <>
 
-                                        <div className="col-sm-5  ">
-                                            <b> Sinh viên:&nbsp;  {listSV1SV2.length && listSV1SV2[0].name} &nbsp;&nbsp; {listSV1SV2.length && listSV1SV2[0].maSo}</b>
-
+                                        <div className="col-sm-4 px-0 ">
+                                            <b>  {listSV1SV2.length && listSV1SV2[0].name}</b> &nbsp;&nbsp; {listSV1SV2.length && listSV1SV2[0].maSo}
                                         </div>
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
-                                        <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                        <div className="col-sm-1"></div>
+                                        <div className="col-sm-3">
+                                            <select value={PBSV1.danhgiaphanbien} onChange={(event) => handleOnchange(event.target.value, 'danhgiaphanbien')} className={PBSV1.danhgiaphanbien == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                                <option value={'null'}>---</option>
+                                                <option className="text-primary" value={'true'}>Đạt</option>
+                                                <option className="text-danger" value={'false'}>Không đạt</option>
+                                            </select>
+                                        </div>
+                                        {
+                                            PBSV1.danhgiaphanbien == 'true' &&
+                                            <>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
+                                                <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+
+                                            </>
+
+                                        }
+                                        {
+                                            PBSV1.danhgiaphanbien == 'false' &&
+                                            <>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
+                                                <input value={PBSV1.danhgiaphanbien} className="col-sm-2 " type="number" />
+
+                                            </>
+
+                                        }
                                     </>
                             }
 
                         </div>
-                        <div className="row mt-3">
+                        <div className="row">
                             <div className="col-sm-12">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: "8%" }}>STT</th>
-                                            <th style={{ width: "72%" }}>
-                                                Tiêu chí
-                                            </th>
-                                            <th style={{ width: "20%" }}>
-                                                SV1
-                                            </th>
-                                            {
-                                                listSV1SV2.length == 2 &&
-                                                <th style={{ width: "20%" }}>
-                                                    SV2
+                                {
+                                    ((PBSV1.danhgiaphanbien && PBSV1.danhgiaphanbien == 'true') || (PBSV2.danhgiaphanbien && PBSV2.danhgiaphanbien == 'true')) &&
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th style={{ width: "10%" }}>STT</th>
+                                                <th style={{ width: "70%" }}>
+                                                    Tiêu chí
                                                 </th>
-                                            }
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {[
-                                            "Xác định được yêu cầu của khóa luận cần thực hiện",
-                                            "Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài",
-                                            "Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài",
-                                            "Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra",
-                                            "Viết được báo cáo khóa luận tốt nghiệp",
-                                            "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
-                                            "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
-                                            "Bảo vệ khóa kết quả khóa luận trước giản viên phản biện",
-                                        ].map((criteria, index) => (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>{criteria}</td>
-                                                <td>
-                                                    <select value={PBSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                        <option value={''}>----</option>
-                                                        <option value={'1'}>1</option>
-                                                        <option value={'2'}>2</option>
-                                                        <option value={'3'}>3</option>
-                                                        <option value={'4'}>4</option>
-                                                    </select>
-                                                </td>
                                                 {
-                                                    listSV1SV2.length == 2 && <td>
-                                                        <select value={PBSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                            <option value={''}>----</option>
-                                                            <option value={'1'}>1</option>
-                                                            <option value={'2'}>2</option>
-                                                            <option value={'3'}>3</option>
-                                                            <option value={'4'}>4</option>
-                                                        </select>
-                                                    </td>
+                                                    PBSV1.danhgiaphanbien == 'true' &&
+                                                    <th style={{ width: "20%" }}>
+                                                        SV1
+                                                    </th>
+                                                }
+                                                {
+                                                    listSV1SV2.length == 2 && PBSV2.danhgiaphanbien == 'true' &&
+                                                    <th style={{ width: "20%" }}>
+                                                        SV2
+                                                    </th>
                                                 }
                                             </tr>
-                                        ))}
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                                "Xác định được yêu cầu của khóa luận cần thực hiện",
+                                                "Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài",
+                                                "Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài",
+                                                "Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra",
+                                                "Viết được báo cáo khóa luận tốt nghiệp",
+                                                "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
+                                                "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
+                                                "Bảo vệ khóa kết quả khóa luận trước giản viên phản biện",
+                                            ].map((criteria, index) => (
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{criteria}</td>
+                                                    {
+                                                        PBSV1.danhgiaphanbien == 'true' ?
+                                                            <td>
+                                                                <select value={PBSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                    <option value={''}>----</option>
+                                                                    <option value={'1'}>1</option>
+                                                                    <option value={'2'}>2</option>
+                                                                    <option value={'3'}>3</option>
+                                                                    <option value={'4'}>4</option>
+                                                                </select>
+                                                            </td>
+                                                            : ''
+                                                    }
 
-
-                                    </tbody>
-                                </table>
+                                                    {
+                                                        listSV1SV2.length == 2 && PBSV2.danhgiaphanbien == 'true' &&
+                                                        <td>
+                                                            <select value={PBSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                <option value={''}>----</option>
+                                                                <option value={'1'}>1</option>
+                                                                <option value={'2'}>2</option>
+                                                                <option value={'3'}>3</option>
+                                                                <option value={'4'}>4</option>
+                                                            </select>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                }
 
                             </div>
-
-
                         </div>
-                        <div className="row">
-                            <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                            <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea></div>
+                        {
+                            PBSV1.danhgiaphanbien == 'true' &&
+                            <div className="row">
+                                <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
+                                <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                            </div>
+                        }
+
                     </>
 
 

@@ -288,7 +288,7 @@ const Project = () => {
                                     <div className='row'>
                                         <div className='col-sm-11'>
 
-                                        </div><div onClick={() => handleHuyNhom(foundGroupStudent())} className="btn btn-warning huynhom  col-sm-1 ">
+                                        </div><div onClick={() => handleHuyNhom(foundGroupStudent())} className="btn btn-warning huynhom px-0 col-sm-1 ">
                                             Hủy nhóm
 
                                         </div>
