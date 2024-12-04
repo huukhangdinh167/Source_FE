@@ -6,6 +6,9 @@ import { test, headFetchListTeacher, AssignPB1and2, } from '../../../services/He
 import { teacherPB, teacherGetIn4SV1andSV2, teacherDGPB, teacherXemKetQuaPBSV2, teacherDefinePB1PB2 } from '../../../services/Teacher';
 import _, { cloneDeep, values } from "lodash";
 import { toast } from "react-toastify";
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import autoTable from 'jspdf-autotable';
 import { UserContext } from '../../../context/userContext';
 const TeacherChamPB = (props) => {
     const { user } = React.useContext(UserContext);
@@ -18,6 +21,7 @@ const TeacherChamPB = (props) => {
     const [daDanhGia, setDaDanhGia] = useState("false")
     const defaultPBSV1 = {
         danhgiaphanbien: '',
+
         diemSV1: '',
         LOL1: '',
         LOL2: '',
@@ -62,6 +66,7 @@ const TeacherChamPB = (props) => {
             ghichu: dataModal.ghichu,
             diemSV1: dataModal.diemSV1,
             danhgiaphanbien: dataModal.danhgiaphanbien,
+
         })
 
     }, [dataModal]);
@@ -79,7 +84,8 @@ const TeacherChamPB = (props) => {
             LOL7: xemPBSV2.LOL7,
             LOL8: xemPBSV2.LOL8,
             diemSV2: xemPBSV2.diemSV2,
-            danhgiaphanbien: xemPBSV2.danhgiaphanbien
+            danhgiaphanbien: xemPBSV2.danhgiaphanbien,
+
         })
     }, [xemPBSV2, dataModal]);
 
@@ -122,7 +128,8 @@ const TeacherChamPB = (props) => {
                 LOL6: item.Criteriapb?.LOL6,
                 LOL7: item.Criteriapb?.LOL7,
                 LOL8: item.Criteriapb?.LOL8,
-                danhgiaphanbien: item.Result?.danhgiaphanbien,
+                danhgiaphanbien: item.Result?.danhgiaphanbien1,
+
                 ghichu: item.Criteriapb?.ghichu,
                 diemSV1: item.Result?.diemGVPB1
             })
@@ -139,7 +146,8 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8,
-                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien,
+                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien1,
+
                     diemSV2: res[1] && res[1].Result?.diemGVPB1
                 })
                 console.log("datamodaaal", res)
@@ -161,7 +169,7 @@ const TeacherChamPB = (props) => {
                 LOL8: item.Criteriapb?.LOL8PB2,
                 ghichu: item.Criteriapb?.ghichu,
                 diemSV1: item.Result?.diemGVPB2,
-                danhgiaphanbien: item.Result?.danhgiaphanbien,
+                danhgiaphanbien: item.Result?.danhgiaphanbien2,
             })
             let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
@@ -176,7 +184,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6PB2,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7PB2,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8PB2,
-                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien,
+                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien2,
                     //  ghichu: res[1].Criteriapb?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemGVPB2
                 })
@@ -184,8 +192,46 @@ const TeacherChamPB = (props) => {
             } else {
                 toast.error("Lỗi gì đó")
             }
+        } else if (define == 'pb3' && aee.DT[0].Result.diemGVPB3 != null) {
+            // người dùng đang là phản biện 2
+            setDataModal({
+                ...item,
+                LOL1: item.Criteriapb?.LOL1PB3,
+                LOL2: item.Criteriapb?.LOL2PB3,
+                LOL3: item.Criteriapb?.LOL3PB3,
+                LOL4: item.Criteriapb?.LOL4PB3,
+                LOL5: item.Criteriapb?.LOL5PB3,
+                LOL6: item.Criteriapb?.LOL6PB3,
+                LOL7: item.Criteriapb?.LOL7PB3,
+                LOL8: item.Criteriapb?.LOL8PB3,
+                ghichu: item.Criteriapb?.ghichu,
+                diemSV1: item.Result?.diemGVPB3,
+                danhgiaphanbien: item.Result?.danhgiaphanbien3,
+            })
+            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+            if (data.EC == 0) {
+                let res = data.DT
+                setXemPBSV2({
+                    ...res,
+                    LOL1: res[1] && res[1].Criteriapb?.LOL1PB3,
+                    LOL2: res[1] && res[1].Criteriapb?.LOL2PB3,
+                    LOL3: res[1] && res[1].Criteriapb?.LOL3PB3,
+                    LOL4: res[1] && res[1].Criteriapb?.LOL4PB3,
+                    LOL5: res[1] && res[1].Criteriapb?.LOL5PB3,
+                    LOL6: res[1] && res[1].Criteriapb?.LOL6PB3,
+                    LOL7: res[1] && res[1].Criteriapb?.LOL7PB3,
+                    LOL8: res[1] && res[1].Criteriapb?.LOL8PB3,
+                    danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien3,
+                    //  ghichu: res[1].Criteriapb?.ghichu,
+                    diemSV2: res[1] && res[1].Result?.diemGVPB3
+                })
+                console.log("datamodaaal", res)
+            } else {
+                toast.error("Lỗi gì đó")
+            }
 
-        } else {
+        }
+        else {
 
         }
         setShowModal(true); // Hiển thị modal
@@ -352,7 +398,7 @@ const TeacherChamPB = (props) => {
             }
 
         }
-        let data = await teacherDGPB(PBSV1, PBSV2, listSV1SV2[0].id, listSV1SV2[1] ? listSV1SV2[1].id : 'null', listSV1SV2[0].pb1, listSV1SV2[0].pb2, user.maSo)
+        let data = await teacherDGPB(PBSV1, PBSV2, listSV1SV2[0].id, listSV1SV2[1] ? listSV1SV2[1].id : 'null', listSV1SV2[0].pb1, listSV1SV2[0].pb2, listSV1SV2[0].pb3, user.maSo)
         if (data.EC == 0) {
             toast.success("Chấm thành công ")
             studentss()
@@ -365,7 +411,7 @@ const TeacherChamPB = (props) => {
         let _PBSV1 = _.cloneDeep(PBSV1)
         let _PBSV2 = _.cloneDeep(PBSV2)
         _PBSV1[name] = value
-        setPBSV1(_PBSV1) 
+        setPBSV1(_PBSV1)
         if (value != 'true' && value != 'false' && name == 'danhgiaphanbien') {
             setPBSV2({ ..._PBSV2, danhgiaphanbien: 'null' })
         }
@@ -388,7 +434,75 @@ const TeacherChamPB = (props) => {
             setPBSV2({ ..._PBSV2, diemSV2: PBSV2.diemSV2 })
         }
     }
-    const renderedGroups = new Map(); // Theo dõi nhóm đã xử lý
+    const renderedGroups = new Map(); // Theo dõi nhóm đã xử lý 
+
+
+    const exportToPDF = (instuctor, projectName, name, maSo) => {
+        const pdf = new jsPDF();
+
+        // Sử dụng font mặc định FreeSerif hỗ trợ Unicode
+        pdf.setFont('FreeSerif', 'normal');
+        pdf.setFontSize(13);
+        // Thêm nội dung tiếng Việt
+        pdf.text('TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HCM', 10, 25);
+        pdf.text('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM', 115, 25);
+
+        pdf.text('KHOA CÔNG NGHỆ THÔNG TIN', 20, 30);
+        pdf.text('Độc lập - Tự do - Hạnh phúc', 135, 30);
+
+        pdf.text('BỘ MÔN HỆ THỐNG THÔNG TIN', 20, 35);
+
+        pdf.text('------------------------------------', 25, 40);
+        pdf.text('-----------------------------------', 135, 35);
+
+        pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
+
+        pdf.text(`Họ tên người đánh giá: ${instuctor}`, 15, 60);
+        pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 15, 65);
+        pdf.text(`Tên đề tài: ${projectName}`, 15, 75);
+
+        pdf.text(`Họ tên sinh viên 1: ${name}`, 15, 80);
+        pdf.text(`Mã số sinh viên: ${maSo}`, 120, 80);
+
+        pdf.text('Họ tên sinh viên 2: ', 15, 85);
+        pdf.text('Mã số sinh viên: ', 120, 85);
+
+        const headers = [['STT', 'LOL', 'Sinh viên 1', 'Sinh viên 2',]];
+        const data = [
+            [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', '8.5', 7.0],
+            [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', 9.0, 8.5],
+            [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', 7.5, 6.0],
+            [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', 8.5, 7.0],
+            [5, 'Viết được báo cáo khóa luận tốt nghiệp', 9.0, 8.5],
+            [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', 7.5, 6.0],
+            [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', 9.0, 8.5],
+            [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn', 7.5, 6.0,],
+
+        ];
+        // Tạo bảng với autoTable
+        autoTable(pdf, {
+            head: headers,
+            body: data,
+            startY: 90, // Vị trí Y bắt đầu của bảng
+            theme: 'grid', // Giao diện của bảng (striped, grid, plain)
+            styles: { font: 'FreeSerif', fontSize: 13, halign: 'center' }, // Font và kích thước chữ trong bảng
+            headStyles: { fillColor: [80, 81, 81] }, // Màu nền tiêu đề
+            columnStyles: {
+                0: { cellWidth: 12 }, // Cột 1 (STT) rộng 20
+                1: { cellWidth: 115 }, // Cột 2 (Họ và Tên) rộng 50
+                2: { cellWidth: 25 }, // Cột 3 (Điểm Toán) rộng 25
+                3: { cellWidth: 25 }, // Cột 4 (Điểm Lý) rộng 25
+
+            },
+        });
+
+        pdf.text('TP.HCM, ngày    tháng    năm', 120, 215);
+        pdf.text('Người đánh giá', 130, 220);
+        pdf.text('(Ký và ghi rõ họ tên)', 125, 225);
+        pdf.text(`${instuctor}`, 125, 250);
+
+        pdf.save('example.pdf');
+    };
     return (
         <>
             <div className='container'>
@@ -396,12 +510,10 @@ const TeacherChamPB = (props) => {
                 <table className="table  table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-
                             <th style={{ width: "6%" }} >MSSV</th>
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "15%" }}>Mô Tả</th>
-
                             <th style={{ width: "10%" }}>GVHD</th>
                             <th style={{ width: "6%" }}>Nhóm</th>
                             <th style={{ width: "10%" }}>GV Phản Biện</th>
@@ -451,6 +563,16 @@ const TeacherChamPB = (props) => {
                                                         : <p key={`pb1-${index}`}>PB2: {itemmm.name}</p>
                                                 ))
                                         )}
+
+                                        {listtecher && (
+                                            listtecher
+                                                .filter(itemm => itemm.id == item.pb3)
+                                                .map((itemmm, index) => (
+                                                    itemmm.maSo == user.maSo ?
+                                                        <b><p key={`pb1-${index}`}>PB3: {itemmm.name}</p></b>
+                                                        : <p key={`pb1-${index}`}>PB3: {itemmm.name}</p>
+                                                ))
+                                        )}
                                     </td>
                                     <td>
                                         {showButton && (
@@ -459,7 +581,7 @@ const TeacherChamPB = (props) => {
                                                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
                                                 <br /><br /> {
-                                                    <p className="text-primary">(In phiếu)</p>
+                                                    <p className="text-primary" onClick={() => exportToPDF(item.Project.instuctor, item.Project.name, item.name, item.maSo,)}>(In phiếu)</p>
                                                 }
                                                 {item.groupStudent &&
                                                     ((item.Result?.diemGVPB1 !== null) ? (
@@ -474,6 +596,18 @@ const TeacherChamPB = (props) => {
                                                     ) : (
                                                         <i className="text-danger">PB2 Chưa đánh giá</i>
                                                     ))}
+                                                <br></br>
+                                                {item.pb3 != null &&
+                                                    <>
+                                                        {item.groupStudent &&
+                                                            ((item.Result?.diemGVPB3 !== null) ? (
+                                                                <i className="text-primary">PB3 Đã đánh giá</i>
+                                                            ) : (
+                                                                <i className="text-danger">PB3 Chưa đánh giá</i>
+                                                            ))}
+                                                    </>
+
+                                                }
                                             </>
                                         )}
                                     </td>
@@ -483,7 +617,7 @@ const TeacherChamPB = (props) => {
                             );
                         }) : <tr>
 
-                            <td colSpan={10}><i>Chưa được phân chấm phản biện</i></td>
+                            <td colSpan={9}><i>Chưa được phân chấm phản biện</i></td>
                         </tr>}
                     </tbody>
                 </table>

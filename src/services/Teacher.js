@@ -39,7 +39,7 @@ const teacherGetDSHD = (user) => {
     return axios.put("/api/v1/teacher/getDSHD", { data: { maSo: user.maSo } })
 }
 
-const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2, maSoGV) => {
+const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2,pb3, maSoGV) => {
     return axios.put("/api/v1/teacher/DGPhanBien", {
         dataSV1: {
             ghichu: danhgiaSV1.ghichu,
@@ -74,6 +74,7 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2, maSoGV) => 
         },
         pb1: { pb1: pb1 },
         pb2: { pb2: pb2 },
+        pb3: { pb3: pb3 },
         maSoGV: { maSoGV: maSoGV }
     })
 }

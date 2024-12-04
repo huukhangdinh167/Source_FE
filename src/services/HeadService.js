@@ -43,7 +43,7 @@ const AssignPB1and2 = (data) => {
     return axios.put("/api/v1/head/assignPB1and2",
         {
             data: {
-                pb1: data.PB.pb1, pb2: data.PB.pb2, groupStudent: data.selectedStudent.groupStudent,
+                pb1: data.PB.pb1, pb2: data.PB.pb2, pb3: data.PB.pb3, groupStudent: data.selectedStudent.groupStudent,
                 id: data.selectedStudent.id, idProject: data.selectedStudent.Project.id, instuctor: data.selectedStudent.Project.instuctor
             }
         })
@@ -80,8 +80,17 @@ const GetAllResults = () => {
 const headGetResultEveryStudent = (item) => {
     return axios.put("/api/v1/head/getResultsEveryStudent", { data: { id: item.id} })
 }
+
+const headGetIn4SV2 = () => {
+    return axios.get("/api/v1/head/getIn4SV2")
+} 
+
+const headSelectHoiDong = (item, hoidong) => {
+    return axios.put("/api/v1/head/headSelectHoiDong", { data: { id: item.id, groupStudent: item.groupStudent, hoidong: hoidong } })
+}
 export {
     headGetProjectandUser, headDeleteProjct, headHuyDangKi, headGetProjectApprove,
     headApproveFroject, headFetchListTeacher, test, AssignPB1and2, headRefuseFroject, GetDSHoiDong,
-    AssignHoiDong,AssignPoster,GetAllListTeacherHoiDong,GetAllResults,headGetResultEveryStudent
+    AssignHoiDong,AssignPoster,GetAllListTeacherHoiDong,GetAllResults,headGetResultEveryStudent,
+    headGetIn4SV2,headSelectHoiDong
 }

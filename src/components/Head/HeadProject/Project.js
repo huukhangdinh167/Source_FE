@@ -58,42 +58,65 @@ const HeadProject = () => {
     }
 
     const handleRefuseProject = async (item) => {
-
+        // Tạo textarea để nhập lý do
         let textarea = document.createElement("textarea");
         textarea.style.width = "100%";
         textarea.style.height = "70px";
 
+        // Hiển thị Swal với nội dung là textarea
         swal({
             title: `Bạn vui lòng nhập lý do từ chối duyệt cho đề tài:`,
-
-            buttons: ["Không!", "Có!"],
             content: textarea,
-            dangerMode: true, // Cho phép HTML trong nội dung
-            html: true, // Cho phép HTML trong phần text
+            buttons: {
+                cancel: "Không!",
+                confirm: "Có!",
+            },
+            dangerMode: true,
+            closeOnClickOutside: false, // Không cho phép đóng khi nhấn ngoài
+            closeOnEsc: false, // Không cho phép đóng khi nhấn Esc
             className: "custom-swal-title",
-        })
+        }).then(async (willUnregister) => {
+            if (willUnregister) {
+                // Lấy giá trị từ textarea
+                let reason = textarea.value.trim();
 
-
-            .then(async (willUnregister) => {
-                if (willUnregister) {
-                    console.log(textarea.value)
-                    let reason = textarea.value.trim()
-                    let data = await headRefuseFroject(item, reason)
-                    getALLProject()
-                    GetAllProjectApprove()
-                    if (data && +data.EC === 0) {
-                        toast.success(data.EM)
-                    } else {
-
-                        toast.error(data.EM)
-                    }
-                } else {
-                    // Người dùng chọn "Không"
-                    console.log("item", item)
+                // Kiểm tra nếu lý do từ chối không được nhập
+                if (!reason) {
+                    // Hiển thị hộp thoại thông báo lỗi
+                    swal({
+                        title: "",
+                        text: "Bạn chưa nhập lý do từ chối!",
+                        icon: "error",
+                        buttons: {
+                            confirm: "OK",
+                        },
+                    }).then(() => {
+                        // Hiển thị toast.error sau khi hộp thoại đóng
+                        // toast.error("Bạn chưa nhập lý do từ chối");
+                        handleRefuseProject(item); // Gọi lại chính nó để giữ hộp thoại nhập lý do
+                    });
+    
+                    return;
                 }
-            })
 
-    }
+                // Gửi yêu cầu từ chối với lý do
+                let data = await headRefuseFroject(item, reason);
+                getALLProject();
+                GetAllProjectApprove();
+
+                // Hiển thị kết quả
+                if (data && +data.EC === 0) {
+                    toast.success(data.EM);
+                } else {
+                    toast.error(data.EM);
+                }
+            } else {
+                // Người dùng chọn "Không"
+                console.log("item", item);
+            }
+        });
+    };
+
 
     const handleDeletProject = async (item) => {
         swal(`Bạn có chắc muốn xóa đề tài ${item.id} ?`, {
@@ -187,7 +210,7 @@ const HeadProject = () => {
                                                     <td>{item.description}</td>
                                                     <td className='center-button'><div onClick={() => handleApproveProject(item)} className='  btn btn-success btn-sm'>Duyệt</div>
                                                         <div onClick={() => handleRefuseProject(item)} className='  btn btn-danger btn-sm'>Từ chối</div>
-                                                        {item.reasonrefuse && <p onClick={() => lydotuchoi(item)}  className='text-primary lydotuchoi'>(Lý do từ chối trước đó)</p>}
+                                                        {item.reasonrefuse && <p onClick={() => lydotuchoi(item)} className='text-primary lydotuchoi'>(Lý do từ chối trước đó)</p>}
                                                     </td>
 
                                                 </tr>

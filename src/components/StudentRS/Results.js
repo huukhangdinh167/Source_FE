@@ -139,7 +139,7 @@ const Results = () => {
     //             1: { cellWidth: 115 }, // Cột 2 (Họ và Tên) rộng 50
     //             2: { cellWidth: 25 }, // Cột 3 (Điểm Toán) rộng 25
     //             3: { cellWidth: 25 }, // Cột 4 (Điểm Lý) rộng 25
-                
+
     //         },
     //     });
 
@@ -147,7 +147,7 @@ const Results = () => {
     //     pdf.text('Người đánh giá', 130, 220);
     //     pdf.text('(Ký và ghi rõ họ tên)', 125, 225);
     //     pdf.text('Th.S Đinh Hữu Khang', 125, 250);
-        
+
     //     pdf.save('example.pdf');
     // };
 
@@ -198,6 +198,7 @@ const Results = () => {
                                     <th scope="col" style={{ width: "10%" }}>GVHD</th>
                                     <th scope="col" style={{ width: "10%" }}>GVPB1</th>
                                     <th scope="col" style={{ width: "10%" }}>GVPB2</th>
+                                    <th scope="col" style={{ width: "10%" }}>GVPB3</th>
                                     <th scope="col" style={{ width: "10%" }}>Trung Bình PB</th>
                                     <th scope="col" style={{ width: "10%" }}>CTHD</th>
                                     <th scope="col" style={{ width: "10%" }}>TK</th>
@@ -215,7 +216,6 @@ const Results = () => {
 
                                     <td>{results.Result.danhgiacuoiky == 'false' || results.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : <><b>{results.Result.diemGVHD} </b><br></br> {results.Result.diemGVHD && <i onClick={() => handleXemChiTiet()} className="text-primary xemchitiet">Xem chi tiết</i>}</>}  </td>
                                     <td>
-
                                         {results.Result.diemGVPB1} <br></br>
                                         {listTeacher &&
                                             listTeacher.filter(item => item.id == results.pb1)
@@ -224,13 +224,21 @@ const Results = () => {
                                                 ))}
                                     </td>
                                     <td>
-
                                         {results.Result.diemGVPB2}  <br></br>
                                         {listTeacher &&
                                             listTeacher.filter(item => item.id == results.pb2)
                                                 .map((itemmap, index) => (
                                                     <i> {itemmap.name} </i>
-                                                ))} </td>
+                                                ))}
+                                    </td>
+                                    <td>
+                                        {results.Result.diemGVPB3}  <br></br>
+                                        {listTeacher &&
+                                            listTeacher.filter(item => item.id == results.pb3)
+                                                .map((itemmap, index) => (
+                                                    <i> {itemmap.name} </i>
+                                                ))}
+                                    </td>
                                     <td><b>{results.Result.trungbinhphanbien}</b> <br></br> {results.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
                                     <td>{results.Result.diemCTHD}
                                         <br></br>
@@ -443,12 +451,25 @@ const Results = () => {
                 </Modal.Header>
                 <Modal.Body>
                     <div className="row mt-0">
-                        <div className="col-sm-1"></div>
-                        <div className="col-sm-3  "><i className="text-danger"> Điểm GVPB1 </i></div>
-                        <input value={results && results.Result && results.Result.diemGVPB1} className="col-sm-2 " type="number" />
-                        <div className="col-sm-3  "><i className="text-danger"> Điểm GVPB1 </i></div>
-                        <input value={results && results.Result && results.Result.diemGVPB2} className="col-sm-2 " type="number" />
 
+
+                        {results?.pb3 && results.Result.diemGVPB3 ?
+                            <>
+                                <div className="col-sm-2 px-0 "><i className="text-danger"> Điểm GVPB1 </i></div>
+                                <input value={results && results.Result && results.Result.diemGVPB1} className="col-sm-2 " type="number" />
+                                <div className="col-sm-2 px-0 "><i className="text-danger"> Điểm GVPB2 </i></div>
+                                <input value={results && results.Result && results.Result.diemGVPB2} className="col-sm-2 " type="number" />
+                                <div className="col-sm-2 px-0 "><i className="text-danger"> Điểm GVPB3 </i></div>
+                                <input value={results && results.Result && results.Result.diemGVPB3} className="col-sm-2 " type="number" />
+                            </>
+                            : <>
+                            <div className='col-sm-1'></div>
+                                <div className="col-sm-3 px-0 "><i className="text-danger"> Điểm GVPB1 </i></div>
+                                <input value={results && results.Result && results.Result.diemGVPB1} className="col-sm-2 " type="number" />
+                                <div className="col-sm-3 px-0 "><i className="text-danger"> Điểm GVPB2 </i></div>
+                                <input value={results && results.Result && results.Result.diemGVPB2} className="col-sm-2 " type="number" />
+                            </>
+                        }
                     </div>
                     <div className="row">
                         <div className="col-sm-12">
@@ -464,7 +485,13 @@ const Results = () => {
                                         </th>
                                         <th style={{ width: "20%" }}>
                                             PB2
-                                        </th>
+                                        </th> 
+                                        {
+                                            results?.pb3 && results.Result.diemGVPB3 && 
+                                            <th style={{ width: "20%" }}>
+                                            PB3
+                                        </th> 
+                                        }
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -485,7 +512,16 @@ const Results = () => {
                                                         <option>{results.Criteriapb && results.Criteriapb.LOL1PB2}</option>
 
                                                     </select>
-                                                </td>
+                                                </td> 
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL1PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
                                             <tr>
                                                 <td>2</td>
@@ -501,7 +537,16 @@ const Results = () => {
                                                         <option>{results.Criteriapb && results.Criteriapb.LOL2PB2}</option>
 
                                                     </select>
-                                                </td>
+                                                </td> 
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL2PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
                                             <tr>
                                                 <td>3</td>
@@ -518,6 +563,15 @@ const Results = () => {
 
                                                     </select>
                                                 </td>
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL3PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
 
                                             <tr>
@@ -535,6 +589,15 @@ const Results = () => {
 
                                                     </select>
                                                 </td>
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL4PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
                                             <tr>
                                                 <td>5</td>
@@ -551,6 +614,15 @@ const Results = () => {
 
                                                     </select>
                                                 </td>
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL5PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
                                             <tr>
                                                 <td>6</td>
@@ -567,6 +639,15 @@ const Results = () => {
 
                                                     </select>
                                                 </td>
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL6PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
                                             <tr>
                                                 <td>7</td>
@@ -583,6 +664,15 @@ const Results = () => {
 
                                                     </select>
                                                 </td>
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL7PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
 
                                             <tr>
@@ -600,6 +690,15 @@ const Results = () => {
 
                                                     </select>
                                                 </td>
+                                                {
+                                                   results?.pb3 && results.Result.diemGVPB3 && 
+                                                   <td>
+                                                   <select className="form-select">
+                                                       <option>{results.Criteriapb && results.Criteriapb.LOL8PB3}</option>
+
+                                                   </select>
+                                               </td> 
+                                                }
                                             </tr>
                                         </>
                                     }
@@ -610,11 +709,17 @@ const Results = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-2"><i className="text-primary">Nhận xét PB1</i></div>
-                        <textarea readOnly className="col-sm-4">{results && results.Criteriapb && results.Criteriapb.ghichu}</textarea>
+                        <div className="col-sm-1"><i className="text-primary">PB1</i></div>
+                        <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichu}</textarea>
 
-                        <div className="col-sm-2"><i className="text-primary">Nhận xét PB2</i></div>
-                        <textarea readOnly className="col-sm-4">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+                        <div className="col-sm-1"><i className="text-primary">PB2</i></div>
+                        <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea> 
+                        { results?.pb3 && results.Result.diemGVPB3 && 
+                            <>
+                            <div className="col-sm-1"><i className="text-primary">PB2</i></div>
+                            <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+                            </>
+                        }
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

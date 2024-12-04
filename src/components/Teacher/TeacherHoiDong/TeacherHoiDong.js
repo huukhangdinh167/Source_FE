@@ -298,7 +298,7 @@ const TeacherChamHoiDong = (props) => {
 
         }
         else {
-            toast.error("Trống")
+           
 
         }
         setShowModal(true); // Hiển thị modal

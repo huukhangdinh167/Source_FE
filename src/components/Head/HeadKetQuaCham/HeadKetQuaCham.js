@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { GetDSHoiDong } from '../../../services/HeadService'
 import { Modal, Button } from "react-bootstrap";
-import { headFetchListTeacher, AssignHoiDong, AssignPoster, GetAllListTeacherHoiDong } from '../../../services/HeadService';
-import _, { cloneDeep, values } from "lodash";
+import { headFetchListTeacher, AssignHoiDong, AssignPoster, GetAllListTeacherHoiDong, headSelectHoiDong } from '../../../services/HeadService';
+import _, { cloneDeep, times, values } from "lodash";
 import { toast } from "react-toastify"
 import './HeadKetQuaCham.scss'
 const HeadKetQuaCham = () => {
@@ -12,45 +12,7 @@ const HeadKetQuaCham = () => {
         try {
             const data = await GetDSHoiDong();
             if (data.EC == 0) {
-                let result = data.DT.map(item => ({
-                    ...item,
-                    danhgiacuoiky: item.Result.danhgiacuoiky,
-                    danhgiagiuaky: item.Result.danhgiagiuaky,
-        
-                  }));
-                
-                  // 1. Loại bỏ sinh viên có group = null và danhgiacuoiky = false
-                  let filteredData1 = result.filter(item => !(item.danhgiacuoiky == null));
-                  let filteredData = filteredData1.filter(item => !(item.groupStudent == 'null' && item.danhgiacuoiky === 'false'));
-                  
-                  // 2. Tìm các nhóm có cùng groupStudent và có sinh viên có danhgiacuoiky = false
-                  let groupMap = new Map();
-                  
-                  // Đánh dấu các nhóm, theo dõi các sinh viên trong nhóm có danhgiacuoiky = true
-                  filteredData.forEach(item => {
-                    if (item.groupStudent !== 'null') {
-                      if (!groupMap.has(item.groupStudent)) {
-                        groupMap.set(item.groupStudent, { hasTrue: false, ids: [] });
-                      }
-                      if (item.danhgiacuoiky === 'true') {
-                        groupMap.get(item.groupStudent).hasTrue = true;
-                      }
-                      groupMap.get(item.groupStudent).ids.push(item.id);
-                    }
-                  });
-                  
-                  // 3. Lọc các nhóm, giữ lại các sinh viên có groupStudent giống nhau và có ít nhất một sinh viên có danhgiacuoiky = true
-                 let  filteredData2 = filteredData.filter(item => {
-                    if (item.groupStudent !== 'null' && groupMap.has(item.groupStudent)) {
-                      const groupInfo = groupMap.get(item.groupStudent);
-                      // Giữ lại nhóm nếu có ít nhất một sinh viên có danhgiacuoiky = true
-                      if (groupInfo.hasTrue) {
-                        return true;
-                      }
-                    }
-                    return true;
-                  });
-                setDSHD(filteredData2);
+                setDSHD(data.DT);
                 // console.log(data.DT)
             } else {
                 console.log("Lỗi lấy danh sách hội đồng:", data.EM);
@@ -63,6 +25,8 @@ const HeadKetQuaCham = () => {
         danhsachhoidong();
         studentss()
         listTeacherHoiDong()
+
+
     }, []);
     // const data = [
 
@@ -89,6 +53,7 @@ const HeadKetQuaCham = () => {
 
     // ]
     const renderedGroups = new Map();
+    const renderedGroups2 = new Map();
     const calculateTotalScoresAndSort = (students) => {
         // Nhóm các sinh viên theo group
         const grouped = students.reduce(
@@ -109,22 +74,25 @@ const HeadKetQuaCham = () => {
             if (group === "null") {
                 // Sinh viên có group null, tính điểm tổng riêng từng sinh viên
                 members.forEach((student) => {
-                    const trungBinhPhanBien = student.Result.trungbinhphanbien || 0;
+                    // const trungBinhPhanBien = student.Result.trungbinhphanbien || 0;
+                    const diemGVPB1 = student.Result.diemGVPB1;
+                    const diemGVPB2 = student.Result.diemGVPB2;
                     const diemGVHD = parseFloat(student.Result.diemGVHD || "0"); // Chuyển đổi từ chuỗi sang float
 
                     results.push({
                         ...student,
-                        totalScore: (trungBinhPhanBien + diemGVHD) / 2,
+                        totalScore: (diemGVPB1 + diemGVPB2 + diemGVHD) / 3,
                     });
                 });
             } else {
                 // Tính điểm trung bình cho cả nhóm
                 const averageScore =
                     members.reduce((sum, student) => {
-                        const trungBinhPhanBien = student.Result.trungbinhphanbien || 0;
+                        const diemGVPB1 = student.Result.diemGVPB1;
+                        const diemGVPB2 = student.Result.diemGVPB2;
                         const diemGVHD = parseFloat(student.Result.diemGVHD || "0"); // Chuyển đổi từ chuỗi sang float
 
-                        return sum + (trungBinhPhanBien + diemGVHD) / 2;
+                        return sum + ((diemGVPB1 + diemGVPB2 + diemGVHD) / 3);
                     }, 0) / members.length;
 
                 members.forEach((student) => {
@@ -135,8 +103,6 @@ const HeadKetQuaCham = () => {
                 });
             }
         }
-
-
 
         // Sắp xếp theo điểm tổng giảm dần
         results.sort((a, b) => b.totalScore - a.totalScore);
@@ -166,9 +132,8 @@ const HeadKetQuaCham = () => {
         { id: 19, name: "Student 20", group: null, Result: { trungbinhphanbien: 9.1 } },
         { id: 20, name: "Student 21", group: null, Result: { trungbinhphanbien: 9.1 } },
     ];
-    const topStudentNotNullTrungBinhPb = dshd.filter(student => student && student.Result && student.Result.trungbinhphanbien != null);
     // Tính và sắp xếp
-    const sortedResults = calculateTotalScoresAndSort(topStudentNotNullTrungBinhPb);
+    const sortedResults = calculateTotalScoresAndSort(dshd);
     // Lọc sinh viên có `Result` và `trungbinhphanbien` khác null
     const validStudents = sortedResults.filter(student => student && student.totalScore !== null);
 
@@ -186,11 +151,10 @@ const HeadKetQuaCham = () => {
     );
     // In kết quả
     const topStudentNullTrungBinhPb = dshd.filter(student => student && student.Result && student.Result.trungbinhphanbien == null);
-    const topStudents80 = topStudentNotNullTrungBinhPb.filter(a => !topStudents.some(b => b.id === a.id));
-    console.log("data 80%", topStudents80)
+
     console.log("data 20%", topStudents);
     console.log("data đầu vào", sortedResults);
-
+    console.log("dshs", dshd);
     const [listtecher, setListTeacher] = useState()
     const defaultHoiDong = {
         CTHD: '',
@@ -209,7 +173,7 @@ const HeadKetQuaCham = () => {
     const [AlllistTeacherHoiDong, setAlllistTeacherHoiDong] = useState([]);
     const handleCloseModal = async () => {
         setshowModal(false)
-        setHoiDong(defaultHoiDong)
+          setHoiDong(defaultHoiDong)
     }
     const handleCloseModalPoster = async () => {
         setshowModalPoster(false)
@@ -218,7 +182,12 @@ const HeadKetQuaCham = () => {
     const handleAssignHoiDong = async (item) => {
         setSelectedStudent(item)
         setshowModal(true)
-        setDataModal(item)
+        setDataModal({
+            ...item,
+            CTHD: item.CTHD,
+            TK: item.TK,
+            UV: item.UV
+        })
     }
     const handleAssignPoster = async (item) => {
         setSelectedStudent(item)
@@ -310,170 +279,356 @@ const HeadKetQuaCham = () => {
             console.log("alll List", data.DT)
         }
     }
+
+    const [isHoiDongVisible, setIsHoiDongVisible] = useState(false); // State kiểm soát hiển thị danh sách hội đồng
+    const [isHoiDongBaoCaoVisible, setIsHoiDongBaoCaoVisible] = useState(true);
+    const [isPosterVisible, setIsPosterVisible] = useState(true);
+    const toggleHoiDongVisibility = () => {
+        setIsHoiDongVisible((prev) => !prev);
+    }// Đổi trạng thái hiển thị 
+
+    const toggleHoiDongBaoCaoVisibility = () => {
+        setIsHoiDongBaoCaoVisible((prev) => !prev);
+    }// Đổi trạng thái hiển thị 
+
+    const toggleHoiDongPosterVisibility = () => {
+        setIsPosterVisible((prev) => !prev);
+    }// Đổi trạng thái hiển thị 
+    const updatedData = dshd.map(item => {
+        // Kiểm tra nếu ID của phần tử trong dataDauVao trùng với ID của phần tử trong data20Percent
+        const isInData20Percent = topStudents.some(topItem => topItem.id === item.id);
+
+        // Nếu trùng, thêm thuộc tính hoidong: 'baocao', ngược lại giữ nguyên
+        return {
+            ...item,
+            hoidongg: isInData20Percent ? 'baocao' : undefined // hoặc không thêm gì nếu không cần `undefined`
+        };
+    });
+
+    const danhsachHoiDong = dshd.filter(item => item.hoidong === 'hoidong');
+    const danhsachPoster = dshd.filter(item => item.hoidong === 'poster');
+    const [selectedOption, setSelectedOption] = useState('');
+
+    const handleSelection = (event) => {
+        setSelectedOption(event.target.value);
+    };
+
+    const handleHoiDong = async (item, hoidonggg) => {
+        if (item.hoidong == 'hoidong') {
+            if ((item.CTHD && item.TK && item.UV)) {
+                toast.warning("Đề tài đã được phân công GV chấm")
+
+                //console.log(item.id, item.groupStudent, hoidong)
+            } else {
+                let data = await headSelectHoiDong(item, hoidonggg)
+                if (data.EC == 0) {
+                    toast.success("Success!")
+                    danhsachhoidong();
+                    studentss()
+                    listTeacherHoiDong()
+                } else {
+                    toast.error("error!")
+                }
+            }
+        } else if (item.hoidong == 'poster') {
+            if ((item.Poster1 && item.Poster2)) {
+                toast.warning("Đề tài đã được phân công GV")
+                //console.log(item.id, item.groupStudent, hoidong)
+            } else {
+
+                let data = await headSelectHoiDong(item, hoidonggg)
+                if (data.EC == 0) {
+                    toast.success("Success!")
+                    danhsachhoidong();
+                    studentss()
+                    listTeacherHoiDong()
+                } else {
+                    toast.error("error!")
+                }
+            }
+        } else {
+            let data = await headSelectHoiDong(item, hoidonggg)
+            if (data.EC == 0) {
+                toast.success("Success!")
+                danhsachhoidong();
+                studentss()
+                listTeacherHoiDong()
+            } else {
+                toast.error("error!")
+            }
+        }
+
+
+    }
     return (
         <>
             <div className='container'>
+                <button
+                    className='btn btn-primary mt-3'
+                    onClick={toggleHoiDongVisibility}
+                >
+                    {isHoiDongVisible ? 'Ẩn danh sách phân công' : 'Danh sách phân công'}
+                </button>
+                {isHoiDongVisible && (
+                    <table className="table text-center table-bordered table-hover mt-3">
+                        <thead>
+                            <tr>
+                                <th style={{ width: "6%" }}>ID</th>
+                                <th style={{ width: "12%" }}>Tên</th>
+                                <th style={{ width: "26%" }}>Tên Đề Tài</th>
+                                <th style={{ width: "10%" }}>GVHD</th>
+                                <th style={{ width: "7%" }}>GVHD</th>
+                                <th style={{ width: "6%" }}>PB1</th>
+                                <th style={{ width: "6%" }}>PB2</th>
+                                {/* <th style={{ width: "10%" }}>TTC</th> */}
+                                <th style={{ width: "8%" }}>Nhóm</th>
+                                <th style={{ width: "11%" }}>Hội Đồng</th>
+                                <th style={{ width: "10%" }}>Poster</th>
+                                <th style={{ width: "10%" }}>Đề xuất</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {updatedData && updatedData.map((item, index) => {
+                                const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
+                                const showButton =
+                                    isGroupNull ||
+                                    (!renderedGroups2.has(item.groupStudent) && item.groupStudent !== 'null');
+
+                                if (item.groupStudent && item.groupStudent !== 'null') {
+                                    renderedGroups2.set(item.groupStudent, true);
+                                }
+
+                                return (
+                                    <tr key={`student-${index}`}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.Project && item.Project.name}</td>
+                                        <td>{item.Project && item.Project.instuctor}</td>
+                                        <td>{item.Result && item.Result.diemGVHD}</td>
+                                        <td>{item.Result && item.Result.diemGVPB1}</td>
+                                        <td>{item.Result && item.Result.diemGVPB2}</td>
+                                        {/* <td>{item.Result && item.totalScore}</td> */}
+                                        <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
+
+                                        <td>
+                                            {showButton && (
+                                                <label>
+                                                    <input
+                                                        checked={item.hoidong === 'hoidong' ? true : ''}
+                                                        type="radio"
+                                                        name={`radio-${index}`} // Tên dùng chung cho cả Hội Đồng và Poster trong cùng một hàng
+                                                        value="hoidong"
+                                                        onClick={() => handleHoiDong(item, 'hoidong')}
+
+                                                    />
+                                                    Hội đồng
+                                                </label>
+                                            )}
+                                        </td>
+                                        <td>
+                                            {showButton && (
+                                                <label>
+                                                    <input
+                                                        type="radio"
+                                                        checked={item.hoidong === 'poster' ? true : ''}
+                                                        name={`radio-${index}`} // Cùng tên với radio ở cột Hội Đồng
+                                                        value="poster"
+                                                        onClick={() => handleHoiDong(item, 'poster')}
+                                                    />
+                                                    Poster
+                                                </label>
+                                            )}
+                                        </td>
+                                        <td>
+                                            {showButton && (
+                                                item.hoidongg == 'baocao' ? <b className='text-danger'>Hội đồng</b> : <b className='text-info'>Poster</b>
+                                            )}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                )}
                 <div className='mt-3'>
-                    <h4 style={{ display: 'inline-block', marginRight: '1rem' }}>
+                    <button
+                        className='btn btn-success mt-3'
+                        onClick={toggleHoiDongBaoCaoVisibility}
+                    >
+                        {isHoiDongBaoCaoVisible ? 'Ẩn Danh sách Hội đồng' : 'Danh sách Hội đồng'}
+                    </button>
+                    {/* <h4 style={{ display: 'inline-block', marginRight: '1rem' }}>
                         Danh sách Hội đồng
-                        <b className='text-danger'>{topStudents && topStudents.length}</b>/{dshd && dshd.length}
-                    </h4>
-                    <i className='ms-5' style={{ display: 'inline-block' }}>
+                        <b className='text-danger'>{danhsachHoiDong && danhsachHoiDong.length}</b>/{dshd && dshd.length}
+                    </h4> */}
+                    {/* <i className='ms-5' style={{ display: 'inline-block' }}>
                         Số lượng sinh viên chưa được chấm phản biện
                         <b className='text-danger'> {topStudentNullTrungBinhPb && topStudentNullTrungBinhPb.length}</b>
-                    </i>
+                    </i> */}
                 </div>
+                {isHoiDongBaoCaoVisible && (
+                    <table className="table text-center table-bordered table-hover mt-3">
+                        <thead>
+                            <tr>
+                                <th style={{ width: "6%" }}>ID</th>
+                                <th style={{ width: "12%" }}>Tên</th>
+                                <th style={{ width: "26%" }}>Tên Đề Tài</th>
+                                <th style={{ width: "10%" }}>GVHD</th>
 
-                <table className="table text-center table-bordered table-hover mt-3">
-                    <thead>
-                        <tr>
-                            <th style={{ width: "6%" }}>ID</th>
-                            <th style={{ width: "12%" }}>Tên</th>
-                            <th style={{ width: "26%" }}>Tên Đề Tài</th>
-                            <th style={{ width: "10%" }}>GVHD</th>
-                            <th style={{ width: "9%" }}>Điểm GVHD</th>
-                            <th style={{ width: "10%" }}>Điểm TBPB</th>
-                            <th style={{ width: "8%" }}>Nhóm</th>
-                            <th style={{ width: "20%" }}>Hội Đồng</th>
-                            <th style={{ width: "7%" }}></th>
-                            <th style={{ width: "7%" }}>Bộ Môn</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {topStudents && topStudents.map((item, index) => {
-                            const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
-                            const showButton =
-                                isGroupNull ||
-                                (!renderedGroups.has(item.groupStudent) && item.groupStudent !== 'null');
+                                {/* <th style={{ width: "10%" }}>TTC</th> */}
+                                <th style={{ width: "8%" }}>Nhóm</th>
+                                <th style={{ width: "20%" }}>Hội Đồng</th>
+                                <th style={{ width: "7%" }}></th>
+                                <th style={{ width: "7%" }}>Bộ Môn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {danhsachHoiDong && danhsachHoiDong.map((item, index) => {
+                                const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
+                                const showButton =
+                                    isGroupNull ||
+                                    (!renderedGroups.has(item.groupStudent) && item.groupStudent !== 'null');
 
-                            if (item.groupStudent && item.groupStudent !== 'null') {
-                                renderedGroups.set(item.groupStudent, true);
-                            }
+                                if (item.groupStudent && item.groupStudent !== 'null') {
+                                    renderedGroups.set(item.groupStudent, true);
+                                }
 
-                            return (
-                                <tr key={`student-${index}`}>
-                                    <td>{item.id}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.Project && item.Project.name}</td>
-                                    <td>{item.Project && item.Project.instuctor}</td>
-                                    <td>{item.Result && item.Result.diemGVHD}</td>
-                                    <td>{item.Result && item.Result.trungbinhphanbien}</td>
-                                    <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
+                                return (
+                                    <tr key={`student-${index}`}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.Project && item.Project.name}</td>
+                                        <td>{item.Project && item.Project.instuctor}</td>
 
-                                    <td>
-                                        {
-                                            (!item.CTHD || !item.CTHD) && <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
-                                        }
-                                        {listtecher && (
-                                            listtecher
-                                                .filter(itemm => itemm.id == item.CTHD)
-                                                .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>CTHD: {itemmm.name}</p>
-                                                ))
-                                        )}
-                                        {listtecher && (
-                                            listtecher
-                                                .filter(itemm => itemm.id == item.TK)
-                                                .map((itemmm, index) => (
-                                                    <p className='text-success' key={`pb1-${index}`}>TK: {itemmm.name}</p>
-                                                ))
-                                        )}
-                                        {listtecher && (
-                                            listtecher
-                                                .filter(itemm => itemm.id == item.UV)
-                                                .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>UV: {itemmm.name}</p>
-                                                ))
-                                        )}
-                                    </td>
+                                        {/* <td>{item.Result && item.totalScore}</td> */}
+                                        <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
 
-                                    <td>
-                                        {showButton && (
-                                            <button onClick={() => handleAssignHoiDong(item)} className='btn btn-success'>
-                                                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </button>
-                                        )}
-                                    </td>
-                                    <td>IS</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                        <td>
+                                            {
+                                                (!item.CTHD || !item.CTHD) && <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
+                                            }
+                                            {listtecher && (
+                                                listtecher
+                                                    .filter(itemm => itemm.id == item.CTHD)
+                                                    .map((itemmm, index) => (
+                                                        <p key={`pb1-${index}`}>CTHD: {itemmm.name}</p>
+                                                    ))
+                                            )}
+                                            {listtecher && (
+                                                listtecher
+                                                    .filter(itemm => itemm.id == item.TK)
+                                                    .map((itemmm, index) => (
+                                                        <p className='text-success' key={`pb1-${index}`}>TK: {itemmm.name}</p>
+                                                    ))
+                                            )}
+                                            {listtecher && (
+                                                listtecher
+                                                    .filter(itemm => itemm.id == item.UV)
+                                                    .map((itemmm, index) => (
+                                                        <p key={`pb1-${index}`}>UV: {itemmm.name}</p>
+                                                    ))
+                                            )}
+                                        </td>
 
-                <div className='mt-3'>
-                    <h4>Danh sách Poster <b className='text-danger'>{topStudents80 && topStudents80.length}</b>/{dshd && dshd.length}</h4>
-                </div>
-                <table className="table text-center table-bordered table-hover mt-3">
-                    <thead>
-                        <tr>
-                            <th style={{ width: "6%" }}>ID</th>
-                            <th style={{ width: "12%" }}>Tên</th>
-                            <th style={{ width: "26%" }}>Tên Đề Tài</th>
-                            <th style={{ width: "10%" }}>GVHD</th>
-                            <th style={{ width: "9%" }}>Điểm GVHD</th>
-                            <th style={{ width: "10%" }}>Điểm TBPB</th>
-                            <th style={{ width: "8%" }}>Nhóm</th>
-                            <th style={{ width: "20%" }}>Poster</th>
-                            <th style={{ width: "7%" }}></th>
-                            <th style={{ width: "7%" }}>Bộ Môn</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {topStudents80 && topStudents80.map((item, index) => {
-                            const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
-                            const showButton =
-                                isGroupNull ||
-                                (!renderedGroups.has(item.groupStudent) && item.groupStudent !== 'null');
+                                        <td>
+                                            {showButton && (
+                                                <button onClick={() => handleAssignHoiDong(item)} className='btn btn-success'>
+                                                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </button>
+                                            )}
+                                        </td>
+                                        <td>IS</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                )}
+                {/* <div className='mt-3'>
+                    <h4>Danh sách Poster <b className='text-danger'>{danhsachPoster && danhsachPoster.length}</b>/{dshd && dshd.length}</h4>
+                </div>  */}
+                <button
+                    className='btn btn-danger mt-3'
+                    onClick={toggleHoiDongPosterVisibility}
+                >
+                    {isPosterVisible ? 'Ẩn Danh sách Poster' : 'Danh sách Poster'}
+                </button>
+                {isPosterVisible && (
+                    <table className="table text-center table-bordered table-hover mt-3">
+                        <thead>
+                            <tr>
+                                <th style={{ width: "6%" }}>ID</th>
+                                <th style={{ width: "12%" }}>Tên</th>
+                                <th style={{ width: "26%" }}>Tên Đề Tài</th>
+                                <th style={{ width: "10%" }}>GVHD</th>
+                                {/* <th style={{ width: "9%" }}>GVHD</th>
+                            <th style={{ width: "7%" }}>PB1</th>
+                            <th style={{ width: "7%" }}>PB2</th> */}
+                                {/* <th style={{ width: "10%" }}>TTC</th> */}
+                                <th style={{ width: "8%" }}>Nhóm</th>
+                                <th style={{ width: "20%" }}>Poster</th>
+                                <th style={{ width: "7%" }}></th>
+                                <th style={{ width: "7%" }}>Bộ Môn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {danhsachPoster && danhsachPoster.map((item, index) => {
+                                const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
+                                const showButton =
+                                    isGroupNull ||
+                                    (!renderedGroups.has(item.groupStudent) && item.groupStudent !== 'null');
 
-                            if (item.groupStudent && item.groupStudent !== 'null') {
-                                renderedGroups.set(item.groupStudent, true);
-                            }
+                                if (item.groupStudent && item.groupStudent !== 'null') {
+                                    renderedGroups.set(item.groupStudent, true);
+                                }
 
-                            return (
-                                <tr key={`student-${index}`}>
-                                    <td>{item.id}</td>
-                                    <td>{item.name}</td>
-                                    <td>{item.Project && item.Project.name}</td>
-                                    <td>{item.Project && item.Project.instuctor}</td>
-                                    <td>{item.Result && item.Result.diemGVHD}</td>
-                                    <td>{item.Result && item.Result.trungbinhphanbien}</td>
+                                return (
+                                    <tr key={`student-${index}`}>
+                                        <td>{item.id}</td>
+                                        <td>{item.name}</td>
+                                        <td>{item.Project && item.Project.name}</td>
+                                        <td>{item.Project && item.Project.instuctor}</td>
+                                        {/* <td>{item.Result && item.Result.diemGVHD}</td>
+                                    <td>{item.Result && item.Result.diemGVPB1}</td>
+                                    <td>{item.Result && item.Result.diemGVPB2}</td> */}
+                                        {/* <td>{item.Result && item.totalScore}</td> */}
+                                        <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
+                                        <td>
+                                            {
+                                                (!item.Poster1 || !item.Poster2) && <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
+                                            }
+                                            {listtecher && (
+                                                listtecher
+                                                    .filter(itemm => itemm.id == item.Poster1)
+                                                    .map((itemmm, index) => (
+                                                        <p key={`pb1-${index}`}>Poster1: {itemmm.name}</p>
+                                                    ))
+                                            )}
 
-                                    <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
-                                    <td>
-                                        {
-                                            (!item.Poster1 || !item.Poster2) && <p className="text-danger" key={`pb1-${index}`}> <br></br>Chưa phân công</p>
-                                        }
-                                        {listtecher && (
-                                            listtecher
-                                                .filter(itemm => itemm.id == item.Poster1)
-                                                .map((itemmm, index) => (
-                                                    <p key={`pb1-${index}`}>Poster1: {itemmm.name}</p>
-                                                ))
-                                        )}
+                                            {listtecher && (
+                                                listtecher
+                                                    .filter(itemm => itemm.id == item.Poster2)
+                                                    .map((itemmm, index) => (
+                                                        <p className='text-success' key={`pb1-${index}`}>Poster2: {itemmm.name}</p>
+                                                    ))
+                                            )}
+                                        </td>
 
-                                        {listtecher && (
-                                            listtecher
-                                                .filter(itemm => itemm.id == item.Poster2)
-                                                .map((itemmm, index) => (
-                                                    <p className='text-success' key={`pb1-${index}`}>Poster2: {itemmm.name}</p>
-                                                ))
-                                        )}
-                                    </td>
-
-                                    <td>
-                                        {showButton && (
-                                            <button onClick={() => handleAssignPoster(item)} className='btn btn-success'>
-                                                <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </button>
-                                        )}
-                                    </td>
-                                    <td>IS</td>
-                                </tr>
-                            );
-                        })}
-                    </tbody>
-                </table>
+                                        <td>
+                                            {showButton && (
+                                                <button onClick={() => handleAssignPoster(item)} className='btn btn-success'>
+                                                    <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                                </button>
+                                            )}
+                                        </td>
+                                        <td>IS</td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
+                )}
             </div>
 
             <Modal size="lg" className='text-center' show={showModal} onHide={handleCloseModal} centered>
