@@ -108,9 +108,9 @@ const HeadAssignGV = (props) => {
             toast.error("PB1 và PB2 không được trùng ")
             return
         }
-        if(((dataModal &&  dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien2 === 'false') && dataModal.Result.danhgiaphanbien3 == null) ||
-        (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'false') && dataModalSV2[0].Result.danhgiaphanbien3 == null))){
-            if(!PB.pb3){
+        if (((dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien2 === 'false') && dataModal.Result.danhgiaphanbien3 == null) ||
+            (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'false') && dataModalSV2[0].Result.danhgiaphanbien3 == null))) {
+            if (!PB.pb3) {
                 toast.error("Bạn chưa chọn PB3")
                 return
             }
@@ -134,7 +134,7 @@ const HeadAssignGV = (props) => {
         let data = await headGetIn4SV2()
         if (data.EC == 0) {
             setHeadGetIn4SV2(data.DT)
-           
+
             console.log(data.DT)
         } else {
             toast.success(data.EM)
@@ -205,7 +205,7 @@ const HeadAssignGV = (props) => {
                                                 .map((itemmm, index) => (
                                                     <p key={`pb1-${index}`}>{itemmm.name}</p>
                                                 ))
-                                        )} 
+                                        )}
                                         {listtecher && (
                                             listtecher
                                                 .filter(itemm => itemm.id == item.pb3)
@@ -256,13 +256,13 @@ const HeadAssignGV = (props) => {
                                     Pb1:
                                     <select value={PB.pb1} onChange={(event) => handleOnchange(event.target.value, 'pb1')}
                                         disabled={
-                                           
-                                            (( dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien2 === 'false') && dataModal.Result.danhgiaphanbien3 == null) ||
-                                                ( dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'false') && dataModalSV2[0].Result.danhgiaphanbien3 == null))
-                                            || 
-                                            (( dataModal && dataModal?.Result && dataModal.Result.diemGVPB1  ) ||
-                                                ( dataModalSV2 && dataModalSV2[0]?.Result && dataModalSV2[0].Result.diemGVPB1  ))
-                                            }
+
+                                            ((dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien1 === 'true')) ||
+                                                (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien1 === 'true')))
+                                            ||
+                                            ((dataModal && dataModal?.Result && dataModal.Result.diemGVPB1) ||
+                                                (dataModalSV2 && dataModalSV2[0]?.Result && dataModalSV2[0].Result.diemGVPB1))
+                                        }
                                     >
                                         <option value=''>
                                             ----
@@ -287,13 +287,13 @@ const HeadAssignGV = (props) => {
                                             Pb2:
                                             <select value={PB.pb2} onChange={(event) => handleOnchange(event.target.value, 'pb2')}
                                                 disabled={
-                                                    
-                                                    ((dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien2 === 'false') && dataModal.Result.danhgiaphanbien3 == null) ||
-                                                        (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'false') && dataModalSV2[0].Result.danhgiaphanbien3 == null))
-                                                        || 
-                                                        (( dataModal && dataModal?.Result && dataModal.Result.diemGVPB2  ) ||
-                                                            ( dataModalSV2 && dataModalSV2[0]?.Result && dataModalSV2[0].Result.diemGVPB2  ))
-                                                    }
+
+                                                    ((dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien2 === 'false' || dataModal.Result.danhgiaphanbien2 === 'true')) ||
+                                                        (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien2 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'true')))
+                                                    ||
+                                                    ((dataModal && dataModal?.Result && dataModal.Result.diemGVPB2) ||
+                                                        (dataModalSV2 && dataModalSV2[0]?.Result && dataModalSV2[0].Result.diemGVPB2))
+                                                }
                                             >
                                                 <option value={''}>
                                                     ----
@@ -321,8 +321,8 @@ const HeadAssignGV = (props) => {
                                 </div>
                             </div>
                             {
-                                ((dataModal&&  dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien2 === 'false') && dataModal.Result.danhgiaphanbien3 == null) ||
-                                    (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'false') && dataModalSV2[0].Result.danhgiaphanbien3 == null)) &&
+                                ((dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien1 === 'false' || dataModal.Result.danhgiaphanbien2 === 'false')) ||
+                                    (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien1 === 'false' || dataModalSV2[0].Result.danhgiaphanbien2 === 'false'))) &&
                                 <div className="row ">
                                     <div className="col-sm-3"> </div>
                                     <div className="col-sm-6 mt-3">
@@ -331,7 +331,16 @@ const HeadAssignGV = (props) => {
                                             PB.pb1 && PB.pb1 !== '' && PB.pb2 && PB.pb2 !== '' &&
                                             <>
                                                 Pb3:
-                                                <select value={PB.pb3} onChange={(event) => handleOnchange(event.target.value, 'pb3')}>
+                                                <select value={PB.pb3} onChange={(event) => handleOnchange(event.target.value, 'pb3')}
+                                                    disabled={
+
+                                                        ((dataModal && dataModal?.Result && (dataModal.Result.danhgiaphanbien3 === 'false' || dataModal.Result.danhgiaphanbien3 === 'true')) ||
+                                                            (dataModalSV2 && dataModalSV2[0]?.Result && (dataModalSV2[0].Result.danhgiaphanbien3 === 'false' || dataModalSV2[0].Result.danhgiaphanbien3 === 'true')))
+                                                        ||
+                                                        ((dataModal && dataModal?.Result && dataModal.Result.diemGVPB3) ||
+                                                            (dataModalSV2 && dataModalSV2[0]?.Result && dataModalSV2[0].Result.diemGVPB3))
+                                                    }
+                                                >
                                                     <option value={''}>
                                                         ----
                                                     </option>

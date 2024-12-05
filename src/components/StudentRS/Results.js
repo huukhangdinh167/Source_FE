@@ -214,7 +214,9 @@ const Results = () => {
                             {results && results.Result &&
                                 <tr>
 
-                                    <td>{results.Result.danhgiacuoiky == 'false' || results.Result.danhgiagiuaky == 'false' ? <i className="text-danger">Không đạt</i> : <><b>{results.Result.diemGVHD} </b><br></br> {results.Result.diemGVHD && <i onClick={() => handleXemChiTiet()} className="text-primary xemchitiet">Xem chi tiết</i>}</>}  </td>
+                                    <td>{(results.Result.danhgiacuoiky == 'false' || results.Result.danhgiagiuaky == 'false') ? <i className="text-danger">Không đạt</i> : <b>{results.Result.diemGVHD} </b>}
+                                        <><br></br> {results.Result.diemGVHD != null && <i onClick={() => handleXemChiTiet()} className="text-primary xemchitiet">(Xem)</i>}</>
+                                    </td>
                                     <td>
                                         {results.Result.diemGVPB1} <br></br>
                                         {listTeacher &&
@@ -239,7 +241,12 @@ const Results = () => {
                                                     <i> {itemmap.name} </i>
                                                 ))}
                                     </td>
-                                    <td><b>{results.Result.trungbinhphanbien}</b> <br></br> {results.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
+                                    <td>
+                                        <b>{(results.Result.danhgiaphanbien1 == 'false' && results.Result.danhgiaphanbien2 == 'false') || (results.Result.danhgiaphanbien1 == 'false' &&
+                                            results.Result.danhgiaphanbien3 == 'false') || (results.Result.danhgiaphanbien2 == 'false' && results.Result.danhgiaphanbien3 == 'false')
+                                            ? <p className='text-danger'>Không đạt</p> : results.Result.trungbinhphanbien}</b> <br></br>
+                                        {results.Result && results.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">(Xem)</i>}
+                                    </td>
                                     <td>{results.Result.diemCTHD}
                                         <br></br>
                                         {listTeacher &&
@@ -280,7 +287,15 @@ const Results = () => {
                                                     <i> {itemmap.name} </i>
                                                 ))}
                                     </td>
-                                    <td><b>{results.Result.trungbinhhoidong}</b> <br></br> {results.Result.trungbinhhoidong && <i onClick={() => handleXemChiTietTBHoiDong()} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
+                                    <td>
+                                        {((results.Result.danhgiaPoster1 == 'false' || results.Result.danhgiaPoster2 == 'false')
+                                            || (results.Result.danhgiaCTHD == 'false' || results.Result.danhgiaTK == 'false' || results.Result.danhgiaUV == 'false')) && <p className='text-danger mb-0'>Không đạt</p>}
+                                        {
+                                            ((results.Result.danhgiaPoster1 == 'true' && results.Result.danhgiaPoster2 == 'true')
+                                                || (results.Result.danhgiaCTHD == 'true' && results.Result.danhgiaTK == 'true' && results.Result.danhgiaUV == 'true')) && <b> {Math.round(results.Result.trungbinhhoidong * 100) / 100} </b>
+                                        }
+                                        <br></br>
+                                        {results.Result.trungbinhhoidong && <i onClick={() => handleXemChiTietTBHoiDong()}  className="text-primary xemchitiet">(Xem)</i>}</td>
                                 </tr>
 
                             }
@@ -336,7 +351,7 @@ const Results = () => {
                                                 <td> Xác định được yêu cầu của khóa luận cần thực hiện</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL1}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL1}</option>
 
                                                     </select>
                                                 </td>
@@ -346,7 +361,7 @@ const Results = () => {
                                                 <td>Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL2}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL2}</option>
 
                                                     </select>
                                                 </td>
@@ -356,7 +371,7 @@ const Results = () => {
                                                 <td>Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results && results.Criterion && results.Criterion.LOL3}</option>
+                                                        <option>{results && results.Criterion  && results.Criterion.LOL3}</option>
 
                                                     </select>
                                                 </td>
@@ -367,7 +382,7 @@ const Results = () => {
                                                 <td>Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL4}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL4}</option>
 
                                                     </select>
                                                 </td>
@@ -377,7 +392,7 @@ const Results = () => {
                                                 <td>Viết được báo cáo khóa luận tốt nghiệp</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL5}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL5}</option>
 
                                                     </select>
                                                 </td>
@@ -387,7 +402,7 @@ const Results = () => {
                                                 <td>Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL6}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL6}</option>
 
                                                     </select>
                                                 </td>
@@ -397,7 +412,7 @@ const Results = () => {
                                                 <td>Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL7}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL7}</option>
 
                                                     </select>
                                                 </td>
@@ -408,7 +423,7 @@ const Results = () => {
                                                 <td>Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion && results.Criterion.LOL8}</option>
+                                                        <option >{results && results.Criterion  && results.Criterion.LOL8}</option>
 
                                                     </select>
                                                 </td>
@@ -436,7 +451,6 @@ const Results = () => {
                 </Modal.Footer>
             </Modal>
 
-
             <Modal
                 className="text-center"
                 size="lg"
@@ -463,7 +477,7 @@ const Results = () => {
                                 <input value={results && results.Result && results.Result.diemGVPB3} className="col-sm-2 " type="number" />
                             </>
                             : <>
-                            <div className='col-sm-1'></div>
+                                <div className='col-sm-1'></div>
                                 <div className="col-sm-3 px-0 "><i className="text-danger"> Điểm GVPB1 </i></div>
                                 <input value={results && results.Result && results.Result.diemGVPB1} className="col-sm-2 " type="number" />
                                 <div className="col-sm-3 px-0 "><i className="text-danger"> Điểm GVPB2 </i></div>
@@ -485,12 +499,12 @@ const Results = () => {
                                         </th>
                                         <th style={{ width: "20%" }}>
                                             PB2
-                                        </th> 
+                                        </th>
                                         {
-                                            results?.pb3 && results.Result.diemGVPB3 && 
+                                            results?.pb3 && results.Result.diemGVPB3 &&
                                             <th style={{ width: "20%" }}>
-                                            PB3
-                                        </th> 
+                                                PB3
+                                            </th>
                                         }
                                     </tr>
                                 </thead>
@@ -503,24 +517,24 @@ const Results = () => {
                                                 <td> Xác định được yêu cầu của khóa luận cần thực hiện</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL1}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL1}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL1PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL1PB2}</option>
 
                                                     </select>
-                                                </td> 
+                                                </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL1PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL1PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
                                             <tr>
@@ -528,24 +542,24 @@ const Results = () => {
                                                 <td>Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL2}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL2}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL2PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL2PB2}</option>
 
                                                     </select>
-                                                </td> 
+                                                </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL2PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL2PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
                                             <tr>
@@ -553,24 +567,24 @@ const Results = () => {
                                                 <td>Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL3}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL3}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL3PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL3PB2}</option>
 
                                                     </select>
                                                 </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL3PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL3PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
 
@@ -579,24 +593,24 @@ const Results = () => {
                                                 <td>Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL4}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL4}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL4PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL4PB2}</option>
 
                                                     </select>
                                                 </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL4PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL4PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
                                             <tr>
@@ -604,24 +618,24 @@ const Results = () => {
                                                 <td>Viết được báo cáo khóa luận tốt nghiệp</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL5}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL5}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL5PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL5PB2}</option>
 
                                                     </select>
                                                 </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL5PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL5PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
                                             <tr>
@@ -629,24 +643,24 @@ const Results = () => {
                                                 <td>Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL6}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL6}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL6PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL6PB2}</option>
 
                                                     </select>
                                                 </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL6PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL6PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
                                             <tr>
@@ -654,24 +668,24 @@ const Results = () => {
                                                 <td>Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL7}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL7}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL7PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL7PB2}</option>
 
                                                     </select>
                                                 </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL7PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL7PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
 
@@ -680,24 +694,24 @@ const Results = () => {
                                                 <td>Bảo vệ khóa kết quả khóa luận trước giản viên phản biện</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results.Criteriapb && results.Criteriapb.LOL8}</option>
+                                                        <option >{results.Criteriapb && results.Result && results.Result.diemGVPB1 > 0 && results.Criteriapb.LOL8}</option>
 
                                                     </select>
                                                 </td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results.Criteriapb && results.Criteriapb.LOL8PB2}</option>
+                                                        <option>{results.Criteriapb && results.Result && results.Result.diemGVPB2 > 0 && results.Criteriapb.LOL8PB2}</option>
 
                                                     </select>
                                                 </td>
                                                 {
-                                                   results?.pb3 && results.Result.diemGVPB3 && 
-                                                   <td>
-                                                   <select className="form-select">
-                                                       <option>{results.Criteriapb && results.Criteriapb.LOL8PB3}</option>
+                                                    results?.pb3 && results.Result.diemGVPB3 &&
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriapb && results.Result && results.Result.diemGVPB3 > 0 && results.Criteriapb.LOL8PB3}</option>
 
-                                                   </select>
-                                               </td> 
+                                                        </select>
+                                                    </td>
                                                 }
                                             </tr>
                                         </>
@@ -713,11 +727,11 @@ const Results = () => {
                         <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichu}</textarea>
 
                         <div className="col-sm-1"><i className="text-primary">PB2</i></div>
-                        <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea> 
-                        { results?.pb3 && results.Result.diemGVPB3 && 
+                        <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+                        {results?.pb3 && results.Result.diemGVPB3 &&
                             <>
-                            <div className="col-sm-1"><i className="text-primary">PB2</i></div>
-                            <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+                                <div className="col-sm-1"><i className="text-primary">PB2</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
                             </>
                         }
                     </div>
@@ -755,172 +769,413 @@ const Results = () => {
                             <input value={results && results.Result && results.Result.diemPoster2} className="col-sm-2 " type="number" />
                         </div>
                     }
+                    {
+                        results && results.Result && results.Result.diemCTHD && results.Result.diemTK && results.Result.diemUV &&
+                        <div className="row mt-0">
+                            <div className="col-sm-2  "><i className="text-danger"> Điểm CTHD </i></div>
+                            <input value={results && results.Result && results.Result.diemCTHD} className="col-sm-2 " type="number" />
+
+                            <div className="col-sm-2  "><i className="text-danger"> Điểm TK </i></div>
+                            <input value={results && results.Result && results.Result.diemTK} className="col-sm-2 " type="number" />
+
+                            <div className="col-sm-2  "><i className="text-danger"> Điểm UV </i></div>
+                            <input value={results && results.Result && results.Result.diemUV} className="col-sm-2 " type="number" />
+                        </div>
+                    }
 
                     <div className="row">
                         <div className="col-sm-12">
-                            <table className="table">
-                                <thead>
-                                    <tr>
-                                        <th style={{ width: "8%" }}>STT</th>
-                                        <th style={{ width: "52%" }}>
-                                            Tiêu chí
-                                        </th>
-                                        <th style={{ width: "20%" }}>
-                                            Poster1
-                                        </th>
-                                        <th style={{ width: "20%" }}>
-                                            Poster2
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        results &&
-                                        <>
-                                            <tr>
-                                                <td>1</td>
-                                                <td> Xác định được yêu cầu của khóa luận cần thực hiện</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL1Poster1}</option>
+                            {
+                                results && results.Result && results.Result.diemPoster2 &&
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th style={{ width: "8%" }}>STT</th>
+                                            <th style={{ width: "52%" }}>
+                                                Tiêu chí
+                                            </th>
+                                            <th style={{ width: "20%" }}>
+                                                Poster1
+                                            </th>
+                                            <th style={{ width: "20%" }}>
+                                                Poster2
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            results &&
+                                            <>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td> Xác định được yêu cầu của khóa luận cần thực hiện</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL1Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL1Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL1Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL2Poster1}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL2Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL2Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL2Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL3Poster1}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL3Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL3Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL3Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                                        </select>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL4Poster1}</option>
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL4Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL4Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL4Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Viết được báo cáo khóa luận tốt nghiệp</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL5Poster1}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>Viết được báo cáo khóa luận tốt nghiệp</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL5Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL5Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL5Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL6Poster1}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL6Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL6Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL6Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>7</td>
-                                                <td>Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL7Poster1}</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td>Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL7Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL7Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL7Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
+                                                        </select>
+                                                    </td>
+                                                </tr>
 
-                                            <tr>
-                                                <td>8</td>
-                                                <td>Bảo vệ khóa kết quả khóa luận trước Hội Đồng</td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option >{results.Criteriahoidong && results.Criteriahoidong.LOL8Poster1}</option>
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>Bảo vệ khóa kết quả khóa luận trước Hội Đồng</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemPoster1 > 0 && results.Criteriahoidong.LOL8Poster1}</option>
 
-                                                    </select>
-                                                </td>
-                                                <td>
-                                                    <select className="form-select">
-                                                        <option>{results.Criteriahoidong && results.Criteriahoidong.LOL8Poster2}</option>
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemPoster2 > 0 && results.Criteriahoidong.LOL8Poster2}</option>
 
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                        </>
-                                    }
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        }
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            }
 
+                            {
+                                results && results.Result && results.Result.diemCTHD && results.Result.diemTK && results.Result.diemUV &&
+                                <table className="table">
+                                    <thead>
+                                        <tr>
+                                            <th style={{ width: "8%" }}>STT</th>
+                                            <th style={{ width: "37%" }}>
+                                                Tiêu chí
+                                            </th>
+                                            <th style={{ width: "15%" }}>
+                                                CTHD
+                                            </th>
+                                            <th style={{ width: "15%" }}>
+                                                TK
+                                            </th>
+                                            <th style={{ width: "15%" }}>
+                                                UV
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            results &&
+                                            <>
+                                                <tr>
+                                                    <td>1</td>
+                                                    <td> Xác định được yêu cầu của khóa luận cần thực hiện</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL1}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL1TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL1UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2</td>
+                                                    <td>Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL2}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL2TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL2UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3</td>
+                                                    <td>Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL3}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL3TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL3UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>4</td>
+                                                    <td>Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL4}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL4TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL4UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5</td>
+                                                    <td>Viết được báo cáo khóa luận tốt nghiệp</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL5}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL5TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL5UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>6</td>
+                                                    <td>Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL6}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL6TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL6UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>7</td>
+                                                    <td>Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL7}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL7TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL7UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+
+                                                <tr>
+                                                    <td>8</td>
+                                                    <td>Bảo vệ khóa kết quả khóa luận trước Hội Đồng</td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option >{results.Criteriahoidong && results.Result.diemCTHD > 0 && results.Criteriahoidong.LOL8}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemTK > 0 && results.Criteriahoidong.LOL8TK}</option>
+
+                                                        </select>
+                                                    </td>
+                                                    <td>
+                                                        <select className="form-select">
+                                                            <option>{results.Criteriahoidong && results.Result.diemUV > 0 && results.Criteriahoidong.LOL8UV}</option>
+
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                            </>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            }
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-2"><i className="text-primary">Nhận xét PB1</i></div>
-                        <textarea readOnly className="col-sm-4">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuPoster1}</textarea>
+                        {results && results.Result && results.Result.diemCTHD && results.Result.diemTK && results.Result.diemUV &&
+                            <>
+                                <div className="col-sm-1"><i className="text-primary">CTHD</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichu}</textarea>
 
-                        <div className="col-sm-2"><i className="text-primary">Nhận xét PB2</i></div>
-                        <textarea readOnly className="col-sm-4">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuPoster2}</textarea>
+                                <div className="col-sm-1"><i className="text-primary">TK</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuTK}</textarea>
+
+                                <div className="col-sm-1"><i className="text-primary">UV</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuUV}</textarea>
+
+                            </>
+                        }
+                        {results && results.Result && results.Result.diemPoster2 && results.Result.diemPoster1 &&
+                            <>
+                                <div className="col-sm-2"><i className="text-primary">CTHD</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuPoster1}</textarea>
+
+                                <div className="col-sm-2"><i className="text-primary">TK</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuPoster2}</textarea>
+                            </>
+                        }
                     </div>
                 </Modal.Body>
                 <Modal.Footer>

@@ -364,12 +364,17 @@ const HeadKetQuaCham = () => {
         <>
             <div className='container'>
                 <button
-                    className='btn btn-primary mt-3'
+                    className='btn btn-primary mt-1'
                     onClick={toggleHoiDongVisibility}
                 >
                     {isHoiDongVisible ? 'Ẩn danh sách phân công' : 'Danh sách phân công'}
                 </button>
                 {isHoiDongVisible && (
+                    <>
+                     <i className='ms-5 mt-4' style={{ display: 'inline-block' }}>
+                        Số lượng sinh viên cần được phân hội đồng
+                        <b className='text-danger'> {dshd && dshd.length}</b>
+                    </i> 
                     <table className="table text-center table-bordered table-hover mt-3">
                         <thead>
                             <tr>
@@ -450,6 +455,8 @@ const HeadKetQuaCham = () => {
                             })}
                         </tbody>
                     </table>
+                    </>
+                    
                 )}
                 <div className='mt-3'>
                     <button

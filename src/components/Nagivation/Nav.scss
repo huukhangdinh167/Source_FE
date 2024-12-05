@@ -130,4 +130,170 @@
     }
   }
 
+  .nav-link {
+    color: gray; /* Màu mặc định */
+    text-decoration: none;
+  }
+  
+  .nav-link.active-link {
+    color: black; /* Màu khi đang ở trang */
+    font-weight: bold; /* Tùy chọn nếu muốn */
+  }
+  .navbar {
+    font-size: 18px;
+    /* Chữ to hơn */
+    color: aliceblue;
+    /* Màu chữ sáng hơn */
+    background: linear-gradient(90deg, #457b9d, #1d3557);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 0.75rem 1rem;
+    transition: background 0.3s ease;
+  
+    .navbar-brand {
+      display: flex;
+      align-items: center;
+      font-weight: 100px;
+      font-size: 1.5rem;
+      color: aliceblue !important;
+      /* Màu chữ sáng */
+      text-transform: uppercase;
+      font-family: 'Roboto', sans-serif;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+  
+    .navbar-brand img {
+      filter: brightness(1.2) contrast(1.2);
+      /* Tăng sáng và độ tương phản */
+      transition: filter 0.3s ease, transform 0.3s ease;
+  
+      &:hover {
+        filter: brightness(1.5) contrast(1.5);
+        /* Sáng hơn khi hover */
+        transform: scale(1.1);
+      }
+  
+      width: 100px;
+      /* Tăng kích thước */
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+  
+  
+  
+    .nav-link {
+      font-weight: 700 !important;
+      font-size: 18px !important;
+      color: aliceblue !important;
+      margin: 0 10px;
+      text-transform: capitalize;
+      position: relative;
+      transition: color 0.3s ease;
+  
+      // Pseudo-element ban đầu ẩn hoàn toàn
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        /* Thanh ban đầu có độ rộng 0 */
+        height: 2px;
+        background: #a8dadc;
+        transition: width 0.3s ease;
+        /* Chuyển động mượt khi thay đổi width */
+        overflow: hidden;
+      }
+  
+      // Khi hover mới hiển thị thanh
+      &:hover {
+        color: #a8dadc;
+        text-decoration: none;
+  
+        &::after {
+          width: 100%;
+          /* Chỉ mở rộng khi hover */
+        }
+      }
+    }
+  
+  
+    .dropdown-menu {
+      background-color: #1d3557;
+      border: none;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  
+  
+      .dropdown-item {
+        color: #f1faee;
+        font-size: 1rem;
+        padding: 10px 15px;
+        transition: background 0.3s ease, color 0.3s ease;
+        font-family: 'Roboto', sans-serif !important;
+  
+        &:hover {
+          background-color: #457b9d;
+          color: #a8dadc;
+        }
+      }
+    }
+  
+    .dropdown-item.active,
+    .dropdown-item:active {
+      color: #fff;
+      text-decoration: none;
+      background-color: #457b9d;
+      border-radius: 10px;
+    }
+  
+  
+    .navbar-toggler {
+      border-color: #f1faee;
+  
+      &:focus {
+        box-shadow: none;
+      }
+  
+      .navbar-toggler-icon {
+        filter: brightness(0.8);
+      }
+    }
+  
+    .btn-secondary {
+      background-color: #457b9d;
+      border: none;
+      font-size: 1rem;
+      transition: background 0.3s ease, transform 0.2s;
+  
+      &:hover {
+        background-color: #1d3557;
+        transform: translateY(-2px);
+      }
+    }
+  
+    .nav-link {
+      color: gray; /* Màu mặc định */
+      text-decoration: none;
+    }
+    
+    .nav-link.active-link {
+      color: black; /* Màu khi đang ở trang */
+      font-weight: bold; /* Tùy chọn nếu muốn */
+    }
+    
+  }
+  .nav-link {
+    color: #000; // Màu mặc định
+    text-decoration: none;
+  }
+  
+  .nav-link.active-link {
+    color: black; // Màu đen khi active
+    font-weight: bold; // Hoặc các hiệu ứng khác nếu cần
+  }
+  
+  
+  
 }
+
+

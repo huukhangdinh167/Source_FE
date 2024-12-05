@@ -30,6 +30,7 @@ const teacherDGHD = (danhgia, data4table) => {
             LOL7: danhgia.LOL7,
             LOL8: danhgia.LOL8,
             id: data4table.id,
+
             diemGVHD: danhgia.diemGVHD
         }
     })
@@ -107,6 +108,7 @@ const teacherDGHoiDong = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, CTHD, TK, UV, ma
             LOL6: danhgiaSV1.LOL6,
             LOL7: danhgiaSV1.LOL7,
             LOL8: danhgiaSV1.LOL8,
+            danhgiahoidong: danhgiaSV1.danhgiahoidong,
             diem: danhgiaSV1.diemSV1
         },
         dataSV2: {
@@ -118,6 +120,7 @@ const teacherDGHoiDong = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, CTHD, TK, UV, ma
             LOL6: danhgiaSV2.LOL6,
             LOL7: danhgiaSV2.LOL7,
             LOL8: danhgiaSV2.LOL8,
+            danhgiahoidong: danhgiaSV2.danhgiahoidong,
             diem: danhgiaSV2.diemSV2,
         },
         idSV1: {
@@ -145,6 +148,7 @@ const teacherDGPoster = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, Poster1, Poster2,
             LOL6: danhgiaSV1.LOL6,
             LOL7: danhgiaSV1.LOL7,
             LOL8: danhgiaSV1.LOL8,
+            danhgiaposter: danhgiaSV1.danhgiaposter,
             diem: danhgiaSV1.diemSV1
         },
         dataSV2: {
@@ -156,6 +160,7 @@ const teacherDGPoster = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, Poster1, Poster2,
             LOL6: danhgiaSV2.LOL6,
             LOL7: danhgiaSV2.LOL7,
             LOL8: danhgiaSV2.LOL8,
+            danhgiaposter: danhgiaSV2.danhgiaposter,
             diem: danhgiaSV2.diemSV2,
         },
         idSV1: {

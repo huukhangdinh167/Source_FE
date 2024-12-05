@@ -32,6 +32,7 @@ const TeacherChamHoiDong = (props) => {
     const [xemPosterSV2, setXemPosterSV2] = useState([])
     const [daDanhGia, setDaDanhGia] = useState("false")
     const defaultHoiDongSV1 = {
+        danhgiahoidong: '',
         diemSV1: '',
         LOL1: '',
         LOL2: '',
@@ -44,6 +45,7 @@ const TeacherChamHoiDong = (props) => {
         ghichu: '',
     }
     const defaultHoiDongSV2 = {
+        danhgiahoidong: '',
         diemSV2: '',
         LOL1: '',
         LOL2: '',
@@ -56,6 +58,7 @@ const TeacherChamHoiDong = (props) => {
     }
 
     const defaultPosterSV1 = {
+        danhgiaposter: '',
         diemSV1: '',
         LOL1: '',
         LOL2: '',
@@ -68,6 +71,7 @@ const TeacherChamHoiDong = (props) => {
         ghichu: '',
     }
     const defaultPosterSV2 = {
+        danhgiaposter: '',
         diemSV2: '',
         LOL1: '',
         LOL2: '',
@@ -98,6 +102,7 @@ const TeacherChamHoiDong = (props) => {
             LOL6: dataModal.LOL6,
             LOL7: dataModal.LOL7,
             LOL8: dataModal.LOL8,
+            danhgiahoidong: dataModal.danhgiahoidong,
             ghichu: dataModal.ghichu,
             diemSV1: dataModal.diemSV1
         })
@@ -115,6 +120,7 @@ const TeacherChamHoiDong = (props) => {
             LOL6: dataModalPoster.LOL6,
             LOL7: dataModalPoster.LOL7,
             LOL8: dataModalPoster.LOL8,
+            danhgiaposter: dataModalPoster.danhgiaposter,
             ghichu: dataModalPoster.ghichu,
             diemSV1: dataModalPoster.diemSV1
         })
@@ -132,6 +138,7 @@ const TeacherChamHoiDong = (props) => {
             LOL6: xemPBSV2.LOL6,
             LOL7: xemPBSV2.LOL7,
             LOL8: xemPBSV2.LOL8,
+            danhgiahoidong: xemPBSV2.danhgiahoidong,
             diemSV2: xemPBSV2.diemSV2
         })
     }, [xemPBSV2, dataModal]);
@@ -147,6 +154,7 @@ const TeacherChamHoiDong = (props) => {
             LOL6: xemPosterSV2.LOL6,
             LOL7: xemPosterSV2.LOL7,
             LOL8: xemPosterSV2.LOL8,
+            danhgiaposter: xemPosterSV2.danhgiaposter,
             diemSV2: xemPosterSV2.diemSV2
         })
     }, [xemPosterSV2, dataModalPoster]);
@@ -199,6 +207,7 @@ const TeacherChamHoiDong = (props) => {
                 LOL6: item.Criteriahoidong?.LOL6,
                 LOL7: item.Criteriahoidong?.LOL7,
                 LOL8: item.Criteriahoidong?.LOL8,
+                danhgiahoidong: item.Result?.danhgiaCTHD,
                 ghichu: item.Criteriahoidong?.ghichu,
                 diemSV1: item.Result?.diemCTHD
             })
@@ -215,7 +224,8 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8,
-                    diemSV2:res[1] && res[1].Result?.diemCTHD
+                    danhgiahoidong: res[1] && res[1].Result?.danhgiaCTHD,
+                    diemSV2: res[1] && res[1].Result?.diemCTHD
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -235,6 +245,7 @@ const TeacherChamHoiDong = (props) => {
                 LOL6: item.Criteriahoidong?.LOL6TK,
                 LOL7: item.Criteriahoidong?.LOL7TK,
                 LOL8: item.Criteriahoidong?.LOL8TK,
+                danhgiahoidong: item.Result?.danhgiaTK,
                 ghichu: item.Criteriahoidong?.ghichuTK,
                 diemSV1: item.Result?.diemTK
             })
@@ -251,8 +262,9 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6TK,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7TK,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8TK,
+                    danhgiahoidong: res[1] && res[1].Result?.danhgiaTK,
                     //  ghichu: res[1].Criteriahoidong?.ghichu,
-                    diemSV2: res[1].Result?.diemTK
+                    diemSV2:res[1] && res[1].Result?.diemTK
                 })
                 console.log("datamodaaal", res)
             } else {
@@ -271,6 +283,7 @@ const TeacherChamHoiDong = (props) => {
                 LOL6: item.Criteriahoidong?.LOL6UV,
                 LOL7: item.Criteriahoidong?.LOL7UV,
                 LOL8: item.Criteriahoidong?.LOL8UV,
+                danhgiahoidong: item.Result?.danhgiaUV,
                 ghichu: item.Criteriahoidong?.ghichuUV,
                 diemSV1: item.Result?.diemUV
             })
@@ -287,6 +300,7 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6UV,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7UV,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8UV,
+                    danhgiahoidong: res[1] && res[1].Result?.danhgiaUV,
                     //  ghichu: res[1].Criteriahoidong?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemUV
 
@@ -298,7 +312,7 @@ const TeacherChamHoiDong = (props) => {
 
         }
         else {
-           
+
 
         }
         setShowModal(true); // Hiển thị modal
@@ -362,6 +376,7 @@ const TeacherChamHoiDong = (props) => {
                 LOL6: item.Criteriahoidong?.LOL6Poster1,
                 LOL7: item.Criteriahoidong?.LOL7Poster1,
                 LOL8: item.Criteriahoidong?.LOL8Poster1,
+                danhgiaposter: item.Result?.danhgiaPoster1,
                 ghichu: item.Criteriahoidong?.ghichuPoster1,
                 diemSV1: item.Result?.diemPoster1
             })
@@ -378,8 +393,9 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6Poster1,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7Poster1,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8Poster1,
+                    danhgiaposter: res[1] && res[1].Result?.danhgiaPoster1,
                     ghichu: res[1] && res[1].Criteriahoidong?.ghichuPoster1,
-                    diemSV1: res[1] && res[1].Result?.diemPoster1
+                    diemSV2: res[1] && res[1].Result?.diemPoster1
                 })
                 console.log("setDataModalPoster", res)
             } else {
@@ -399,6 +415,7 @@ const TeacherChamHoiDong = (props) => {
                 LOL6: item.Criteriahoidong?.LOL6Poster2,
                 LOL7: item.Criteriahoidong?.LOL7Poster2,
                 LOL8: item.Criteriahoidong?.LOL8Poster2,
+                danhgiaposter: item.Result?.danhgiaPoster2,
                 ghichu: item.Criteriahoidong?.ghichuPoster2,
                 diemSV1: item.Result?.diemPoster2
             })
@@ -415,6 +432,7 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6Poster2,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7Poster2,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8Poster2,
+                    danhgiaposter: res[1] && res[1].Result?.danhgiaPoster2,
                     ghichu: res[1] && res[1].Criteriahoidong?.ghichuPoster2,
                     diemSV2: res[1] && res[1].Result?.diemPoster2
                 })
@@ -425,7 +443,7 @@ const TeacherChamHoiDong = (props) => {
 
         }
         else {
-         //   toast.error(define)
+            //   toast.error(define)
             console.log("nè", aee.DT)
         }
         setShowModalPoster(true); // Hiển thị modal
@@ -454,127 +472,145 @@ const TeacherChamHoiDong = (props) => {
 
     const hanldeConfirm = async () => {
         if (listSV1SV2.length == 2) {
-            if (!HoiDongSV1.diemSV1) {
-                toast.error("Bạn chưa nhập điểm cho SV1");
+            if (!HoiDongSV1.danhgiahoidong || HoiDongSV1.danhgiahoidong === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (HoiDongSV1.diemSV1 < 0 || HoiDongSV1.diemSV1 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+            if (HoiDongSV1.danhgiahoidong === 'true') {
+                if (!HoiDongSV1.diemSV1) {
+                    toast.error("Bạn chưa nhập điểm cho SV1");
+                    return
+                }
+                if (HoiDongSV1.diemSV1 < 1 || HoiDongSV1.diemSV1 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 1 -> 10");
+                    return
+                }
+                if (!HoiDongSV1.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    return
+                }
+            }
+            if (!HoiDongSV2.danhgiahoidong || HoiDongSV2.danhgiahoidong === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV2");
                 return
             }
-            if (HoiDongSV1.LOL1 == '') {
-                toast.error("Bạn chưa nhập LOL1 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV1");
-                return
-            }
-            if (!HoiDongSV2.diemSV2) {
-                toast.error("Bạn chưa nhập điểm cho SV2");
-                return
-            }
-            if (HoiDongSV2.diemSV2 < 0 || HoiDongSV2.diemSV2 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
-                return
-            }
-            if (!HoiDongSV2.LOL1) {
-                toast.error("Bạn chưa nhập LOL1 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV2");
-                return
-            }
-            if (!HoiDongSV2.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV2");
-                return
+            if (HoiDongSV2.danhgiahoidong === 'true') {
+                if (!HoiDongSV2.diemSV2) {
+                    toast.error("Bạn chưa nhập điểm cho SV2");
+                    return
+                }
+                if (HoiDongSV2.diemSV2 < 1 || HoiDongSV2.diemSV2 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 1 -> 10");
+                    return
+                }
+                if (!HoiDongSV2.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV2");
+                    return
+                }
+                if (!HoiDongSV2.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV2");
+                    return
+                }
             }
         }
         if (listSV1SV2.length == 1) {
-            if (!HoiDongSV1.diemSV1) {
-                toast.error("Bạn chưa nhập điểm cho SV1");
+            if (!HoiDongSV1.danhgiahoidong || HoiDongSV1.danhgiahoidong === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (HoiDongSV1.diemSV1 < 0 || HoiDongSV1.diemSV1 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
-                return
-            }
-            if (!HoiDongSV1.LOL1) {
-                toast.error("Bạn chưa nhập LOL1 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV1");
-                return
-            }
-            if (!HoiDongSV1.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV1");
-                return
+            if (HoiDongSV1.danhgiahoidong === 'true') {
+                if (!HoiDongSV1.diemSV1) {
+                    toast.error("Bạn chưa nhập điểm cho SV1");
+                    return
+                }
+                if (HoiDongSV1.diemSV1 < 0 || HoiDongSV1.diemSV1 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+                    return
+                }
+                if (!HoiDongSV1.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    return
+                }
+                if (!HoiDongSV1.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    return
+                }
             }
         }
         let data = await teacherDGHoiDong(HoiDongSV1, HoiDongSV2, listSV1SV2[0].id, listSV1SV2[1] ? listSV1SV2[1].id : 'null', listSV1SV2[0].CTHD, listSV1SV2[0].TK, listSV1SV2[0].UV, user.maSo)
@@ -589,127 +625,145 @@ const TeacherChamHoiDong = (props) => {
 
     const hanldeConfirmPoster = async () => {
         if (listSV1SV2.length == 2) {
-            if (!PosterSV1.diemSV1) {
-                toast.error("Bạn chưa nhập điểm cho SV1");
+            if (!PosterSV1.danhgiaposter || PosterSV1.danhgiaposter === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (PosterSV1.diemSV1 < 0 || PosterSV1.diemSV1 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+            if (PosterSV1.danhgiaposter === 'true') {
+                if (!PosterSV1.diemSV1) {
+                    toast.error("Bạn chưa nhập điểm cho SV1");
+                    return
+                }
+                if (PosterSV1.diemSV1 < 1 || PosterSV1.diemSV1 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 1 -> 10");
+                    return
+                }
+                if (!PosterSV1.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    return
+                }
+            }
+            if (!PosterSV2.danhgiaposter || PosterSV2.danhgiaposter === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV2");
                 return
             }
-            if (PosterSV1.LOL1 == '') {
-                toast.error("Bạn chưa nhập LOL1 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV1");
-                return
-            }
-            if (!PosterSV2.diemSV2) {
-                toast.error("Bạn chưa nhập điểm cho SV2");
-                return
-            }
-            if (PosterSV2.diemSV2 < 0 || PosterSV2.diemSV2 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
-                return
-            }
-            if (!PosterSV2.LOL1) {
-                toast.error("Bạn chưa nhập LOL1 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV2");
-                return
-            }
-            if (!PosterSV2.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV2");
-                return
+            if (PosterSV2.danhgiaposter === 'true') {
+                if (!PosterSV2.diemSV2) {
+                    toast.error("Bạn chưa nhập điểm cho SV2");
+                    return
+                }
+                if (PosterSV2.diemSV2 < 1 || PosterSV2.diemSV2 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 1 -> 10");
+                    return
+                }
+                if (!PosterSV2.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV2");
+                    return
+                }
+                if (!PosterSV2.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV2");
+                    return
+                }
             }
         }
         if (listSV1SV2.length == 1) {
-            if (!PosterSV1.diemSV1) {
-                toast.error("Bạn chưa nhập điểm cho SV1");
+            if (!PosterSV1.danhgiaposter || PosterSV1.danhgiaposter === 'null') {
+                toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (PosterSV1.diemSV1 < 0 || PosterSV1.diemSV1 > 10) {
-                toast.error("Điểm của sinh viên là một số từ 0 -> 10");
-                return
-            }
-            if (!PosterSV1.LOL1) {
-                toast.error("Bạn chưa nhập LOL1 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL2) {
-                toast.error("Bạn chưa nhập LOL2 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL3) {
-                toast.error("Bạn chưa nhập LOL3 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL4) {
-                toast.error("Bạn chưa nhập LOL4 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL5) {
-                toast.error("Bạn chưa nhập LOL5 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL6) {
-                toast.error("Bạn chưa nhập LOL6 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL7) {
-                toast.error("Bạn chưa nhập LOL7 cho SV1");
-                return
-            }
-            if (!PosterSV1.LOL8) {
-                toast.error("Bạn chưa nhập LOL8 cho SV1");
-                return
+            if (PosterSV1.danhgiaphanbien === 'true') {
+                if (!PosterSV1.diemSV1) {
+                    toast.error("Bạn chưa nhập điểm cho SV1");
+                    return
+                }
+                if (PosterSV1.diemSV1 < 0 || PosterSV1.diemSV1 > 10) {
+                    toast.error("Điểm của sinh viên là một số từ 0 -> 10");
+                    return
+                }
+                if (!PosterSV1.LOL1) {
+                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL2) {
+                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL3) {
+                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL4) {
+                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL5) {
+                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL6) {
+                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL7) {
+                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    return
+                }
+                if (!PosterSV1.LOL8) {
+                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    return
+                }
             }
         }
         let data = await teacherDGPoster(PosterSV1, PosterSV2, listSV1SV2[0].id, listSV1SV2[1] ? listSV1SV2[1].id : 'null', listSV1SV2[0].Poster1, listSV1SV2[0].Poster2, user.maSo)
@@ -723,24 +777,58 @@ const TeacherChamHoiDong = (props) => {
     };
     const handleOnchange = (value, name) => {
         let _PBSV1 = _.cloneDeep(HoiDongSV1)
+        let _PBSV2 = _.cloneDeep(HoiDongSV2)
         _PBSV1[name] = value
         setHoiDongSV1(_PBSV1)
+        if (value != 'true' && value != 'false' && name == 'danhgiahoidong') {
+            setHoiDongSV2({ ..._PBSV2, danhgiahoidong: 'null' })
+        }
+        if (value == 'false' && name == 'danhgiahoidong') {
+            setHoiDongSV1({ ..._PBSV1, diemSV1: 0, danhgiahoidong: 'false' })
+        }
+        if (value == 'true' && name == 'danhgiahoidong') {
+            setHoiDongSV1({ ..._PBSV1, diemSV1: '' })
+        }
     };
     const handleOnchange2 = (value, name) => {
         let _PBSV2 = _.cloneDeep(HoiDongSV2)
         _PBSV2[name] = value
-        setHoiDongSV2(_PBSV2)
+        setHoiDongSV2(_PBSV2) 
+
+        if (value == 'false' && name == 'danhgiahoidong') {
+            setHoiDongSV2({ ..._PBSV2, diemSV2: 0, danhgiahoidong: 'false' })
+        }
+        if (value == 'true' && name == 'danhgiahoidong') {
+            setHoiDongSV2({ ..._PBSV2, diemSV2: '' })
+        }
     }
 
     const handleOnchangePoster = (value, name) => {
         let _PosterSV1 = _.cloneDeep(PosterSV1)
+        let _PosterSV2 = _.cloneDeep(PosterSV2)
         _PosterSV1[name] = value
         setPosterSV1(_PosterSV1)
+        if (value != 'true' && value != 'false' && name == 'danhgiaposter') {
+            setPosterSV2({ ..._PosterSV2, danhgiaposter: 'null' })
+        }
+        if (value == 'false' && name == 'danhgiaposter') {
+            setPosterSV1({ ..._PosterSV1, diemSV1: 0, danhgiaposter: 'false' })
+        }
+        if (value == 'true' && name == 'danhgiaposter') {
+            setPosterSV1({ ..._PosterSV1, diemSV1: '' })
+        }
     };
     const handleOnchange2Poster = (value, name) => {
         let _PosterSV2 = _.cloneDeep(PosterSV2)
         _PosterSV2[name] = value
         setPosterSV2(_PosterSV2)
+
+        if (value == 'false' && name == 'danhgiaposter') {
+            setPosterSV2({ ..._PosterSV2, diemSV2: 0, danhgiaposter: 'false' })
+        }
+        if (value == 'true' && name == 'danhgiaposter') {
+            setPosterSV2({ ..._PosterSV2, diemSV2: '' })
+        }
     }
     const renderedGroups = new Map(); // Theo dõi nhóm đã xử lý
     return (
@@ -750,14 +838,14 @@ const TeacherChamHoiDong = (props) => {
                 <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-                            <th style={{ width: "5%" }} >MSSV</th>
+                            <th style={{ width: "6%" }} >MSSV</th>
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "20%" }}>Mô Tả</th>
 
                             <th style={{ width: "9%" }}>GVHD</th>
                             <th style={{ width: "6%" }}>Nhóm</th>
-                            <th style={{ width: "10%" }}>Hội Đồng</th>
+                            <th style={{ width: "12%" }}>Hội Đồng</th>
                             <th style={{ width: "12%" }}></th>
 
                         </tr>
@@ -863,7 +951,7 @@ const TeacherChamHoiDong = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title className="modal-title-center">
-                        Đánh giá cho sinh viên{" "}
+                        Đánh giá Hội Đồng (Báo cáo)
                         <span className="text-danger">
 
                         </span>
@@ -874,104 +962,225 @@ const TeacherChamHoiDong = (props) => {
                         {
                             listSV1SV2 && listSV1SV2.length == 2 &&
                             <>
-                                <div className="row mt-1">
-                                    <div className="col-sm-1"></div>
-                                    <div className="col-sm-5  "><b> SV1: </b>&nbsp;&nbsp;<i className="">{listSV1SV2[0].name} </i> &nbsp;<i className="">{listSV1SV2[0].maSo} </i></div>
-                                    <div className="col-sm-5  "><b> SV2:</b> &nbsp;&nbsp;<i className="">{listSV1SV2[1].name} </i>&nbsp;<i className="">{listSV1SV2[1].maSo} </i></div>
+                                <div className="row">
+                                    <div className="col-sm-4  px-0">
+                                        <b> SV1: </b>&nbsp;&nbsp;<i className="">{listSV1SV2[0].name} </i> &nbsp;<i className="">{listSV1SV2[0].maSo} </i>
+                                    </div>
+                                    <div className="col-sm-2 px-0">
+                                        <select value={HoiDongSV1.danhgiahoidong} onChange={(event) => handleOnchange(event.target.value, 'danhgiahoidong')} className={HoiDongSV1.danhgiahoidong == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                            <option value={'null'}>---</option>
+                                            <option className="text-primary" value={'true'}>Đạt</option>
+                                            <option className="text-danger" value={'false'}>Không đạt</option>
+                                        </select>
+                                    </div>
+                                    {
+                                        (HoiDongSV1.danhgiahoidong == 'true' || HoiDongSV1.danhgiahoidong == 'false') &&
+                                        <>
+                                            <div className="col-sm-4 px-0">
+                                                <b> SV2:</b> &nbsp;&nbsp;<i className="">{listSV1SV2[1].name} </i>&nbsp;<i className="">{listSV1SV2[1].maSo} </i>
+                                            </div>
+                                            <div className="col-sm-2 px-0">
+                                                <select value={HoiDongSV2.danhgiahoidong} onChange={(event) => handleOnchange2(event.target.value, 'danhgiahoidong')} className={HoiDongSV2.danhgiahoidong == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                                    <option value={'null'}>---</option>
+                                                    <option className="text-primary" value={'true'}>Đạt</option>
+                                                    <option className="text-danger" value={'false'}>Không đạt</option>
+                                                </select>
+                                            </div>
+                                        </>
+                                    }
                                 </div>
                             </>
                         }
-                        <div className="row mt-4">
-                            <div className="col-sm-1"></div>
+                        <div className="row mt-2">
                             {
                                 listSV1SV2.length == 2 ?
                                     <>
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn cho SV1</i></div>
-                                        <input value={HoiDongSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn cho SV2</i></div>
-                                        <input value={HoiDongSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'false' && (HoiDongSV2.danhgiahoidong == 'null' || !HoiDongSV2.danhgiahoidong) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={HoiDongSV1.diemSV1} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'false' && HoiDongSV2.danhgiahoidong == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={HoiDongSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={HoiDongSV2.diemSV2} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'false' && HoiDongSV2.danhgiahoidong == 'true' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={HoiDongSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={HoiDongSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'true' && (HoiDongSV2.danhgiahoidong == 'null' || !HoiDongSV2.danhgiahoidong) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={HoiDongSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'true' && HoiDongSV2.danhgiahoidong == 'true' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={HoiDongSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={HoiDongSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'true' && HoiDongSV2.danhgiahoidong == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={HoiDongSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={HoiDongSV2.diemSV2} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == '' &&
+                                            <>
+                                            </>
+                                        }
+                                        {
+                                            (HoiDongSV1.danhgiahoidong == 'null' || !HoiDongSV1.danhgiahoidong) && HoiDongSV2.danhgiahoidong == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={HoiDongSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+
                                     </>
                                     : <>
 
-                                        <div className="col-sm-5  ">
-                                            <b> Sinh viên:&nbsp;  {listSV1SV2.length && listSV1SV2[0].name} &nbsp;&nbsp; {listSV1SV2.length && listSV1SV2[0].maSo}</b>
-
+                                        <div className="col-sm-4 px-0 ">
+                                            <b>   {listSV1SV2.length && listSV1SV2[0].name}</b> &nbsp;&nbsp; {listSV1SV2.length && listSV1SV2[0].maSo}
                                         </div>
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
-                                        <input value={HoiDongSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                        <div className="col-sm-1"></div>
+                                        <div className="col-sm-3">
+                                            <select value={HoiDongSV1.danhgiahoidong} onChange={(event) => handleOnchange(event.target.value, 'danhgiahoidong')} className={HoiDongSV1.danhgiahoidong == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                                <option value={'null'}>---</option>
+                                                <option className="text-primary" value={'true'}>Đạt</option>
+                                                <option className="text-danger" value={'false'}>Không đạt</option>
+                                            </select>
+                                        </div>
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'true' &&
+                                            <>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm  </i></div>
+                                                <input value={HoiDongSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                            </>
+                                        }
+                                        {
+                                            HoiDongSV1.danhgiahoidong == 'false' &&
+                                            <>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm  </i></div>
+                                                <input value={HoiDongSV1.diemSV1} className="col-sm-2 " type="number" />
+
+                                            </>
+
+                                        }
                                     </>
                             }
 
                         </div>
+
                         <div className="row mt-3">
                             <div className="col-sm-12">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: "8%" }}>STT</th>
-                                            <th style={{ width: "72%" }}>
-                                                Tiêu chí
-                                            </th>
-                                            <th style={{ width: "20%" }}>
-                                                SV1
-                                            </th>
-                                            {
-                                                listSV1SV2.length == 2 &&
-                                                <th style={{ width: "20%" }}>
-                                                    SV2
+                                {
+                                    ((HoiDongSV1.danhgiahoidong && HoiDongSV1.danhgiahoidong == 'true') || (HoiDongSV2.danhgiahoidong && HoiDongSV2.danhgiahoidong == 'true')) &&
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th style={{ width: "10%" }}>STT</th>
+                                                <th style={{ width: "70%" }}>
+                                                    Tiêu chí
                                                 </th>
-                                            }
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {[
-                                            "Xác định được yêu cầu của khóa luận cần thực hiện",
-                                            "Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài",
-                                            "Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài",
-                                            "Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra",
-                                            "Viết được báo cáo khóa luận tốt nghiệp",
-                                            "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
-                                            "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
-                                            "Bảo vệ khóa kết quả khóa luận trước giản viên phản biện",
-                                        ].map((criteria, index) => (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>{criteria}</td>
-                                                <td>
-                                                    <select value={HoiDongSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                        <option value={''}>----</option>
-                                                        <option value={'1'}>1</option>
-                                                        <option value={'2'}>2</option>
-                                                        <option value={'3'}>3</option>
-                                                        <option value={'4'}>4</option>
-                                                    </select>
-                                                </td>
                                                 {
-                                                    listSV1SV2.length == 2 && <td>
-                                                        <select value={HoiDongSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                            <option value={''}>----</option>
-                                                            <option value={'1'}>1</option>
-                                                            <option value={'2'}>2</option>
-                                                            <option value={'3'}>3</option>
-                                                            <option value={'4'}>4</option>
-                                                        </select>
-                                                    </td>
+                                                    HoiDongSV1.danhgiahoidong == 'true' &&
+                                                    <th
+                                                        style={{ width: "20%" }}>
+                                                        SV1
+                                                    </th>
+                                                }
+                                                {
+                                                    listSV1SV2.length == 2 && HoiDongSV2.danhgiahoidong == 'true' &&
+                                                    <th style={{ width: "20%" }}>
+                                                        SV2
+                                                    </th>
                                                 }
                                             </tr>
-                                        ))}
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                                "Xác định được yêu cầu của khóa luận cần thực hiện",
+                                                "Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài",
+                                                "Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài",
+                                                "Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra",
+                                                "Viết được báo cáo khóa luận tốt nghiệp",
+                                                "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
+                                                "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
+                                                "Bảo vệ khóa kết quả khóa luận trước hội đồng(Báo cáo)",
+                                            ].map((criteria, index) => (
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{criteria}</td>
+                                                    {HoiDongSV1.danhgiahoidong == 'true' ?
+                                                        <td>
+                                                            <select value={HoiDongSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                <option value={''}>----</option>
+                                                                <option value={'1'}>1</option>
+                                                                <option value={'2'}>2</option>
+                                                                <option value={'3'}>3</option>
+                                                                <option value={'4'}>4</option>
+                                                            </select>
+                                                        </td>
+                                                        : ''
+                                                    }
+                                                    {
+                                                        listSV1SV2.length == 2 && HoiDongSV2.danhgiahoidong == 'true' &&
+                                                        <td>
+                                                            <select value={HoiDongSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                <option value={''}>----</option>
+                                                                <option value={'1'}>1</option>
+                                                                <option value={'2'}>2</option>
+                                                                <option value={'3'}>3</option>
+                                                                <option value={'4'}>4</option>
+                                                            </select>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            ))}
 
 
-                                    </tbody>
-                                </table>
-
+                                        </tbody>
+                                    </table>
+                                }
                             </div>
-
-
                         </div>
-                        <div className="row">
-                            <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                            <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea></div>
+                        {
+                            HoiDongSV1.danhgiahoidong == 'true' &&
+                            <div className="row">
+                                <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
+                                <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                            </div>
+                        }
+
                     </>
                 </Modal.Body>
                 <Modal.Footer>
@@ -990,14 +1199,14 @@ const TeacherChamHoiDong = (props) => {
                 <table className="table text-center table-bordered table-hover mt-3">
                     <thead>
                         <tr>
-                            <th style={{ width: "5%" }} >MSSV</th>
+                            <th style={{ width: "6%" }} >MSSV</th>
                             <th style={{ width: "9%" }}>Tên</th>
                             <th style={{ width: "14%" }}>Tên Đề Tài</th>
                             <th style={{ width: "20%" }}>Mô Tả</th>
 
                             <th style={{ width: "9%" }}>GVHD</th>
                             <th style={{ width: "6%" }}>Nhóm</th>
-                            <th style={{ width: "10%" }}>Poster</th>
+                            <th style={{ width: "12%" }}>Poster</th>
                             <th style={{ width: "12%" }}></th>
 
                         </tr>
@@ -1088,7 +1297,7 @@ const TeacherChamHoiDong = (props) => {
             >
                 <Modal.Header closeButton>
                     <Modal.Title className="modal-title-center">
-                        Đánh giá cho sinh viên{" "}
+                        Đánh giá Poster
                         <span className="text-danger">
 
                         </span>
@@ -1099,104 +1308,227 @@ const TeacherChamHoiDong = (props) => {
                         {
                             listSV1SV2 && listSV1SV2.length == 2 &&
                             <>
-                                <div className="row mt-1">
-                                    <div className="col-sm-1"></div>
-                                    <div className="col-sm-5  "><b> SV1: </b>&nbsp;&nbsp;<i className="">{listSV1SV2[0].name} </i> &nbsp;<i className="">{listSV1SV2[0].maSo} </i></div>
-                                    <div className="col-sm-5  "><b> SV2:</b> &nbsp;&nbsp;<i className="">{listSV1SV2[1].name} </i>&nbsp;<i className="">{listSV1SV2[1].maSo} </i></div>
+                                <div className="row">
+                                    <div className="col-sm-4  px-0">
+                                        <b> SV1: </b>&nbsp;&nbsp;<i className="">{listSV1SV2[0].name} </i> &nbsp;<i className="">{listSV1SV2[0].maSo} </i>
+                                    </div>
+                                    <div className="col-sm-2 px-0">
+                                        <select value={PosterSV1.danhgiaposter} onChange={(event) => handleOnchangePoster(event.target.value, 'danhgiaposter')} className={PosterSV1.danhgiaposter == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                            <option value={'null'}>---</option>
+                                            <option className="text-primary" value={'true'}>Đạt</option>
+                                            <option className="text-danger" value={'false'}>Không đạt</option>
+                                        </select>
+                                    </div>
+                                    {
+                                        (PosterSV1.danhgiaposter == 'true' || PosterSV1.danhgiaposter == 'false') &&
+                                        <>
+                                            <div className="col-sm-4 px-0">
+                                                <b> SV2:</b> &nbsp;&nbsp;<i className="">{listSV1SV2[1].name} </i>&nbsp;<i className="">{listSV1SV2[1].maSo} </i>
+                                            </div>
+                                            <div className="col-sm-2 px-0">
+                                                <select value={PosterSV2.danhgiaposter} onChange={(event) => handleOnchange2Poster(event.target.value, 'danhgiaposter')} className={PosterSV2.danhgiaposter == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                                    <option value={'null'}>---</option>
+                                                    <option className="text-primary" value={'true'}>Đạt</option>
+                                                    <option className="text-danger" value={'false'}>Không đạt</option>
+                                                </select>
+                                            </div>
+                                        </>
+                                    }
                                 </div>
                             </>
                         }
-                        <div className="row mt-4">
-                            <div className="col-sm-1"></div>
+                        <div className="row mt-2">
                             {
                                 listSV1SV2.length == 2 ?
                                     <>
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn cho SV1</i></div>
-                                        <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn cho SV2</i></div>
-                                        <input value={PosterSV2.diemSV2} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+                                        {
+                                            PosterSV1.danhgiaposter == 'false' && (PosterSV2.danhgiaposter == 'null' || !PosterSV2.danhgiaposter) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={PosterSV1.diemSV1} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == 'false' && PosterSV2.danhgiaposter == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={PosterSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={PosterSV2.diemSV2} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == 'false' && PosterSV2.danhgiaposter == 'true' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={PosterSV1.diemSV1} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={PosterSV2.diemSV2} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == 'true' && (PosterSV2.danhgiaposter == 'null' || !PosterSV2.danhgiaposter) &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == 'true' && PosterSV2.danhgiaposter == 'true' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={PosterSV2.diemSV2} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == 'true' && PosterSV2.danhgiaposter == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
+                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
+                                                <input value={PosterSV2.diemSV2} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == '' &&
+                                            <>
+                                            </>
+                                        }
+                                        {
+                                            (PosterSV1.danhgiaposter == 'null' || !PosterSV1.danhgiaposter) && PosterSV2.danhgiaposter == 'false' &&
+                                            <>
+                                                <div className="col-sm-4 px-0"></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <input value={PosterSV2.diemSV2} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
+
+                                            </>
+                                        }
+
                                     </>
                                     : <>
 
-                                        <div className="col-sm-5  ">
-                                            <b> Sinh viên:&nbsp;  {listSV1SV2.length && listSV1SV2[0].name} &nbsp;&nbsp; {listSV1SV2.length && listSV1SV2[0].maSo}</b>
-
+                                        <div className="col-sm-4 px-0 ">
+                                            <b>   {listSV1SV2.length && listSV1SV2[0].name}</b> &nbsp;&nbsp; {listSV1SV2.length && listSV1SV2[0].maSo}
                                         </div>
-                                        <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
-                                        <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                        <div className="col-sm-1"></div>
+                                        <div className="col-sm-3">
+                                            <select value={PosterSV1.danhgiaposter} onChange={(event) => handleOnchangePoster(event.target.value, 'danhgiaposter')} className={PosterSV1.danhgiaposter == 'true' ? 'form-select text-primary' : 'form-select text-danger'}>
+                                                <option value={'null'}>---</option>
+                                                <option className="text-primary" value={'true'}>Đạt</option>
+                                                <option className="text-danger" value={'false'}>Không đạt</option>
+                                            </select>
+                                        </div>
+                                        {
+                                            PosterSV1.danhgiaposter == 'true' &&
+                                            <>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm Poster </i></div>
+                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                            </>
+                                        }
+                                        {
+                                            PosterSV1.danhgiaposter == 'false' &&
+                                            <>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm Poster </i></div>
+                                                <input value={PosterSV1.diemSV1} className="col-sm-2 " type="number" />
+
+                                            </>
+
+                                        }
                                     </>
                             }
 
                         </div>
+
                         <div className="row mt-3">
                             <div className="col-sm-12">
-                                <table className="table">
-                                    <thead>
-                                        <tr>
-                                            <th style={{ width: "8%" }}>STT</th>
-                                            <th style={{ width: "72%" }}>
-                                                Tiêu chí
-                                            </th>
-                                            <th style={{ width: "20%" }}>
-                                                SV1
-                                            </th>
-                                            {
-                                                listSV1SV2.length == 2 &&
-                                                <th style={{ width: "20%" }}>
-                                                    SV2
+                                {
+                                    ((PosterSV1.danhgiaposter && PosterSV1.danhgiaposter == 'true') || (PosterSV2.danhgiaposter && PosterSV2.danhgiaposter == 'true')) &&
+                                    <table className="table">
+                                        <thead>
+                                            <tr>
+                                                <th style={{ width: "10%" }}>STT</th>
+                                                <th style={{ width: "70%" }}>
+                                                    Tiêu chí
                                                 </th>
-                                            }
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {[
-                                            "Xác định được yêu cầu của khóa luận cần thực hiện",
-                                            "Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài",
-                                            "Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài",
-                                            "Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra",
-                                            "Viết được báo cáo khóa luận tốt nghiệp",
-                                            "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
-                                            "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
-                                            "Bảo vệ khóa kết quả khóa luận trước giản viên phản biện",
-                                        ].map((criteria, index) => (
-                                            <tr key={index}>
-                                                <td>{index + 1}</td>
-                                                <td>{criteria}</td>
-                                                <td>
-                                                    <select value={PosterSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchangePoster(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                        <option value={''}>----</option>
-                                                        <option value={'1'}>1</option>
-                                                        <option value={'2'}>2</option>
-                                                        <option value={'3'}>3</option>
-                                                        <option value={'4'}>4</option>
-                                                    </select>
-                                                </td>
                                                 {
-                                                    listSV1SV2.length == 2 && <td>
-                                                        <select value={PosterSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2Poster(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                            <option value={''}>----</option>
-                                                            <option value={'1'}>1</option>
-                                                            <option value={'2'}>2</option>
-                                                            <option value={'3'}>3</option>
-                                                            <option value={'4'}>4</option>
-                                                        </select>
-                                                    </td>
+                                                    PosterSV1.danhgiaposter == 'true' &&
+                                                    <th
+                                                        style={{ width: "20%" }}>
+                                                        SV1
+                                                    </th>
+                                                }
+                                                {
+                                                    listSV1SV2.length == 2 && PosterSV2.danhgiaposter == 'true' &&
+                                                    <th style={{ width: "20%" }}>
+                                                        SV2
+                                                    </th>
                                                 }
                                             </tr>
-                                        ))}
+                                        </thead>
+                                        <tbody>
+                                            {[
+                                                "Xác định được yêu cầu của khóa luận cần thực hiện",
+                                                "Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài",
+                                                "Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài",
+                                                "Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra",
+                                                "Viết được báo cáo khóa luận tốt nghiệp",
+                                                "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
+                                                "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
+                                                "Bảo vệ khóa kết quả khóa luận trước hội đồng(Poster)",
+                                            ].map((criteria, index) => (
+                                                <tr key={index}>
+                                                    <td>{index + 1}</td>
+                                                    <td>{criteria}</td>
+                                                    {PosterSV1.danhgiaposter == 'true' ?
+                                                        <td>
+                                                            <select value={PosterSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchangePoster(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                <option value={''}>----</option>
+                                                                <option value={'1'}>1</option>
+                                                                <option value={'2'}>2</option>
+                                                                <option value={'3'}>3</option>
+                                                                <option value={'4'}>4</option>
+                                                            </select>
+                                                        </td>
+                                                        : ''
+                                                    }
+                                                    {
+                                                        listSV1SV2.length == 2 && PosterSV2.danhgiaposter == 'true' &&
+                                                        <td>
+                                                            <select value={PosterSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2Poster(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                <option value={''}>----</option>
+                                                                <option value={'1'}>1</option>
+                                                                <option value={'2'}>2</option>
+                                                                <option value={'3'}>3</option>
+                                                                <option value={'4'}>4</option>
+                                                            </select>
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            ))}
 
 
-                                    </tbody>
-                                </table>
+                                        </tbody>
+                                    </table>
+                                }
+
 
                             </div>
-
-
                         </div>
-                        <div className="row">
-                            <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                            <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-9"></textarea></div>
+                        {
+                            PosterSV1.danhgiaposter == 'true' &&
+                            <div className="row">
+                                <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
+                                <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                            </div>
+                        }
+
                     </>
                 </Modal.Body>
                 <Modal.Footer>
