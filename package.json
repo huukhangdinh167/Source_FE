@@ -27,7 +27,8 @@
     "sass": "1.48.0",
     "sweetalert": "^2.1.2",
     "uuid": "8.3.2",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",

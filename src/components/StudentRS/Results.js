@@ -289,13 +289,14 @@ const Results = () => {
                                     </td>
                                     <td>
                                         {((results.Result.danhgiaPoster1 == 'false' || results.Result.danhgiaPoster2 == 'false')
-                                            || (results.Result.danhgiaCTHD == 'false' || results.Result.danhgiaTK == 'false' || results.Result.danhgiaUV == 'false')) && <p className='text-danger mb-0'>Không đạt</p>}
+                                            || (results.Result.danhgiaCTHD == 'false' || results.Result.danhgiaTK == 'false' || results.Result.danhgiaUV == 'false')) && <p className='text-danger mb-0'>Không đạt</p>
+                                        }
                                         {
                                             ((results.Result.danhgiaPoster1 == 'true' && results.Result.danhgiaPoster2 == 'true')
                                                 || (results.Result.danhgiaCTHD == 'true' && results.Result.danhgiaTK == 'true' && results.Result.danhgiaUV == 'true')) && <b> {Math.round(results.Result.trungbinhhoidong * 100) / 100} </b>
                                         }
                                         <br></br>
-                                        {results.Result.trungbinhhoidong && <i onClick={() => handleXemChiTietTBHoiDong()}  className="text-primary xemchitiet">(Xem)</i>}</td>
+                                        {results.Result.trungbinhhoidong && <i onClick={() => handleXemChiTietTBHoiDong()} className="text-primary xemchitiet">(Xem)</i>}</td>
                                 </tr>
 
                             }
@@ -351,7 +352,7 @@ const Results = () => {
                                                 <td> Xác định được yêu cầu của khóa luận cần thực hiện</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL1}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL1}</option>
 
                                                     </select>
                                                 </td>
@@ -361,7 +362,7 @@ const Results = () => {
                                                 <td>Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL2}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL2}</option>
 
                                                     </select>
                                                 </td>
@@ -371,7 +372,7 @@ const Results = () => {
                                                 <td>Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option>{results && results.Criterion  && results.Criterion.LOL3}</option>
+                                                        <option>{results && results.Criterion && results.Criterion.LOL3}</option>
 
                                                     </select>
                                                 </td>
@@ -382,7 +383,7 @@ const Results = () => {
                                                 <td>Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL4}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL4}</option>
 
                                                     </select>
                                                 </td>
@@ -392,7 +393,7 @@ const Results = () => {
                                                 <td>Viết được báo cáo khóa luận tốt nghiệp</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL5}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL5}</option>
 
                                                     </select>
                                                 </td>
@@ -402,7 +403,7 @@ const Results = () => {
                                                 <td>Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL6}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL6}</option>
 
                                                     </select>
                                                 </td>
@@ -412,7 +413,7 @@ const Results = () => {
                                                 <td>Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL7}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL7}</option>
 
                                                     </select>
                                                 </td>
@@ -423,7 +424,7 @@ const Results = () => {
                                                 <td>Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn</td>
                                                 <td>
                                                     <select className="form-select">
-                                                        <option >{results && results.Criterion  && results.Criterion.LOL8}</option>
+                                                        <option >{results && results.Criterion && results.Criterion.LOL8}</option>
 
                                                     </select>
                                                 </td>

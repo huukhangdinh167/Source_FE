@@ -37,6 +37,9 @@ const NavHeader = (props) => {
                 case 2:
                     history.push('/teacher-home');
                     break;
+                case 4:
+                    history.push('/teacher-home');
+                    break;
                 case 3:
                     history.push('/admin-home');
                     break;
@@ -69,20 +72,16 @@ const NavHeader = (props) => {
                         {
                             user && user.groupId === 1 ?
                                 <Nav className="me-auto">
-                                    <NavLink className="nav-link" to="/student-home" >Trang chủ</NavLink>
+                                  
                                     <NavLink className="nav-link" to="/project" >Đăng kí đề tài</NavLink>
                                     <NavLink className="nav-link" to="/results">Kết quả chấm</NavLink>
-                                    <NavLink className="nav-link" to="/history">Lịch sử làm khóa luận</NavLink>
-
-
                                 </Nav>
                                 : (user && user.groupId === 2 ? <Nav className="me-auto">
-                                    <NavLink className="nav-link" to="/teacher-home" >Trang chủ</NavLink>
+
                                     <NavLink className="nav-link" to="/teacher/projects">Quản lí đề tài</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamHoiDong">Chấm Hội Đồng</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
                                     <NavLink className="nav-link" to="/teacher-chamHD">Chấm HD</NavLink>
-
 
                                     {/* <NavLink className="nav-link" to="/">Teacher</NavLink>
                                         <NavLink className="nav-link" to="/">Teach</NavLink>
@@ -91,13 +90,13 @@ const NavHeader = (props) => {
 
 
                                 </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
-                                    <NavLink className="nav-link" to="/admin-home" >Trang chủ</NavLink>
+                                    
                                     <NavLink className="nav-link" to="/admin/users" >Quản lý người dùng</NavLink>
                                     <NavLink className="nav-link" to="/admin/add-role" exact>Thêm quyền</NavLink>
                                     <NavLink className="nav-link" to="/admin/assign-role">Phân quyền người dùng</NavLink>
 
                                 </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
-                                    <NavLink className="nav-link" to="/head-home" >Trang chủ</NavLink>
+
                                     <NavLink className="nav-link" to="/head-project" exact >Đề tài</NavLink>
                                     <NavLink className="nav-link" to="/headKetQuaCham">Phân Công HĐ </NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
@@ -107,10 +106,12 @@ const NavHeader = (props) => {
 
                                     : (<Nav className="me-auto">
 
-                                        <NavLink className="nav-link" to="/users">users</NavLink>
-                                        <NavLink className="nav-link" to="/roles">Roles</NavLink>
-                                        <NavLink className="nav-link" to="/grouprole">Group-Role</NavLink>
-                                        <NavLink className="nav-link" to="/about">About</NavLink>
+                                        <NavLink className="nav-link" to="/teacher/projects">Đề tài</NavLink>
+                                        <NavLink className="nav-link" to="/headKetQuaCham">Phân Công HĐ </NavLink>
+                                        <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
+                                        <NavLink className="nav-link" to="/teacher-chamHoiDong">Chấm Hội Đồng</NavLink>
+                                        <NavLink className="nav-link" to="/teacher-chamPB">Chấm PB</NavLink>
+                                        <NavLink className="nav-link" to="/teacher-chamHD">Chấm HD</NavLink>
                                     </Nav>))))
 
                         }

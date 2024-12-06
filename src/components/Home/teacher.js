@@ -4,7 +4,7 @@ const teacherHome = () => {
     return (
         <div className="container mt-4">
             <header className="mb-4">
-                <h3 className="fw-bold text-center">Chào mừng đến với giao diện sinh viên</h3>
+                <h3 className="fw-bold text-center">Chào mừng đến với giao diện giảng viên</h3>
                 <p className="text-center text-muted">Quản lý thông tin khóa luận của bạn tại đây.</p>
             </header>
 

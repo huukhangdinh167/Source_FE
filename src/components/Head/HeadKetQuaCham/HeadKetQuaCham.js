@@ -760,7 +760,10 @@ const HeadKetQuaCham = () => {
                                 <div className='col-sm-1'>Poster1:</div>
                                 <div className="col-sm-4">
 
-                                    <select className='form-select' value={Poster.Poster1} onChange={(event) => handleOnchangePoster(event.target.value, 'Poster1')}>
+                                    <select className='form-select' 
+                                    
+                                    
+                                    value={Poster.Poster1} onChange={(event) => handleOnchangePoster(event.target.value, 'Poster1')}>
                                         <option value=''>
                                             ----
                                         </option>

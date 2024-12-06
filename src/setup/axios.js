@@ -40,7 +40,7 @@ instance.interceptors.response.use(function (response) {
 
     // forbidden (permission related issues)
     case 403: {
-      toast.error("You don't haveee permission to000 access")
+      toast.error("You don't haveee permission")
       return Promise.reject(error);
     }
 

@@ -1,7 +1,7 @@
 import "./User.scss"
 import React, { useEffect, useState, useRef } from "react";
 import { deletuser } from "../../services/userServer";
-import { AdminFetchAllUsser, adminCreateNewUser, admindeletuser } from "../../services/AdminService";
+import { AdminFetchAllUsser, adminCreateNewUser, adminCreateNewUserbyExcel, admindeletuser } from "../../services/AdminService";
 import ReactPaginate from "react-paginate";
 import { toast } from "react-toastify";
 import ModalDelete from "./ModalDelete";
@@ -10,7 +10,7 @@ import { UserContext } from '../../context/userContext';
 import 'font-awesome/css/font-awesome.min.css';
 import { fetchGroup, createNewUser, updateNewUser } from "../../services/userServer";
 import bcrypt from 'bcryptjs';
-
+import * as XLSX from 'xlsx';
 // role 
 
 import _ from 'lodash'
@@ -186,7 +186,55 @@ const Users = (props) => {
         })
         return results;
     }
+    const fileInputRef = useRef(null);
+    const [creatbyEcel, setCreatbyEcel] = useState([])
+    // Hàm xử lý khi chọn file
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const fileExtension = file.name.split('.').pop().toLowerCase();
+            if (fileExtension !== 'xls' && fileExtension !== 'xlsx') {
+                // Nếu không phải file Excel, hiển thị thông báo cảnh báo
+                toast.warning("Vui lòng chọn file Excel (.xls, .xlsx)!");
+                
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                const data = event.target.result;
+                const workbook = XLSX.read(data, { type: 'binary' });
 
+                // Lấy dữ liệu từ sheet đầu tiên
+                const sheetName = workbook.SheetNames[0];
+                const worksheet = workbook.Sheets[sheetName];
+                const jsonData = XLSX.utils.sheet_to_json(worksheet);
+
+                console.log(jsonData); // Dữ liệu từ file Excel
+                setCreatbyEcel(jsonData)
+                // Bạn có thể làm gì đó với jsonData, ví dụ như thêm vào cơ sở dữ liệu
+            };
+            reader.readAsBinaryString(file); // Đọc file dưới dạng chuỗi nhị phân
+        }
+    };
+    const handleButtonClick = () => {
+        fileInputRef.current.click(); // Mở hộp thoại chọn file
+    };
+    const adminhandleCreateNewUserbyExcel = async () => {
+        console.log(creatbyEcel)
+        if (creatbyEcel.length == 0) {
+            toast.error("Null !!")
+        } else {
+            let data = await adminCreateNewUserbyExcel(creatbyEcel)
+            if (data.EC == 0) {
+                toast.success(data.EM)
+                fetchUsser();
+            } else {
+                toast.error(data.EM)
+            }
+        }
+
+
+    }
     /// Role 
     return (
         <>
@@ -196,7 +244,7 @@ const Users = (props) => {
                     <h4 className="mt-3">Tạo mới giảng viên: </h4>
                     <div className="user-header">
                         <div className="actions my-3">
-                            <button className="btn btn-success" onClick={() => handlRefresh()}> <i class="fa fa-refresh bd "></i>Tạo mới</button>
+                            {/* <button className="btn btn-success" onClick={() => handlRefresh()}> <i class="fa fa-refresh bd "></i>Tạo mới</button> */}
                             <button className="btn btn-primary"
                                 onClick={() => {
                                     setIsShowModalUser(true);
@@ -207,6 +255,44 @@ const Users = (props) => {
 
                     <div className="addnew-user">
                         <h4 className="mt-3">Tạo mới sinh viên</h4>
+                        <div className="row">
+
+                            <div className="col-sm-1 mt-1 px-0">
+                                <button
+                                    className="btn btn-success "
+                                    onClick={handleButtonClick}
+                                >
+                                    <i className="fa fa-plus-square bd"></i> .Xlsx
+
+                                    {/* Input file ẩn bên trong button */}
+
+                                </button>
+                            </div>
+                            <div className="col-sm-3 px-0">
+                                <input
+                                    type="file"
+                                    ref={fileInputRef}
+                                    accept=".xlsx,.xls"
+                                    onChange={handleFileChange}
+                                // style={{ display: 'none' }} // Ẩn input
+                                />
+
+                            </div>
+                            <div className="col-sm-1 mt-1 px-0">
+                                <button
+                                    className="btn btn-success "
+                                    onClick={adminhandleCreateNewUserbyExcel}
+                                >
+                                    Create
+
+                                    {/* Input file ẩn bên trong button */}
+
+                                </button>
+                            </div>
+
+
+
+                        </div>
                         <div className='adding-role mt-2'>
                             <div className='title-role'></div>
                             <div className=' role-parent'>
@@ -252,8 +338,8 @@ const Users = (props) => {
                             </div>
                             <div className='row'>
                                 <div className='col-10'></div>
-                                <div className="col-12 col-md-6 d-flex justify-content-end">
-                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Lưu thay đổi</button>
+                                <div className="col-12 col-md-9 d-flex justify-content-end">
+                                    <button onClick={() => handlSave()} className="btn btn-success mt-2">Tạo mới</button>
                                 </div>
 
                             </div>

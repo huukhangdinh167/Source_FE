@@ -71,7 +71,6 @@ const Project = () => {
         }
     }
 
-
     const getALLProject = async (user) => {
         let data = await fetchAllProject(user)
         if (data && +data.EC === 0) {
@@ -217,7 +216,7 @@ const Project = () => {
                                             <th scope="col" style={{ width: "15%" }}>YÊU CẦU</th>
                                             <th scope="col" style={{ width: "20%" }}>KIẾN THỨC</th>
                                             <th scope="col" style={{ width: "10%" }}>GVHD</th>
-                                            <th scope="col" style={{ width: "12%" }}></th>
+                                            <th scope="col" style={{ width: "14%" }}></th>
 
                                         </tr>
 
@@ -230,7 +229,7 @@ const Project = () => {
                                             <td>{lisProjectRegister.require}</td>
                                             <td>{lisProjectRegister.knowledgeSkills}</td>
                                             <td>{lisProjectRegister.instuctor}</td>
-                                            <td className="center-button "><div onClick={() => hanldeHuyDangki(user, lisProjectRegister)} className="btn btn-warning da-dang-ki">Hủy đăng kí</div>
+                                            <td className="center-button "><div onClick={() => hanldeHuyDangki(user, lisProjectRegister)} className="btn px-0 btn-warning da-dang-ki">Hủy đăng kí</div>
                                                 {/* // */}
                                             </td>
 

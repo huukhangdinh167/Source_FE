@@ -242,7 +242,6 @@ const TeacherChamPB = (props) => {
         }
     };
 
-
     const handleCloseModal = async () => {
 
         setShowModal(false); // Đóng 
@@ -435,7 +434,6 @@ const TeacherChamPB = (props) => {
     }
     const renderedGroups = new Map(); // Theo dõi nhóm đã xử lý 
 
-
     const exportToPDF = async (item) => {
         const pdf = new jsPDF();
 
@@ -505,14 +503,14 @@ const TeacherChamPB = (props) => {
 
             const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', LOL1, res[1] && LOL1SV2],
-                [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', LOL2, res[1] && LOL2SV2],
-                [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', LOL3, res[1] && LOL3SV2],
-                [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', LOL4, res[1] && LOL4SV2],
-                [5, 'Viết được báo cáo khóa luận tốt nghiệp', LOL5, res[1] && LOL5SV2],
-                [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', LOL6, res[1] && LOL6SV2],
-                [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', LOL7, res[1] && LOL7SV2],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', LOL8, res[1] && LOL8SV2],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
+                [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
+                [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
+                [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiaphanbiensv1 == 'true' ? LOL5 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL5SV2 : ''],
+                [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL6 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL6SV2 : ''],
+                [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL7 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL7SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiaphanbiensv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiaphanbiensv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -531,7 +529,7 @@ const TeacherChamPB = (props) => {
                 },
             });
             pdf.text('Nhận xét', 20, 215);
-            pdf.text(ghichu, 25, 220);
+            pdf.text(`${ghichu ?? ''}`, 25, 220);
             pdf.text('TP.HCM, ngày    tháng    năm', 120, 245);
             pdf.text('Người đánh giá', 130, 250);
             pdf.text('(Ký và ghi rõ họ tên)', 125, 255);
@@ -600,14 +598,14 @@ const TeacherChamPB = (props) => {
 
             const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', LOL1, res[1] && LOL1SV2],
-                [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', LOL2, res[1] && LOL2SV2],
-                [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', LOL3, res[1] && LOL3SV2],
-                [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', LOL4, res[1] && LOL4SV2],
-                [5, 'Viết được báo cáo khóa luận tốt nghiệp', LOL5, res[1] && LOL5SV2],
-                [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', LOL6, res[1] && LOL6SV2],
-                [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', LOL7, res[1] && LOL7SV2],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', LOL8, res[1] && LOL8SV2],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
+                [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
+                [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
+                [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiaphanbiensv1 == 'true' ? LOL5 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL5SV2 : ''],
+                [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL6 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL6SV2 : ''],
+                [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL7 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL7SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiaphanbiensv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiaphanbiensv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -626,7 +624,7 @@ const TeacherChamPB = (props) => {
                 },
             });
             pdf.text('Nhận xét', 20, 215);
-            pdf.text(`${ghichu}`, 25, 220);
+            pdf.text(`${ghichu ?? ''}`, 25, 220);
             pdf.text('TP.HCM, ngày    tháng    năm', 120, 245);
             pdf.text('Người đánh giá', 130, 250);
             pdf.text('(Ký và ghi rõ họ tên)', 125, 255);
@@ -695,14 +693,14 @@ const TeacherChamPB = (props) => {
 
             const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', LOL1, res[1] && LOL1SV2],
-                [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', LOL2, res[1] && LOL2SV2],
-                [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', LOL3, res[1] && LOL3SV2],
-                [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', LOL4, res[1] && LOL4SV2],
-                [5, 'Viết được báo cáo khóa luận tốt nghiệp', LOL5, res[1] && LOL5SV2],
-                [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', LOL6, res[1] && LOL6SV2],
-                [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', LOL7, res[1] && LOL7SV2],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', LOL8, res[1] && LOL8SV2],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
+                [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
+                [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
+                [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiaphanbiensv1 == 'true' ? LOL5 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL5SV2 : ''],
+                [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL6 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL6SV2 : ''],
+                [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL7 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL7SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiaphanbiensv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiaphanbiensv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -721,7 +719,7 @@ const TeacherChamPB = (props) => {
                 },
             });
             pdf.text('Nhận xét', 20, 215);
-            pdf.text(ghichu, 25, 220);
+            pdf.text(`${ghichu ?? ''}`, 25, 220);
             pdf.text('TP.HCM, ngày    tháng    năm', 120, 245);
             pdf.text('Người đánh giá', 130, 250);
             pdf.text('(Ký và ghi rõ họ tên)', 125, 255);
@@ -820,7 +818,7 @@ const TeacherChamPB = (props) => {
             // pdf.text(`${item.Result.danhgiacuoiky == 'true' ? 'ĐẠT' : 'KHÔNG ĐẠT'}`, 100, 195);
 
             pdf.text('Nhận xét:', 20, 130);
-            pdf.text(ghichu, 23, 135);
+            pdf.text(`${ghichu ?? ''}`, 23, 135);
             pdf.text('TP.HCM, ngày    tháng    năm', 120, 180);
             pdf.text('Người đánh giá', 130, 185);
             pdf.text('(Ký và ghi rõ họ tên)', 125, 190);
@@ -906,7 +904,7 @@ const TeacherChamPB = (props) => {
             // pdf.text(`${item.Result.danhgiacuoiky == 'true' ? 'ĐẠT' : 'KHÔNG ĐẠT'}`, 100, 195);
 
             pdf.text('Nhận xét:', 20, 130);
-            pdf.text(ghichu, 23, 135);
+            pdf.text(`${ghichu ?? ''}`, 23, 135);
             pdf.text('TP.HCM, ngày    tháng    năm', 120, 180);
             pdf.text('Người đánh giá', 130, 185);
             pdf.text('(Ký và ghi rõ họ tên)', 125, 190);
@@ -990,7 +988,7 @@ const TeacherChamPB = (props) => {
             // pdf.text(`${item.Result.danhgiacuoiky == 'true' ? 'ĐẠT' : 'KHÔNG ĐẠT'}`, 100, 195);
 
             pdf.text('Nhận xét:', 20, 130);
-            pdf.text(ghichu, 23, 135);
+            pdf.text(`${ghichu ?? ''}`, 23, 135);
             pdf.text('TP.HCM, ngày    tháng    năm', 120, 180);
             pdf.text('Người đánh giá', 130, 185);
             pdf.text('(Ký và ghi rõ họ tên)', 125, 190);

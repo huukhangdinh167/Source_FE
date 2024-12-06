@@ -56,13 +56,16 @@ const Login = (props) => {
             localStorage.setItem('jwt', token)
             loginContext(data)
             if (groupId === 3) {
-                history.push("/admin-home");
+                history.push("/admin/users");
             } else if (groupId === 1) {
-                history.push("/student-home");
+                history.push("/project");
             } else if (groupId === 5) {
-                history.push("/head-home");
+                history.push("/head-project");
             } else if (groupId === 2) {
-                history.push("/teacher-home");
+                history.push("/teacher/projects");
+            }
+            else if (groupId === 4) {
+                history.push("/teacher/projects");
             }
             else {
                 history.push("/");

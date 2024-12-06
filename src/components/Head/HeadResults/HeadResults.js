@@ -4,6 +4,7 @@ import { fetchAllProjectRegister, getResults } from '../../../services/studentSe
 import { GetAllResults, headGetResultEveryStudent } from '../../../services/HeadService'
 import { Modal, Button } from "react-bootstrap";
 import React from 'react';
+import * as XLSX from 'xlsx';
 import { UserContext } from '../../../context/userContext';
 import './HeadResults.scss'
 import { add } from "lodash";
@@ -98,95 +99,163 @@ const HeadResults = () => {
 
     //import jsPDF from 'jspdf';
 
-    const exportToPDF = (instuctor, projectName) => {
-        const pdf = new jsPDF();
+    // const exportToPDF = (instuctor, projectName) => {
+    //     const pdf = new jsPDF();
 
-        // Sử dụng font mặc định FreeSerif hỗ trợ Unicode
-        pdf.setFont('FreeSerif', 'normal');
-        pdf.setFontSize(13);
-        // Thêm nội dung tiếng Việt
-        pdf.text('TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HCM', 10, 25);
-        pdf.text('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM', 115, 25);
+    //     // Sử dụng font mặc định FreeSerif hỗ trợ Unicode
+    //     pdf.setFont('FreeSerif', 'normal');
+    //     pdf.setFontSize(13);
+    //     // Thêm nội dung tiếng Việt
+    //     pdf.text('TRƯỜNG ĐẠI HỌC CÔNG NGHIỆP TP.HCM', 10, 25);
+    //     pdf.text('CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM', 115, 25);
 
-        pdf.text('KHOA CÔNG NGHỆ THÔNG TIN', 20, 30);
-        pdf.text('Độc lập - Tự do - Hạnh phúc', 135, 30);
+    //     pdf.text('KHOA CÔNG NGHỆ THÔNG TIN', 20, 30);
+    //     pdf.text('Độc lập - Tự do - Hạnh phúc', 135, 30);
 
-        pdf.text('BỘ MÔN HỆ THỐNG THÔNG TIN', 20, 35);
+    //     pdf.text('BỘ MÔN HỆ THỐNG THÔNG TIN', 20, 35);
 
-        pdf.text('------------------------------------', 25, 40);
-        pdf.text('-----------------------------------', 135, 35);
+    //     pdf.text('------------------------------------', 25, 40);
+    //     pdf.text('-----------------------------------', 135, 35);
 
-        pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
+    //     pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
 
-        pdf.text(`Họ tên người đánh giá: ${instuctor}`, 15, 60);
-        pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 15, 65);
-        pdf.text(`Tên đề tài: ${projectName}`, 15, 75);
+    //     pdf.text(`Họ tên người đánh giá: ${instuctor}`, 15, 60);
+    //     pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 15, 65);
+    //     pdf.text(`Tên đề tài: ${projectName}`, 15, 75);
 
-        pdf.text('Họ tên sinh viên 1: ', 15, 80);
-        pdf.text('Mã số sinh viên: ', 120, 80);
+    //     pdf.text('Họ tên sinh viên 1: ', 15, 80);
+    //     pdf.text('Mã số sinh viên: ', 120, 80);
 
-        pdf.text('Họ tên sinh viên 2: ', 15, 85);
-        pdf.text('Mã số sinh viên: ', 120, 85);
+    //     pdf.text('Họ tên sinh viên 2: ', 15, 85);
+    //     pdf.text('Mã số sinh viên: ', 120, 85);
 
-        const headers = [['STT', 'LOL', 'Sinh viên 1', 'Sinh viên 2',]];
-        const data = [
-            [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', '8.5', 7.0],
-            [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', 9.0, 8.5],
-            [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', 7.5, 6.0],
-            [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', 8.5, 7.0],
-            [5, 'Viết được báo cáo khóa luận tốt nghiệp', 9.0, 8.5],
-            [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', 7.5, 6.0],
-            [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', 9.0, 8.5],
-            [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn', 7.5, 6.0,],
+    //     const headers = [['STT', 'LOL', 'Sinh viên 1', 'Sinh viên 2',]];
+    //     const data = [
+    //         [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', '8.5', 7.0],
+    //         [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', 9.0, 8.5],
+    //         [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', 7.5, 6.0],
+    //         [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', 8.5, 7.0],
+    //         [5, 'Viết được báo cáo khóa luận tốt nghiệp', 9.0, 8.5],
+    //         [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', 7.5, 6.0],
+    //         [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', 9.0, 8.5],
+    //         [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn', 7.5, 6.0,],
 
-        ];
-        // Tạo bảng với autoTable
-        autoTable(pdf, {
-            head: headers,
-            body: data,
-            startY: 90, // Vị trí Y bắt đầu của bảng
-            theme: 'grid', // Giao diện của bảng (striped, grid, plain)
-            styles: { font: 'FreeSerif', fontSize: 13, halign: 'center' }, // Font và kích thước chữ trong bảng
-            headStyles: { fillColor: [80, 81, 81] }, // Màu nền tiêu đề
-            columnStyles: {
-                0: { cellWidth: 12 }, // Cột 1 (STT) rộng 20
-                1: { cellWidth: 115 }, // Cột 2 (Họ và Tên) rộng 50
-                2: { cellWidth: 25 }, // Cột 3 (Điểm Toán) rộng 25
-                3: { cellWidth: 25 }, // Cột 4 (Điểm Lý) rộng 25
+    //     ];
+    //     // Tạo bảng với autoTable
+    //     autoTable(pdf, {
+    //         head: headers,
+    //         body: data,
+    //         startY: 90, // Vị trí Y bắt đầu của bảng
+    //         theme: 'grid', // Giao diện của bảng (striped, grid, plain)
+    //         styles: { font: 'FreeSerif', fontSize: 13, halign: 'center' }, // Font và kích thước chữ trong bảng
+    //         headStyles: { fillColor: [80, 81, 81] }, // Màu nền tiêu đề
+    //         columnStyles: {
+    //             0: { cellWidth: 12 }, // Cột 1 (STT) rộng 20
+    //             1: { cellWidth: 115 }, // Cột 2 (Họ và Tên) rộng 50
+    //             2: { cellWidth: 25 }, // Cột 3 (Điểm Toán) rộng 25
+    //             3: { cellWidth: 25 }, // Cột 4 (Điểm Lý) rộng 25
 
-            },
+    //         },
+    //     });
+
+    //     pdf.text('TP.HCM, ngày    tháng    năm', 120, 215);
+    //     pdf.text('Người đánh giá', 130, 220);
+    //     pdf.text('(Ký và ghi rõ họ tên)', 125, 225);
+    //     pdf.text(`${instuctor}`, 125, 250);
+
+    //     pdf.save('example.pdf');
+    // };
+
+    const exportToExcel = () => {
+        // Dữ liệu mẫu (thay thế bằng dữ liệu thực tế của bạn)
+
+        const excelData = results.map((item, index) => {
+            // Chuyển đổi giá trị
+            const trungBinhHDC =
+                ((item.Result.danhgiaPoster1 == 'false' || item.Result.danhgiaPoster2 == 'false')
+                    || (item.Result.danhgiaCTHD == 'false' || item.Result.danhgiaTK == 'false' || item.Result.danhgiaUV == 'false')) ? 'Không đạt'
+                    : Math.round(parseFloat(item.Result.trungbinhhoidong) * 100) / 100;
+
+            const trungBinhPB = item.Result && ((item.Result.danhgiaphanbien1 == 'false' && item.Result.danhgiaphanbien2 == 'false') || (item.Result.danhgiaphanbien1 == 'false' && item.Result.danhgiaphanbien3 == 'false')
+                || (item.Result.danhgiaphanbien2 == 'false' && item.Result.danhgiaphanbien3 == 'false')) ? 'Không đạt' : parseFloat(item.Result.trungbinhphanbien)
+
+            const diemGVHD = item.Result.diemGVHD > 0 ? parseFloat(item.Result.diemGVHD) : 'Không đạt';
+
+            // Tính điểm tổng trung bình
+            const diemTongTrungBinh =
+                trungBinhHDC != 'Không đạt' && trungBinhPB && diemGVHD
+                    ? ((trungBinhHDC + trungBinhPB + diemGVHD) / 3).toFixed(2)
+                    : '';
+            const Tong =
+                (((item.Result && item.Result.danhgiacuoiky == 'false') || (item.Result && item.Result.danhgiagiuaky == 'false')) ||
+                    (((item.Result.danhgiaphanbien1 == 'false' && item.Result.danhgiaphanbien2 == 'false') || (item.Result.danhgiaphanbien1 == 'false' && item.Result.danhgiaphanbien3 == 'false')
+                        || (item.Result.danhgiaphanbien2 == 'false' && item.Result.danhgiaphanbien3 == 'false'))) ||
+                    ((item.Result.danhgiaPoster1 == 'false' || item.Result.danhgiaPoster2 == 'false')
+                        || (item.Result.danhgiaCTHD == 'false' || item.Result.danhgiaTK == 'false' || item.Result.danhgiaUV == 'false'))) ? 'Không đạt' : ' '
+
+
+
+
+            // Trả về đối tượng
+            return {
+                STT: index + 1,
+                "Họ tên sinh viên": item.name || 'Không có thông tin',
+                "Mã số sinh viên": item.maSo || 'Không có thông tin',
+                "Điểm trung bình hội đồng": trungBinhHDC || '',
+                "Điểm trung bình phản biện": trungBinhPB || '',
+                "Điểm GVHD": diemGVHD || '',
+                "Điểm tổng trung bình": Tong === 'Không đạt'
+                    ? 'Không đạt'
+                    : isNaN(diemTongTrungBinh)
+                        ? ''
+                        : diemTongTrungBinh,
+
+            };
         });
 
-        pdf.text('TP.HCM, ngày    tháng    năm', 120, 215);
-        pdf.text('Người đánh giá', 130, 220);
-        pdf.text('(Ký và ghi rõ họ tên)', 125, 225);
-        pdf.text(`${instuctor}`, 125, 250);
 
-        pdf.save('example.pdf');
+        // Tạo một worksheet từ dữ liệu
+        const worksheet = XLSX.utils.json_to_sheet(excelData);
+
+        // Tạo một workbook
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Phiếu Điểm');
+
+        // Xuất file Excel
+        XLSX.writeFile(workbook, 'PhieuDiem.xlsx');
     };
-
     return (
         <>
             <div className="container">
+                <div className='row mt-3'>
+                    <div className='col-sm-11'>
 
-                <div className="results mt-5">
+                    </div>
+                    <button className='btn btn-success col-sm-1 px-0' onClick={exportToExcel}>
+                        In điểm
+                    </button>
+                </div>
+
+                <div className="results mt-2">
+
                     <table className="table table-bordered text-center table-hover mt-3">
                         <thead>
                             {
-
                                 <tr>
-                                    <th scope="col" style={{ width: "10%" }}>ID</th>
+                                    <th scope="col" style={{ width: "8%" }}>ID</th>
                                     <th scope="col" style={{ width: "10%" }}>Name</th>
-                                    <th scope="col" style={{ width: "10%" }}>GVHD</th>
+                                    <th scope="col" style={{ width: "9%" }}>GVHD</th>
                                     <th scope="col" style={{ width: "10%" }}>GVPB1</th>
                                     <th scope="col" style={{ width: "10%" }}>GVPB2</th>
-                                    <th scope="col" style={{ width: "10%" }}>Trung Bình PB</th>
+                                    <th scope="col" style={{ width: "10%" }}>GVPB3</th>
+                                    <th scope="col" style={{ width: "10%" }}>TBPB</th>
                                     <th scope="col" style={{ width: "10%" }}>CTHD</th>
                                     <th scope="col" style={{ width: "10%" }}>TK</th>
                                     <th scope="col" style={{ width: "10%" }}>UY</th>
-                                    <th scope="col" style={{ width: "10%" }}>Poster1</th>
-                                    <th scope="col" style={{ width: "10%" }}>Poster2</th>
-                                    <th scope="col" style={{ width: "10%" }}>Trung Bình hội đồng</th>
+                                    <th scope="col" style={{ width: "11%" }}>Poster1</th>
+                                    <th scope="col" style={{ width: "11%" }}>Poster2</th>
+                                    <th scope="col" style={{ width: "9%" }}>TBHĐ</th>
+                                    <th scope="col" style={{ width: "10%" }}>Final</th>
                                 </tr>
                             }
 
@@ -197,7 +266,10 @@ const HeadResults = () => {
                                     <td>{itemm.id}</td>
                                     <td>{itemm.name}</td>
 
-                                    <td>{(itemm.Result && itemm.Result.danhgiacuoiky == 'false') || (itemm.Result && itemm.Result.danhgiagiuaky) == 'false' ? <i className="text-danger">Không đạt</i> : <><b>{itemm.Result && itemm.Result.diemGVHD} </b><br></br> {itemm.Result && itemm.Result.diemGVHD && <i onClick={() => handleXemChiTiet(itemm)} className="text-primary xemchitiet">Xem chi tiết</i>}</>}  </td>
+                                    <td>{(itemm.Result && itemm.Result.danhgiacuoiky == 'false') || (itemm.Result && itemm.Result.danhgiagiuaky == 'false') ? <i className="text-danger">Không đạt</i> :
+                                        <><b>{itemm.Result && itemm.Result.diemGVHD} </b><br></br>
+                                            {/* {itemm.Result && itemm.Result.diemGVHD && <i onClick={() => handleXemChiTiet(itemm)} className="text-primary xemchitiet">Xem chi tiết</i>} */}
+                                        </>}  </td>
                                     <td>
 
                                         {itemm.Result && itemm.Result.diemGVPB1} <br></br>
@@ -214,8 +286,27 @@ const HeadResults = () => {
                                             listTeacher.filter(item => item.id == itemm.pb2)
                                                 .map((itemmap, index) => (
                                                     <i> {itemmap.name} </i>
-                                                ))} </td>
-                                    <td><b>{itemm.Result && itemm.Result.trungbinhphanbien}</b> <br></br> {itemm.Result && itemm.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB(itemm)} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
+                                                ))}
+                                    </td>
+                                    <td>
+
+                                        {itemm.Result && itemm.Result.diemGVPB3}  <br></br>
+                                        {listTeacher &&
+                                            listTeacher.filter(item => item.id == itemm.pb3)
+                                                .map((itemmap, index) => (
+                                                    <i> {itemmap.name} </i>
+                                                ))}
+                                    </td>
+
+                                    <td>
+                                        {
+                                            itemm.Result && ((itemm.Result.danhgiaphanbien1 == 'false' && itemm.Result.danhgiaphanbien2 == 'false') || (itemm.Result.danhgiaphanbien1 == 'false' && itemm.Result.danhgiaphanbien3 == 'false')
+                                                || (itemm.Result.danhgiaphanbien2 == 'false' && itemm.Result.danhgiaphanbien3 == 'false')) ? <p className='text-danger'>Không đạt</p> : <b>{itemm.Result && itemm.Result.trungbinhphanbien}</b>
+                                        }
+                                        <br></br>
+
+                                        {/* {itemm.Result && itemm.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB(itemm)} className="text-primary xemchitiet">Xem chi tiết</i>} */}
+                                    </td>
                                     <td>{itemm.Result && itemm.Result.diemCTHD}
                                         <br></br>
                                         {listTeacher &&
@@ -256,7 +347,36 @@ const HeadResults = () => {
                                                     <i> {itemmap.name} </i>
                                                 ))}
                                     </td>
-                                    <td><b>{itemm.Result && itemm.Result.trungbinhhoidong}</b> <br></br> {itemm.Result && itemm.Result.trungbinhhoidong && <i onClick={() => handleXemChiTietTBHoiDong(itemm)} className="text-primary xemchitiet">Xem chi tiết</i>}</td>
+                                    <td>
+                                        {
+                                            ((itemm.Result.danhgiaPoster1 == 'false' || itemm.Result.danhgiaPoster2 == 'false')
+                                                || (itemm.Result.danhgiaCTHD == 'false' || itemm.Result.danhgiaTK == 'false' || itemm.Result.danhgiaUV == 'false')) ? <p className='text-danger'>Không đạt</p>
+                                                : <b>{itemm.Result && itemm.Result.trungbinhhoidong ? Math.round(itemm.Result.trungbinhhoidong * 100) / 100 : ''}</b>
+                                        }
+
+                                        {/* <br></br>
+                                        {itemm.Result && itemm.Result.trungbinhhoidong && <i onClick={() => handleXemChiTietTBHoiDong(itemm)} className="text-primary xemchitiet">Xem chi tiết</i>} */}
+                                    </td>
+                                    <td className='text-primary'>
+                                        {
+                                            (((itemm.Result && itemm.Result.danhgiacuoiky == 'false') || (itemm.Result && itemm.Result.danhgiagiuaky == 'false')) ||
+                                                (((itemm.Result.danhgiaphanbien1 == 'false' && itemm.Result.danhgiaphanbien2 == 'false') || (itemm.Result.danhgiaphanbien1 == 'false' && itemm.Result.danhgiaphanbien3 == 'false')
+                                                    || (itemm.Result.danhgiaphanbien2 == 'false' && itemm.Result.danhgiaphanbien3 == 'false'))) ||
+                                                ((itemm.Result.danhgiaPoster1 == 'false' || itemm.Result.danhgiaPoster2 == 'false')
+                                                    || (itemm.Result.danhgiaCTHD == 'false' || itemm.Result.danhgiaTK == 'false' || itemm.Result.danhgiaUV == 'false'))) ? <p className='text-danger'>Không đạt</p>
+
+                                                :
+                                                <>
+                                                    {
+                                                        itemm.Result && itemm.Result.trungbinhhoidong && itemm.Result.trungbinhphanbien && itemm.Result.diemGVHD &&
+                                                        Math.round((((Math.round(parseFloat(itemm.Result.trungbinhhoidong) * 100) / 100) +
+                                                            (parseFloat(itemm.Result.trungbinhphanbien)) + (parseFloat(itemm.Result.diemGVHD))) / 3) * 100) / 100
+
+                                                    }
+                                                </>
+
+                                        }
+                                    </td>
                                 </tr>
                             ))}
 
@@ -278,9 +398,9 @@ const HeadResults = () => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div className='col-sm-4 text-primary' onClick={() =>exportToPDF(resultseveryStudent.Project.instuctor,resultseveryStudent.Project.name,)}>
+                    {/* <div className='col-sm-4 text-primary' onClick={() =>exportToPDF(resultseveryStudent.Project.instuctor,resultseveryStudent.Project.name,)}>
                         in phiếu đánh giá
-                    </div>
+                    </div> */}
 
                     <div className="row mt-0">
                         <div className="col-sm-6"></div>

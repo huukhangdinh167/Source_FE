@@ -63,7 +63,7 @@ const AdminTableRole = forwardRef((props, ref) => {
                 <table className="table table-bordered table-hover text-center">
                     <thead>
                         <tr>
-                            <th scope="col">ID</th>
+                            <th  scope="col">ID</th>
                             <th scope="col">URL</th>
                             <th scope="col">Mô tả</th>
                             <th scope="col"></th>

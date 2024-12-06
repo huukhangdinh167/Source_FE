@@ -109,7 +109,9 @@ const AdminAssignRole = () => {
                             <select onChange={(event) => handleOnChangeGroup(event.target.value)} className={"form-select"}>
                                 <option className="text-danger" key='' value="" >Vui lòng chọn nhóm người dùng</option>
                                 {userGroup.length > 0 &&
-                                    userGroup.map((item, index) => {
+                                    userGroup
+                                    .filter(itemm => itemm.name !== 'Admin')
+                                    .map((item, index) => {
                                         return (
                                             <option key={`group-${index}`} value={item.id} >{item.name}</option>
                                         )
@@ -128,7 +130,7 @@ const AdminAssignRole = () => {
                                 <table className="table table-bordered table-hover text-center">
                                     <thead className="thead-dark">
                                         <tr>
-                                            <th scope="col" style={{ width: "40%" }}>Các quyền</th>
+                                            <th scope="col" style={{ width: "45%" }}>Các quyền</th>
                                             <th scope="col">Mô tả</th>
                                         </tr>
                                     </thead>

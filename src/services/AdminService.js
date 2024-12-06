@@ -21,6 +21,9 @@ const admindeletuser = (user) => {
 const adminCreateNewUser = (role) => {
     return axios.post("/api/v1/admin/create-user", [...role])
 } 
+const adminCreateNewUserbyExcel = (role) => {
+    return axios.post("/api/v1/admin/create-user-byexcel", [...role])
+} 
 const AdminFetchAllUsser = (page, limit) => {
     return axios.get(`/api/v1/admin/read-user?page=${page}&limit=${limit}`)
 }
@@ -28,5 +31,6 @@ const adminupdateNewUser = (userData) => {
     return axios.put("/api/v1/admin/update-user", {...userData})
 }
 export {
-    AdminFetchAllUsser,adminCreateNewUser,adminupdateNewUser,admincreateNewTeacher,admindeletuser
+    AdminFetchAllUsser,adminCreateNewUser,adminupdateNewUser,admincreateNewTeacher,admindeletuser,
+    adminCreateNewUserbyExcel
 }
