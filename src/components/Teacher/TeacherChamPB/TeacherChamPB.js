@@ -765,7 +765,7 @@ const TeacherChamPB = (props) => {
             pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
 
             pdf.text(`Họ tên người đánh giá: ${user.name}`, 20, 60);
-            pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 20, 67);
+            pdf.text('Vai trò của người đánh giá: Giảng viên phản biện 1', 20, 67);
 
             const projectName = `Tên đề tài: ${item.Project.name}`;
             const x = 20;
@@ -851,7 +851,7 @@ const TeacherChamPB = (props) => {
             pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
 
             pdf.text(`Họ tên người đánh giá: ${user.name}`, 20, 60);
-            pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 20, 67);
+            pdf.text('Vai trò của người đánh giá: Giảng viên phản biện 2', 20, 67);
 
             const projectName = `Tên đề tài: ${item.Project.name}`;
             const x = 20;
@@ -935,7 +935,7 @@ const TeacherChamPB = (props) => {
             pdf.text('PHIẾU ĐÁNH GIÁ KHÓA LUẬN TỐT NGHIỆP', 55, 50);
 
             pdf.text(`Họ tên người đánh giá: ${user.name}`, 20, 60);
-            pdf.text('Vai trò của người đánh giá: Giảng viên hướng dẫn', 20, 67);
+            pdf.text('Vai trò của người đánh giá: Giảng viên phản biện 3', 20, 67);
 
             const projectName = `Tên đề tài: ${item.Project.name}`;
             const x = 20;

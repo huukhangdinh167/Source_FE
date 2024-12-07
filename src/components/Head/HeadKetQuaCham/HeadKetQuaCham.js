@@ -170,17 +170,21 @@ const HeadKetQuaCham = () => {
     const [selectedStudent, setSelectedStudent] = useState(null);
     const [showModal, setshowModal] = useState(false);
     const [showModalPoster, setshowModalPoster] = useState(false);
+    const [dataModalHoiDong, setsDataModalHoiDong] = useState({});
+    const [dataModalPoster, setdataModalPoster] = useState({});
     const [AlllistTeacherHoiDong, setAlllistTeacherHoiDong] = useState([]);
     const handleCloseModal = async () => {
         setshowModal(false)
-          setHoiDong(defaultHoiDong)
+        setHoiDong(defaultHoiDong)
     }
     const handleCloseModalPoster = async () => {
         setshowModalPoster(false)
         //  setPoster(defaultPoster)
     }
     const handleAssignHoiDong = async (item) => {
+        console.log("item hoi dong", item)
         setSelectedStudent(item)
+        setsDataModalHoiDong(item)
         setshowModal(true)
         setDataModal({
             ...item,
@@ -190,6 +194,8 @@ const HeadKetQuaCham = () => {
         })
     }
     const handleAssignPoster = async (item) => {
+        console.log("item poster", item)
+        setdataModalPoster(item)
         setSelectedStudent(item)
         setshowModalPoster(true)
         setDataModal({
@@ -371,92 +377,92 @@ const HeadKetQuaCham = () => {
                 </button>
                 {isHoiDongVisible && (
                     <>
-                     <i className='ms-5 mt-4' style={{ display: 'inline-block' }}>
-                        Số lượng sinh viên cần được phân hội đồng
-                        <b className='text-danger'> {dshd && dshd.length}</b>
-                    </i> 
-                    <table className="table text-center table-bordered table-hover mt-3">
-                        <thead>
-                            <tr>
-                                <th style={{ width: "6%" }}>ID</th>
-                                <th style={{ width: "12%" }}>Tên</th>
-                                <th style={{ width: "26%" }}>Tên Đề Tài</th>
-                                <th style={{ width: "10%" }}>GVHD</th>
-                                <th style={{ width: "7%" }}>GVHD</th>
-                                <th style={{ width: "6%" }}>PB1</th>
-                                <th style={{ width: "6%" }}>PB2</th>
-                                {/* <th style={{ width: "10%" }}>TTC</th> */}
-                                <th style={{ width: "8%" }}>Nhóm</th>
-                                <th style={{ width: "11%" }}>Hội Đồng</th>
-                                <th style={{ width: "10%" }}>Poster</th>
-                                <th style={{ width: "10%" }}>Đề xuất</th>
+                        <i className='ms-5 mt-4' style={{ display: 'inline-block' }}>
+                            Số lượng sinh viên cần được phân hội đồng
+                            <b className='text-danger'> {dshd && dshd.length}</b>
+                        </i>
+                        <table className="table text-center table-bordered table-hover mt-3">
+                            <thead>
+                                <tr>
+                                    <th style={{ width: "6%" }}>ID</th>
+                                    <th style={{ width: "12%" }}>Tên</th>
+                                    <th style={{ width: "26%" }}>Tên Đề Tài</th>
+                                    <th style={{ width: "10%" }}>GVHD</th>
+                                    <th style={{ width: "7%" }}>GVHD</th>
+                                    <th style={{ width: "6%" }}>PB1</th>
+                                    <th style={{ width: "6%" }}>PB2</th>
+                                    {/* <th style={{ width: "10%" }}>TTC</th> */}
+                                    <th style={{ width: "8%" }}>Nhóm</th>
+                                    <th style={{ width: "11%" }}>Hội Đồng</th>
+                                    <th style={{ width: "10%" }}>Poster</th>
+                                    <th style={{ width: "10%" }}>Đề xuất</th>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {updatedData && updatedData.map((item, index) => {
-                                const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
-                                const showButton =
-                                    isGroupNull ||
-                                    (!renderedGroups2.has(item.groupStudent) && item.groupStudent !== 'null');
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {updatedData && updatedData.map((item, index) => {
+                                    const isGroupNull = item.groupStudent === null || item.groupStudent === 'null';
+                                    const showButton =
+                                        isGroupNull ||
+                                        (!renderedGroups2.has(item.groupStudent) && item.groupStudent !== 'null');
 
-                                if (item.groupStudent && item.groupStudent !== 'null') {
-                                    renderedGroups2.set(item.groupStudent, true);
-                                }
+                                    if (item.groupStudent && item.groupStudent !== 'null') {
+                                        renderedGroups2.set(item.groupStudent, true);
+                                    }
 
-                                return (
-                                    <tr key={`student-${index}`}>
-                                        <td>{item.id}</td>
-                                        <td>{item.name}</td>
-                                        <td>{item.Project && item.Project.name}</td>
-                                        <td>{item.Project && item.Project.instuctor}</td>
-                                        <td>{item.Result && item.Result.diemGVHD}</td>
-                                        <td>{item.Result && item.Result.diemGVPB1}</td>
-                                        <td>{item.Result && item.Result.diemGVPB2}</td>
-                                        {/* <td>{item.Result && item.totalScore}</td> */}
-                                        <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
+                                    return (
+                                        <tr key={`student-${index}`}>
+                                            <td>{item.id}</td>
+                                            <td>{item.name}</td>
+                                            <td>{item.Project && item.Project.name}</td>
+                                            <td>{item.Project && item.Project.instuctor}</td>
+                                            <td>{item.Result && item.Result.diemGVHD}</td>
+                                            <td>{item.Result && item.Result.diemGVPB1}</td>
+                                            <td>{item.Result && item.Result.diemGVPB2}</td>
+                                            {/* <td>{item.Result && item.totalScore}</td> */}
+                                            <td>{isGroupNull ? <i>Làm một mình</i> : item.groupStudent}</td>
 
-                                        <td>
-                                            {showButton && (
-                                                <label>
-                                                    <input
-                                                        checked={item.hoidong === 'hoidong' ? true : ''}
-                                                        type="radio"
-                                                        name={`radio-${index}`} // Tên dùng chung cho cả Hội Đồng và Poster trong cùng một hàng
-                                                        value="hoidong"
-                                                        onClick={() => handleHoiDong(item, 'hoidong')}
+                                            <td>
+                                                {showButton && (
+                                                    <label>
+                                                        <input
+                                                            checked={item.hoidong === 'hoidong' ? true : ''}
+                                                            type="radio"
+                                                            name={`radio-${index}`} // Tên dùng chung cho cả Hội Đồng và Poster trong cùng một hàng
+                                                            value="hoidong"
+                                                            onClick={() => handleHoiDong(item, 'hoidong')}
 
-                                                    />
-                                                    Hội đồng
-                                                </label>
-                                            )}
-                                        </td>
-                                        <td>
-                                            {showButton && (
-                                                <label>
-                                                    <input
-                                                        type="radio"
-                                                        checked={item.hoidong === 'poster' ? true : ''}
-                                                        name={`radio-${index}`} // Cùng tên với radio ở cột Hội Đồng
-                                                        value="poster"
-                                                        onClick={() => handleHoiDong(item, 'poster')}
-                                                    />
-                                                    Poster
-                                                </label>
-                                            )}
-                                        </td>
-                                        <td>
-                                            {showButton && (
-                                                item.hoidongg == 'baocao' ? <b className='text-danger'>Hội đồng</b> : <b className='text-info'>Poster</b>
-                                            )}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                                                        />
+                                                        Hội đồng
+                                                    </label>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {showButton && (
+                                                    <label>
+                                                        <input
+                                                            type="radio"
+                                                            checked={item.hoidong === 'poster' ? true : ''}
+                                                            name={`radio-${index}`} // Cùng tên với radio ở cột Hội Đồng
+                                                            value="poster"
+                                                            onClick={() => handleHoiDong(item, 'poster')}
+                                                        />
+                                                        Poster
+                                                    </label>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {showButton && (
+                                                    item.hoidongg == 'baocao' ? <b className='text-danger'>Hội đồng</b> : <b className='text-info'>Poster</b>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
                     </>
-                    
+
                 )}
                 <div className='mt-3'>
                     <button
@@ -653,7 +659,14 @@ const HeadKetQuaCham = () => {
                                 <div className="col-sm-1">CTHD:</div>
                                 <div className="col-sm-3 px-0">
 
-                                    <select className='form-select ' value={HoiDong.CTHD} onChange={(event) => handleOnchange(event.target.value, 'CTHD')}>
+                                    <select className='form-select ' value={HoiDong.CTHD}
+
+                                        disabled={
+                                            (dataModalHoiDong && dataModalHoiDong?.Result && (dataModalHoiDong.Result.danhgiaCTHD === 'false' || dataModalHoiDong.Result.danhgiaCTHD === 'true'))
+                                            ||
+                                            (dataModalHoiDong && dataModalHoiDong?.Result && dataModalHoiDong.Result.diemCTHD)
+                                        }
+                                        onChange={(event) => handleOnchange(event.target.value, 'CTHD')}>
                                         <option value=''>
                                             ----
                                         </option>
@@ -677,7 +690,15 @@ const HeadKetQuaCham = () => {
                                         HoiDong.CTHD && HoiDong.CTHD !== '' &&
                                         <>
 
-                                            <select className='form-select ' value={HoiDong.TK} onChange={(event) => handleOnchange(event.target.value, 'TK')}>
+                                            <select className='form-select ' 
+                                            
+                                            disabled={
+                                                (dataModalHoiDong && dataModalHoiDong?.Result && (dataModalHoiDong.Result.danhgiaTK === 'false' || dataModalHoiDong.Result.danhgiaTK === 'true'))
+                                                ||
+                                                (dataModalHoiDong && dataModalHoiDong?.Result && dataModalHoiDong.Result.diemTK)
+                                            }
+
+                                            value={HoiDong.TK} onChange={(event) => handleOnchange(event.target.value, 'TK')}>
                                                 <option value={''}>
                                                     ----
                                                 </option>
@@ -705,7 +726,15 @@ const HeadKetQuaCham = () => {
                                         HoiDong.CTHD && HoiDong.CTHD !== '' && HoiDong.TK && HoiDong.TK !== '' &&
                                         <>
 
-                                            <select className='form-select ' value={HoiDong.UV} onChange={(event) => handleOnchange(event.target.value, 'UV')}>
+                                            <select className='form-select ' 
+                                            
+                                            disabled={
+                                                (dataModalHoiDong && dataModalHoiDong?.Result && (dataModalHoiDong.Result.danhgiaUV === 'false' || dataModalHoiDong.Result.danhgiaUV === 'true'))
+                                                ||
+                                                (dataModalHoiDong && dataModalHoiDong?.Result && dataModalHoiDong.Result.diemUV)
+                                            }
+                                            
+                                            value={HoiDong.UV} onChange={(event) => handleOnchange(event.target.value, 'UV')}>
                                                 <option value={''}>
                                                     ----
                                                 </option>
@@ -760,10 +789,14 @@ const HeadKetQuaCham = () => {
                                 <div className='col-sm-1'>Poster1:</div>
                                 <div className="col-sm-4">
 
-                                    <select className='form-select' 
-                                    
-                                    
-                                    value={Poster.Poster1} onChange={(event) => handleOnchangePoster(event.target.value, 'Poster1')}>
+                                    <select className='form-select'
+                                        disabled={
+                                            (dataModalPoster && dataModalPoster?.Result && (dataModalPoster.Result.danhgiaPoster1 === 'false' || dataModalPoster.Result.danhgiaPoster1 === 'true'))
+                                            ||
+                                            (dataModalPoster && dataModalPoster?.Result && dataModalPoster.Result.diemPoster1)
+                                        }
+
+                                        value={Poster.Poster1} onChange={(event) => handleOnchangePoster(event.target.value, 'Poster1')}>
                                         <option value=''>
                                             ----
                                         </option>
@@ -786,7 +819,13 @@ const HeadKetQuaCham = () => {
                                         Poster.Poster1 && Poster.Poster1 !== '' &&
                                         <>
 
-                                            <select className='form-select' value={Poster.Poster2} onChange={(event) => handleOnchangePoster(event.target.value, 'Poster2')}>
+                                            <select className='form-select'
+                                                disabled={
+                                                    (dataModalPoster && dataModalPoster?.Result && (dataModalPoster.Result.danhgiaPoster2 === 'false' || dataModalPoster.Result.danhgiaPoster2 === 'true'))
+                                                    ||
+                                                    (dataModalPoster && dataModalPoster?.Result && dataModalPoster.Result.diemPoster2)
+                                                }
+                                                value={Poster.Poster2} onChange={(event) => handleOnchangePoster(event.target.value, 'Poster2')}>
                                                 <option value={''}>
                                                     ----
                                                 </option>
