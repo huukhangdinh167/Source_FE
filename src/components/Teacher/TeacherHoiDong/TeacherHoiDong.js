@@ -899,7 +899,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -994,7 +994,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1089,7 +1089,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1464,7 +1464,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiapostersv1 == 'true' ? LOL1 : '', danhgiapostersv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiapostersv1 == 'true' ? LOL2 : '', danhgiapostersv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1559,7 +1559,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiapostersv1 == 'true' ? LOL1 : '', danhgiapostersv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiapostersv1 == 'true' ? LOL2 : '', danhgiapostersv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -2020,7 +2020,7 @@ const TeacherChamHoiDong = (props) => {
                                             (HoiDongSV1.danhgiahoidong == 'null' || !HoiDongSV1.danhgiahoidong) && HoiDongSV2.danhgiahoidong == 'false' &&
                                             <>
                                                 <div className="col-sm-4 px-0"></div>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hội đồng SV2</i></div>
                                                 <input value={HoiDongSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -2102,7 +2102,7 @@ const TeacherChamHoiDong = (props) => {
                                                     <td>{criteria}</td>
                                                     {HoiDongSV1.danhgiahoidong == 'true' ?
                                                         <td>
-                                                            <select value={HoiDongSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                            <select value={HoiDongSV1[`LO${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LO${index + 1}`)} className="form-select">
                                                                 <option value={''}>----</option>
                                                                 <option value={'1'}>1</option>
                                                                 <option value={'2'}>2</option>
@@ -2115,7 +2115,7 @@ const TeacherChamHoiDong = (props) => {
                                                     {
                                                         listSV1SV2.length == 2 && HoiDongSV2.danhgiahoidong == 'true' &&
                                                         <td>
-                                                            <select value={HoiDongSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                            <select value={HoiDongSV2[`LO${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LO${index + 1}`)} className="form-select">
                                                                 <option value={''}>----</option>
                                                                 <option value={'1'}>1</option>
                                                                 <option value={'2'}>2</option>
@@ -2372,7 +2372,7 @@ const TeacherChamHoiDong = (props) => {
                                             (PosterSV1.danhgiaposter == 'null' || !PosterSV1.danhgiaposter) && PosterSV2.danhgiaposter == 'false' &&
                                             <>
                                                 <div className="col-sm-4 px-0"></div>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hội đồng SV2</i></div>
                                                 <input value={PosterSV2.diemSV2} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -2454,7 +2454,7 @@ const TeacherChamHoiDong = (props) => {
                                                     <td>{criteria}</td>
                                                     {PosterSV1.danhgiaposter == 'true' ?
                                                         <td>
-                                                            <select value={PosterSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchangePoster(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                            <select value={PosterSV1[`LO${index + 1}`]} onChange={(event) => handleOnchangePoster(event.target.value, `LO${index + 1}`)} className="form-select">
                                                                 <option value={''}>----</option>
                                                                 <option value={'1'}>1</option>
                                                                 <option value={'2'}>2</option>
@@ -2467,7 +2467,7 @@ const TeacherChamHoiDong = (props) => {
                                                     {
                                                         listSV1SV2.length == 2 && PosterSV2.danhgiaposter == 'true' &&
                                                         <td>
-                                                            <select value={PosterSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2Poster(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                            <select value={PosterSV2[`LO${index + 1}`]} onChange={(event) => handleOnchange2Poster(event.target.value, `LO${index + 1}`)} className="form-select">
                                                                 <option value={''}>----</option>
                                                                 <option value={'1'}>1</option>
                                                                 <option value={'2'}>2</option>

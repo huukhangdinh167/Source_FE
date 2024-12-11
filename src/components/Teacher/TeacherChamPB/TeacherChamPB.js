@@ -501,9 +501,9 @@ const TeacherChamPB = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
                 [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
                 [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
@@ -596,9 +596,9 @@ const TeacherChamPB = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
                 [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
                 [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
@@ -691,9 +691,9 @@ const TeacherChamPB = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
                 [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
                 [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
@@ -1182,7 +1182,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV1</i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1190,9 +1190,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'false' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV1</i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV2</i></div>
                                                 <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1200,9 +1200,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'true' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV1</i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV2</i></div>
                                                 <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1210,7 +1210,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV1</i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1218,9 +1218,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'true' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV1</i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV2</i></div>
                                                 <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1228,9 +1228,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'false' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV1</i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV2</i></div>
                                                 <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1244,7 +1244,7 @@ const TeacherChamPB = (props) => {
                                             (PBSV1.danhgiaphanbien == 'null' || !PBSV1.danhgiaphanbien) && PBSV2.danhgiaphanbien == 'false' &&
                                             <>
                                                 <div className="col-sm-4 px-0"></div>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm phản biện SV2</i></div>
                                                 <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1266,7 +1266,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' &&
                                             <>
-                                                <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm phản biện </i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1275,7 +1275,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' &&
                                             <>
-                                                <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm phản biện </i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1327,7 +1327,7 @@ const TeacherChamPB = (props) => {
                                                     {
                                                         PBSV1.danhgiaphanbien == 'true' ?
                                                             <td>
-                                                                <select value={PBSV1[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                                <select value={PBSV1[`LO${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LO${index + 1}`)} className="form-select">
                                                                     <option value={''}>----</option>
                                                                     <option value={'1'}>1</option>
                                                                     <option value={'2'}>2</option>
@@ -1341,7 +1341,7 @@ const TeacherChamPB = (props) => {
                                                     {
                                                         listSV1SV2.length == 2 && PBSV2.danhgiaphanbien == 'true' &&
                                                         <td>
-                                                            <select value={PBSV2[`LOL${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LOL${index + 1}`)} className="form-select">
+                                                            <select value={PBSV2[`LO${index + 1}`]} onChange={(event) => handleOnchange2(event.target.value, `LO${index + 1}`)} className="form-select">
                                                                 <option value={''}>----</option>
                                                                 <option value={'1'}>1</option>
                                                                 <option value={'2'}>2</option>

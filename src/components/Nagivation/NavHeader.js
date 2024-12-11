@@ -72,7 +72,7 @@ const NavHeader = (props) => {
                         {
                             user && user.groupId === 1 ?
                                 <Nav className="me-auto">
-                                  
+
                                     <NavLink className="nav-link" to="/project" >Đăng kí đề tài</NavLink>
                                     <NavLink className="nav-link" to="/results">Kết quả chấm</NavLink>
                                 </Nav>
@@ -90,9 +90,9 @@ const NavHeader = (props) => {
 
 
                                 </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
-                                    
+
                                     <NavLink className="nav-link" to="/admin/users" >Quản lý người dùng</NavLink>
-                                    <NavLink className="nav-link" to="/admin/add-role" exact>Thêm quyền</NavLink>
+                                    {/* <NavLink className="nav-link" to="/admin/add-role" exact>Thêm quyền</NavLink> */}
                                     <NavLink className="nav-link" to="/admin/assign-role">Phân quyền người dùng</NavLink>
 
                                 </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
