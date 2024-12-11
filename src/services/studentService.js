@@ -1,6 +1,8 @@
 import axios from "../setup/axios" 
 
-
+const fetchAllUserstudent = () => {
+    return axios.get("/api/v1/student/getAllStudent")
+} 
 const fetchAllProject = (user) => {
     return axios.put("/api/v1/student/project/read", { data: { id: user.maSo } })
 } 
@@ -48,5 +50,6 @@ const getResults =(user)=>{
 
 export {
     fetchAllProject,dangKiProject,fetchAllProjectRegister,huyDangKiProject,
-    fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup,changePassWord,updateInFor,getResults
+    fetchAllUserRegiterProject,chooseGroup,cancelchooseGroup,changePassWord,updateInFor,getResults,
+    fetchAllUserstudent
 }

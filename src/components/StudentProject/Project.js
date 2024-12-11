@@ -3,7 +3,7 @@ import './Project.scss'
 import { useEffect, useState, forwardRef, useRef, useImperativeHandle } from "react";
 import {
     fetchAllProject, cancelchooseGroup, fetchAllProjectRegister, dangKiProject,
-    huyDangKiProject, fetchAllUserRegiterProject, chooseGroup
+    huyDangKiProject, fetchAllUserRegiterProject, chooseGroup, fetchAllUserstudent
 } from '../../services/studentService'
 import { toast } from "react-toastify";
 import React from 'react';
@@ -22,15 +22,22 @@ const Project = () => {
         knowledgeSkills: '',
         instuctor: '',
     }
-
-    const [choosegroup, setChooseGroup] = useState()
-
-    const [lisProjectRegister, setListProjectRegister] = useState(defautlisProjectRegister)
-    const { user } = React.useContext(UserContext);
     useEffect(() => {
         getALLProject(user)
-
+        AllUserStudent()
     }, [])
+    const [choosegroup, setChooseGroup] = useState()
+    const [listUserstudent, setListUserstudent] = useState([])
+    const AllUserStudent = async () => {
+        let data = await fetchAllUserstudent()
+        if (data.EC == 0) {
+            setListUserstudent(data.DT)
+            console.log("Check list student", data.DT)
+        }
+    }
+    const [lisProjectRegister, setListProjectRegister] = useState(defautlisProjectRegister)
+    const { user } = React.useContext(UserContext);
+
 
     useEffect(() => {
         if (listUserRegisterProject && user) {
@@ -209,7 +216,6 @@ const Project = () => {
                                 <table className="table table-bordered text-center table-hover mt-3">
                                     <thead>
                                         <tr>
-
                                             <th scope="col" style={{ width: "5%" }}>ID</th>
                                             <th scope="col" style={{ width: "15%" }}>TÊN ĐỀ TÀI</th>
                                             <th scope="col" style={{ width: "25%" }}>MÔ TẢ</th>
@@ -328,9 +334,22 @@ const Project = () => {
                                                                 <td>{item.description}</td>
                                                                 <td> {item.require}</td>
                                                                 <td>{item.knowledgeSkills}</td>
-                                                                <td>{item.instuctor}</td>
-                                                                <td className="center-button"><div onClick={() => hanldeDangki(item, user)} className="btn btn-success butondangki">Đăng kí</div>
-                                                                </td></tr>
+                                                                <td>{item.instuctor}
+                                                                </td>
+                                                                <td className="center-button">
+                                                                    {listUserstudent.filter(student => student.projectId === item.id).length < 8 ?
+                                                                        <>
+                                                                            <div onClick={() => hanldeDangki(item, user)} className="btn btn-success butondangki">Đăng kí</div>
+                                                                            {
+                                                                                `( ${listUserstudent.filter(student => student.projectId === item.id).length} / 8 )`
+                                                                            }
+                                                                        </>
+                                                                        :
+                                                                        <div className="btn btn-secondary butondangki">Đã đủ</div>
+
+                                                                    }
+                                                                </td>
+                                                            </tr>
                                                         )
                                                     })}
                                                 </>
