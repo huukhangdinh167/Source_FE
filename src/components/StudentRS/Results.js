@@ -1170,10 +1170,10 @@ const Results = () => {
                         }
                         {results && results.Result && results.Result.diemPoster2 && results.Result.diemPoster1 &&
                             <>
-                                <div className="col-sm-2"><i className="text-primary">CTHD</i></div>
+                                <div className="col-sm-2"><i className="text-primary">Poster1</i></div>
                                 <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuPoster1}</textarea>
 
-                                <div className="col-sm-2"><i className="text-primary">TK</i></div>
+                                <div className="col-sm-2"><i className="text-primary">Poster2</i></div>
                                 <textarea readOnly className="col-sm-3">{results && results.Criteriahoidong && results.Criteriahoidong.ghichuPoster2}</textarea>
                             </>
                         }

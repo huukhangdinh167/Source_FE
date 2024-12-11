@@ -37,6 +37,7 @@ const Login = (props) => {
             let groubWithRole = response.DT.groupWithRole
             let email = response.DT.email
             let username = response.DT.username
+            let id = response.DT.id
             let token = response.DT.accesstoken
             let groupId = response.DT.groupId
             let name = response.DT.name
@@ -45,6 +46,7 @@ const Login = (props) => {
             let data = {
                 isAuthenticate: true,
                 token: token,
+                id: id,
                 maSo: username,
                 account: { groubWithRole, email, username },
                 name: name,

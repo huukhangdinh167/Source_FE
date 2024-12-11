@@ -105,6 +105,8 @@ const TeacherChamHD = (props) => {
         }
         else if (name == 'danhgiacuoiky' && value == 'true') {
             setDanhGia({ ..._danhgia, diemGVHD: '', danhgiacuoiky: 'true' })
+        } else if (name == 'danhgiagiuaky' && value == 'false') {
+            setDanhGia({ ..._danhgia, danhgiagiuaky: 'false', danhgiacuoiky: 'false' })
         }
         else {
             _danhgia[name] = value
@@ -115,8 +117,7 @@ const TeacherChamHD = (props) => {
         if (!danhgia.danhgiagiuaky) {
             toast.error("Vui lòng đánh giá giữa kì")
             return
-        }
-        if (danhgia.danhgiagiuaky == 'true' || danhgia.danhgiagiuaky == 'false') {
+        } else if (danhgia.danhgiagiuaky == 'true') {
             if (danhgia.danhgiacuoiky == 'true') {
                 if (!danhgia.diemGVHD) {
                     toast.error("Vui lòng nhập điểm hướng dẫn")
@@ -127,68 +128,68 @@ const TeacherChamHD = (props) => {
                     return
                 }
                 if (!danhgia.LOL1) {
-                    toast.error("Vui lòng đánh giá LOL1")
+                    toast.error("Vui lòng đánh giá LO1")
                     return
                 }
                 if (!danhgia.LOL2) {
-                    toast.error("Vui lòng đánh giá LOL2")
+                    toast.error("Vui lòng đánh giá LO2")
                     return
                 }
                 if (!danhgia.LOL3) {
-                    toast.error("Vui lòng đánh giá LOL3")
+                    toast.error("Vui lòng đánh giá LO3")
                     return
                 }
                 if (!danhgia.LOL4) {
-                    toast.error("Vui lòng đánh giá LOL3")
+                    toast.error("Vui lòng đánh giá LO3")
                     return
                 }
                 if (!danhgia.LOL5) {
-                    toast.error("Vui lòng đánh giá LOL5")
+                    toast.error("Vui lòng đánh giá LO5")
                     return
                 }
                 if (!danhgia.LOL6) {
-                    toast.error("Vui lòng đánh giá LOL6")
+                    toast.error("Vui lòng đánh giá LO6")
                     return
                 }
                 if (!danhgia.LOL7) {
-                    toast.error("Vui lòng đánh giá LOL7")
+                    toast.error("Vui lòng đánh giá LO7")
                     return
                 }
                 if (!danhgia.LOL8) {
-                    toast.error("Vui lòng đánh giá LOL8")
+                    toast.error("Vui lòng đánh giá LO8")
                     return
                 }
             } else if (danhgia.danhgiacuoiky == 'false') {
                 if (!danhgia.LOL1) {
-                    toast.error("Vui lòng đánh giá LOL1")
+                    toast.error("Vui lòng đánh giá LO1")
                     return
                 }
                 if (!danhgia.LOL2) {
-                    toast.error("Vui lòng đánh giá LOL2")
+                    toast.error("Vui lòng đánh giá LO2")
                     return
                 }
                 if (!danhgia.LOL3) {
-                    toast.error("Vui lòng đánh giá LOL3")
+                    toast.error("Vui lòng đánh giá LO3")
                     return
                 }
                 if (!danhgia.LOL4) {
-                    toast.error("Vui lòng đánh giá LOL3")
+                    toast.error("Vui lòng đánh giá LO3")
                     return
                 }
                 if (!danhgia.LOL5) {
-                    toast.error("Vui lòng đánh giá LOL5")
+                    toast.error("Vui lòng đánh giá LO5")
                     return
                 }
                 if (!danhgia.LOL6) {
-                    toast.error("Vui lòng đánh giá LOL6")
+                    toast.error("Vui lòng đánh giá LO6")
                     return
                 }
                 if (!danhgia.LOL7) {
-                    toast.error("Vui lòng đánh giá LOL7")
+                    toast.error("Vui lòng đánh giá LO7")
                     return
                 }
                 if (!danhgia.LOL8) {
-                    toast.error("Vui lòng đánh giá LOL8")
+                    toast.error("Vui lòng đánh giá LO8")
                     return
                 }
             }
@@ -241,7 +242,7 @@ const TeacherChamHD = (props) => {
         // pdf.text('Họ tên sinh viên 2: ', 15, 85);
         // pdf.text('Mã số sinh viên: ', 120, 85);
 
-        const headers = [['STT', 'LOL', '']];
+        const headers = [['STT', 'LO', 'Result']];
         const data = [
             [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', item.Criterion?.LOL1],
             [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', item.Criterion?.LOL2],
@@ -488,7 +489,7 @@ const TeacherChamHD = (props) => {
                             </button>
                         </div>
                         {
-                            (danhgia.danhgiagiuaky == 'true' || danhgia.danhgiagiuaky == 'false') &&
+                            (danhgia.danhgiagiuaky == 'true') &&
                             <div className="col-sm-4" onChange={(event) => handleOnchange(event.target.value, 'danhgiacuoiky')}>
                                 <select value={danhgia.danhgiacuoiky} className="form-select">
                                     <option value={''}>---</option>
@@ -500,7 +501,7 @@ const TeacherChamHD = (props) => {
                     </div>
 
                     {/* Phần đánh giá cuối kỳ */}
-                    {danhgia.danhgiacuoiky && (danhgia.danhgiagiuaky == 'true' || danhgia.danhgiagiuaky == 'false') && (danhgia.danhgiacuoiky == 'true' || danhgia.danhgiacuoiky == 'false') && (
+                    {danhgia.danhgiacuoiky && (danhgia.danhgiagiuaky == 'true') && (danhgia.danhgiacuoiky == 'true' || danhgia.danhgiacuoiky == 'false') && (
 
                         <>
                             <div className="row mt-4">

@@ -486,35 +486,35 @@ const TeacherChamHoiDong = (props) => {
                     return
                 }
                 if (!HoiDongSV1.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    toast.error("Bạn chưa nhập LO1 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    toast.error("Bạn chưa nhập LO2 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    toast.error("Bạn chưa nhập LO3 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    toast.error("Bạn chưa nhập LO4 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    toast.error("Bạn chưa nhập LO5 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    toast.error("Bạn chưa nhập LO6 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    toast.error("Bạn chưa nhập LO7 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    toast.error("Bạn chưa nhập LO8 cho SV1");
                     return
                 }
             }
@@ -532,35 +532,35 @@ const TeacherChamHoiDong = (props) => {
                     return
                 }
                 if (!HoiDongSV2.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV2");
+                    toast.error("Bạn chưa nhập LO1 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV2");
+                    toast.error("Bạn chưa nhập LO2 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV2");
+                    toast.error("Bạn chưa nhập LO3 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV2");
+                    toast.error("Bạn chưa nhập LO4 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV2");
+                    toast.error("Bạn chưa nhập LO5 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV2");
+                    toast.error("Bạn chưa nhập LO6 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV2");
+                    toast.error("Bạn chưa nhập LO7 cho SV2");
                     return
                 }
                 if (!HoiDongSV2.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV2");
+                    toast.error("Bạn chưa nhập LO8 cho SV2");
                     return
                 }
             }
@@ -580,35 +580,35 @@ const TeacherChamHoiDong = (props) => {
                     return
                 }
                 if (!HoiDongSV1.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    toast.error("Bạn chưa nhập LO1 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    toast.error("Bạn chưa nhập LO2 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    toast.error("Bạn chưa nhập LO3 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    toast.error("Bạn chưa nhập LO4 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    toast.error("Bạn chưa nhập LO5 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    toast.error("Bạn chưa nhập LO6 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    toast.error("Bạn chưa nhập LO7 cho SV1");
                     return
                 }
                 if (!HoiDongSV1.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    toast.error("Bạn chưa nhập LO8 cho SV1");
                     return
                 }
             }
@@ -639,35 +639,35 @@ const TeacherChamHoiDong = (props) => {
                     return
                 }
                 if (!PosterSV1.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    toast.error("Bạn chưa nhập LO1 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    toast.error("Bạn chưa nhập LO2 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    toast.error("Bạn chưa nhập LO3 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    toast.error("Bạn chưa nhập LO4 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    toast.error("Bạn chưa nhập LO5 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    toast.error("Bạn chưa nhập LO6 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    toast.error("Bạn chưa nhập LO7 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    toast.error("Bạn chưa nhập LO8 cho SV1");
                     return
                 }
             }
@@ -685,35 +685,35 @@ const TeacherChamHoiDong = (props) => {
                     return
                 }
                 if (!PosterSV2.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV2");
+                    toast.error("Bạn chưa nhập LO1 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV2");
+                    toast.error("Bạn chưa nhập LO2 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV2");
+                    toast.error("Bạn chưa nhập LO3 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV2");
+                    toast.error("Bạn chưa nhập LO4 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV2");
+                    toast.error("Bạn chưa nhập LO5 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV2");
+                    toast.error("Bạn chưa nhập LO6 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV2");
+                    toast.error("Bạn chưa nhập LO7 cho SV2");
                     return
                 }
                 if (!PosterSV2.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV2");
+                    toast.error("Bạn chưa nhập LO8 cho SV2");
                     return
                 }
             }
@@ -733,35 +733,35 @@ const TeacherChamHoiDong = (props) => {
                     return
                 }
                 if (!PosterSV1.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    toast.error("Bạn chưa nhập LO1 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    toast.error("Bạn chưa nhập LO2 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    toast.error("Bạn chưa nhập LO3 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    toast.error("Bạn chưa nhập LO4 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    toast.error("Bạn chưa nhập LO5 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    toast.error("Bạn chưa nhập LO6 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    toast.error("Bạn chưa nhập LO7 cho SV1");
                     return
                 }
                 if (!PosterSV1.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    toast.error("Bạn chưa nhập LO8 cho SV1");
                     return
                 }
             }
@@ -899,7 +899,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -994,7 +994,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1089,7 +1089,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1464,7 +1464,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiapostersv1 == 'true' ? LOL1 : '', danhgiapostersv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiapostersv1 == 'true' ? LOL2 : '', danhgiapostersv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1559,7 +1559,7 @@ const TeacherChamHoiDong = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
                 [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiapostersv1 == 'true' ? LOL1 : '', danhgiapostersv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiapostersv1 == 'true' ? LOL2 : '', danhgiapostersv2 == 'true' && res[1] ? LOL2SV2 : ''],
@@ -1878,7 +1878,28 @@ const TeacherChamHoiDong = (props) => {
                                                     ) : (
                                                         <i className="text-danger">UV: Chưa đánh giá</i>
                                                     ))}
-                                                {item.Result && item.Result.trungbinhhoidong &&
+                                                {/* {item.Result && item.Result.trungbinhhoidong &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDFHoiDong(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiemHoiDong(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                } */}
+                                                {item.Result && (item.CTHD == user.id) && (item.Result.diemCTHD != null) &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDFHoiDong(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiemHoiDong(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                }
+                                                {item.Result && (item.TK == user.id) && (item.Result.diemTK != null) &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDFHoiDong(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiemHoiDong(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                }
+                                                {item.Result && (item.UV == user.id) && (item.Result.diemUV != null) &&
                                                     <>
                                                         <p className="text-primary mb-0" onClick={() => exportToPDFHoiDong(item)}>(Phiếu đánh giá)</p>
                                                         <p className="text-primary" onClick={() => exportToPDFPhieuDiemHoiDong(item)}>(Phiếu điểm)</p>
@@ -2233,7 +2254,21 @@ const TeacherChamHoiDong = (props) => {
                                                     ) : (
                                                         <i className="text-danger">PT2: Chưa đánh giá</i>
                                                     ))}  <br></br>
-                                                {item.Result && item.Result.trungbinhhoidong &&
+                                                {/* {item.Result && item.Result.trungbinhhoidong &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDFPoster(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiemPoster(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                } */}
+                                                {item.Result && (item.Poster1 == user.id) && (item.Result.diemPoster1 != null) &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDFPoster(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiemPoster(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                }
+                                                {item.Result && (item.Poster2 == user.id) && (item.Result.diemPoster2 != null) &&
                                                     <>
                                                         <p className="text-primary mb-0" onClick={() => exportToPDFPoster(item)}>(Phiếu đánh giá)</p>
                                                         <p className="text-primary" onClick={() => exportToPDFPhieuDiemPoster(item)}>(Phiếu điểm)</p>

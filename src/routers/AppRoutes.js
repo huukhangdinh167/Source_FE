@@ -1,6 +1,8 @@
 import {
     Switch, Route,
 } from "react-router-dom";
+import { Redirect } from "react-router-dom";
+
 import Login from '../components/Login/Login';
 import Project from '../components/StudentProject/Project'
 import Users from '../components/ManageUser/Users';
@@ -62,14 +64,15 @@ const AppRoutes = () => {
                 <PrivateRoutes path="/admin-home" component={adminHome} />
 
 
-                <Route path="/login">
+                <Route path="/login" exact>
                     <Login />
                 </Route>
+                <Redirect to="/login" />
 
 
-                <Route path="/" exact>
+                {/* <Route path="/" >
                     Homemmmm
-                </Route>
+                </Route> */}
                 {/* <Route path="grouprole" >
                     <GroupRole />
                 </Route> */}

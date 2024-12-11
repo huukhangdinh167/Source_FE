@@ -72,7 +72,7 @@ const NavHeader = (props) => {
                         {
                             user && user.groupId === 1 ?
                                 <Nav className="me-auto">
-                                  
+
                                     <NavLink className="nav-link" to="/project" >Đăng kí đề tài</NavLink>
                                     <NavLink className="nav-link" to="/results">Kết quả chấm</NavLink>
                                 </Nav>
@@ -90,16 +90,31 @@ const NavHeader = (props) => {
 
 
                                 </Nav> : (user && user.groupId === 3 ? <Nav className="me-auto">
-                                    
+
                                     <NavLink className="nav-link" to="/admin/users" >Quản lý người dùng</NavLink>
                                     <NavLink className="nav-link" to="/admin/add-role" exact>Thêm quyền</NavLink>
                                     <NavLink className="nav-link" to="/admin/assign-role">Phân quyền người dùng</NavLink>
 
                                 </Nav> : (user && user.groupId === 5 ? <Nav className="me-auto">
 
-                                    <NavLink className="nav-link" to="/head-project" exact >Đề tài</NavLink>
-                                    <NavLink className="nav-link" to="/headKetQuaCham">Phân Công HĐ </NavLink>
-                                    <NavLink className="nav-link" to="/head/assginmentGV">Phân công PB</NavLink>
+                                    {/* <NavLink className="nav-link" to="/head-project" exact >Đề tài</NavLink> */}
+                                    <NavDropdown title={<b>Đề tài</b>} id="basic-nav-dropdown" className='dropdown'
+                                    >
+                                        <NavDropdown.Item > <NavLink className="nav-link" to="/teacher/projects">Tạo Đề tài</NavLink></NavDropdown.Item>
+                                        <NavDropdown.Item > <NavLink className="nav-link" to="/head-project">Duyệt Đề tài</NavLink></NavDropdown.Item>
+                                    </NavDropdown>
+
+                                    <NavDropdown title={<b>Hội Đồng</b>} id="basic-nav-dropdown" className='dropdown'>
+                                        <NavDropdown.Item > <NavLink className="nav-link" to="/headKetQuaCham">Phân công</NavLink></NavDropdown.Item>
+                                        <NavDropdown.Item > <NavLink className="nav-link" to="/teacher-chamHoiDong">Đánh giá</NavLink></NavDropdown.Item>
+                                    </NavDropdown>
+
+                                    <NavDropdown title={<b>Phản biện</b>} id="basic-nav-dropdown" className='dropdown'>
+                                        <NavDropdown.Item > <NavLink className="nav-link" to="/head/assginmentGV">Phân công</NavLink></NavDropdown.Item>
+                                        <NavDropdown.Item > <NavLink className="nav-link" to="/teacher-chamPB">Đánh giá</NavLink></NavDropdown.Item>
+                                    </NavDropdown>
+
+                                    <NavLink className="nav-link" to="/teacher-chamHD">Đánh giá hướng dẫn</NavLink>
                                     <NavLink className="nav-link" to="/head/assginmentrol">Phân quyền</NavLink>
                                     <NavLink className="nav-link" to="/head/results">Kết quả</NavLink>
                                 </Nav>
@@ -127,7 +142,6 @@ const NavHeader = (props) => {
                                             <NavDropdown.Item > <NavLink className="nav-link" to="/changepassword">Thay đổi mật khẩu</NavLink></NavDropdown.Item>
                                             <NavDropdown.Item > <NavLink className="nav-link" to="/updateInfor">Thay đổi thông tin </NavLink></NavDropdown.Item>
                                             <NavDropdown.Item className='dropdown' > <span onClick={() => handleLogout()}>Đăng xuất</span></NavDropdown.Item>
-
                                         </NavDropdown>
                                     </>
                                     :

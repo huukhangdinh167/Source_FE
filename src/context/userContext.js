@@ -13,8 +13,8 @@ const UserProvider = ({ children }) => {
         token: "",
         name: "",
         groupId: "",
+        id: "",
         account: {}
-
     }
     const [user, setUser] = useState(userDefault);
     // const [chooseGroup, setChooseGroup] = useState
@@ -34,16 +34,17 @@ const UserProvider = ({ children }) => {
             let groubWithRole = response.DT.groupWithRole
             let email = response.DT.email
             let username = response.DT.username
+            let id = response.DT.id
             let token = response.DT.accesstoken
             let groupId = response.DT.groupId
             let name = response.DT.name
             let phoneNumber = response.DT.phoneNumber
             let data = {
-
                 isAuthenticate: true,
                 token: token,
                 maSo: username,
                 name: name,
+                id: id,
                 groupId: groupId,
                 account: { groubWithRole, email, username },
                 isLoading: false,

@@ -11,7 +11,7 @@ import './modalproject.scss'
 const ModalProject = (props) => {
     const { user } = React.useContext(UserContext);
     const { action, dataModalProject } = props;
-
+    const group = user.groupId
     const defaultProjectData = {
         name: '',
         description: '',
@@ -19,6 +19,7 @@ const ModalProject = (props) => {
         knowledgeSkills: '',
         instuctor: user.name,
         status: 0,
+        groupId: '',
         userteacherId: user.maSo
         // 0 là đang chờ phê duyệt,
         //1 là đã được phê duyệt
@@ -79,13 +80,11 @@ const ModalProject = (props) => {
     }
 
 
-
-
     const handleConfirmProject = async (user) => {
         let check = checkValidateInputs()
         if (check === true) {
             let res = action === 'CREATE' ?
-                await createNewProject({ ...projectData, name: projectData.name.trim(), nameprojectapprove: 'null', nameprojectrefuse: 'null' })
+                await createNewProject({ ...projectData, name: projectData.name.trim(), nameprojectapprove: 'null', groupId: group, nameprojectrefuse: 'null' })
                 : await updateCurrentProject({ ...projectData, status: 0 });
             if (res && res.EC == 0) {
                 props.onHide();

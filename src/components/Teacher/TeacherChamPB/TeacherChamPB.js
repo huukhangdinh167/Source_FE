@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { Modal, Button } from "react-bootstrap"; // Import modal từ React Bootstrap
 import swal from 'sweetalert';
 import './TeacherChamPB.scss';
@@ -11,7 +11,8 @@ import html2canvas from 'html2canvas';
 import autoTable from 'jspdf-autotable';
 import { UserContext } from '../../../context/userContext';
 const TeacherChamPB = (props) => {
-    const { user } = React.useContext(UserContext);
+    const { user } = useContext(UserContext);
+    const userid = user.id
     const [students, setData] = useState([]);
     const [showModal, setShowModal] = useState(false); // Trạng thái hiển thị modal
     const [listtecher, setListTeacher] = useState()
@@ -89,13 +90,12 @@ const TeacherChamPB = (props) => {
         })
     }, [xemPBSV2, dataModal]);
 
-
     const studentss = async () => {
         let data = await teacherPB(user);
+        console.log(user)
         setData(data.DT);
         let list = await headFetchListTeacher()
         setListTeacher(list.DT)
-
     };
 
     // hàm này xác định xem user đang đang là vai trò PB1 hay Pb2 mỗi khi bậc modal ở mỗi đề tài
@@ -261,39 +261,39 @@ const TeacherChamPB = (props) => {
                     return
                 }
                 if (PBSV1.diemSV1 < 1 || PBSV1.diemSV1 > 10) {
-                    toast.error("Điểm của sinh viên là một số <0 >=10");
+                    toast.error("Điểm của sinh viên là một số >0 <=10");
                     return
                 }
                 if (!PBSV1.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    toast.error("Bạn chưa nhập LO1 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    toast.error("Bạn chưa nhập LO2 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    toast.error("Bạn chưa nhập LO3 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    toast.error("Bạn chưa nhập LO4 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    toast.error("Bạn chưa nhập LO5 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    toast.error("Bạn chưa nhập LO6 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    toast.error("Bạn chưa nhập LO7 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    toast.error("Bạn chưa nhập LO8 cho SV1");
                     return
                 }
             }
@@ -308,39 +308,39 @@ const TeacherChamPB = (props) => {
                     return
                 }
                 if (PBSV2.diemSV2 < 1 || PBSV2.diemSV2 > 10) {
-                    toast.error("Điểm của sinh viên là một <0 <=10");
+                    toast.error("Điểm của sinh viên là một >0 <=10");
                     return
                 }
                 if (!PBSV2.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV2");
+                    toast.error("Bạn chưa nhập LO1 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV2");
+                    toast.error("Bạn chưa nhập LO2 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV2");
+                    toast.error("Bạn chưa nhập LO3 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV2");
+                    toast.error("Bạn chưa nhập LO4 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV2");
+                    toast.error("Bạn chưa nhập LO5 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV2");
+                    toast.error("Bạn chưa nhập LO6 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV2");
+                    toast.error("Bạn chưa nhập LO7 cho SV2");
                     return
                 }
                 if (!PBSV2.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV2");
+                    toast.error("Bạn chưa nhập LO8 cho SV2");
                     return
                 }
 
@@ -358,39 +358,39 @@ const TeacherChamPB = (props) => {
                     return
                 }
                 if (PBSV1.diemSV1 < 1 || PBSV1.diemSV1 > 10) {
-                    toast.error("Điểm của sinh viên là một số <0 <=10");
+                    toast.error("Điểm của sinh viên là một số >0 <=10");
                     return
                 }
                 if (!PBSV1.LOL1) {
-                    toast.error("Bạn chưa nhập LOL1 cho SV1");
+                    toast.error("Bạn chưa nhập LO1 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL2) {
-                    toast.error("Bạn chưa nhập LOL2 cho SV1");
+                    toast.error("Bạn chưa nhập LO2 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL3) {
-                    toast.error("Bạn chưa nhập LOL3 cho SV1");
+                    toast.error("Bạn chưa nhập LO3 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL4) {
-                    toast.error("Bạn chưa nhập LOL4 cho SV1");
+                    toast.error("Bạn chưa nhập LO4 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL5) {
-                    toast.error("Bạn chưa nhập LOL5 cho SV1");
+                    toast.error("Bạn chưa nhập LO5 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL6) {
-                    toast.error("Bạn chưa nhập LOL6 cho SV1");
+                    toast.error("Bạn chưa nhập LO6 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL7) {
-                    toast.error("Bạn chưa nhập LOL7 cho SV1");
+                    toast.error("Bạn chưa nhập LO7 cho SV1");
                     return
                 }
                 if (!PBSV1.LOL8) {
-                    toast.error("Bạn chưa nhập LOL8 cho SV1");
+                    toast.error("Bạn chưa nhập LO8 cho SV1");
                     return
                 }
             }
@@ -501,9 +501,9 @@ const TeacherChamPB = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
                 [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
                 [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
@@ -596,9 +596,9 @@ const TeacherChamPB = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
                 [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
                 [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
@@ -691,9 +691,9 @@ const TeacherChamPB = (props) => {
                 pdf.text(`Mã số sinh viên: ${res[1]?.maSo ?? ''}`, 120, 85);
             }
 
-            const headers = [['STT', 'LOL', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
+            const headers = [['STT', 'LO', 'Sinh viên 1', res[1] && 'Sinh viên 2']];
             const data = [
-                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '',  danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
+                [1, 'Xác định được yêu cầu của khóa luận cần thực hiệnv', danhgiaphanbiensv1 == 'true' ? LOL1 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL1SV2 : ''],
                 [2, 'Phân tích yêu cầu nghiệp vụ hiện trạng và mô hình hóa được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL2 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL2SV2 : ''],
                 [3, 'Thiết kế một hệ thống thông tin đưa ra giải pháp đáp ứng được yêu cầu của đề tài', danhgiaphanbiensv1 == 'true' ? LOL3 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL3SV2 : ''],
                 [4, 'Hiện thực hóa hệ thống thông tin theo thiết kế đã đưa ra/Hiện thực giải pháp đã đưa ra', danhgiaphanbiensv1 == 'true' ? LOL4 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL4SV2 : ''],
@@ -1076,13 +1076,28 @@ const TeacherChamPB = (props) => {
                                                     <i className="fa fa-pencil-square-o" aria-hidden="true"></i>
                                                 </button>
                                                 <br /><br />
-                                                {item.Result && item.Result.trungbinhphanbien &&
+                                                {item.Result && (item.pb1 == userid) && (item.Result.diemGVPB1 != null) &&
                                                     <>
                                                         <p className="text-primary mb-0" onClick={() => exportToPDF(item)}>(Phiếu đánh giá)</p>
                                                         <p className="text-primary" onClick={() => exportToPDFPhieuDiem(item)}>(Phiếu điểm)</p>
 
                                                     </>
                                                 }
+                                                {item.Result && (item.pb2 == userid) && (item.Result.diemGVPB2 != null) &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDF(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiem(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                }
+                                                {item.Result && (item.pb3 == userid) && (item.Result.diemGVPB3 != null) &&
+                                                    <>
+                                                        <p className="text-primary mb-0" onClick={() => exportToPDF(item)}>(Phiếu đánh giá)</p>
+                                                        <p className="text-primary" onClick={() => exportToPDFPhieuDiem(item)}>(Phiếu điểm)</p>
+
+                                                    </>
+                                                }
+
                                                 {item.groupStudent &&
                                                     ((item.Result?.diemGVPB1 !== null) ? (
                                                         <i className="text-primary">PB1 Đã đánh giá</i>
@@ -1182,7 +1197,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV1</i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1190,9 +1205,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'false' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV1</i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV2</i></div>
                                                 <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1200,9 +1215,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'true' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV1</i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV2</i></div>
                                                 <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1210,7 +1225,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' && (PBSV2.danhgiaphanbien == 'null' || !PBSV2.danhgiaphanbien) &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV1</i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1218,9 +1233,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'true' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV1</i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV2</i></div>
                                                 <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1228,9 +1243,9 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'false' &&
                                             <>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV1</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV1</i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV2</i></div>
                                                 <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1244,7 +1259,7 @@ const TeacherChamPB = (props) => {
                                             (PBSV1.danhgiaphanbien == 'null' || !PBSV1.danhgiaphanbien) && PBSV2.danhgiaphanbien == 'false' &&
                                             <>
                                                 <div className="col-sm-4 px-0"></div>
-                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm hướng dẫn SV2</i></div>
+                                                <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV2</i></div>
                                                 <input value={PBSV2.diemSV2} onChange={(event) => handleOnchange2(event.target.value, 'diemSV2')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1266,7 +1281,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'true' &&
                                             <>
-                                                <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm </i></div>
                                                 <input value={PBSV1.diemSV1} onChange={(event) => handleOnchange(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
 
                                             </>
@@ -1275,7 +1290,7 @@ const TeacherChamPB = (props) => {
                                         {
                                             PBSV1.danhgiaphanbien == 'false' &&
                                             <>
-                                                <div className="col-sm-3  "><i className="text-danger"> Điểm hướng dẫn </i></div>
+                                                <div className="col-sm-3  "><i className="text-danger"> Điểm </i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
 
                                             </>
