@@ -218,7 +218,9 @@ const HeadAssignGV = (props) => {
                                                     <p key={`pb1-${index}`}>{itemmm.name}</p>
                                                 ))
                                         )}
-                                        {(item.Result && (item.Result.danhgiaphanbien1 === 'false' || item.Result.danhgiaphanbien2 === 'false') && item.pb3 == null && <p className="text-danger">(Cần PB3)</p>)}
+                                        {(item.Result && ( (item.Result.danhgiaphanbien1 === 'true' && item.Result.danhgiaphanbien2 === 'false') ||
+                                        (item.Result.danhgiaphanbien1 === 'false' && item.Result.danhgiaphanbien2 === 'true'))
+                                        && item.pb3 == null && <p className="text-danger">(Cần PB3)</p>)}
 
                                     </td>
                                     <td>

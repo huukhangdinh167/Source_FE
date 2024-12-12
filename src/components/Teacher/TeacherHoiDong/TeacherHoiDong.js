@@ -1196,11 +1196,11 @@ const TeacherChamHoiDong = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -1282,11 +1282,11 @@ const TeacherChamHoiDong = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -1366,11 +1366,11 @@ const TeacherChamHoiDong = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -1667,11 +1667,11 @@ const TeacherChamHoiDong = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -1753,11 +1753,11 @@ const TeacherChamHoiDong = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -2465,7 +2465,7 @@ const TeacherChamHoiDong = (props) => {
                                             PosterSV1.danhgiaposter == 'true' &&
                                             <>
                                                 <div className="col-sm-3  "><i className="text-danger"> Điểm Poster </i></div>
-                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
                                             </>
                                         }
                                         {

@@ -500,7 +500,7 @@ const HeadResults = () => {
 
                                             <tr>
                                                 <td>8</td>
-                                                <td>Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn</td>
+                                                <td>Khả năng phỏng vấn thu thập yêu cầu của khách hàng</td>
                                                 <td>
                                                     <select className="form-select">
                                                         <option >{resultseveryStudent && resultseveryStudent.Criterion && resultseveryStudent.Criterion.LOL8}</option>

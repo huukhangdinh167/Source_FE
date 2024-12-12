@@ -795,11 +795,11 @@ const TeacherChamPB = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} / 10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -881,11 +881,11 @@ const TeacherChamPB = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable
@@ -964,11 +964,11 @@ const TeacherChamPB = (props) => {
             if (res.length > 1) {
                 data.push(
                     [1, item.maSo, item.name, diemSV1],
-                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? diemSV2 : '']
+                    [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1]
+                    [1, item.maSo, item.name, `${diemSV1} /10`]
                 );
             }
             // Tạo bảng với autoTable

@@ -421,7 +421,7 @@ const Results = () => {
 
                                             <tr>
                                                 <td>8</td>
-                                                <td>Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn</td>
+                                                <td>Khả năng phỏng vấn thu thấp yêu cầu của khách hàng</td>
                                                 <td>
                                                     <select className="form-select">
                                                         <option >{results && results.Criterion && results.Criterion.LOL8}</option>

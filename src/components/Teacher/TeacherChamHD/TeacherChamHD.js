@@ -254,7 +254,7 @@ const TeacherChamHD = (props) => {
             [5, 'Viết được báo cáo khóa luận tốt nghiệp', item.Criterion?.LOL5],
             [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', item.Criterion?.LOL6],
             [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', item.Criterion?.LOL7],
-            [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn', item.Criterion?.LOL8],
+            [8, 'Khả năng phỏng vấn thu thấp yêu cầu của khách hàng', item.Criterion?.LOL8],
             ['', 'Kết quả', item.Result.danhgiacuoiky == 'true' ? 'ĐẠT' : 'Không đạt'],
 
 
@@ -327,7 +327,7 @@ const TeacherChamHD = (props) => {
 
         const headers = [['STT', 'MSSV', 'Ho va Ten', 'Diem']];
         const data = [
-            [1, item.maSo, item.name, item.Result?.diemGVHD],
+            [1, item.maSo, item.name, `${item.Result?.diemGVHD} / 10`],
         ];
         // Tạo bảng với autoTable
         autoTable(pdf, {
@@ -539,7 +539,7 @@ const TeacherChamHD = (props) => {
                                                 "Viết được báo cáo khóa luận tốt nghiệp",
                                                 "Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận",
                                                 "Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận",
-                                                "Bảo vệ khóa kết quả khóa luận trước giản viên hướng dẫn",
+                                                "Khả năng phỏng vấn thu thấp yêu cầu của khách hàng",
                                             ].map((criteria, index) => (
                                                 <tr key={index}>
                                                     <td>{index + 1}</td>
