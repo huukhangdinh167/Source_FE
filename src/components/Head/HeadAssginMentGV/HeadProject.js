@@ -81,7 +81,12 @@ const HeadAssignGV = (props) => {
     const handleAssign = (item) => {
         setSelectedStudent(item); // Lưu sinh viên được chọn vào state
         setShowModal(true); // Hiển thị modal
-        setDataModal(item)
+        setDataModal({
+            ...item,
+            pb1: item.pb1 || '', // Đảm bảo có giá trị cho Poster1
+            pb2: item.pb2 || '',
+            pb3: item.pb3 || '' // Đảm bảo có giá trị cho Poster2
+        })
         const getFilteredStudents =
             hheadGetIn4SV2.filter(ite => ite.groupStudent !== 'null')
                 .filter(itemm => item.groupStudent && itemm.groupStudent && item.groupStudent === itemm.groupStudent)
@@ -92,7 +97,7 @@ const HeadAssignGV = (props) => {
     };
     const handleCloseModal = async () => {
         setShowModal(false); // Đóng modal
-        //  setPB({ ...defaultPB })
+          setPB(defaultPB)
     };
 
     const handleConfirmAssign = async () => {

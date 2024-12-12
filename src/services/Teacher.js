@@ -56,6 +56,7 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2,pb3, maSoGV)
             diem: danhgiaSV1.diemSV1
         },
         dataSV2: {
+            ghichu: danhgiaSV2.ghichu,
             LOL1: danhgiaSV2.LOL1,
             LOL2: danhgiaSV2.LOL2,
             LOL3: danhgiaSV2.LOL3,
@@ -112,6 +113,7 @@ const teacherDGHoiDong = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, CTHD, TK, UV, ma
             diem: danhgiaSV1.diemSV1
         },
         dataSV2: {
+            ghichu: danhgiaSV2.ghichu,
             LOL1: danhgiaSV2.LOL1,
             LOL2: danhgiaSV2.LOL2,
             LOL3: danhgiaSV2.LOL3,
@@ -152,6 +154,7 @@ const teacherDGPoster = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, Poster1, Poster2,
             diem: danhgiaSV1.diemSV1
         },
         dataSV2: {
+            ghichu: danhgiaSV2.ghichu,
             LOL1: danhgiaSV2.LOL1,
             LOL2: danhgiaSV2.LOL2,
             LOL3: danhgiaSV2.LOL3,

@@ -111,6 +111,8 @@ const TeacherChamHD = (props) => {
         else {
             _danhgia[name] = value
             setDanhGia(_danhgia)
+            console.log(_danhgia)
+
         }
     }
     const danhgiaHD = async () => {
@@ -123,7 +125,7 @@ const TeacherChamHD = (props) => {
                     toast.error("Vui lòng nhập điểm hướng dẫn")
                     return
                 }
-                if (danhgia.diemGVHD < 0 || danhgia.diemGVHD > 10) {
+                if (danhgia.diemGVHD < 1 || danhgia.diemGVHD > 10) {
                     toast.error("Điểm là một số từ 1-10")
                     return
                 }
@@ -160,50 +162,51 @@ const TeacherChamHD = (props) => {
                     return
                 }
             } else if (danhgia.danhgiacuoiky == 'false') {
-                if (!danhgia.LOL1) {
-                    toast.error("Vui lòng đánh giá LO1")
-                    return
-                }
-                if (!danhgia.LOL2) {
-                    toast.error("Vui lòng đánh giá LO2")
-                    return
-                }
-                if (!danhgia.LOL3) {
-                    toast.error("Vui lòng đánh giá LO3")
-                    return
-                }
-                if (!danhgia.LOL4) {
-                    toast.error("Vui lòng đánh giá LO3")
-                    return
-                }
-                if (!danhgia.LOL5) {
-                    toast.error("Vui lòng đánh giá LO5")
-                    return
-                }
-                if (!danhgia.LOL6) {
-                    toast.error("Vui lòng đánh giá LO6")
-                    return
-                }
-                if (!danhgia.LOL7) {
-                    toast.error("Vui lòng đánh giá LO7")
-                    return
-                }
-                if (!danhgia.LOL8) {
-                    toast.error("Vui lòng đánh giá LO8")
-                    return
-                }
+                // if (!danhgia.LOL1) {
+                //     toast.error("Vui lòng đánh giá LO1")
+                //     return
+                // }
+                // if (!danhgia.LOL2) {
+                //     toast.error("Vui lòng đánh giá LO2")
+                //     return
+                // }
+                // if (!danhgia.LOL3) {
+                //     toast.error("Vui lòng đánh giá LO3")
+                //     return
+                // }
+                // if (!danhgia.LOL4) {
+                //     toast.error("Vui lòng đánh giá LO3")
+                //     return
+                // }
+                // if (!danhgia.LOL5) {
+                //     toast.error("Vui lòng đánh giá LO5")
+                //     return
+                // }
+                // if (!danhgia.LOL6) {
+                //     toast.error("Vui lòng đánh giá LO6")
+                //     return
+                // }
+                // if (!danhgia.LOL7) {
+                //     toast.error("Vui lòng đánh giá LO7")
+                //     return
+                // }
+                // if (!danhgia.LOL8) {
+                //     toast.error("Vui lòng đánh giá LO8")
+                //     return
+                // }
             }
         }
 
-        let reponse = await teacherDGHD(danhgia, data4table)
+       let reponse = await teacherDGHD(danhgia, data4table)
         if (reponse.EC == 0) {
             toast.success("Đánh giá thành công")
             setShowModal(false);
+            setDanhGia(defaultdanhgia);
             await studentss()
         } else {
             toast.error(reponse.EM)
         }
-        //  console.log(danhgia)
+          console.log(danhgia)
     }
     const exportToPDF = (item) => {
         const pdf = new jsPDF();
@@ -543,7 +546,7 @@ const TeacherChamHD = (props) => {
                                                     <td>{criteria}</td>
                                                     <td>
                                                         <select value={danhgia[`LOL${index + 1}`]} onChange={(event) => handleOnchange(event.target.value, `LOL${index + 1}`)} className="form-select">
-                                                            <option>----</option>
+                                                            <option value={''}>----</option>
                                                             <option value={'1'}>1</option>
                                                             <option value={'2'}>2</option>
                                                             <option value={'3'}>3</option>

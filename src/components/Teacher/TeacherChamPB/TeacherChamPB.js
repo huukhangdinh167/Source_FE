@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Modal, Button } from "react-bootstrap"; // Import modal từ React Bootstrap
 import swal from 'sweetalert';
 import './TeacherChamPB.scss';
@@ -45,6 +45,7 @@ const TeacherChamPB = (props) => {
         LOL6: '',
         LOL7: '',
         LOL8: '',
+        ghichu: '',
 
     }
     const [PBSV1, setPBSV1] = useState(defaultPBSV1)
@@ -84,6 +85,7 @@ const TeacherChamPB = (props) => {
             LOL6: xemPBSV2.LOL6,
             LOL7: xemPBSV2.LOL7,
             LOL8: xemPBSV2.LOL8,
+            ghichu: xemPBSV2.ghichu,
             diemSV2: xemPBSV2.diemSV2,
             danhgiaphanbien: xemPBSV2.danhgiaphanbien,
 
@@ -147,6 +149,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8,
+                    ghichu: res[1] && res[1].Criteriapb?.ghichu,
                     danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien1,
                     diemSV2: res[1] && res[1].Result?.diemGVPB1
                 })
@@ -167,7 +170,7 @@ const TeacherChamPB = (props) => {
                 LOL6: item.Criteriapb?.LOL6PB2,
                 LOL7: item.Criteriapb?.LOL7PB2,
                 LOL8: item.Criteriapb?.LOL8PB2,
-                ghichu: item.Criteriapb?.ghichu,
+                ghichu: item.Criteriapb?.ghichuPB2,
                 diemSV1: item.Result?.diemGVPB2,
                 danhgiaphanbien: item.Result?.danhgiaphanbien2,
             })
@@ -184,6 +187,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6PB2,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7PB2,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8PB2,
+                    ghichu: res[1] && res[1].Criteriapb?.ghichuPB2,
                     danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien2,
                     //  ghichu: res[1].Criteriapb?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemGVPB2
@@ -204,7 +208,7 @@ const TeacherChamPB = (props) => {
                 LOL6: item.Criteriapb?.LOL6PB3,
                 LOL7: item.Criteriapb?.LOL7PB3,
                 LOL8: item.Criteriapb?.LOL8PB3,
-                ghichu: item.Criteriapb?.ghichu,
+                ghichu: item.Criteriapb?.ghichuPB3,
                 diemSV1: item.Result?.diemGVPB3,
                 danhgiaphanbien: item.Result?.danhgiaphanbien3,
             })
@@ -221,6 +225,7 @@ const TeacherChamPB = (props) => {
                     LOL6: res[1] && res[1].Criteriapb?.LOL6PB3,
                     LOL7: res[1] && res[1].Criteriapb?.LOL7PB3,
                     LOL8: res[1] && res[1].Criteriapb?.LOL8PB3,
+                    ghichu: res[1] && res[1].Criteriapb?.ghichuPB3,
                     danhgiaphanbien: res[1] && res[1].Result?.danhgiaphanbien3,
                     //  ghichu: res[1].Criteriapb?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemGVPB3
@@ -546,7 +551,7 @@ const TeacherChamPB = (props) => {
             let LOL6 = item.Criteriapb?.LOL6PB2
             let LOL7 = item.Criteriapb?.LOL7PB2
             let LOL8 = item.Criteriapb?.LOL8PB2
-            let ghichu = item.Criteriapb?.ghichu
+            let ghichu = item.Criteriapb?.ghichuPB2
             let danhgiaphanbiensv1 = item.Result?.danhgiaphanbien2
             let diemSV1 = item.Result?.diemGVPB2
             let LOL1SV2 = res[1] && res[1].Criteriapb?.LOL1PB2
@@ -641,7 +646,7 @@ const TeacherChamPB = (props) => {
             let LOL6 = item.Criteriapb?.LOL6PB3
             let LOL7 = item.Criteriapb?.LOL7PB3
             let LOL8 = item.Criteriapb?.LOL8PB3
-            let ghichu = item.Criteriapb?.ghichu
+            let ghichu = item.Criteriapb?.ghichuPB3
             let danhgiaphanbiensv1 = item.Result?.danhgiaphanbien3
             let diemSV1 = item.Result?.diemGVPB3
             let LOL1SV2 = res[1] && res[1].Criteriapb?.LOL1PB3
@@ -827,7 +832,7 @@ const TeacherChamPB = (props) => {
             pdf.save(item.name);
 
         } else if (define == 'pb2' && response.DT[0].Result.diemGVPB2 != null) {
-            let ghichu = item.Criteriapb?.ghichu
+            let ghichu = item.Criteriapb?.ghichuPB2
             let danhgiaphanbiensv1 = item.Result?.danhgiaphanbien1
             let diemSV1 = item.Result?.diemGVPB2
             let diemSV2 = res[1] && res[1].Result?.diemGVPB2
@@ -910,8 +915,7 @@ const TeacherChamPB = (props) => {
             pdf.text('(Ký và ghi rõ họ tên)', 125, 190);
             pdf.save(item.groupStudent);
         } else if (define == 'pb3' && response.DT[0].Result.diemGVPB3 != null) {
-
-            let ghichu = item.Criteriapb?.ghichu
+            let ghichu = item.Criteriapb?.ghichuPB3
             let danhgiaphanbiensv1 = item.Result?.danhgiaphanbien3
             let diemSV1 = item.Result?.diemGVPB3
             let diemSV2 = res[1] && res[1].Result?.diemGVPB3
@@ -1209,7 +1213,14 @@ const TeacherChamPB = (props) => {
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
                                                 <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm SV2</i></div>
                                                 <input value={PBSV2.diemSV2} className="col-sm-2 " type="number" />
+                                                <div className="row mt-3 ms-1">
+                                                    <div className="col-sm-2 px-0 "><i className="text-primary">Nhận xét SV1</i></div>
+                                                    <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-4 px-0"></textarea>
 
+                                                    <div className="col-sm-2 px-0"><i className="text-primary">Nhận xét SV2</i></div>
+                                                    <textarea value={PBSV2.ghichu} onChange={(event) => handleOnchange2(event.target.value, 'ghichu')} className="col-sm-4 px-0"></textarea>
+
+                                                </div>
                                             </>
                                         }
                                         {
@@ -1292,7 +1303,11 @@ const TeacherChamPB = (props) => {
                                             <>
                                                 <div className="col-sm-3  "><i className="text-danger"> Điểm </i></div>
                                                 <input value={PBSV1.diemSV1} className="col-sm-2 " type="number" />
-
+                                                <br></br>
+                                                <div className="row mt-2">
+                                                    <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
+                                                    <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-10"></textarea>
+                                                </div>
                                             </>
 
                                         }
@@ -1374,12 +1389,23 @@ const TeacherChamPB = (props) => {
                             </div>
                         </div>
                         {
-                            PBSV1.danhgiaphanbien == 'true' &&
-                            <div className="row">
-                                <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                                <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
-                            </div>
+                            listSV1SV2.length == 2 ?
+                                ((PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'true') || (PBSV1.danhgiaphanbien == 'true' && PBSV2.danhgiaphanbien == 'false') || (PBSV1.danhgiaphanbien == 'false' && PBSV2.danhgiaphanbien == 'true')) &&
+                                <div className="row">
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV1</i></div>
+                                    <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-4"></textarea>
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV2</i></div>
+                                    <textarea value={PBSV2.ghichu} onChange={(event) => handleOnchange2(event.target.value, 'ghichu')} className="col-sm-4"></textarea>
+
+                                </div>
+                                : 
+                                PBSV1.danhgiaphanbien == 'true' &&
+                                <div className="row">
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV1</i></div>
+                                    <textarea value={PBSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                                </div>
                         }
+
 
                     </>
 

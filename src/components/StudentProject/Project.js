@@ -265,7 +265,7 @@ const Project = () => {
                                                 {listUserRegisterProject.map((item, index) => {
                                                     return (
                                                         <tr key={`row-${index}`}>
-                                                            <td>{index}</td>
+                                                            <td>{index +1}</td>
                                                             <td>{item.name}</td>
                                                             <td>{item.maSo}</td>
                                                             <td>{item.class}</td>

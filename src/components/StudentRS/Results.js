@@ -732,7 +732,7 @@ const Results = () => {
                         {results?.pb3 && results.Result.diemGVPB3 &&
                             <>
                                 <div className="col-sm-1"><i className="text-primary">PB2</i></div>
-                                <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB3}</textarea>
                             </>
                         }
                     </div>

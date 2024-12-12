@@ -45,7 +45,7 @@ const TeacherChamHoiDong = (props) => {
         LOL6: '',
         LOL7: '',
         LOL8: '',
-        ghichu: '',
+        ghichu: ''
     }
     const defaultHoiDongSV2 = {
         danhgiahoidong: '',
@@ -58,6 +58,7 @@ const TeacherChamHoiDong = (props) => {
         LOL6: '',
         LOL7: '',
         LOL8: '',
+        ghichu: ''
     }
 
     const defaultPosterSV1 = {
@@ -84,6 +85,8 @@ const TeacherChamHoiDong = (props) => {
         LOL6: '',
         LOL7: '',
         LOL8: '',
+        ghichu: ''
+
     }
     const [HoiDongSV1, setHoiDongSV1] = useState(defaultHoiDongSV1)
     const [HoiDongSV2, setHoiDongSV2] = useState(defaultHoiDongSV2)
@@ -141,6 +144,7 @@ const TeacherChamHoiDong = (props) => {
             LOL6: xemPBSV2.LOL6,
             LOL7: xemPBSV2.LOL7,
             LOL8: xemPBSV2.LOL8,
+            ghichu: xemPBSV2.ghichu,
             danhgiahoidong: xemPBSV2.danhgiahoidong,
             diemSV2: xemPBSV2.diemSV2
         })
@@ -157,6 +161,7 @@ const TeacherChamHoiDong = (props) => {
             LOL6: xemPosterSV2.LOL6,
             LOL7: xemPosterSV2.LOL7,
             LOL8: xemPosterSV2.LOL8,
+            ghichu: xemPosterSV2.ghichu,
             danhgiaposter: xemPosterSV2.danhgiaposter,
             diemSV2: xemPosterSV2.diemSV2
         })
@@ -227,6 +232,7 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8,
+                    ghichu: res[1] && res[1].Criteriahoidong?.ghichu,
                     danhgiahoidong: res[1] && res[1].Result?.danhgiaCTHD,
                     diemSV2: res[1] && res[1].Result?.diemCTHD
                 })
@@ -265,6 +271,7 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6TK,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7TK,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8TK,
+                    ghichu: res[1] && res[1].Criteriahoidong?.ghichuTK,
                     danhgiahoidong: res[1] && res[1].Result?.danhgiaTK,
                     //  ghichu: res[1].Criteriahoidong?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemTK
@@ -303,6 +310,7 @@ const TeacherChamHoiDong = (props) => {
                     LOL6: res[1] && res[1].Criteriahoidong?.LOL6UV,
                     LOL7: res[1] && res[1].Criteriahoidong?.LOL7UV,
                     LOL8: res[1] && res[1].Criteriahoidong?.LOL8UV,
+                    ghichu: res[1] && res[1].Criteriahoidong?.ghichuUV,
                     danhgiahoidong: res[1] && res[1].Result?.danhgiaUV,
                     //  ghichu: res[1].Criteriahoidong?.ghichu,
                     diemSV2: res[1] && res[1].Result?.diemUV
@@ -575,7 +583,7 @@ const TeacherChamHoiDong = (props) => {
                     toast.error("Bạn chưa nhập điểm cho SV1");
                     return
                 }
-                if (HoiDongSV1.diemSV1 < 0 || HoiDongSV1.diemSV1 > 10) {
+                if (HoiDongSV1.diemSV1 < 1 || HoiDongSV1.diemSV1 > 10) {
                     toast.error("Điểm của sinh viên là một số từ 0 -> 10");
                     return
                 }
@@ -723,12 +731,12 @@ const TeacherChamHoiDong = (props) => {
                 toast.error("Bạn chưa đánh giá  cho SV1");
                 return
             }
-            if (PosterSV1.danhgiaphanbien === 'true') {
+            if (PosterSV1.danhgiaposter === 'true') {
                 if (!PosterSV1.diemSV1) {
                     toast.error("Bạn chưa nhập điểm cho SV1");
                     return
                 }
-                if (PosterSV1.diemSV1 < 0 || PosterSV1.diemSV1 > 10) {
+                if (PosterSV1.diemSV1 < 1 || PosterSV1.diemSV1 > 10) {
                     toast.error("Điểm của sinh viên là một số từ 0 -> 10");
                     return
                 }
@@ -1989,9 +1997,15 @@ const TeacherChamHoiDong = (props) => {
                                             <>
                                                 <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV1</i></div>
                                                 <input value={HoiDongSV1.diemSV1} className="col-sm-2 " type="number" />
+
                                                 <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
                                                 <input value={HoiDongSV2.diemSV2} className="col-sm-2 " type="number" />
-
+                                                <div className="row mt-3 ms-1">
+                                                    <div className="col-sm-2 px-0 "><i className="text-primary">Nhận xét SV1</i></div>
+                                                    <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-4 px-0"></textarea>
+                                                    <div className="col-sm-2 px-0"><i className="text-primary">Nhận xét SV2</i></div>
+                                                    <textarea value={HoiDongSV2.ghichu} onChange={(event) => handleOnchange2(event.target.value, 'ghichu')} className="col-sm-4 px-0"></textarea>
+                                                </div>
                                             </>
                                         }
                                         {
@@ -2072,7 +2086,11 @@ const TeacherChamHoiDong = (props) => {
                                             <>
                                                 <div className="col-sm-3  "><i className="text-danger"> Điểm  </i></div>
                                                 <input value={HoiDongSV1.diemSV1} className="col-sm-2 " type="number" />
-
+                                                <br></br>
+                                                <div className="row mt-2">
+                                                    <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
+                                                    <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-10"></textarea>
+                                                </div>
                                             </>
 
                                         }
@@ -2155,11 +2173,21 @@ const TeacherChamHoiDong = (props) => {
                             </div>
                         </div>
                         {
-                            HoiDongSV1.danhgiahoidong == 'true' &&
-                            <div className="row">
-                                <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                                <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
-                            </div>
+                            listSV1SV2.length == 2 ?
+                                ((HoiDongSV1.danhgiahoidong == 'true' && HoiDongSV2.danhgiahoidong == 'true') || (HoiDongSV1.danhgiahoidong == 'true' && HoiDongSV2.danhgiahoidong == 'false') || (HoiDongSV1.danhgiahoidong == 'false' && HoiDongSV2.danhgiahoidong == 'true')) &&
+                                <div className="row">
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV1</i></div>
+                                    <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-4"></textarea>
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV2</i></div>
+                                    <textarea value={HoiDongSV2.ghichu} onChange={(event) => handleOnchange2(event.target.value, 'ghichu')} className="col-sm-4"></textarea>
+
+                                </div>
+                                : 
+                                HoiDongSV1.danhgiahoidong == 'true' &&
+                                <div className="row">
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV1</i></div>
+                                    <textarea value={HoiDongSV1.ghichu} onChange={(event) => handleOnchange(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                                </div>
                         }
 
                     </>
@@ -2357,7 +2385,14 @@ const TeacherChamHoiDong = (props) => {
                                                 <input value={PosterSV1.diemSV1} className="col-sm-2 " type="number" />
                                                 <div className="col-sm-4 px-0"><i className="text-danger diemhuongdan"> Điểm  SV2</i></div>
                                                 <input value={PosterSV2.diemSV2} className="col-sm-2 " type="number" />
+                                                <div className="row mt-3 ms-1">
+                                                    <div className="col-sm-2 px-0 "><i className="text-primary">Nhận xét SV1</i></div>
+                                                    <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-4 px-0"></textarea>
 
+                                                    <div className="col-sm-2 px-0"><i className="text-primary">Nhận xét SV2</i></div>
+                                                    <textarea value={PosterSV2.ghichu} onChange={(event) => handleOnchange2Poster(event.target.value, 'ghichu')} className="col-sm-4 px-0"></textarea>
+
+                                                </div>
                                             </>
                                         }
                                         {
@@ -2430,7 +2465,7 @@ const TeacherChamHoiDong = (props) => {
                                             PosterSV1.danhgiaposter == 'true' &&
                                             <>
                                                 <div className="col-sm-3  "><i className="text-danger"> Điểm Poster </i></div>
-                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchangePoster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
+                                                <input value={PosterSV1.diemSV1} onChange={(event) => handleOnchange2Poster(event.target.value, 'diemSV1')} className="col-sm-2 " type="number" />
                                             </>
                                         }
                                         {
@@ -2438,7 +2473,11 @@ const TeacherChamHoiDong = (props) => {
                                             <>
                                                 <div className="col-sm-3  "><i className="text-danger"> Điểm Poster </i></div>
                                                 <input value={PosterSV1.diemSV1} className="col-sm-2 " type="number" />
-
+                                                <br></br>
+                                                <div className="row mt-2">
+                                                    <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
+                                                    <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-10"></textarea>
+                                                </div>
                                             </>
 
                                         }
@@ -2523,11 +2562,21 @@ const TeacherChamHoiDong = (props) => {
                             </div>
                         </div>
                         {
-                            PosterSV1.danhgiaposter == 'true' &&
-                            <div className="row">
-                                <div className="col-sm-2"><i className="text-primary">Nhận xét</i></div>
-                                <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
-                            </div>
+                            listSV1SV2.length == 2 ?
+                                ((PosterSV1.danhgiaposter == 'true' && PosterSV2.danhgiaposter == 'true') || (PosterSV1.danhgiaposter == 'true' && PosterSV2.danhgiaposter == 'false') || (PosterSV1.danhgiaposter == 'false' && PosterSV2.danhgiaposter == 'true')) &&
+                                <div className="row">
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV1</i></div>
+                                    <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-4"></textarea>
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV2</i></div>
+                                    <textarea value={PosterSV2.ghichu} onChange={(event) => handleOnchange2Poster(event.target.value, 'ghichu')} className="col-sm-4"></textarea>
+
+                                </div>
+                                : 
+                                PosterSV1.danhgiaposter == 'true' &&
+                                <div className="row">
+                                    <div className="col-sm-2"><i className="text-primary">Nhận xét SV1</i></div>
+                                    <textarea value={PosterSV1.ghichu} onChange={(event) => handleOnchangePoster(event.target.value, 'ghichu')} className="col-sm-9"></textarea>
+                                </div>
                         }
 
                     </>
