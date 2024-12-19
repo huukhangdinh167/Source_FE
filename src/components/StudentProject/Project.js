@@ -339,7 +339,7 @@ const Project = () => {
                                                                 <td className="center-button">
                                                                     {listUserstudent.filter(student => student.projectId === item.id).length < 8 ?
                                                                         <>
-                                                                            <div onClick={() => hanldeDangki(item, user)} className="btn btn-success butondangki">Đăng kí</div>
+                                                                            <div onClick={() => hanldeDangki(item, user)} className="btn btn-success butondangki">Đăng kí</div> <br></br>
                                                                             {
                                                                                 `( ${listUserstudent.filter(student => student.projectId === item.id).length} / 8 )`
                                                                             }
