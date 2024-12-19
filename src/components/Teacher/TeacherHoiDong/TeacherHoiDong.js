@@ -4,8 +4,8 @@ import swal from 'sweetalert';
 import './TeacherChamHoiDong.scss';
 import { headFetchListTeacher, AssignPB1and2, } from '../../../services/HeadService';
 import {
-    teacherGetIn4SV1andSV2, teacherHoiDong,
-    teacherDGPB, teacherXemKetQuaPBSV2, teacherDefinePB1PB2,
+    teacherGetIn4SV1andSV2HoiDong, teacherHoiDong,
+    teacherDGPB, teacherXemKetQuaHoiDongSV2, teacherDefinePB1PB2,
     teacherDefineHoiDong, teacherDGHoiDong,
     teacherPoseter, teacherDefinePoster, teacherDGPoster
 } from '../../../services/Teacher';
@@ -198,7 +198,7 @@ const TeacherChamHoiDong = (props) => {
     }
     const handleChamDiemHoiDong = async (item) => {
         let define = await defineHoiDong(item)
-        let aee = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+        let aee = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
         if (aee.EC != 0) {
             toast.error(aee.EM)
         }
@@ -219,7 +219,7 @@ const TeacherChamHoiDong = (props) => {
                 ghichu: item.Criteriahoidong?.ghichu,
                 diemSV1: item.Result?.diemCTHD
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+            let data = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPBSV2({
@@ -258,7 +258,7 @@ const TeacherChamHoiDong = (props) => {
                 ghichu: item.Criteriahoidong?.ghichuTK,
                 diemSV1: item.Result?.diemTK
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+            let data = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPBSV2({
@@ -297,7 +297,7 @@ const TeacherChamHoiDong = (props) => {
                 ghichu: item.Criteriahoidong?.ghichuUV,
                 diemSV1: item.Result?.diemUV
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+            let data = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPBSV2({
@@ -337,7 +337,7 @@ const TeacherChamHoiDong = (props) => {
         //     ghichu: item.Criteriapb?.ghichu,
         //     diemSV1: item.Result?.diemGVPB1 || item.Result?.diemGVPB2
         // })
-        // let data = await teacherXemKetQuaPBSV2(item.groupStudent)
+        // let data = await teacherXemKetQuaHoiDongSV2(item.groupStudent)
         // if (data.EC == 0) {
         //     let res = data.DT
         //     setXemPBSV2({
@@ -358,7 +358,7 @@ const TeacherChamHoiDong = (props) => {
         //     toast.error("Lỗi gì đó")
         // }
         console.log("datamodal", item)
-        let res = await teacherGetIn4SV1andSV2(item.groupStudent, item.id)
+        let res = await teacherGetIn4SV1andSV2HoiDong(item.groupStudent, item.id)
         if (res.EC == 0) {
             setListSv1Sv2(res.DT)
             console.log("Sex", res.DT)
@@ -367,7 +367,7 @@ const TeacherChamHoiDong = (props) => {
 
     const handleChamDiemPoster = async (item) => {
         let define = await definePoster(item)
-        let aee = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+        let aee = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
         if (aee.EC != 0) {
             toast.error(aee.EM)
         }
@@ -388,7 +388,7 @@ const TeacherChamHoiDong = (props) => {
                 ghichu: item.Criteriahoidong?.ghichuPoster1,
                 diemSV1: item.Result?.diemPoster1
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+            let data = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPosterSV2({
@@ -427,7 +427,7 @@ const TeacherChamHoiDong = (props) => {
                 ghichu: item.Criteriahoidong?.ghichuPoster2,
                 diemSV1: item.Result?.diemPoster2
             })
-            let data = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+            let data = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
             if (data.EC == 0) {
                 let res = data.DT
                 setXemPosterSV2({
@@ -457,7 +457,7 @@ const TeacherChamHoiDong = (props) => {
         setShowModalPoster(true); // Hiển thị modal
 
         console.log("datamodal", item)
-        let res = await teacherGetIn4SV1andSV2(item.groupStudent, item.id)
+        let res = await teacherGetIn4SV1andSV2HoiDong(item.groupStudent, item.id)
         if (res.EC == 0) {
             setListSv1Sv2(res.DT)
             console.log("Sex", res.DT)
@@ -844,7 +844,7 @@ const TeacherChamHoiDong = (props) => {
         const pdf = new jsPDF();
 
         let define = await defineHoiDong(item)
-        let response = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+        let response = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
 
         let res = response.DT
 
@@ -916,7 +916,7 @@ const TeacherChamHoiDong = (props) => {
                 [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiaphanbiensv1 == 'true' ? LOL5 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL5SV2 : ''],
                 [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL6 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL6SV2 : ''],
                 [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL7 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL7SV2 : ''],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hội đồng', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiaphanbiensv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiaphanbiensv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -1011,7 +1011,7 @@ const TeacherChamHoiDong = (props) => {
                 [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiaphanbiensv1 == 'true' ? LOL5 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL5SV2 : ''],
                 [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL6 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL6SV2 : ''],
                 [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL7 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL7SV2 : ''],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hội đồng', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiaphanbiensv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiaphanbiensv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -1106,7 +1106,7 @@ const TeacherChamHoiDong = (props) => {
                 [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiaphanbiensv1 == 'true' ? LOL5 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL5SV2 : ''],
                 [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL6 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL6SV2 : ''],
                 [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiaphanbiensv1 == 'true' ? LOL7 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL7SV2 : ''],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên hội đồng', danhgiaphanbiensv1 == 'true' ? LOL8 : '', danhgiaphanbiensv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiaphanbiensv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiaphanbiensv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -1141,7 +1141,7 @@ const TeacherChamHoiDong = (props) => {
         const pdf = new jsPDF();
 
         let define = await defineHoiDong(item)
-        let response = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+        let response = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
 
         let res = response.DT
 
@@ -1195,7 +1195,7 @@ const TeacherChamHoiDong = (props) => {
 
             if (res.length > 1) {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1],
+                    [1, item.maSo, item.name, `${diemSV1} /10`],
                     [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
@@ -1281,7 +1281,7 @@ const TeacherChamHoiDong = (props) => {
 
             if (res.length > 1) {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1],
+                    [1, item.maSo, item.name, `${diemSV1} /10`],
                     [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
@@ -1365,7 +1365,7 @@ const TeacherChamHoiDong = (props) => {
 
             if (res.length > 1) {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1],
+                    [1, item.maSo, item.name, `${diemSV1} /10`],
                     [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
@@ -1409,7 +1409,7 @@ const TeacherChamHoiDong = (props) => {
         const pdf = new jsPDF();
 
         let define = await definePoster(item)
-        let response = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+        let response = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
 
         let res = response.DT
 
@@ -1481,7 +1481,7 @@ const TeacherChamHoiDong = (props) => {
                 [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiapostersv1 == 'true' ? LOL5 : '', danhgiapostersv2 == 'true' && res[1] ? LOL5SV2 : ''],
                 [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiapostersv1 == 'true' ? LOL6 : '', danhgiapostersv2 == 'true' && res[1] ? LOL6SV2 : ''],
                 [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiapostersv1 == 'true' ? LOL7 : '', danhgiapostersv2 == 'true' && res[1] ? LOL7SV2 : ''],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiapostersv1 == 'true' ? LOL8 : '', danhgiapostersv2 == 'true' && res[1] ? LOL8SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giảng viên Poster', danhgiapostersv1 == 'true' ? LOL8 : '', danhgiapostersv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiapostersv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiapostersv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -1576,7 +1576,7 @@ const TeacherChamHoiDong = (props) => {
                 [5, 'Viết được báo cáo khóa luận tốt nghiệp', danhgiapostersv1 == 'true' ? LOL5 : '', danhgiapostersv2 == 'true' && res[1] ? LOL5SV2 : ''],
                 [6, 'Trình bày được các kiến thức nền tảng liên quan đến đề tài khóa luận', danhgiapostersv1 == 'true' ? LOL6 : '', danhgiapostersv2 == 'true' && res[1] ? LOL6SV2 : ''],
                 [7, 'Đánh giá việc thực hiện khóa luận đáp ứng yêu cầu đề tài khóa luận', danhgiapostersv1 == 'true' ? LOL7 : '', danhgiapostersv2 == 'true' && res[1] ? LOL7SV2 : ''],
-                [8, 'Bảo vệ khóa kết quả khóa luận trước giản viên phản biện', danhgiapostersv1 == 'true' ? LOL8 : '', danhgiapostersv2 == 'true' && res[1] ? LOL8SV2 : ''],
+                [8, 'Bảo vệ khóa kết quả khóa luận trước giảng viên Poster', danhgiapostersv1 == 'true' ? LOL8 : '', danhgiapostersv2 == 'true' && res[1] ? LOL8SV2 : ''],
                 ['', 'Kết quả', danhgiapostersv1 == 'true' ? 'Đạt' : 'Không đạt', res[1] && (danhgiapostersv2 == 'true' ? 'Đạt' : 'Không đạt')],
             ];
             // Tạo bảng với autoTable
@@ -1612,7 +1612,7 @@ const TeacherChamHoiDong = (props) => {
         const pdf = new jsPDF();
 
         let define = await definePoster(item)
-        let response = await teacherXemKetQuaPBSV2(item.groupStudent, item.id)
+        let response = await teacherXemKetQuaHoiDongSV2(item.groupStudent, item.id)
 
         let res = response.DT
 
@@ -1666,7 +1666,7 @@ const TeacherChamHoiDong = (props) => {
 
             if (res.length > 1) {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1],
+                    [1, item.maSo, item.name, `${diemSV1} /10`],
                     [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {
@@ -1752,7 +1752,7 @@ const TeacherChamHoiDong = (props) => {
 
             if (res.length > 1) {
                 data.push(
-                    [1, item.maSo, item.name, diemSV1],
+                    [1, item.maSo, item.name, `${diemSV1} /10`],
                     [2, res[1]?.maSo || '', res[1]?.name || '', res[1] ? `${diemSV2} /10` : '']
                 );
             } else {

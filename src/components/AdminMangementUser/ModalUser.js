@@ -35,23 +35,41 @@ const ModalUser = (props) => {
     const [userData, setUserData] = useState(deFaultUserData)
     const checkValidateInputs = () => {
         // create user 
-        if (action === "UPDATE")
-            return true;
-        setValidInputs(validInputsDefault);
-        // console.log("check user data", userData)
-        let arr = ['maSo', 'password', 'name', 'group']
-        let check = true;
-        for (let i = 0; i < arr.length; i++) {
-            if (!userData[arr[i]]) {
-                let _validInputs = _.cloneDeep(validInputsDefault);
-                _validInputs[arr[i]] = false
-                setValidInputs(_validInputs)
-                toast.error(`Empty input ${arr[i]}`);
-                check = false;
-                break;
+        if (action === "UPDATE") {
+            setValidInputs(validInputsDefault);
+            // console.log("check user data", userData)
+            let arr = ['maSo', 'name']
+            let check = true;
+            for (let i = 0; i < arr.length; i++) {
+                if (!userData[arr[i]]) {
+                    let _validInputs = _.cloneDeep(validInputsDefault);
+                    _validInputs[arr[i]] = false
+                    setValidInputs(_validInputs)
+                    toast.error(`Empty input ${arr[i]}`);
+                    check = false;
+                    break;
+                }
             }
+            return check;
+        } else {
+            setValidInputs(validInputsDefault);
+            // console.log("check user data", userData)
+            let arr = ['maSo', 'password', 'name', 'group']
+            let check = true;
+            for (let i = 0; i < arr.length; i++) {
+                if (!userData[arr[i]]) {
+                    let _validInputs = _.cloneDeep(validInputsDefault);
+                    _validInputs[arr[i]] = false
+                    setValidInputs(_validInputs)
+                    toast.error(`Empty input ${arr[i]}`);
+                    check = false;
+                    break;
+                }
+            }
+            return check;
         }
-        return check;
+
+
 
     }
     const handleConfirmUser = async () => {
@@ -103,7 +121,7 @@ const ModalUser = (props) => {
     useEffect(() => {
         if (action === "CREATE") {
             if (userGroup && userGroup.length > 0) {
-                setUserData({ ...userData, group: userGroup[0].id })
+                setUserData({ ...userData})
             }
         }
     }, [action])
@@ -113,7 +131,7 @@ const ModalUser = (props) => {
         if (res && res && res.EC === 0) {
             setUserGroup(res.DT)
             if (res.DT && res.DT.length > 0) {
-                setUserData({ ...userData, group: res.DT[0].id })
+                setUserData({ ...userData})
             }
         } else {
             toast.error(res.EM)
@@ -149,7 +167,7 @@ const ModalUser = (props) => {
                         </div>
 
                         <div className="col-12 col-sm-6 form-group">
-                            <label>Mã số giảng viên(<span className="text-danger">*</span>)</label>
+                            <label>Mã số(<span className="text-danger">*</span>)</label>
                             <input disabled={action === "CREATE" ? false : true} className={validInputs.maSo ? "form-control" : "form-control is-invalid"} type="email" value={userData.maSo}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "maSo")}
                             />
@@ -158,7 +176,7 @@ const ModalUser = (props) => {
                         <div className="col-12 col-sm-6 form-group">
 
 
-                            <label> Mật khẩu(<span className="text-danger">*</span>) </label>
+                            <label> Mật khẩu {action === "CREATE" ? (<span className="text-danger">*</span>) : ''} </label>
                             <input className={validInputs.password ? "form-control" : "form-control is-invalid"} type="email" value={userData.password}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "password")}
                             />
@@ -180,27 +198,48 @@ const ModalUser = (props) => {
 
                         <div className="col-12 col-sm-6 form-group">
                             <label>Nhóm người dùng</label>
-                            <select disabled={action === "CREATE" ? false : true} className={validInputs.group ? "form-select" : "form-select is-invalid"}
+                            <select className={validInputs.group ? "form-select" : "form-select is-invalid"}
                                 onChange={(event) => handleOnchangeInput(event.target.value, "group")}
                                 value={userData.group}
                             >
                                 {action === 'CREATE' && userGroup.length > 0 ?
-                                    userGroup
-                                        .filter(item => item.name !== 'Student') // Lọc ra tất cả các group ngoại trừ group có name là 'student'
-                                        .map((item, index) => {
-                                            return (
-                                                <option key={`group-${index}`} value={item.id}>{item.name}</option>
-                                            );
-                                        })
+
+                                    <>
+                                        <option value={null}>---</option>
+                                        {
+                                            userGroup
+                                                .filter(item => item.name !== 'Student')
+                                                .filter(item => item.name !== 'Admin') // Lọc ra tất cả các group ngoại trừ group có name là 'student'
+                                                .map((item, index) => {
+                                                    return (
+                                                        <option key={`group-${index}`} value={item.id}>{item.name}</option>
+                                                    );
+                                                })
+                                        }
+                                    </>
                                     :
 
-                                    userGroup.map((item, index) => {
-                                        return (
-                                            <option key={`group-${index}`} value={item.id} >{item.name}</option>
-                                        )
-                                    })
-
-
+                                    (userData.group == 1 ?
+                                        userGroup
+                                            .filter(item => item.name != 'Admin')
+                                            .filter(item => item.name != 'Teacher')
+                                            .filter(item => item.name != 'Teacher in Charge')
+                                            .filter(item => item.name != 'Department head')
+                                            .map((item, index) => {
+                                                return (
+                                                    <option key={`group-${index}`} value={item.id} >{item.name}</option>
+                                                )
+                                            })
+                                        :
+                                        userGroup
+                                            .filter(item => item.name !== 'Admin')
+                                            .filter(item => item.name !== 'Student')
+                                            .map((item, index) => {
+                                                return (
+                                                    <option key={`group-${index}`} value={item.id} >{item.name}</option>
+                                                )
+                                            })
+                                    )
                                 }
 
 

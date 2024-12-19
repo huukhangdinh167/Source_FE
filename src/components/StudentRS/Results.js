@@ -244,8 +244,8 @@ const Results = () => {
                                     <td>
                                         <b>{(results.Result.danhgiaphanbien1 == 'false' && results.Result.danhgiaphanbien2 == 'false') || (results.Result.danhgiaphanbien1 == 'false' &&
                                             results.Result.danhgiaphanbien3 == 'false') || (results.Result.danhgiaphanbien2 == 'false' && results.Result.danhgiaphanbien3 == 'false')
-                                            ? <p className='text-danger'>Không đạt</p> : results.Result.trungbinhphanbien}</b> <br></br>
-                                        {results.Result && results.Result.trungbinhphanbien && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">(Xem)</i>}
+                                            ? <p className='text-danger'>Không đạt</p> : Math.round(results.Result.trungbinhphanbien * 100) / 100 }</b> <br></br>
+                                        {results.Result && results.Result.trungbinhphanbien != null && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">(Xem)</i>}
                                     </td>
                                     <td>{results.Result.diemCTHD}
                                         <br></br>
@@ -724,15 +724,25 @@ const Results = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-sm-1"><i className="text-primary">PB1</i></div>
-                        <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichu}</textarea>
-
-                        <div className="col-sm-1"><i className="text-primary">PB2</i></div>
-                        <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
-                        {results?.pb3 && results.Result.diemGVPB3 &&
+                        {results?.pb3 && results.Result.diemGVPB3 ?
                             <>
+                                <div className="col-sm-1"><i className="text-primary">PB1</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichu}</textarea>
+
+                                <div className="col-sm-1"><i className="text-primary">PB2</i></div>
+                                <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+
+
                                 <div className="col-sm-1"><i className="text-primary">PB2</i></div>
                                 <textarea readOnly className="col-sm-3">{results && results.Criteriapb && results.Criteriapb.ghichuPB3}</textarea>
+                            </>
+                            : <>
+                                <div className="col-sm-1"><i className="text-primary">PB1</i></div>
+                                <textarea readOnly className="col-sm-5">{results && results.Criteriapb && results.Criteriapb.ghichu}</textarea>
+
+                                <div className="col-sm-1"><i className="text-primary">PB2</i></div>
+                                <textarea readOnly className="col-sm-5">{results && results.Criteriapb && results.Criteriapb.ghichuPB2}</textarea>
+
                             </>
                         }
                     </div>

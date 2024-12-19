@@ -15,6 +15,10 @@ const teacherGetIn4SV1andSV2 = (group, id) => {
     return axios.put("/api/v1/teacher/getIn4SV1andSV2", { data: { groupStudent: group, id: id } })
 }
 
+const teacherGetIn4SV1andSV2HoiDong = (group, id) => {
+    return axios.put("/api/v1/teacher/getIn4SV1andSV2HoiDong", { data: { groupStudent: group, id: id } })
+}
+
 const teacherDGHD = (danhgia, data4table) => {
     return axios.put("/api/v1/teacher/DGHD", {
         data: {
@@ -83,6 +87,10 @@ const teacherDGPB = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, pb1, pb2,pb3, maSoGV)
 
 const teacherXemKetQuaPBSV2 = (user, id) => {
     return axios.put("/api/v1/teacher/xemDGPhanBienSV2", { data: { maSo: user, id: id } })
+}
+
+const teacherXemKetQuaHoiDongSV2 = (user, id) => {
+    return axios.put("/api/v1/teacher/xemDGHoiDongSV2", { data: { maSo: user, id: id } })
 }
 // xác định user là pb1 hay pb1 của đề tài đó
 const teacherDefinePB1PB2 = (maSoSV, maSoGV) => {
@@ -179,7 +187,7 @@ const teacherDGPoster = (danhgiaSV1, danhgiaSV2, idSV1, idSV2, Poster1, Poster2,
 }
 
 export {
-    teacherPB, teacherGetDSHD, teacherDGHD, teacherGetIn4SV1andSV2, teacherDGPB,
-    teacherXemKetQuaPBSV2, teacherDefinePB1PB2, teacherHoiDong, teacherDefineHoiDong, teacherDGHoiDong,
+    teacherPB, teacherGetDSHD, teacherDGHD, teacherGetIn4SV1andSV2,teacherGetIn4SV1andSV2HoiDong, teacherDGPB,
+    teacherXemKetQuaPBSV2,teacherXemKetQuaHoiDongSV2, teacherDefinePB1PB2, teacherHoiDong, teacherDefineHoiDong, teacherDGHoiDong,
     teacherPoseter, teacherDefinePoster, teacherDGPoster
 }
