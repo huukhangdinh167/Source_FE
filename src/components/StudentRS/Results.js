@@ -244,7 +244,7 @@ const Results = () => {
                                     <td>
                                         <b>{(results.Result.danhgiaphanbien1 == 'false' && results.Result.danhgiaphanbien2 == 'false') || (results.Result.danhgiaphanbien1 == 'false' &&
                                             results.Result.danhgiaphanbien3 == 'false') || (results.Result.danhgiaphanbien2 == 'false' && results.Result.danhgiaphanbien3 == 'false')
-                                            ? <p className='text-danger'>Không đạt</p> : Math.round(results.Result.trungbinhphanbien * 100) / 100 }</b> <br></br>
+                                            ? <p className='text-danger'>Không đạt</p> : results.Result.trungbinhphanbien && Math.round(results.Result.trungbinhphanbien * 100) / 100 }</b> <br></br>
                                         {results.Result && results.Result.trungbinhphanbien != null && <i onClick={() => handleXemChiTietTBPB()} className="text-primary xemchitiet">(Xem)</i>}
                                     </td>
                                     <td>{results.Result.diemCTHD}
